@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#05080d"/>
+      <stop offset=".62" stop-color="#0b1621"/>
+      <stop offset="1" stop-color="#10132b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#77e4ff"/>
+      <stop offset="1" stop-color="#726dff"/>
+    </linearGradient>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0H0v50" fill="none" stroke="#77e4ff" stroke-opacity=".08"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <circle cx="980" cy="100" r="260" fill="#35bff4" opacity=".08"/>
+  <path d="M70 70h80l24 24v80H94l-24-24z" fill="#0c1d2a" stroke="#77e4ff" stroke-opacity=".6"/>
+  <text x="102" y="140" fill="#77e4ff" font-family="Arial, sans-serif" font-size="54" font-weight="700">S</text>
+  <text x="70" y="280" fill="#f1f8ff" font-family="Arial, sans-serif" font-size="70" font-weight="700">Technik, die</text>
+  <text x="70" y="365" fill="url(#accent)" font-family="Arial, sans-serif" font-size="90" font-weight="700">funktioniert.</text>
+  <text x="74" y="432" fill="#94a8b9" font-family="Arial, sans-serif" font-size="28">Schultes IT &amp; Netzwerksupport · Ludwigsburg</text>
+  <line x1="74" y1="500" x2="1125" y2="500" stroke="#77e4ff" stroke-opacity=".24"/>
+  <text x="74" y="555" fill="#72f1ae" font-family="Arial, sans-serif" font-size="22">● VERFÜGBAR</text>
+  <text x="945" y="555" fill="#d5e8f5" font-family="Arial, sans-serif" font-size="23">+49 1523 3364752</text>
+</svg>
