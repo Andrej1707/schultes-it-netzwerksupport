@@ -14,10 +14,13 @@ import {
   Cpu,
   ExternalLink,
   FileSearch,
+  FileText,
   GitBranch,
   Globe2,
   Laptop,
   Lightbulb,
+  LockKeyhole,
+  Mail,
   MapPin,
   Menu,
   Network,
@@ -39,6 +42,10 @@ import type { Variants } from 'framer-motion'
 const phoneDisplay = '+49 1523 3364752'
 const phoneHref = 'tel:+4915233364752'
 const phoneCopy = '+49 1523 3364752'
+const email = 'it.schulteslb@gmail.com'
+const address = 'Egerländer Str. 24, 71638 Ludwigsburg'
+const mapsUrl = 'https://maps.app.goo.gl/9riyhNzidDpzvynd8'
+const mapsEmbedUrl = 'https://www.google.com/maps?q=48.8886228%2C9.2064228&z=17&output=embed'
 
 type Service = {
   icon: LucideIcon
@@ -300,10 +307,306 @@ function Logo() {
   )
 }
 
-function App() {
+type LegalPage = 'impressum' | 'datenschutz'
+
+function LegalLayout({ page }: { page: LegalPage }) {
+  const isImprint = page === 'impressum'
+
+  useEffect(() => {
+    document.body.dataset.legalPage = 'true'
+    document.title = `${isImprint ? 'Impressum' : 'Datenschutz'} | Schultes IT & Netzwerksupport`
+    const scrollTimer = window.setTimeout(() => window.scrollTo(0, 0), 0)
+
+    return () => {
+      window.clearTimeout(scrollTimer)
+      delete document.body.dataset.legalPage
+      document.title = 'IT-Support Ludwigsburg | Schultes IT & Netzwerksupport'
+    }
+  }, [isImprint])
+
+  return (
+    <>
+      <a className="skip-link" href="#legal-main">
+        Zum Inhalt springen
+      </a>
+      <NetworkCanvas />
+      <div className="ambient ambient-one" aria-hidden="true" />
+      <div className="ambient ambient-two" aria-hidden="true" />
+      <div className="scanline" aria-hidden="true" />
+
+      <header className="site-header legal-header">
+        <Logo />
+        <a className="legal-back" href="#top">
+          <ArrowDownRight aria-hidden="true" />
+          Zur Startseite
+        </a>
+      </header>
+
+      <main className="legal-page" id="legal-main">
+        <header className="legal-hero">
+          <span className="section-number">
+            {isImprint ? 'LEGAL NODE / 01' : 'LEGAL NODE / 02'}
+          </span>
+          <div className="legal-icon" aria-hidden="true">
+            {isImprint ? <FileText /> : <LockKeyhole />}
+          </div>
+          <h1>{isImprint ? 'Impressum' : 'Datenschutz'}</h1>
+          <p>
+            {isImprint
+              ? 'Klare Angaben zur verantwortlichen Person hinter Schultes IT & Netzwerksupport.'
+              : 'Transparent erklärt: welche Daten beim Besuch dieser Website verarbeitet werden und warum.'}
+          </p>
+          <nav className="legal-switch" aria-label="Rechtliche Seiten">
+            <a href="#/impressum" aria-current={isImprint ? 'page' : undefined}>
+              Impressum
+            </a>
+            <a href="#/datenschutz" aria-current={!isImprint ? 'page' : undefined}>
+              Datenschutz
+            </a>
+          </nav>
+        </header>
+
+        {isImprint ? <ImprintContent /> : <PrivacyContent />}
+      </main>
+
+      <SiteFooter />
+    </>
+  )
+}
+
+function ImprintContent() {
+  return (
+    <div className="legal-content">
+      <section>
+        <span>01 / ANBIETER</span>
+        <h2>Angaben gemäß § 5 DDG</h2>
+        <address>
+          <strong>Schultes IT & Netzwerksupport</strong>
+          <br />
+          Inhaber: Andrej Schultes
+          <br />
+          Egerländer Str. 24
+          <br />
+          71638 Ludwigsburg
+          <br />
+          Deutschland
+        </address>
+      </section>
+
+      <section>
+        <span>02 / KONTAKT</span>
+        <h2>Direkter Kontakt</h2>
+        <p>
+          Telefon: <a href={phoneHref}>{phoneDisplay}</a>
+          <br />
+          E-Mail: <a href={`mailto:${email}`}>{email}</a>
+        </p>
+      </section>
+
+      <section>
+        <span>03 / INHALT</span>
+        <h2>Verantwortlich für den Inhalt</h2>
+        <p>
+          Andrej Schultes
+          <br />
+          {address}
+        </p>
+      </section>
+
+      <section>
+        <span>04 / STREITBEILEGUNG</span>
+        <h2>Verbraucherstreitbeilegung</h2>
+        <p>
+          Ich bin nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer
+          Verbraucherschlichtungsstelle teilzunehmen.
+        </p>
+      </section>
+
+      <section>
+        <span>05 / HAFTUNG</span>
+        <h2>Externe Links</h2>
+        <p>
+          Diese Website enthält Links zu externen Websites Dritter. Auf deren Inhalte habe ich
+          keinen Einfluss. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter
+          oder Betreiber verantwortlich.
+        </p>
+      </section>
+    </div>
+  )
+}
+
+function PrivacyContent() {
+  return (
+    <div className="legal-content privacy-content">
+      <section>
+        <span>01 / VERANTWORTLICH</span>
+        <h2>Verantwortliche Stelle</h2>
+        <address>
+          <strong>Andrej Schultes</strong>
+          <br />
+          Schultes IT & Netzwerksupport
+          <br />
+          Egerländer Str. 24
+          <br />
+          71638 Ludwigsburg
+          <br />
+          Deutschland
+        </address>
+        <p>
+          Telefon: <a href={phoneHref}>{phoneDisplay}</a>
+          <br />
+          E-Mail: <a href={`mailto:${email}`}>{email}</a>
+        </p>
+      </section>
+
+      <section>
+        <span>02 / HOSTING</span>
+        <h2>Bereitstellung über GitHub Pages</h2>
+        <p>
+          Diese Website wird über GitHub Pages bereitgestellt. Anbieter ist GitHub, Inc., 88 Colin
+          P Kelly Jr Street, San Francisco, CA 94107, USA. Beim Aufruf verarbeitet GitHub technisch
+          erforderliche Verbindungsdaten. Nach Angaben von GitHub wird insbesondere die IP-Adresse
+          zu Sicherheitszwecken protokolliert und gespeichert.
+        </p>
+        <p>
+          Die Verarbeitung erfolgt zur sicheren und zuverlässigen Bereitstellung dieser Website auf
+          Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse liegt im sicheren,
+          performanten und manipulationsgeschützten Betrieb des Webangebots. Eine Übermittlung in die
+          USA kann dabei nicht ausgeschlossen werden.
+        </p>
+        <p>
+          Mehr Informationen:{' '}
+          <a
+            href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Datenschutzerklärung von GitHub <ExternalLink aria-hidden="true" />
+          </a>
+        </p>
+      </section>
+
+      <section>
+        <span>03 / KONTAKTAUFNAHME</span>
+        <h2>Telefon und E-Mail</h2>
+        <p>
+          Wenn du telefonisch oder per E-Mail Kontakt aufnimmst, werden die von dir übermittelten
+          Angaben verarbeitet, um deine Anfrage zu beantworten und mögliche Anschlussfragen zu
+          klären.
+        </p>
+        <p>
+          Soweit deine Anfrage auf einen Vertrag oder vorvertragliche Maßnahmen gerichtet ist,
+          erfolgt die Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO. In allen anderen
+          Fällen beruht sie auf Art. 6 Abs. 1 lit. f DSGVO und dem berechtigten Interesse an einer
+          effizienten Kommunikation. Die Daten werden gelöscht, sobald die Anfrage abschließend
+          bearbeitet ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
+        </p>
+      </section>
+
+      <section>
+        <span>04 / GOOGLE MAPS</span>
+        <h2>Karte nur nach Einwilligung</h2>
+        <p>
+          Die interaktive Google-Karte wird beim ersten Seitenaufruf nicht geladen. Erst wenn du
+          aktiv auf „Google Maps laden“ klickst, wird eine Verbindung zu Google hergestellt.
+          Anbieter für Nutzerinnen und Nutzer im Europäischen Wirtschaftsraum ist Google Ireland
+          Limited, Gordon House, Barrow Street, Dublin 4, Irland.
+        </p>
+        <p>
+          Dabei können insbesondere IP-Adresse, Geräte- und Browserinformationen, Zeitpunkt,
+          Referrer-URL sowie Interaktionen mit der Karte an Google übertragen werden. Bist du bei
+          Google angemeldet, können die Daten deinem Konto zugeordnet werden. Eine Verarbeitung in
+          den USA ist möglich.
+        </p>
+        <p>
+          Rechtsgrundlage ist deine Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO sowie § 25 Abs. 1
+          TDDDG. Du kannst die Karte jederzeit über „Karte deaktivieren“ wieder entfernen. Bereits
+          erfolgte Übertragungen werden dadurch nicht rückgängig gemacht.
+        </p>
+        <p>
+          Mehr Informationen:{' '}
+          <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noreferrer">
+            Datenschutzerklärung von Google <ExternalLink aria-hidden="true" />
+          </a>
+        </p>
+      </section>
+
+      <section>
+        <span>05 / LOKALE FUNKTIONEN</span>
+        <h2>Zwischenablage und externe Links</h2>
+        <p>
+          Die Funktion „Telefonnummer kopieren“ nutzt ausschließlich die lokale
+          Zwischenablage-Funktion deines Browsers. Dabei werden keine Daten an mich oder einen
+          Analysedienst übermittelt. Externe Angebote wie Google Maps oder GitHub werden erst
+          aufgerufen, wenn du den jeweiligen Link aktiv anklickst.
+        </p>
+      </section>
+
+      <section>
+        <span>06 / TRACKING</span>
+        <h2>Keine Analyse und keine Werbe-Cookies</h2>
+        <p>
+          Auf dieser Website werden keine Analyse-, Marketing- oder Profiling-Dienste eingesetzt.
+          Es werden durch diese Website keine Werbe-Cookies gesetzt. Externe Schriftarten werden
+          nicht geladen.
+        </p>
+      </section>
+
+      <section>
+        <span>07 / DEINE RECHTE</span>
+        <h2>Betroffenenrechte</h2>
+        <p>
+          Du hast im Rahmen der gesetzlichen Voraussetzungen das Recht auf Auskunft, Berichtigung,
+          Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Eine
+          erteilte Einwilligung kannst du jederzeit mit Wirkung für die Zukunft widerrufen.
+        </p>
+        <p>
+          Außerdem besteht ein Beschwerderecht bei einer Datenschutzaufsichtsbehörde. Für
+          nichtöffentliche Stellen in Baden-Württemberg ist insbesondere der Landesbeauftragte für
+          den Datenschutz und die Informationsfreiheit Baden-Württemberg zuständig.
+        </p>
+      </section>
+
+      <section>
+        <span>08 / STAND</span>
+        <h2>Stand dieser Erklärung</h2>
+        <p>14. Juni 2026</p>
+      </section>
+    </div>
+  )
+}
+
+function SiteFooter() {
+  return (
+    <footer className="site-footer">
+      <Logo />
+      <div className="footer-meta">
+        <span>Ludwigsburg, Deutschland</span>
+        <span>© {new Date().getFullYear()} Andrej Schultes</span>
+      </div>
+      <div className="footer-links">
+        <a href="https://github.com/Andrej1707" target="_blank" rel="noreferrer">
+          <GitBranch aria-hidden="true" /> GitHub
+        </a>
+        <a href="#/impressum">
+          <FileText aria-hidden="true" /> Impressum
+        </a>
+        <a href="#/datenschutz">
+          <LockKeyhole aria-hidden="true" /> Datenschutz
+        </a>
+        <a href={`mailto:${email}`}>
+          <Mail aria-hidden="true" /> E-Mail
+        </a>
+      </div>
+    </footer>
+  )
+}
+
+function MarketingApp() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [diagnosticIndex, setDiagnosticIndex] = useState(0)
   const [copied, setCopied] = useState(false)
+  const [mapsEnabled, setMapsEnabled] = useState(false)
   const [activeChapter, setActiveChapter] = useState('top')
   const reduceMotion = useReducedMotion()
   const { scrollYProgress } = useScroll()
@@ -885,15 +1188,37 @@ function App() {
             viewport={{ once: true, amount: 0.2 }}
           >
             <div className="map-frame">
-              <iframe
-                title="Standort von Schultes IT & Netzwerksupport"
-                src="https://www.google.com/maps?q=48.8886228%2C9.2064228&z=17&output=embed"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+              {mapsEnabled ? (
+                <iframe
+                  title="Standort von Schultes IT & Netzwerksupport"
+                  src={mapsEmbedUrl}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              ) : (
+                <div className="map-consent">
+                  <ShieldCheck aria-hidden="true" />
+                  <span>EXTERNAL SERVICE / GOOGLE MAPS</span>
+                  <h3>Karte bleibt privat, bis du sie lädst.</h3>
+                  <p>
+                    Erst nach deiner Einwilligung wird eine Verbindung zu Google aufgebaut. Dabei
+                    können personenbezogene Daten an Google übertragen werden.
+                  </p>
+                  <button type="button" onClick={() => setMapsEnabled(true)}>
+                    Google Maps laden
+                  </button>
+                  <a href="#/datenschutz">Details im Datenschutz</a>
+                </div>
+              )}
               <div className="map-hud">
                 <span><i /> LOCAL NODE ONLINE</span>
-                <strong>SCHULTES IT / LUDWIGSBURG</strong>
+                {mapsEnabled ? (
+                  <button type="button" onClick={() => setMapsEnabled(false)}>
+                    Karte deaktivieren
+                  </button>
+                ) : (
+                  <strong>SCHULTES IT / LUDWIGSBURG</strong>
+                )}
               </div>
             </div>
 
@@ -920,7 +1245,7 @@ function App() {
                 </div>
               </div>
               <div className="local-actions">
-                <a href="https://maps.app.goo.gl/9riyhNzidDpzvynd8" target="_blank" rel="noreferrer">
+                <a href={mapsUrl} target="_blank" rel="noreferrer">
                   In Google Maps öffnen <ExternalLink aria-hidden="true" />
                 </a>
                 <button type="button" onClick={copyPhone} className={copied ? 'is-copied' : ''}>
@@ -993,23 +1318,24 @@ function App() {
         </button>
       </div>
 
-      <footer className="site-footer">
-        <Logo />
-        <div className="footer-meta">
-          <span>Ludwigsburg, Deutschland</span>
-          <span>© {new Date().getFullYear()} Andrej Schultes</span>
-        </div>
-        <div className="footer-links">
-          <a href="https://github.com/Andrej1707" target="_blank" rel="noreferrer">
-            <GitBranch aria-hidden="true" /> GitHub
-          </a>
-          <a href={phoneHref}>
-            <Phone aria-hidden="true" /> Kontakt
-          </a>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   )
+}
+
+function App() {
+  const [hash, setHash] = useState(window.location.hash)
+
+  useEffect(() => {
+    const updateHash = () => setHash(window.location.hash)
+    window.addEventListener('hashchange', updateHash)
+    return () => window.removeEventListener('hashchange', updateHash)
+  }, [])
+
+  if (hash === '#/impressum') return <LegalLayout page="impressum" />
+  if (hash === '#/datenschutz') return <LegalLayout page="datenschutz" />
+
+  return <MarketingApp />
 }
 
 export default App
