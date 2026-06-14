@@ -39,10 +39,11 @@ import {
 } from 'lucide-react'
 import type { Variants } from 'framer-motion'
 
-const phoneDisplay = '+49 1523 3364752'
-const phoneHref = 'tel:+4915233364752'
-const phoneCopy = '+49 1523 3364752'
-const email = 'it.schulteslb@gmail.com'
+const phoneParts = ['+49', '1523', '3364752']
+const phoneDisplay = phoneParts.join(' ')
+const phoneHref = `tel:${phoneParts.join('')}`
+const phoneCopy = phoneDisplay
+const email = ['it.schulteslb', 'gmail.com'].join('@')
 const address = 'Egerländer Str. 24, 71638 Ludwigsburg'
 const mapsUrl = 'https://maps.app.goo.gl/9riyhNzidDpzvynd8'
 const mapsEmbedUrl = 'https://www.google.com/maps?q=48.8886228%2C9.2064228&z=17&output=embed'
@@ -397,9 +398,13 @@ function ImprintContent() {
         <span>02 / KONTAKT</span>
         <h2>Direkter Kontakt</h2>
         <p>
-          Telefon: <a href={phoneHref}>{phoneDisplay}</a>
+          <span data-nosnippet>
+            Telefon: <a href={phoneHref}>{phoneDisplay}</a>
+          </span>
           <br />
-          E-Mail: <a href={`mailto:${email}`}>{email}</a>
+          <span data-nosnippet>
+            E-Mail: <a href={`mailto:${email}`}>{email}</a>
+          </span>
         </p>
       </section>
 
@@ -453,9 +458,13 @@ function PrivacyContent() {
           Deutschland
         </address>
         <p>
-          Telefon: <a href={phoneHref}>{phoneDisplay}</a>
+          <span data-nosnippet>
+            Telefon: <a href={phoneHref}>{phoneDisplay}</a>
+          </span>
           <br />
-          E-Mail: <a href={`mailto:${email}`}>{email}</a>
+          <span data-nosnippet>
+            E-Mail: <a href={`mailto:${email}`}>{email}</a>
+          </span>
         </p>
       </section>
 
@@ -594,9 +603,11 @@ function SiteFooter() {
         <a href="#/datenschutz">
           <LockKeyhole aria-hidden="true" /> Datenschutz
         </a>
-        <a href={`mailto:${email}`}>
-          <Mail aria-hidden="true" /> E-Mail
-        </a>
+        <span className="footer-private" data-nosnippet>
+          <a href={`mailto:${email}`}>
+            <Mail aria-hidden="true" /> E-Mail
+          </a>
+        </span>
       </div>
     </footer>
   )
@@ -695,7 +706,7 @@ function MarketingApp() {
         </nav>
         <a className="header-call" href={phoneHref}>
           <Phone size={16} aria-hidden="true" />
-          <span>{phoneDisplay}</span>
+          <span data-nosnippet>{phoneDisplay}</span>
         </a>
         <button
           className="menu-toggle"
@@ -770,7 +781,7 @@ function MarketingApp() {
                 <a className="primary-action" href={phoneHref}>
                   <span>
                     Problem besprechen
-                    <small>{phoneDisplay}</small>
+                    <small data-nosnippet>{phoneDisplay}</small>
                   </span>
                   <ArrowUpRight aria-hidden="true" />
                 </a>
@@ -1287,7 +1298,7 @@ function MarketingApp() {
               </span>
               <span>
                 <small>JETZT ANRUFEN</small>
-                {phoneDisplay}
+                <span data-nosnippet>{phoneDisplay}</span>
               </span>
               <ArrowUpRight aria-hidden="true" />
             </a>
@@ -1310,7 +1321,10 @@ function MarketingApp() {
       <div className="mobile-contact-dock" aria-label="Schnellkontakt">
         <a href={phoneHref}>
           <Phone aria-hidden="true" />
-          <span><small>JETZT ANRUFEN</small>{phoneDisplay}</span>
+          <span>
+            <small>JETZT ANRUFEN</small>
+            <span data-nosnippet>{phoneDisplay}</span>
+          </span>
         </a>
         <button type="button" onClick={copyPhone} aria-label="Telefonnummer kopieren">
           {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}

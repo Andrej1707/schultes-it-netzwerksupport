@@ -1375,6 +1375,10 @@ main {
   width: 15px;
 }
 
+.footer-private {
+  display: contents;
+}
+
 .legal-header {
   grid-template-columns: 1fr auto;
 }
