@@ -886,14 +886,14 @@ function App() {
           >
             <div className="map-frame">
               <iframe
-                title="Karte von Ludwigsburg"
-                src="https://www.google.com/maps?q=Ludwigsburg%2C%20Deutschland&z=12&output=embed"
+                title="Standort von Schultes IT & Netzwerksupport"
+                src="https://www.google.com/maps?q=48.8886228%2C9.2064228&z=17&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
               <div className="map-hud">
                 <span><i /> LOCAL NODE ONLINE</span>
-                <strong>LUDWIGSBURG / 07141</strong>
+                <strong>SCHULTES IT / LUDWIGSBURG</strong>
               </div>
             </div>
 
