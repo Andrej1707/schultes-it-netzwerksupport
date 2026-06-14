@@ -919,7 +919,7 @@ function App() {
                 </div>
               </div>
               <div className="local-actions">
-                <a href="https://www.google.com/maps/search/?api=1&query=Ludwigsburg%2C%20Deutschland" target="_blank" rel="noreferrer">
+                <a href="https://maps.app.goo.gl/9riyhNzidDpzvynd8" target="_blank" rel="noreferrer">
                   In Google Maps öffnen <ExternalLink aria-hidden="true" />
                 </a>
                 <button type="button" onClick={copyPhone} className={copied ? 'is-copied' : ''}>
