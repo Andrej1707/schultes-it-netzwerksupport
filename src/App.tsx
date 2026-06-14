@@ -3,12 +3,15 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 import {
   ArrowDownRight,
   ArrowUpRight,
+  BadgeEuro,
   Bot,
   BrainCircuit,
   Building2,
+  CalendarCheck2,
   Check,
   ChevronRight,
   CircleDot,
+  Clock3,
   Code2,
   Copy,
   Cpu,
@@ -18,6 +21,7 @@ import {
   GitBranch,
   Globe2,
   Laptop,
+  Languages,
   Lightbulb,
   LockKeyhole,
   Mail,
@@ -30,6 +34,7 @@ import {
   Router,
   ShieldCheck,
   Sparkles,
+  Star,
   Terminal,
   Workflow,
   Wrench,
@@ -85,6 +90,21 @@ const services: Service[] = [
     tags: ['Workflows', 'KI', 'Prototypen'],
   },
 ]
+
+const googleProfileServices = [
+  'PC-Probleme',
+  'Software-Probleme',
+  'Netzwerkprobleme',
+  'Einrichtung',
+  'Fehlerbehebung',
+  'Technische Hilfe im Alltag',
+]
+
+const googleProfileOptions = [
+  [CalendarCheck2, 'Onlinetermine möglich'],
+  [MapPin, 'Service vor Ort verfügbar'],
+  [Languages, 'Unterstützung in weiteren Sprachen'],
+] as const
 
 const diagnostics = [
   'ANALYSE  Verbindung und Fehlerbild erfassen',
@@ -182,6 +202,7 @@ const capabilities = [
 const chapters = [
   ['top', 'Start'],
   ['leistungen', 'Support'],
+  ['preise', 'Preise'],
   ['arbeitsweise', 'System'],
   ['projekte', 'Build'],
   ['kompetenzen', 'Skills'],
@@ -700,6 +721,7 @@ function MarketingApp() {
         <Logo />
         <nav className="desktop-nav" aria-label="Hauptnavigation">
           <a href="#leistungen">Leistungen</a>
+          <a href="#preise">Preise</a>
           <a href="#projekte">Projekte</a>
           <a href="#kompetenzen">Kompetenzen</a>
           <a href="#andrej">Über Andrej</a>
@@ -742,6 +764,7 @@ function MarketingApp() {
       >
         {[
           ['Leistungen', '#leistungen'],
+          ['Preise & Profil', '#preise'],
           ['Arbeitsweise', '#arbeitsweise'],
           ['Projekte', '#projekte'],
           ['Kompetenzen', '#kompetenzen'],
@@ -920,6 +943,137 @@ function MarketingApp() {
             <a href={phoneHref}>
               Verbindung herstellen <ArrowUpRight aria-hidden="true" />
             </a>
+          </div>
+        </section>
+
+        <section className="profile-offer section-shell" id="preise">
+          <motion.div
+            className="profile-offer-heading"
+            variants={reveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.25 }}
+          >
+            <div>
+              <span className="section-number">02B / GOOGLE-PROFIL</span>
+              <h2>
+                Klare Hilfe.
+                <br />
+                <span>Klare Einstiegspreise.</span>
+              </h2>
+            </div>
+            <div className="google-proof">
+              <div className="google-rating" aria-label="5,0 von 5 Sternen bei 2 Google-Rezensionen">
+                <Star aria-hidden="true" />
+                <strong>5,0</strong>
+                <span>2 Google-Rezensionen</span>
+              </div>
+              <blockquote>„Super schnelle Hilfe“</blockquote>
+              <a href={mapsUrl} target="_blank" rel="noreferrer">
+                Angaben im Google-Profil ansehen <ExternalLink aria-hidden="true" />
+              </a>
+            </div>
+          </motion.div>
+
+          <div className="profile-offer-grid">
+            <motion.article
+              className="price-terminal"
+              variants={reveal}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <header>
+                <span><i /> GOOGLE BUSINESS PROFILE</span>
+                <small>COMPUTERSUPPORT UND -DIENSTE</small>
+              </header>
+              <div className="price-row">
+                <div>
+                  <Radio aria-hidden="true" />
+                  <span>
+                    <small>REMOTE / FERNWARTUNG</small>
+                    Fernhilfe
+                  </span>
+                </div>
+                <strong><small>AB</small> 25 €</strong>
+              </div>
+              <div className="price-row">
+                <div>
+                  <MapPin aria-hidden="true" />
+                  <span>
+                    <small>LUDWIGSBURG / VOR ORT</small>
+                    Vor-Ort-Service
+                  </span>
+                </div>
+                <strong><small>AB</small> 49 €</strong>
+              </div>
+              <div className="price-policy">
+                <BadgeEuro aria-hidden="true" />
+                <p>
+                  Weitere Leistungen werden transparent nach Aufwand berechnet. Material- und
+                  Zusatzkosten entstehen nur nach vorheriger Absprache.
+                </p>
+              </div>
+            </motion.article>
+
+            <motion.div
+              className="profile-service-catalog"
+              variants={reveal}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.25 }}
+            >
+              <div className="profile-catalog-head">
+                <span>ANGEBOT LAUT GOOGLE-PROFIL</span>
+                <strong>Privatkunden & kleine Betriebe</strong>
+              </div>
+              <div className="profile-service-list">
+                {googleProfileServices.map((service, index) => (
+                  <div key={service}>
+                    <span>0{index + 1}</span>
+                    <strong>{service}</strong>
+                    <Check aria-hidden="true" />
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.aside
+              className="profile-availability"
+              variants={reveal}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.25 }}
+            >
+              <div className="hours-head">
+                <Clock3 aria-hidden="true" />
+                <span>
+                  <small>ERREICHBARKEIT</small>
+                  Öffnungszeiten
+                </span>
+              </div>
+              <dl className="hours-list">
+                <div>
+                  <dt>Montag – Freitag</dt>
+                  <dd>08:00 – 20:00</dd>
+                </div>
+                <div>
+                  <dt>Samstag – Sonntag</dt>
+                  <dd>09:00 – 17:00</dd>
+                </div>
+              </dl>
+              <div className="profile-options">
+                {googleProfileOptions.map(([Icon, option]) => (
+                  <div key={option}>
+                    <Icon aria-hidden="true" />
+                    <span>{option}</span>
+                  </div>
+                ))}
+              </div>
+              <a href={phoneHref}>
+                Termin oder Problem besprechen <ArrowUpRight aria-hidden="true" />
+              </a>
+            </motion.aside>
           </div>
         </section>
 
