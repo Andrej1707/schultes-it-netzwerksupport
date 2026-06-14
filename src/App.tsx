@@ -904,6 +904,7 @@ function App() {
                 Schultes IT & Netzwerksupport entsteht in Ludwigsburg – als direkte technische
                 Anlaufstelle für Menschen und kleine Unternehmen aus der Region.
               </p>
+              <p className="maps-presence">Schultes IT & Netzwerksupport auf Google Maps</p>
               <div className="trust-points">
                 <div>
                   <MapPin aria-hidden="true" />
