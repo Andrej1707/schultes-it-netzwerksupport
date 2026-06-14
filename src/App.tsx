@@ -4,20 +4,31 @@ import {
   ArrowDownRight,
   ArrowUpRight,
   Bot,
+  BrainCircuit,
+  Building2,
+  Check,
   ChevronRight,
   CircleDot,
   Code2,
+  Copy,
+  Cpu,
+  ExternalLink,
+  FileSearch,
   GitBranch,
   Globe2,
   Laptop,
+  Lightbulb,
+  MapPin,
   Menu,
   Network,
   Phone,
   Radio,
+  ReceiptText,
   Router,
   ShieldCheck,
   Sparkles,
   Terminal,
+  Workflow,
   Wrench,
   X,
   Zap,
@@ -27,6 +38,7 @@ import type { Variants } from 'framer-motion'
 
 const phoneDisplay = '+49 1523 3364752'
 const phoneHref = 'tel:+4915233364752'
+const phoneCopy = '+49 1523 3364752'
 
 type Service = {
   icon: LucideIcon
@@ -71,6 +83,102 @@ const diagnostics = [
   'PRÜFUNG  Ursache von Symptomen trennen',
   'LÖSUNG   Den praktikabelsten Weg umsetzen',
   'STATUS   System stabil · Übergabe verständlich',
+]
+
+const projects = [
+  {
+    code: 'RP/01',
+    icon: Workflow,
+    title: 'ReviewPilot',
+    type: 'Workflow-Agent · Konzept',
+    description:
+      'Ein strukturierter Ansatz für lokale Lead-Recherche, Kontaktverwaltung und Akquise-Workflows. Nicht blind automatisieren, sondern Informationen vorbereiten, sortieren und handhabbar machen.',
+    outcome: 'Aus verstreuten Schritten wird ein nachvollziehbarer Prozess.',
+    tags: ['Recherche', 'CRM-Logik', 'Agenten'],
+  },
+  {
+    code: 'ER/02',
+    icon: ReceiptText,
+    title: 'E-Rechnung Zahlungshelfer',
+    type: 'Desktop-App · Prototyp',
+    description:
+      'PDF-, XML- und E-Rechnungen erkennen, Zahlungsdaten extrahieren und den nächsten Schritt verständlich vorbereiten. Entwickelt aus einem echten Alltagsproblem.',
+    outcome: 'Weniger Übertragen, weniger Fehler, mehr Übersicht.',
+    tags: ['Dokumente', 'Datenextraktion', 'Desktop'],
+  },
+  {
+    code: 'BMA/03',
+    icon: FileSearch,
+    title: 'BMA Screenshot Analyzer',
+    type: 'Analyse-Tool · Prototyp',
+    description:
+      'Ein Werkzeug zur Analyse und Dokumentation technischer Screenshots aus Anlagenumgebungen – mit Fokus auf wiederkehrende, saubere Dokumentationsarbeit.',
+    outcome: 'Technische Informationen schneller erfassen und konsistent festhalten.',
+    tags: ['Analyse', 'Dokumentation', 'Praxis'],
+  },
+  {
+    code: 'AI/04',
+    icon: BrainCircuit,
+    title: 'Lokale KI-Systeme',
+    type: 'Experimente · In Entwicklung',
+    description:
+      'Prototypen mit lokal laufender KI, Memory, Websuche und Assistenzlogik. Der interessante Teil beginnt dort, wo KI nicht nur antwortet, sondern einen echten Workflow unterstützt.',
+    outcome: 'KI als Werkzeug einsetzen, nicht als Showeffekt.',
+    tags: ['Local AI', 'Memory', 'Automation'],
+  },
+]
+
+const capabilities = [
+  {
+    domain: 'Support & Systeme',
+    icon: Laptop,
+    skills: [
+      ['Fehleranalyse', 'praxis'],
+      ['Windows & Software', 'praxis'],
+      ['Geräteeinrichtung', 'praxis'],
+      ['Verständliche Übergabe', 'fokus'],
+    ],
+  },
+  {
+    domain: 'Netzwerk',
+    icon: Network,
+    skills: [
+      ['WLAN & Router', 'praxis'],
+      ['Heim- und Kleinfirmennetze', 'praxis'],
+      ['Strukturierte Diagnose', 'fokus'],
+      ['Systemzusammenhänge', 'fokus'],
+    ],
+  },
+  {
+    domain: 'Build & Web',
+    icon: Code2,
+    skills: [
+      ['React & TypeScript', 'praxis'],
+      ['Responsive Interfaces', 'praxis'],
+      ['Tools & Prototypen', 'fokus'],
+      ['Deployment', 'praxis'],
+    ],
+  },
+  {
+    domain: 'Automation & KI',
+    icon: Cpu,
+    skills: [
+      ['Workflow-Design', 'fokus'],
+      ['KI-/Agenten-Prototypen', 'ausbau'],
+      ['Lokale Systeme', 'ausbau'],
+      ['Prozessvereinfachung', 'fokus'],
+    ],
+  },
+]
+
+const chapters = [
+  ['top', 'Start'],
+  ['leistungen', 'Support'],
+  ['arbeitsweise', 'System'],
+  ['projekte', 'Build'],
+  ['kompetenzen', 'Skills'],
+  ['andrej', 'Andrej'],
+  ['ludwigsburg', 'Lokal'],
 ]
 
 const reveal: Variants = {
@@ -195,6 +303,8 @@ function Logo() {
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [diagnosticIndex, setDiagnosticIndex] = useState(0)
+  const [copied, setCopied] = useState(false)
+  const [activeChapter, setActiveChapter] = useState('top')
   const reduceMotion = useReducedMotion()
   const { scrollYProgress } = useScroll()
   const heroLift = useTransform(scrollYProgress, [0, 0.22], [0, reduceMotion ? 0 : -72])
@@ -220,6 +330,40 @@ function App() {
     return () => window.removeEventListener('keydown', closeOnEscape)
   }, [menuOpen])
 
+  useEffect(() => {
+    const sections = chapters
+      .map(([id]) => document.getElementById(id))
+      .filter((section): section is HTMLElement => Boolean(section))
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+        if (visible?.target.id) setActiveChapter(visible.target.id)
+      },
+      { rootMargin: '-25% 0px -55%', threshold: [0.05, 0.25, 0.5] },
+    )
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [])
+
+  const copyPhone = async () => {
+    try {
+      await navigator.clipboard.writeText(phoneCopy)
+    } catch {
+      const input = document.createElement('textarea')
+      input.value = phoneCopy
+      input.style.position = 'fixed'
+      input.style.opacity = '0'
+      document.body.appendChild(input)
+      input.select()
+      document.execCommand('copy')
+      input.remove()
+    }
+    setCopied(true)
+    window.setTimeout(() => setCopied(false), 2200)
+  }
+
   return (
     <>
       <a className="skip-link" href="#main">
@@ -232,12 +376,18 @@ function App() {
       <div className="progress-rail" aria-hidden="true">
         <motion.span style={{ scaleY: scrollYProgress }} />
       </div>
+      <div className="chapter-indicator" aria-hidden="true">
+        <span>{String(chapters.findIndex(([id]) => id === activeChapter) + 1).padStart(2, '0')}</span>
+        <i />
+        <strong>{chapters.find(([id]) => id === activeChapter)?.[1]}</strong>
+      </div>
 
       <header className="site-header">
         <Logo />
         <nav className="desktop-nav" aria-label="Hauptnavigation">
           <a href="#leistungen">Leistungen</a>
-          <a href="#arbeitsweise">Arbeitsweise</a>
+          <a href="#projekte">Projekte</a>
+          <a href="#kompetenzen">Kompetenzen</a>
           <a href="#andrej">Über Andrej</a>
         </nav>
         <a className="header-call" href={phoneHref}>
@@ -279,7 +429,10 @@ function App() {
         {[
           ['Leistungen', '#leistungen'],
           ['Arbeitsweise', '#arbeitsweise'],
+          ['Projekte', '#projekte'],
+          ['Kompetenzen', '#kompetenzen'],
           ['Über Andrej', '#andrej'],
+          ['Ludwigsburg', '#ludwigsburg'],
           ['Direkt anrufen', phoneHref],
         ].map(([label, href], index) => (
           <a key={href} href={href} onClick={() => setMenuOpen(false)}>
@@ -507,6 +660,145 @@ function App() {
           </div>
         </section>
 
+        <section className="projects section-shell" id="projekte">
+          <motion.div
+            className="section-heading project-heading"
+            variants={reveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.25 }}
+          >
+            <span className="section-number">04 / PROJEKTE</span>
+            <h2>
+              Mehr als Support.
+              <br />
+              <span>Ideen werden Systeme.</span>
+            </h2>
+            <p>
+              Andrej verbindet klassisches IT-Verständnis mit Builder-Mentalität: Problem sehen,
+              Lösungsidee entwickeln, testen und daraus etwas praktisch Nutzbares bauen.
+            </p>
+          </motion.div>
+
+          <div className="project-stage">
+            <aside className="project-manifesto">
+              <span className="manifesto-label">BUILD PRINCIPLE / 01</span>
+              <p>„Ich baue lieber einen funktionierenden Prototypen als eine perfekte Ausrede.“</p>
+              <div className="manifesto-signal">
+                <Lightbulb aria-hidden="true" />
+                Beobachten → vereinfachen → bauen
+              </div>
+            </aside>
+
+            <div className="project-stream">
+              {projects.map((project, index) => {
+                const ProjectIcon = project.icon
+                return (
+                  <motion.article
+                    className="project-entry"
+                    key={project.code}
+                    variants={reveal}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.35 }}
+                  >
+                    <div className="project-code">
+                      <span>{project.code}</span>
+                      <i>{String(index + 1).padStart(2, '0')}</i>
+                    </div>
+                    <div className="project-glyph">
+                      <ProjectIcon aria-hidden="true" />
+                    </div>
+                    <div className="project-copy">
+                      <span className="project-type">{project.type}</span>
+                      <h3>{project.title}</h3>
+                      <p>{project.description}</p>
+                      <strong>{project.outcome}</strong>
+                    </div>
+                    <div className="project-tags">
+                      {project.tags.map((tag) => (
+                        <span key={tag}>{tag}</span>
+                      ))}
+                    </div>
+                  </motion.article>
+                )
+              })}
+            </div>
+          </div>
+
+          <div className="website-project-note">
+            <Globe2 aria-hidden="true" />
+            <div>
+              <span>WEBSEITEN FÜR LOKALE UNTERNEHMEN</span>
+              <p>
+                Vertrauen, Mobilansicht und Kontaktaufnahme zuerst. Design ist dabei kein
+                Selbstzweck, sondern macht ein Angebot klarer und einfacher erreichbar.
+              </p>
+            </div>
+            <ArrowUpRight aria-hidden="true" />
+          </div>
+        </section>
+
+        <section className="capability-section section-shell" id="kompetenzen">
+          <motion.div
+            className="capability-intro"
+            variants={reveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <span className="section-number">05 / KOMPETENZMATRIX</span>
+            <h2>
+              Breites Fundament.
+              <br />
+              <span>Klarer Praxisfokus.</span>
+            </h2>
+            <p>
+              Keine Fantasie-Prozentwerte. Die Matrix zeigt, wo Andrej bereits praktisch arbeitet,
+              wo sein besonderer Fokus liegt und welche Felder er aktiv weiter ausbaut.
+            </p>
+            <div className="matrix-legend" aria-label="Legende der Kompetenzmatrix">
+              <span><i className="level-praxis" /> Praxis</span>
+              <span><i className="level-fokus" /> Fokus</span>
+              <span><i className="level-ausbau" /> Im Ausbau</span>
+            </div>
+          </motion.div>
+
+          <div className="capability-matrix">
+            {capabilities.map((capability, index) => {
+              const CapabilityIcon = capability.icon
+              return (
+                <motion.article
+                  className="capability-domain"
+                  key={capability.domain}
+                  variants={reveal}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                >
+                  <header>
+                    <span>0{index + 1}</span>
+                    <CapabilityIcon aria-hidden="true" />
+                    <h3>{capability.domain}</h3>
+                  </header>
+                  <div className="capability-rows">
+                    {capability.skills.map(([skill, level]) => (
+                      <div className="capability-row" key={skill}>
+                        <span>{skill}</span>
+                        <div className={`signal-level signal-${level}`} aria-label={level}>
+                          <i />
+                          <i />
+                          <i />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </motion.article>
+              )
+            })}
+          </div>
+        </section>
+
         <section className="about section-shell" id="andrej">
           <motion.div
             className="about-panel"
@@ -521,7 +813,7 @@ function App() {
                 <span className="orbit-dot" />
               </div>
               <div>
-                <span className="section-number">04 / PERSON</span>
+                <span className="section-number">06 / PERSON</span>
                 <h2>Andrej Schultes</h2>
                 <p>Angehender IT-Systemelektroniker · Builder · Problemlöser</p>
               </div>
@@ -553,6 +845,87 @@ function App() {
                     </span>
                   )
                 })}
+              </div>
+            </div>
+
+            <div className="personal-depth">
+              <div className="personal-statement">
+                <span>MEIN BLICK AUF TECHNIK</span>
+                <h3>Ein Fehler ist selten nur ein einzelner Fehler.</h3>
+                <p>
+                  Meistens ist es ein Zusammenspiel aus Gerät, Netzwerk, Software, Nutzung und
+                  Erwartung. Genau deshalb denke ich gern in Systemen: Erst das Gesamtbild
+                  verstehen, dann an der richtigen Stelle handeln.
+                </p>
+              </div>
+              <div className="builder-sequence">
+                {[
+                  ['01', 'Neugierig bleiben', 'Neue Themen schnell verstehen und selbst testen.'],
+                  ['02', 'Klar zerlegen', 'Komplexität in nachvollziehbare Schritte übersetzen.'],
+                  ['03', 'Echt bauen', 'Nicht nur erklären – umsetzen, prüfen und verbessern.'],
+                  ['04', 'Nutzbar machen', 'Die Lösung muss im Alltag zuverlässig funktionieren.'],
+                ].map(([number, title, copy]) => (
+                  <div key={number}>
+                    <span>{number}</span>
+                    <strong>{title}</strong>
+                    <p>{copy}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        <section className="local-trust section-shell" id="ludwigsburg">
+          <motion.div
+            className="local-grid"
+            variants={reveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <div className="map-frame">
+              <iframe
+                title="Karte von Ludwigsburg"
+                src="https://www.google.com/maps?q=Ludwigsburg%2C%20Deutschland&z=12&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <div className="map-hud">
+                <span><i /> LOCAL NODE ONLINE</span>
+                <strong>LUDWIGSBURG / 07141</strong>
+              </div>
+            </div>
+
+            <div className="local-copy">
+              <span className="section-number">07 / LOKAL ERREICHBAR</span>
+              <h2>Support mit einem echten Standort.</h2>
+              <p>
+                Schultes IT & Netzwerksupport entsteht in Ludwigsburg – als direkte technische
+                Anlaufstelle für Menschen und kleine Unternehmen aus der Region.
+              </p>
+              <div className="trust-points">
+                <div>
+                  <MapPin aria-hidden="true" />
+                  <span><small>REGION</small>Ludwigsburg & Umgebung</span>
+                </div>
+                <div>
+                  <Building2 aria-hidden="true" />
+                  <span><small>FÜR WEN</small>Privat & kleine Unternehmen</span>
+                </div>
+                <div>
+                  <Radio aria-hidden="true" />
+                  <span><small>MODUS</small>Vor Ort & Remote-Hilfe</span>
+                </div>
+              </div>
+              <div className="local-actions">
+                <a href="https://www.google.com/maps/search/?api=1&query=Ludwigsburg%2C%20Deutschland" target="_blank" rel="noreferrer">
+                  In Google Maps öffnen <ExternalLink aria-hidden="true" />
+                </a>
+                <button type="button" onClick={copyPhone} className={copied ? 'is-copied' : ''}>
+                  {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
+                  {copied ? 'Nummer kopiert' : 'Telefonnummer kopieren'}
+                </button>
               </div>
             </div>
           </motion.div>
@@ -592,12 +965,32 @@ function App() {
               </span>
               <ArrowUpRight aria-hidden="true" />
             </a>
+            <button
+              className={`cta-copy ${copied ? 'is-copied' : ''}`}
+              type="button"
+              onClick={copyPhone}
+              aria-live="polite"
+            >
+              {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
+              {copied ? 'Telefonnummer kopiert' : 'Nummer in Zwischenablage kopieren'}
+            </button>
             <div className="cta-spark" aria-hidden="true">
               <Sparkles />
             </div>
           </motion.div>
         </section>
       </main>
+
+      <div className="mobile-contact-dock" aria-label="Schnellkontakt">
+        <a href={phoneHref}>
+          <Phone aria-hidden="true" />
+          <span><small>JETZT ANRUFEN</small>{phoneDisplay}</span>
+        </a>
+        <button type="button" onClick={copyPhone} aria-label="Telefonnummer kopieren">
+          {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
+          <span>{copied ? 'Kopiert' : 'Kopieren'}</span>
+        </button>
+      </div>
 
       <footer className="site-footer">
         <Logo />

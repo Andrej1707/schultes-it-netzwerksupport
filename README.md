@@ -3,6 +3,9 @@
 Die digitale Kommandozentrale von Andrej Schultes für IT-Support, Netzwerksupport,
 PC-Hilfe, Webseiten und kleine Automatisierungen in Ludwigsburg.
 
+Die Seite verbindet lokale Service-Kommunikation mit einer persönlichen Projektübersicht,
+Kompetenzmatrix, Google-Maps-Bereich und direktem Mobile-Kontakt.
+
 ## Live
 
 [andrej1707.github.io/schultes-it-netzwerksupport](https://andrej1707.github.io/schultes-it-netzwerksupport/)
@@ -15,6 +18,16 @@ PC-Hilfe, Webseiten und kleine Automatisierungen in Ludwigsburg.
 - Framer Motion
 - Lucide Icons
 - Custom CSS und Canvas-Animation
+- Google Maps Embed
+
+## Highlights
+
+- Animierte Kommandozentrale mit reaktivem Netzwerk-Hintergrund
+- Leistungen, Arbeitsweise und persönliche Positionierung
+- Projektstream für Tools, Automationen und KI-Prototypen
+- Kompetenzmatrix ohne künstliche Prozentwerte
+- Local-Trust-Bereich für Ludwigsburg
+- Sticky Mobile-CTA und Copy-Phone-Funktion
 
 ## Lokal starten
 
