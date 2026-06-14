@@ -1381,7 +1381,7 @@ main {
 
 .project-stage {
   display: grid;
-  grid-template-columns: minmax(250px, 0.42fr) minmax(0, 1fr);
+  grid-template-columns: minmax(290px, 0.42fr) minmax(0, 1fr);
   align-items: start;
   gap: clamp(3rem, 7vw, 7rem);
 }
@@ -1391,6 +1391,7 @@ main {
   top: 126px;
   min-height: 390px;
   padding: 2rem;
+  container-type: inline-size;
   border: 1px solid var(--line-strong);
   background:
     linear-gradient(145deg, rgba(16, 42, 59, 0.72), rgba(5, 10, 16, 0.9)),
@@ -1418,8 +1419,11 @@ main {
 .project-manifesto > p {
   margin: 3rem 0;
   color: #dcecf6;
-  font: 400 clamp(1.75rem, 2.9vw, 2.8rem) / 1.12 var(--display);
+  font: 400 clamp(1.5rem, 9cqi, 2.65rem) / 1.12 var(--display);
   letter-spacing: -0.05em;
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .manifesto-signal {
@@ -2085,6 +2089,18 @@ main {
 
   .local-grid {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 960px) {
+  .project-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .project-manifesto {
+    position: relative;
+    top: auto;
+    min-height: auto;
   }
 }
 
