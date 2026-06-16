@@ -33,4 +33,4 @@ Disallow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://andrej1707.github.io/schultes-it-netzwerksupport/sitemap.xml
+Sitemap: https://schultes-it.de/sitemap.xml
