@@ -83,7 +83,7 @@ const googleProfileServices = [
 
 const googleProfileOptions = [
   [CalendarCheck2, 'Onlinetermine möglich'],
-  [MapPin, 'Service vor Ort verfügbar'],
+  [MapPin, 'Service bei dir vor Ort'],
   [Languages, 'Unterstützung in weiteren Sprachen'],
 ] as const
 
@@ -197,6 +197,64 @@ const reveal: Variants = {
     opacity: 1,
     y: 0,
     transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+}
+
+const serviceHeroSequence: Variants = {
+  hidden: {},
+  visible: {
+    transition: { delayChildren: 0.08, staggerChildren: 0.09 },
+  },
+}
+
+const serviceHeroItem: Variants = {
+  hidden: { opacity: 0, y: 24, filter: 'blur(7px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
+  },
+}
+
+const serviceTitleLine: Variants = {
+  hidden: { opacity: 0, y: '58%', rotateX: -12, filter: 'blur(9px)' },
+  visible: {
+    opacity: 1,
+    y: '0%',
+    rotateX: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.88, ease: [0.16, 1, 0.3, 1] },
+  },
+}
+
+const servicePanelReveal: Variants = {
+  hidden: { opacity: 0, x: 46, scale: 0.965, rotateY: -5, filter: 'blur(8px)' },
+  visible: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    rotateY: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.95, delay: 0.28, ease: [0.16, 1, 0.3, 1] },
+  },
+}
+
+const serviceGridReveal: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.085, delayChildren: 0.04 },
+  },
+}
+
+const serviceCardReveal: Variants = {
+  hidden: { opacity: 0, y: 34, scale: 0.985, filter: 'blur(7px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: 'blur(0px)',
+    transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
   },
 }
 
@@ -622,6 +680,7 @@ function ServicePage({ service }: { service: ServicePageData }) {
   const { scrollYProgress } = useScroll()
   const heroLift = useTransform(scrollYProgress, [0, 0.2], [0, reduceMotion ? 0 : -54])
   const Icon = serviceIcons[service.icon]
+  const motionInitial = reduceMotion ? false : 'hidden'
 
   useEffect(() => {
     document.body.dataset.servicePage = service.slug
@@ -742,24 +801,32 @@ function ServicePage({ service }: { service: ServicePageData }) {
           <motion.div
             className="service-detail-hero-copy"
             style={{ y: heroLift }}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75 }}
+            variants={serviceHeroSequence}
+            initial={motionInitial}
+            animate="visible"
           >
-            <nav className="service-breadcrumb" aria-label="Brotkrümelnavigation">
+            <motion.nav
+              className="service-breadcrumb"
+              aria-label="Brotkrümelnavigation"
+              variants={serviceHeroItem}
+            >
               <a href="/">Startseite</a>
               <ChevronRight aria-hidden="true" />
               <a href="/#leistungen">Leistungen</a>
               <ChevronRight aria-hidden="true" />
               <span aria-current="page">{service.title}</span>
-            </nav>
-            <span className="service-detail-code">{service.code}</span>
-            <h1>
-              {service.heroLead}
-              <span>{service.heroAccent}</span>
-            </h1>
-            <p>{service.heroText}</p>
-            <div className="service-detail-actions">
+            </motion.nav>
+            <motion.span className="service-detail-code" variants={serviceHeroItem}>
+              {service.code}
+            </motion.span>
+            <motion.h1 variants={serviceHeroSequence}>
+              <motion.span className="service-hero-primary" variants={serviceTitleLine}>
+                {service.heroLead}
+              </motion.span>
+              <motion.span variants={serviceTitleLine}>{service.heroAccent}</motion.span>
+            </motion.h1>
+            <motion.p variants={serviceHeroItem}>{service.heroText}</motion.p>
+            <motion.div className="service-detail-actions" variants={serviceHeroItem}>
               <a className="primary-action" href={phoneHref}>
                 <span>
                   Problem besprechen
@@ -770,14 +837,14 @@ function ServicePage({ service }: { service: ServicePageData }) {
               <a className="text-action" href="#was-ich-loese">
                 Leistungen ansehen <ArrowDownRight aria-hidden="true" />
               </a>
-            </div>
+            </motion.div>
           </motion.div>
 
           <motion.aside
             className="service-status-panel"
-            initial={{ opacity: 0, x: 32 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.75, delay: 0.15 }}
+            variants={servicePanelReveal}
+            initial={motionInitial}
+            animate="visible"
             aria-label={`Status ${service.title}`}
           >
             <header>
@@ -801,7 +868,7 @@ function ServicePage({ service }: { service: ServicePageData }) {
               </div>
               <div>
                 <dt>Modus</dt>
-                <dd>Vor Ort / Remote</dd>
+                <dd>Bei dir / Remote</dd>
               </div>
             </dl>
             <footer>
@@ -819,28 +886,31 @@ function ServicePage({ service }: { service: ServicePageData }) {
             <span className="section-number">01 / FÜR WEN</span>
             <h2 id="audience-title">Technik für Menschen. Nicht für Zielgruppen-Folien.</h2>
           </header>
-          <div className="audience-grid">
+          <motion.div
+            className="audience-grid"
+            variants={serviceGridReveal}
+            initial={motionInitial}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
             {service.audiences.map((audience, index) => (
               <motion.article
                 key={audience.label}
-                variants={reveal}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.35 }}
+                variants={serviceCardReveal}
               >
                 <span>0{index + 1}</span>
                 <h3>{audience.label}</h3>
                 <p>{audience.text}</p>
               </motion.article>
             ))}
-          </div>
+          </motion.div>
         </section>
 
         <section className="service-situations service-detail-shell">
           <motion.header
             className="service-detail-heading"
             variants={reveal}
-            initial="hidden"
+            initial={motionInitial}
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
@@ -854,28 +924,31 @@ function ServicePage({ service }: { service: ServicePageData }) {
               nicht“ anfangen.
             </p>
           </motion.header>
-          <div className="situation-grid">
+          <motion.div
+            className="situation-grid"
+            variants={serviceGridReveal}
+            initial={motionInitial}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.18 }}
+          >
             {service.situations.map((situation, index) => (
               <motion.article
                 key={situation.title}
-                variants={reveal}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
+                variants={serviceCardReveal}
               >
                 <span>CASE / 0{index + 1}</span>
                 <h3>{situation.title}</h3>
                 <p>{situation.text}</p>
               </motion.article>
             ))}
-          </div>
+          </motion.div>
         </section>
 
         <section className="service-solutions service-detail-shell" id="was-ich-loese">
           <motion.header
             className="service-detail-heading"
             variants={reveal}
-            initial="hidden"
+            initial={motionInitial}
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
@@ -889,14 +962,17 @@ function ServicePage({ service }: { service: ServicePageData }) {
               in diesem Bereich unterstützen kann.
             </p>
           </motion.header>
-          <div className="solution-list">
+          <motion.div
+            className="solution-list"
+            variants={serviceGridReveal}
+            initial={motionInitial}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.14 }}
+          >
             {service.solutions.map((solution, index) => (
               <motion.article
                 key={solution.title}
-                variants={reveal}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
+                variants={serviceCardReveal}
               >
                 <span>{String(index + 1).padStart(2, '0')}</span>
                 <Check aria-hidden="true" />
@@ -906,14 +982,14 @@ function ServicePage({ service }: { service: ServicePageData }) {
                 </div>
               </motion.article>
             ))}
-          </div>
+          </motion.div>
         </section>
 
         <section className="service-process service-detail-shell">
           <motion.header
             className="service-detail-heading"
             variants={reveal}
-            initial="hidden"
+            initial={motionInitial}
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
@@ -923,14 +999,17 @@ function ServicePage({ service }: { service: ServicePageData }) {
               <span> Kein Rätselraten.</span>
             </h2>
           </motion.header>
-          <div className="service-process-track">
+          <motion.div
+            className="service-process-track"
+            variants={serviceGridReveal}
+            initial={motionInitial}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
             {service.process.map((step, index) => (
               <motion.article
                 key={step.title}
-                variants={reveal}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.35 }}
+                variants={serviceCardReveal}
               >
                 <span>0{index + 1}</span>
                 <div>
@@ -939,14 +1018,14 @@ function ServicePage({ service }: { service: ServicePageData }) {
                 </div>
               </motion.article>
             ))}
-          </div>
+          </motion.div>
         </section>
 
         <section className="service-confidence service-detail-shell">
           <motion.div
             className="confidence-copy"
             variants={reveal}
-            initial="hidden"
+            initial={motionInitial}
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
@@ -955,22 +1034,28 @@ function ServicePage({ service }: { service: ServicePageData }) {
             <h2>{service.confidenceTitle}</h2>
             <p>{service.confidenceText}</p>
           </motion.div>
-          <div className="confidence-points">
+          <motion.div
+            className="confidence-points"
+            variants={serviceGridReveal}
+            initial={motionInitial}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.25 }}
+          >
             {service.confidencePoints.map((point, index) => (
-              <div key={point}>
+              <motion.div key={point} variants={serviceCardReveal}>
                 <span>0{index + 1}</span>
                 <Check aria-hidden="true" />
                 <strong>{point}</strong>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </section>
 
         <section className="service-faq service-detail-shell">
           <motion.header
             className="service-detail-heading"
             variants={reveal}
-            initial="hidden"
+            initial={motionInitial}
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
@@ -999,21 +1084,30 @@ function ServicePage({ service }: { service: ServicePageData }) {
             <span className="section-number">07 / WEITERE BEREICHE</span>
             <h2>Technikprobleme bleiben selten in einer Schublade.</h2>
           </header>
-          <div>
+          <motion.div
+            variants={serviceGridReveal}
+            initial={motionInitial}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             {relatedServices.map((related) => {
               const RelatedIcon = serviceIcons[related.icon]
               return (
-                <a key={related.slug} href={`/${related.slug}/`}>
+                <motion.a
+                  key={related.slug}
+                  href={`/${related.slug}/`}
+                  variants={serviceCardReveal}
+                >
                   <RelatedIcon aria-hidden="true" />
                   <span>
                     <small>{related.code}</small>
                     <strong>{related.title}</strong>
                   </span>
                   <ArrowUpRight aria-hidden="true" />
-                </a>
+                </motion.a>
               )
             })}
-          </div>
+          </motion.div>
         </section>
 
         <section className="service-final-cta service-detail-shell" id="service-contact">
@@ -1024,7 +1118,7 @@ function ServicePage({ service }: { service: ServicePageData }) {
               <span> Erzähl mir, was nicht funktioniert.</span>
             </h2>
             <p>
-              Gemeinsam klären wir, ob Fernhilfe passt, ein Termin vor Ort sinnvoll ist oder ein
+              Gemeinsam klären wir, ob Fernhilfe passt, ein Termin bei dir sinnvoll ist oder ein
               anderes Vorgehen ehrlicher wäre.
             </p>
           </div>
@@ -1375,7 +1469,7 @@ function MarketingApp() {
               <Radio aria-hidden="true" />
               <span>
                 <small>SUPPORT-KANAL</small>
-                Vor Ort in Ludwigsburg oder per Remote-Hilfe
+                Bei dir vor Ort in Ludwigsburg oder per Remote-Hilfe
               </span>
             </div>
             <a href={phoneHref}>
@@ -1439,8 +1533,8 @@ function MarketingApp() {
                 <div>
                   <MapPin aria-hidden="true" />
                   <span>
-                    <small>LUDWIGSBURG / VOR ORT</small>
-                    Vor-Ort-Service
+                    <small>LUDWIGSBURG / BEI DIR VOR ORT</small>
+                    Service bei dir
                   </span>
                 </div>
                 <strong><small>AB</small> 49 €</strong>
@@ -1844,7 +1938,7 @@ function MarketingApp() {
                 </div>
                 <div>
                   <Radio aria-hidden="true" />
-                  <span><small>MODUS</small>Vor Ort & Remote-Hilfe</span>
+                  <span><small>MODUS</small>Bei dir vor Ort & Remote-Hilfe</span>
                 </div>
               </div>
               <div className="local-actions">

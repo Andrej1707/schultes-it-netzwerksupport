@@ -15,7 +15,7 @@ function businessSchema() {
     image: `${siteUrl}/og-cover.svg`,
     telephone: '+49 1523 3364752',
     email: 'it.schulteslb@gmail.com',
-    priceRange: 'Fernhilfe ab 25 EUR, Vor-Ort-Service ab 49 EUR',
+    priceRange: 'Fernhilfe ab 25 EUR, Service beim Kunden ab 49 EUR',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Egerländer Str. 24',

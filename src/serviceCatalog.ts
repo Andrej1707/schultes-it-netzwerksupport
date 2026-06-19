@@ -38,14 +38,14 @@ export const servicePages: ServicePageData[] = [
     tags: ['Windows', 'Software', 'Einrichtung'],
     seoTitle: 'PC-Hilfe Ludwigsburg | Schultes IT-Support',
     seoDescription:
-      'Verständliche PC-Hilfe in Ludwigsburg für Privatpersonen, Senioren und kleine Firmen. Windows, Software und Einrichtung vor Ort oder per Fernhilfe.',
+      'Verständliche PC-Hilfe in Ludwigsburg für Privatpersonen, Senioren und kleine Firmen. Ich komme zu dir oder helfe per Fernwartung.',
     keywords:
       'PC Hilfe Ludwigsburg, Computerhilfe Ludwigsburg, Windows Hilfe, PC Hilfe Senioren, Computer einrichten, IT Support Privatkunden',
     heroLead: 'PC-Hilfe ohne Fachchinesisch.',
     heroAccent: 'Damit Technik wieder Alltag wird.',
     heroText:
       'Vom neuen Laptop bis zum hartnäckigen Windows-Problem: Ich schaue strukturiert hin, erkläre jeden sinnvollen Schritt und richte das System so ein, dass du danach wirklich damit arbeiten kannst.',
-    price: 'Fernhilfe ab 25 € · Vor Ort ab 49 €',
+    price: 'Fernhilfe ab 25 € · Bei dir vor Ort ab 49 €',
     audiences: [
       {
         label: 'Privatpersonen',
@@ -115,7 +115,7 @@ export const servicePages: ServicePageData[] = [
       },
       {
         title: 'Passenden Weg wählen',
-        text: 'Ich sage ehrlich, ob Fernhilfe genügt oder ein Termin vor Ort sinnvoller ist.',
+        text: 'Ich sage ehrlich, ob Fernhilfe genügt oder ein Termin bei dir sinnvoller ist.',
       },
       {
         title: 'Ursache prüfen und lösen',
@@ -133,7 +133,7 @@ export const servicePages: ServicePageData[] = [
       'Du bestimmst das Tempo',
       'Keine Änderung ohne Erklärung',
       'Kosten vor Zusatzarbeiten abstimmen',
-      'Vor Ort in Ludwigsburg oder per Fernhilfe',
+      'Bei dir vor Ort oder per Fernhilfe',
     ],
     faqs: [
       {
@@ -144,12 +144,12 @@ export const servicePages: ServicePageData[] = [
       {
         question: 'Muss ich den PC zu dir bringen?',
         answer:
-          'Nicht zwingend. Vieles lässt sich per Fernhilfe lösen. Wenn das nicht sinnvoll ist, ist ein Vor-Ort-Termin in Ludwigsburg möglich.',
+          'Nein. Vieles lässt sich per Fernhilfe lösen. Wenn das nicht sinnvoll ist, komme ich für den Termin zu dir nach Hause oder in deinen Betrieb.',
       },
       {
         question: 'Was kostet die PC-Hilfe?',
         answer:
-          'Fernhilfe startet ab 25 Euro, Vor-Ort-Service ab 49 Euro. Weitere Leistungen werden transparent nach Aufwand berechnet und vorher abgestimmt.',
+          'Fernhilfe startet ab 25 Euro, der Service bei dir vor Ort ab 49 Euro. Weitere Leistungen werden transparent nach Aufwand berechnet und vorher abgestimmt.',
       },
       {
         question: 'Richtest du auch neue Laptops oder PCs ein?',
@@ -182,7 +182,7 @@ export const servicePages: ServicePageData[] = [
     heroAccent: 'Genau dort, wo du sie brauchst.',
     heroText:
       'Abbrüche, Funklöcher oder ein Router voller rätselhafter Einstellungen kosten Nerven. Ich prüfe Reichweite, Geräte und Konfiguration als Gesamtsystem und setze eine verständliche Lösung um.',
-    price: 'Vor-Ort-Service ab 49 € · Analyse nach Aufwand',
+    price: 'Bei dir vor Ort ab 49 € · Analyse nach Aufwand',
     audiences: [
       {
         label: 'Haushalte',
@@ -289,9 +289,9 @@ export const servicePages: ServicePageData[] = [
           'Ja. Der Fokus liegt auf nachvollziehbaren Heim- und Kleinfirmennetzen in Ludwigsburg, beispielsweise für Büros, Praxen und lokale Betriebe.',
       },
       {
-        question: 'Was kostet die WLAN-Hilfe vor Ort?',
+        question: 'Was kostet die WLAN-Hilfe bei mir vor Ort?',
         answer:
-          'Der Vor-Ort-Service beginnt ab 49 Euro. Umfang, mögliche Hardware und weitere Kosten werden vor zusätzlichen Arbeiten transparent besprochen.',
+          'Der Service bei dir vor Ort beginnt ab 49 Euro. Umfang, mögliche Hardware und weitere Kosten werden vor zusätzlichen Arbeiten transparent besprochen.',
       },
       {
         question: 'Muss ich einen neuen Router kaufen?',
