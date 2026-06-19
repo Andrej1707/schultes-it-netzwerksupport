@@ -424,16 +424,24 @@ main {
   letter-spacing: -0.085em;
 }
 
-.hero h1 span {
+.hero h1 .hero-title-line {
+  display: block;
+  white-space: nowrap;
+  transform-origin: left bottom;
+  will-change: opacity, transform;
+}
+
+.hero h1 .hero-title-line em {
   position: relative;
   display: inline-block;
+  font-style: normal;
   color: transparent;
   background: linear-gradient(95deg, var(--cyan), #4bb9ff 48%, #908cff);
   -webkit-background-clip: text;
   background-clip: text;
 }
 
-.hero h1 span::after {
+.hero h1 .hero-title-line em::after {
   position: absolute;
   right: -0.1em;
   bottom: -0.15em;
@@ -457,6 +465,23 @@ main {
   color: #a5b7c6;
   font-size: clamp(1rem, 1.35vw, 1.22rem);
   line-height: 1.65;
+}
+
+.hero-visit-note {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 1.15rem 0 0;
+  color: #c1d2dd;
+  font: 500 0.7rem/1.4 var(--display);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.hero-visit-note svg {
+  width: 17px;
+  flex: 0 0 auto;
+  color: var(--cyan);
 }
 
 .hero-actions {
@@ -890,6 +915,11 @@ main {
 
 .service-icon svg {
   width: 22px;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.service-row:hover .service-icon svg {
+  transform: translateY(-3px) scale(1.06);
 }
 
 .service-main h3 {
@@ -1998,6 +2028,11 @@ body[data-legal-page='true'] {
 
 .project-glyph svg {
   width: 22px;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-entry:hover .project-glyph svg {
+  transform: rotate(-5deg) scale(1.08);
 }
 
 .project-type {
@@ -2155,8 +2190,30 @@ body[data-legal-page='true'] {
 }
 
 .capability-domain {
+  position: relative;
   padding: 2rem 0;
   border-bottom: 1px solid var(--line);
+}
+
+.capability-domain::before {
+  position: absolute;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(74, 195, 241, 0.055), transparent 75%);
+  opacity: 0;
+  transform: translateX(-18px);
+  transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.capability-domain:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.capability-domain > * {
+  position: relative;
+  z-index: 1;
 }
 
 .capability-domain header {
@@ -4041,7 +4098,7 @@ body[data-legal-page='true'] {
   }
 
   .hero h1 {
-    font-size: clamp(3.7rem, 16.5vw, 6.2rem);
+    font-size: clamp(3.15rem, 13.4vw, 6.2rem);
   }
 
   .hero-lower {
@@ -4423,7 +4480,7 @@ body[data-legal-page='true'] {
   }
 
   .hero h1 {
-    font-size: 16vw;
+    font-size: 13.2vw;
   }
 
   .service-detail-hero h1 {

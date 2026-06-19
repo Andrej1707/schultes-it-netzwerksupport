@@ -1172,6 +1172,7 @@ function MarketingApp() {
   const [mapsEnabled, setMapsEnabled] = useState(false)
   const [activeChapter, setActiveChapter] = useState('top')
   const reduceMotion = useReducedMotion()
+  const motionInitial = reduceMotion ? false : 'hidden'
   const { scrollYProgress } = useScroll()
   const heroLift = useTransform(scrollYProgress, [0, 0.22], [0, reduceMotion ? 0 : -72])
   const heroFade = useTransform(scrollYProgress, [0, 0.18], [1, 0.45])
@@ -1313,24 +1314,38 @@ function MarketingApp() {
 
       <main id="main">
         <section className="hero" id="top">
-          <motion.div className="hero-content" style={{ y: heroLift, opacity: heroFade }}>
-            <div className="hero-kicker">
+          <motion.div
+            className="hero-content"
+            style={{ y: heroLift, opacity: heroFade }}
+            variants={serviceHeroSequence}
+            initial={motionInitial}
+            animate="visible"
+          >
+            <motion.div className="hero-kicker" variants={serviceHeroItem}>
               <span className="live-dot" />
               Verfügbar in Ludwigsburg
               <span className="kicker-code">SYS/LB/07141</span>
-            </div>
+            </motion.div>
 
-            <h1>
-              Technik,
-              <br />
-              die <span>funktioniert.</span>
-            </h1>
+            <motion.h1 variants={serviceHeroSequence}>
+              <motion.span className="hero-title-line" variants={serviceTitleLine}>
+                Technik,
+              </motion.span>
+              <motion.span className="hero-title-line" variants={serviceTitleLine}>
+                die <em>funktioniert.</em>
+              </motion.span>
+            </motion.h1>
 
-            <div className="hero-lower">
-              <p className="hero-intro">
-                IT-Support, Netzwerke, Webseiten und smarte Tools. Direkt, verständlich und
-                lösungsorientiert – für Privatpersonen und kleine Unternehmen.
-              </p>
+            <motion.div className="hero-lower" variants={serviceHeroItem}>
+              <div>
+                <p className="hero-intro">
+                  IT-Support, Netzwerke, Webseiten und smarte Tools. Direkt, verständlich und
+                  lösungsorientiert – für Privatpersonen und kleine Unternehmen.
+                </p>
+                <p className="hero-visit-note">
+                  <MapPin aria-hidden="true" /> Bei Vor-Ort-Terminen komme ich zu dir.
+                </p>
+              </div>
               <div className="hero-actions">
                 <a className="primary-action" href={phoneHref}>
                   <span>
@@ -1343,14 +1358,14 @@ function MarketingApp() {
                   System erkunden <ArrowDownRight size={18} aria-hidden="true" />
                 </a>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
 
           <motion.aside
             className="diagnostic-console"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.25 }}
+            variants={servicePanelReveal}
+            initial={motionInitial}
+            animate="visible"
             aria-label="Live-Diagnose"
           >
             <div className="console-topline">
@@ -1416,7 +1431,7 @@ function MarketingApp() {
           <motion.div
             className="section-heading"
             variants={reveal}
-            initial="hidden"
+            initial={motionInitial}
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
@@ -1432,7 +1447,13 @@ function MarketingApp() {
             </p>
           </motion.div>
 
-          <div className="service-list">
+          <motion.div
+            className="service-list"
+            variants={serviceGridReveal}
+            initial={motionInitial}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.12 }}
+          >
             {services.map((service, index) => {
               const Icon = service.icon
               return (
@@ -1440,10 +1461,7 @@ function MarketingApp() {
                   className="service-row"
                   key={service.title}
                   href={service.href}
-                  variants={reveal}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.25 }}
+                  variants={serviceCardReveal}
                 >
                   <span className="service-index">0{index + 1}</span>
                   <div className="service-icon">
@@ -1462,7 +1480,7 @@ function MarketingApp() {
                 </motion.a>
               )
             })}
-          </div>
+          </motion.div>
 
           <div className="support-band">
             <div>
@@ -1482,7 +1500,7 @@ function MarketingApp() {
           <motion.div
             className="profile-offer-heading"
             variants={reveal}
-            initial="hidden"
+            initial={motionInitial}
             whileInView="visible"
             viewport={{ once: true, amount: 0.25 }}
           >
@@ -1507,13 +1525,16 @@ function MarketingApp() {
             </div>
           </motion.div>
 
-          <div className="profile-offer-grid">
+          <motion.div
+            className="profile-offer-grid"
+            variants={serviceGridReveal}
+            initial={motionInitial}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.12 }}
+          >
             <motion.article
               className="price-terminal"
-              variants={reveal}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
+              variants={serviceCardReveal}
             >
               <header>
                 <span><i /> GOOGLE BUSINESS PROFILE</span>
@@ -1550,10 +1571,7 @@ function MarketingApp() {
 
             <motion.div
               className="profile-service-catalog"
-              variants={reveal}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.25 }}
+              variants={serviceCardReveal}
             >
               <div className="profile-catalog-head">
                 <span>ANGEBOT LAUT GOOGLE-PROFIL</span>
@@ -1572,10 +1590,7 @@ function MarketingApp() {
 
             <motion.aside
               className="profile-availability"
-              variants={reveal}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.25 }}
+              variants={serviceCardReveal}
             >
               <div className="hours-head">
                 <Clock3 aria-hidden="true" />
@@ -1606,7 +1621,7 @@ function MarketingApp() {
                 Termin oder Problem besprechen <ArrowUpRight aria-hidden="true" />
               </a>
             </motion.aside>
-          </div>
+          </motion.div>
         </section>
 
         <section className="process section-shell" id="arbeitsweise">
@@ -1614,7 +1629,7 @@ function MarketingApp() {
             <motion.div
               className="process-copy"
               variants={reveal}
-              initial="hidden"
+              initial={motionInitial}
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
@@ -1632,7 +1647,13 @@ function MarketingApp() {
               </a>
             </motion.div>
 
-            <div className="process-path">
+            <motion.div
+              className="process-path"
+              variants={serviceGridReveal}
+              initial={motionInitial}
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.18 }}
+            >
               {[
                 ['01', 'Verstehen', 'Was passiert wirklich – und was ist nur das sichtbare Symptom?'],
                 ['02', 'Eingrenzen', 'Strukturiert prüfen, statt wahllos Einstellungen zu verändern.'],
@@ -1641,10 +1662,7 @@ function MarketingApp() {
                 <motion.div
                   className="process-step"
                   key={number}
-                  variants={reveal}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.45 }}
+                  variants={serviceCardReveal}
                 >
                   <div className="step-node">
                     <span>{number}</span>
@@ -1656,7 +1674,7 @@ function MarketingApp() {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -1664,7 +1682,7 @@ function MarketingApp() {
           <motion.div
             className="section-heading project-heading"
             variants={reveal}
-            initial="hidden"
+            initial={motionInitial}
             whileInView="visible"
             viewport={{ once: true, amount: 0.25 }}
           >
@@ -1681,26 +1699,35 @@ function MarketingApp() {
           </motion.div>
 
           <div className="project-stage">
-            <aside className="project-manifesto">
+            <motion.aside
+              className="project-manifesto"
+              variants={serviceCardReveal}
+              initial={motionInitial}
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.25 }}
+            >
               <span className="manifesto-label">BUILD PRINCIPLE / 01</span>
               <p>„Ich baue lieber einen funktionierenden Prototypen als eine perfekte Ausrede.“</p>
               <div className="manifesto-signal">
                 <Lightbulb aria-hidden="true" />
                 Beobachten → vereinfachen → bauen
               </div>
-            </aside>
+            </motion.aside>
 
-            <div className="project-stream">
+            <motion.div
+              className="project-stream"
+              variants={serviceGridReveal}
+              initial={motionInitial}
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.08 }}
+            >
               {projects.map((project, index) => {
                 const ProjectIcon = project.icon
                 return (
                   <motion.article
                     className="project-entry"
                     key={project.code}
-                    variants={reveal}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.35 }}
+                    variants={serviceCardReveal}
                   >
                     <div className="project-code">
                       <span>{project.code}</span>
@@ -1723,10 +1750,16 @@ function MarketingApp() {
                   </motion.article>
                 )
               })}
-            </div>
+            </motion.div>
           </div>
 
-          <div className="website-project-note">
+          <motion.div
+            className="website-project-note"
+            variants={serviceCardReveal}
+            initial={motionInitial}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.35 }}
+          >
             <Globe2 aria-hidden="true" />
             <div>
               <span>WEBSEITEN FÜR LOKALE UNTERNEHMEN</span>
@@ -1736,14 +1769,14 @@ function MarketingApp() {
               </p>
             </div>
             <ArrowUpRight aria-hidden="true" />
-          </div>
+          </motion.div>
         </section>
 
         <section className="capability-section section-shell" id="kompetenzen">
           <motion.div
             className="capability-intro"
             variants={reveal}
-            initial="hidden"
+            initial={motionInitial}
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
@@ -1764,17 +1797,20 @@ function MarketingApp() {
             </div>
           </motion.div>
 
-          <div className="capability-matrix">
+          <motion.div
+            className="capability-matrix"
+            variants={serviceGridReveal}
+            initial={motionInitial}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
             {capabilities.map((capability, index) => {
               const CapabilityIcon = capability.icon
               return (
                 <motion.article
                   className="capability-domain"
                   key={capability.domain}
-                  variants={reveal}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
+                  variants={serviceCardReveal}
                 >
                   <header>
                     <span>0{index + 1}</span>
@@ -1796,14 +1832,14 @@ function MarketingApp() {
                 </motion.article>
               )
             })}
-          </div>
+          </motion.div>
         </section>
 
         <section className="about section-shell" id="andrej">
           <motion.div
             className="about-panel"
             variants={reveal}
-            initial="hidden"
+            initial={motionInitial}
             whileInView="visible"
             viewport={{ once: true, amount: 0.25 }}
           >
@@ -1880,7 +1916,7 @@ function MarketingApp() {
           <motion.div
             className="local-grid"
             variants={reveal}
-            initial="hidden"
+            initial={motionInitial}
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
           >
@@ -1924,7 +1960,9 @@ function MarketingApp() {
               <h2>Support mit einem echten Standort.</h2>
               <p>
                 Schultes IT & Netzwerksupport entsteht in Ludwigsburg – als direkte technische
-                Anlaufstelle für Menschen und kleine Unternehmen aus der Region.
+                Anlaufstelle für Menschen und kleine Unternehmen aus der Region. Für Vor-Ort-Termine
+                komme ich zu dir nach Hause oder in deinen Betrieb; du musst deine Technik nicht
+                erst irgendwohin transportieren.
               </p>
               <p className="maps-presence">Schultes IT & Netzwerksupport auf Google Maps</p>
               <div className="trust-points">
@@ -1958,7 +1996,7 @@ function MarketingApp() {
           <motion.div
             className="cta-frame"
             variants={reveal}
-            initial="hidden"
+            initial={motionInitial}
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
