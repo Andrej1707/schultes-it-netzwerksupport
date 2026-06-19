@@ -8,7 +8,7 @@ Kompetenzmatrix, Google-Maps-Bereich und direktem Mobile-Kontakt.
 
 ## Live
 
-[andrej1707.github.io/schultes-it-netzwerksupport](https://andrej1707.github.io/schultes-it-netzwerksupport/)
+[schultes-it.de](https://schultes-it.de/)
 
 ## Tech Stack
 

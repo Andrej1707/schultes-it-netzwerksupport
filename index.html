@@ -8,12 +8,12 @@
     <meta name="theme-color" content="#05080d" />
     <meta name="referrer" content="no-referrer" /><meta
   name="robots"
-  content="index, follow, noarchive, max-image-preview:large, max-snippet:160, max-video-preview:-1"
+  content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
 />
 
 <meta
   http-equiv="Content-Security-Policy"
-  content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-tzmcSR1w8EFrlV7+0Z1jXK5PRlSa5Vr4781Rz1AhFaA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://www.google.com https://maps.google.com; form-action 'none'; upgrade-insecure-requests"
+  content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-BsmsciI/Wc32h5/6GPrRP2dtt75/p3GEvNjWoX1L8oY='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://www.google.com https://maps.google.com; form-action 'none'; upgrade-insecure-requests"
 />
 
 <meta
@@ -54,22 +54,69 @@
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
+    "@id": "https://schultes-it.de/#business",
     "name": "Schultes IT & Netzwerksupport",
+    "alternateName": "Schultes IT- & Netzwerksupport",
     "founder": {
       "@type": "Person",
       "name": "Andrej Schultes"
     },
     "url": "https://schultes-it.de/",
+    "image": "https://schultes-it.de/og-cover.svg",
+    "telephone": "+49 1523 3364752",
+    "email": "it.schulteslb@gmail.com",
+    "priceRange": "Fernhilfe ab 25 EUR, Vor-Ort-Service ab 49 EUR",
     "areaServed": {
       "@type": "City",
       "name": "Ludwigsburg"
     },
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "Egerländer Str. 24",
+      "postalCode": "71638",
       "addressLocality": "Ludwigsburg",
       "addressCountry": "DE"
     },
-    "description": "IT-Support, Netzwerksupport, PC-Hilfe, Webseiten und Automatisierungen in Ludwigsburg."
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday", "Sunday"],
+        "opens": "09:00",
+        "closes": "17:00"
+      }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "IT-Support-Leistungen",
+      "itemListElement": [
+        {
+          "@type": "OfferCatalog",
+          "name": "PC-, Software- und Netzwerkprobleme"
+        },
+        {
+          "@type": "OfferCatalog",
+          "name": "Einrichtung und Fehlerbehebung"
+        },
+        {
+          "@type": "OfferCatalog",
+          "name": "Fernhilfe und Vor-Ort-Service"
+        }
+      ]
+    },
+    "sameAs": ["https://maps.app.goo.gl/9riyhNzidDpzvynd8"],
+    "description": "Schnelle Hilfe bei PC-, Software- und Netzwerkproblemen für Privatkunden und kleine Betriebe in Ludwigsburg – vor Ort und per Fernwartung."
   }
 </script>
 
