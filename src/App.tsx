@@ -43,6 +43,12 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import type { Variants } from 'framer-motion'
+import {
+  servicePageBySlug,
+  servicePages,
+  type ServiceIconName,
+  type ServicePageData,
+} from './serviceCatalog'
 
 const phoneParts = ['+49', '1523', '3364752']
 const phoneDisplay = phoneParts.join(' ')
@@ -53,43 +59,18 @@ const address = 'Egerländer Str. 24, 71638 Ludwigsburg'
 const mapsUrl = 'https://maps.app.goo.gl/9riyhNzidDpzvynd8'
 const mapsEmbedUrl = 'https://www.google.com/maps?q=48.8886228%2C9.2064228&z=17&output=embed'
 
-type Service = {
-  icon: LucideIcon
-  title: string
-  description: string
-  tags: string[]
+const serviceIcons: Record<ServiceIconName, LucideIcon> = {
+  laptop: Laptop,
+  router: Router,
+  globe: Globe2,
+  bot: Bot,
 }
 
-const services: Service[] = [
-  {
-    icon: Laptop,
-    title: 'PC & System',
-    description:
-      'Wenn Windows streikt, Software nervt oder ein Gerät sauber eingerichtet werden soll: Problem eingrenzen, verständlich erklären, lösen.',
-    tags: ['Windows', 'Software', 'Einrichtung'],
-  },
-  {
-    icon: Router,
-    title: 'Netzwerk & WLAN',
-    description:
-      'Stabiles WLAN, Router-Konfiguration und ein Heim- oder Firmennetz, das nicht genau dann aussteigt, wenn es gebraucht wird.',
-    tags: ['WLAN', 'Router', 'Heimnetz'],
-  },
-  {
-    icon: Globe2,
-    title: 'Webseiten',
-    description:
-      'Schnelle, moderne Webseiten für lokale Unternehmen. Klar positioniert, mobil stark und ohne austauschbaren Baukasten-Look.',
-    tags: ['Konzept', 'Frontend', 'Launch'],
-  },
-  {
-    icon: Bot,
-    title: 'Tools & Automation',
-    description:
-      'Kleine digitale Werkzeuge, Automationen und moderne KI-/Agenten-Projekte, die wiederkehrende Arbeit wirklich abnehmen.',
-    tags: ['Workflows', 'KI', 'Prototypen'],
-  },
-]
+const services = servicePages.map((service) => ({
+  ...service,
+  icon: serviceIcons[service.icon],
+  href: `/${service.slug}/`,
+}))
 
 const googleProfileServices = [
   'PC-Probleme',
@@ -317,7 +298,7 @@ function NetworkCanvas() {
 
 function Logo() {
   return (
-    <a className="brand" href="#top" aria-label="Schultes IT & Netzwerksupport – Startseite">
+    <a className="brand" href="/" aria-label="Schultes IT & Netzwerksupport – Startseite">
       <span className="brand-mark" aria-hidden="true">
         <span>S</span>
       </span>
@@ -358,7 +339,7 @@ function LegalLayout({ page }: { page: LegalPage }) {
 
       <header className="site-header legal-header">
         <Logo />
-        <a className="legal-back" href="#top">
+        <a className="legal-back" href="/">
           <ArrowDownRight aria-hidden="true" />
           Zur Startseite
         </a>
@@ -379,10 +360,10 @@ function LegalLayout({ page }: { page: LegalPage }) {
               : 'Transparent erklärt: welche Daten beim Besuch dieser Website verarbeitet werden und warum.'}
           </p>
           <nav className="legal-switch" aria-label="Rechtliche Seiten">
-            <a href="#/impressum" aria-current={isImprint ? 'page' : undefined}>
+            <a href="/#/impressum" aria-current={isImprint ? 'page' : undefined}>
               Impressum
             </a>
-            <a href="#/datenschutz" aria-current={!isImprint ? 'page' : undefined}>
+            <a href="/#/datenschutz" aria-current={!isImprint ? 'page' : undefined}>
               Datenschutz
             </a>
           </nav>
@@ -618,10 +599,10 @@ function SiteFooter() {
         <a href="https://github.com/Andrej1707" target="_blank" rel="noreferrer">
           <GitBranch aria-hidden="true" /> GitHub
         </a>
-        <a href="#/impressum">
+        <a href="/#/impressum">
           <FileText aria-hidden="true" /> Impressum
         </a>
-        <a href="#/datenschutz">
+        <a href="/#/datenschutz">
           <LockKeyhole aria-hidden="true" /> Datenschutz
         </a>
         <span className="footer-private" data-nosnippet>
@@ -631,6 +612,462 @@ function SiteFooter() {
         </span>
       </div>
     </footer>
+  )
+}
+
+function ServicePage({ service }: { service: ServicePageData }) {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [copied, setCopied] = useState(false)
+  const reduceMotion = useReducedMotion()
+  const { scrollYProgress } = useScroll()
+  const heroLift = useTransform(scrollYProgress, [0, 0.2], [0, reduceMotion ? 0 : -54])
+  const Icon = serviceIcons[service.icon]
+
+  useEffect(() => {
+    document.body.dataset.servicePage = service.slug
+    document.body.dataset.menuOpen = menuOpen ? 'true' : 'false'
+    document.title = service.seoTitle
+
+    return () => {
+      delete document.body.dataset.servicePage
+      delete document.body.dataset.menuOpen
+    }
+  }, [menuOpen, service.seoTitle, service.slug])
+
+  useEffect(() => {
+    if (!menuOpen) return
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false)
+    }
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [menuOpen])
+
+  const copyPhoneNumber = async () => {
+    try {
+      await navigator.clipboard.writeText(phoneCopy)
+    } catch {
+      const input = document.createElement('textarea')
+      input.value = phoneCopy
+      input.style.position = 'fixed'
+      input.style.opacity = '0'
+      document.body.appendChild(input)
+      input.select()
+      document.execCommand('copy')
+      input.remove()
+    }
+    setCopied(true)
+    window.setTimeout(() => setCopied(false), 2200)
+  }
+
+  const relatedServices = service.related
+    .map((slug) => servicePageBySlug[slug])
+    .filter((entry): entry is ServicePageData => Boolean(entry))
+
+  return (
+    <>
+      <a className="skip-link" href="#service-main">
+        Zum Inhalt springen
+      </a>
+      <NetworkCanvas />
+      <div className="ambient ambient-one" aria-hidden="true" />
+      <div className="ambient ambient-two" aria-hidden="true" />
+      <div className="scanline" aria-hidden="true" />
+      <div className="progress-rail" aria-hidden="true">
+        <motion.span style={{ scaleY: scrollYProgress }} />
+      </div>
+
+      <header className="site-header service-header">
+        <Logo />
+        <nav className="desktop-nav" aria-label="Hauptnavigation">
+          <a href="/#leistungen">Leistungen</a>
+          <a href="/#preise">Preise</a>
+          <a href="/#andrej">Über Andrej</a>
+          <a href="#service-contact">Kontakt</a>
+        </nav>
+        <a className="header-call" href={phoneHref}>
+          <Phone size={16} aria-hidden="true" />
+          <span data-nosnippet>{phoneDisplay}</span>
+        </a>
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-label={menuOpen ? 'Menü schließen' : 'Menü öffnen'}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? <X /> : <Menu />}
+        </button>
+      </header>
+
+      <motion.nav
+        className="mobile-nav"
+        aria-label="Mobile Navigation"
+        aria-hidden={!menuOpen}
+        initial={false}
+        animate={menuOpen ? 'open' : 'closed'}
+        variants={{
+          open: {
+            opacity: 1,
+            visibility: 'visible',
+            clipPath: 'inset(0 0 0 0)',
+            pointerEvents: 'auto',
+          },
+          closed: {
+            opacity: 0,
+            visibility: 'hidden',
+            clipPath: 'inset(0 0 100% 0)',
+            pointerEvents: 'none',
+          },
+        }}
+      >
+        {[
+          ['Startseite', '/'],
+          ['Alle Leistungen', '/#leistungen'],
+          ['Preise', '/#preise'],
+          ['Über Andrej', '/#andrej'],
+          ['Kontakt', '#service-contact'],
+          ['Direkt anrufen', phoneHref],
+        ].map(([label, href], index) => (
+          <a key={href} href={href} onClick={() => setMenuOpen(false)}>
+            <span>0{index + 1}</span>
+            {label}
+            <ArrowUpRight aria-hidden="true" />
+          </a>
+        ))}
+      </motion.nav>
+
+      <main className="service-page" id="service-main">
+        <section className="service-detail-hero">
+          <motion.div
+            className="service-detail-hero-copy"
+            style={{ y: heroLift }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75 }}
+          >
+            <nav className="service-breadcrumb" aria-label="Brotkrümelnavigation">
+              <a href="/">Startseite</a>
+              <ChevronRight aria-hidden="true" />
+              <a href="/#leistungen">Leistungen</a>
+              <ChevronRight aria-hidden="true" />
+              <span aria-current="page">{service.title}</span>
+            </nav>
+            <span className="service-detail-code">{service.code}</span>
+            <h1>
+              {service.heroLead}
+              <span>{service.heroAccent}</span>
+            </h1>
+            <p>{service.heroText}</p>
+            <div className="service-detail-actions">
+              <a className="primary-action" href={phoneHref}>
+                <span>
+                  Problem besprechen
+                  <small data-nosnippet>{phoneDisplay}</small>
+                </span>
+                <ArrowUpRight aria-hidden="true" />
+              </a>
+              <a className="text-action" href="#was-ich-loese">
+                Leistungen ansehen <ArrowDownRight aria-hidden="true" />
+              </a>
+            </div>
+          </motion.div>
+
+          <motion.aside
+            className="service-status-panel"
+            initial={{ opacity: 0, x: 32 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.75, delay: 0.15 }}
+            aria-label={`Status ${service.title}`}
+          >
+            <header>
+              <span>
+                <CircleDot aria-hidden="true" /> SERVICE NODE
+              </span>
+              <strong>AKTIV</strong>
+            </header>
+            <div className="service-status-icon" aria-hidden="true">
+              <Icon />
+              <i />
+            </div>
+            <dl>
+              <div>
+                <dt>Bereich</dt>
+                <dd>{service.title}</dd>
+              </div>
+              <div>
+                <dt>Region</dt>
+                <dd>Ludwigsburg</dd>
+              </div>
+              <div>
+                <dt>Modus</dt>
+                <dd>Vor Ort / Remote</dd>
+              </div>
+            </dl>
+            <footer>
+              <BadgeEuro aria-hidden="true" />
+              <span>
+                <small>KOSTENRAHMEN</small>
+                {service.price}
+              </span>
+            </footer>
+          </motion.aside>
+        </section>
+
+        <section className="service-audiences" aria-labelledby="audience-title">
+          <header>
+            <span className="section-number">01 / FÜR WEN</span>
+            <h2 id="audience-title">Technik für Menschen. Nicht für Zielgruppen-Folien.</h2>
+          </header>
+          <div className="audience-grid">
+            {service.audiences.map((audience, index) => (
+              <motion.article
+                key={audience.label}
+                variants={reveal}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.35 }}
+              >
+                <span>0{index + 1}</span>
+                <h3>{audience.label}</h3>
+                <p>{audience.text}</p>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+
+        <section className="service-situations service-detail-shell">
+          <motion.header
+            className="service-detail-heading"
+            variants={reveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <span className="section-number">02 / KOMMT DIR DAS BEKANNT VOR?</span>
+            <h2>
+              Das Problem beginnt selten
+              <span> mit einer klaren Fehlermeldung.</span>
+            </h2>
+            <p>
+              Du musst die Ursache nicht kennen. Eine gute Anfrage darf mit „Es funktioniert einfach
+              nicht“ anfangen.
+            </p>
+          </motion.header>
+          <div className="situation-grid">
+            {service.situations.map((situation, index) => (
+              <motion.article
+                key={situation.title}
+                variants={reveal}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                <span>CASE / 0{index + 1}</span>
+                <h3>{situation.title}</h3>
+                <p>{situation.text}</p>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+
+        <section className="service-solutions service-detail-shell" id="was-ich-loese">
+          <motion.header
+            className="service-detail-heading"
+            variants={reveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <span className="section-number">03 / LEISTUNGEN</span>
+            <h2>
+              Konkret helfen.
+              <span> Verständlich übergeben.</span>
+            </h2>
+            <p>
+              Der genaue Umfang richtet sich nach deinem Fall. Diese Bausteine zeigen, wobei ich dich
+              in diesem Bereich unterstützen kann.
+            </p>
+          </motion.header>
+          <div className="solution-list">
+            {service.solutions.map((solution, index) => (
+              <motion.article
+                key={solution.title}
+                variants={reveal}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <Check aria-hidden="true" />
+                <div>
+                  <h3>{solution.title}</h3>
+                  <p>{solution.text}</p>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+
+        <section className="service-process service-detail-shell">
+          <motion.header
+            className="service-detail-heading"
+            variants={reveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <span className="section-number">04 / ABLAUF</span>
+            <h2>
+              Klarer Prozess.
+              <span> Kein Rätselraten.</span>
+            </h2>
+          </motion.header>
+          <div className="service-process-track">
+            {service.process.map((step, index) => (
+              <motion.article
+                key={step.title}
+                variants={reveal}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.35 }}
+              >
+                <span>0{index + 1}</span>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+
+        <section className="service-confidence service-detail-shell">
+          <motion.div
+            className="confidence-copy"
+            variants={reveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <span className="section-number">05 / VERSPRECHEN</span>
+            <ShieldCheck aria-hidden="true" />
+            <h2>{service.confidenceTitle}</h2>
+            <p>{service.confidenceText}</p>
+          </motion.div>
+          <div className="confidence-points">
+            {service.confidencePoints.map((point, index) => (
+              <div key={point}>
+                <span>0{index + 1}</span>
+                <Check aria-hidden="true" />
+                <strong>{point}</strong>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="service-faq service-detail-shell">
+          <motion.header
+            className="service-detail-heading"
+            variants={reveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <span className="section-number">06 / HÄUFIGE FRAGEN</span>
+            <h2>
+              Vorher wissen,
+              <span> woran du bist.</span>
+            </h2>
+          </motion.header>
+          <div className="faq-list">
+            {service.faqs.map((faq, index) => (
+              <details key={faq.question}>
+                <summary>
+                  <span>0{index + 1}</span>
+                  {faq.question}
+                  <i aria-hidden="true" />
+                </summary>
+                <p>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section className="related-services service-detail-shell">
+          <header>
+            <span className="section-number">07 / WEITERE BEREICHE</span>
+            <h2>Technikprobleme bleiben selten in einer Schublade.</h2>
+          </header>
+          <div>
+            {relatedServices.map((related) => {
+              const RelatedIcon = serviceIcons[related.icon]
+              return (
+                <a key={related.slug} href={`/${related.slug}/`}>
+                  <RelatedIcon aria-hidden="true" />
+                  <span>
+                    <small>{related.code}</small>
+                    <strong>{related.title}</strong>
+                  </span>
+                  <ArrowUpRight aria-hidden="true" />
+                </a>
+              )
+            })}
+          </div>
+        </section>
+
+        <section className="service-final-cta service-detail-shell" id="service-contact">
+          <div>
+            <span className="section-number">08 / DIREKTER KONTAKT</span>
+            <h2>
+              Erzähl mir nicht die Diagnose.
+              <span> Erzähl mir, was nicht funktioniert.</span>
+            </h2>
+            <p>
+              Gemeinsam klären wir, ob Fernhilfe passt, ein Termin vor Ort sinnvoll ist oder ein
+              anderes Vorgehen ehrlicher wäre.
+            </p>
+          </div>
+          <div className="service-contact-panel">
+            <a href={phoneHref}>
+              <Phone aria-hidden="true" />
+              <span>
+                <small>JETZT ANRUFEN</small>
+                <strong data-nosnippet>{phoneDisplay}</strong>
+              </span>
+              <ArrowUpRight aria-hidden="true" />
+            </a>
+            <a href={`mailto:${email}`}>
+              <Mail aria-hidden="true" />
+              <span>
+                <small>PER E-MAIL</small>
+                <strong data-nosnippet>{email}</strong>
+              </span>
+              <ArrowUpRight aria-hidden="true" />
+            </a>
+            <p>
+              <Clock3 aria-hidden="true" /> Montag–Freitag 08:00–20:00 · Samstag–Sonntag 09:00–17:00
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <div className="mobile-contact-dock" aria-label="Schnellkontakt">
+        <a href={phoneHref}>
+          <Phone aria-hidden="true" />
+          <span>
+            <small>JETZT ANRUFEN</small>
+            <span data-nosnippet>{phoneDisplay}</span>
+          </span>
+        </a>
+        <button type="button" onClick={copyPhoneNumber} aria-label="Telefonnummer kopieren">
+          {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
+          <span>{copied ? 'Kopiert' : 'Kopieren'}</span>
+        </button>
+      </div>
+
+      <SiteFooter />
+    </>
   )
 }
 
@@ -905,9 +1342,10 @@ function MarketingApp() {
             {services.map((service, index) => {
               const Icon = service.icon
               return (
-                <motion.article
+                <motion.a
                   className="service-row"
                   key={service.title}
+                  href={service.href}
                   variants={reveal}
                   initial="hidden"
                   whileInView="visible"
@@ -927,7 +1365,7 @@ function MarketingApp() {
                     ))}
                   </div>
                   <ChevronRight className="service-arrow" aria-hidden="true" />
-                </motion.article>
+                </motion.a>
               )
             })}
           </div>
@@ -1493,6 +1931,8 @@ function MarketingApp() {
 
 function App() {
   const [hash, setHash] = useState(window.location.hash)
+  const pathSlug = window.location.pathname.split('/').filter(Boolean)[0]
+  const servicePage = pathSlug ? servicePageBySlug[pathSlug] : undefined
 
   useEffect(() => {
     const updateHash = () => setHash(window.location.hash)
@@ -1502,6 +1942,7 @@ function App() {
 
   if (hash === '#/impressum') return <LegalLayout page="impressum" />
   if (hash === '#/datenschutz') return <LegalLayout page="datenschutz" />
+  if (servicePage) return <ServicePage service={servicePage} />
 
   return <MarketingApp />
 }

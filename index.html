@@ -13,7 +13,7 @@
 
 <meta
   http-equiv="Content-Security-Policy"
-  content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-BsmsciI/Wc32h5/6GPrRP2dtt75/p3GEvNjWoX1L8oY='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://www.google.com https://maps.google.com; form-action 'none'; upgrade-insecure-requests"
+  content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-vmu95A09JO0wAfGOZVbci5rHTjkCH+noG7oTxwkL65M='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://www.google.com https://maps.google.com; form-action 'none'; upgrade-insecure-requests"
 />
 
 <meta
@@ -102,16 +102,36 @@
       "name": "IT-Support-Leistungen",
       "itemListElement": [
         {
-          "@type": "OfferCatalog",
-          "name": "PC-, Software- und Netzwerkprobleme"
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "PC & System",
+            "url": "https://schultes-it.de/pc-system/"
+          }
         },
         {
-          "@type": "OfferCatalog",
-          "name": "Einrichtung und Fehlerbehebung"
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Netzwerk & WLAN",
+            "url": "https://schultes-it.de/netzwerk-wlan/"
+          }
         },
         {
-          "@type": "OfferCatalog",
-          "name": "Fernhilfe und Vor-Ort-Service"
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Webseiten",
+            "url": "https://schultes-it.de/webseiten/"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Tools & Automation",
+            "url": "https://schultes-it.de/tools-automation/"
+          }
         }
       ]
     },
