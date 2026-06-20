@@ -123,20 +123,6 @@ const everydayProblems = [
     href: '/netzwerk-wlan/',
     label: 'Netzwerkhilfe',
   },
-  {
-    icon: Wrench,
-    title: 'Drucker oder neues Gerät einrichten',
-    text: 'Treiber, Konten und Verbindungen sollen ohne Rätselraten startklar werden.',
-    href: '/pc-system/',
-    label: 'Einrichtung',
-  },
-  {
-    icon: Phone,
-    title: 'Ich brauche IT-Hilfe in Ludwigsburg',
-    text: 'Du musst das Problem nicht benennen können. Sag einfach, was nicht funktioniert.',
-    href: '#kontakt',
-    label: 'Direkter Kontakt',
-  },
 ]
 
 const projects = [
@@ -230,11 +216,11 @@ const chapters = [
   ['alltagshilfe', 'IT-Hilfe'],
   ['leistungen', 'Support'],
   ['preise', 'Preise'],
+  ['ludwigsburg', 'Lokal'],
   ['arbeitsweise', 'System'],
   ['projekte', 'Build'],
   ['kompetenzen', 'Skills'],
   ['andrej', 'Andrej'],
-  ['ludwigsburg', 'Lokal'],
 ]
 
 const reveal: Variants = {
@@ -1490,8 +1476,8 @@ function MarketingApp() {
               </h2>
             </div>
             <p>
-              Keine Diagnose nötig: Ob PC kaputt, Laptop langsam, WLAN weg oder Drucker nicht
-              verbunden – ich übersetze dein Alltagsproblem in einen sinnvollen nächsten Schritt.
+              Keine Diagnose nötig: Ob PC kaputt, Laptop langsam oder WLAN weg – ich übersetze
+              dein Alltagsproblem in einen sinnvollen nächsten Schritt.
             </p>
           </motion.div>
 
@@ -1573,19 +1559,6 @@ function MarketingApp() {
               )
             })}
           </motion.div>
-
-          <div className="support-band">
-            <div>
-              <Radio aria-hidden="true" />
-              <span>
-                <small>SUPPORT-KANAL</small>
-                Bei dir vor Ort in Ludwigsburg oder per Remote-Hilfe
-              </span>
-            </div>
-            <a href={phoneHref}>
-              Verbindung herstellen <ArrowUpRight aria-hidden="true" />
-            </a>
-          </div>
         </section>
 
         <section className="profile-offer section-shell" id="preise">
@@ -1716,6 +1689,86 @@ function MarketingApp() {
           </motion.div>
         </section>
 
+        <section className="local-trust section-shell" id="ludwigsburg">
+          <motion.div
+            className="local-grid"
+            variants={reveal}
+            initial={motionInitial}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <div className="map-frame">
+              {mapsEnabled ? (
+                <iframe
+                  title="Standort von Schultes IT & Netzwerksupport"
+                  src={mapsEmbedUrl}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              ) : (
+                <div className="map-consent">
+                  <ShieldCheck aria-hidden="true" />
+                  <span>EXTERNAL SERVICE / GOOGLE MAPS</span>
+                  <h3>Karte bleibt privat, bis du sie lädst.</h3>
+                  <p>
+                    Erst nach deiner Einwilligung wird eine Verbindung zu Google aufgebaut. Dabei
+                    können personenbezogene Daten an Google übertragen werden.
+                  </p>
+                  <button type="button" onClick={() => setMapsEnabled(true)}>
+                    Google Maps laden
+                  </button>
+                  <a href="#/datenschutz">Details im Datenschutz</a>
+                </div>
+              )}
+              <div className="map-hud">
+                <span><i /> LOCAL NODE ONLINE</span>
+                {mapsEnabled ? (
+                  <button type="button" onClick={() => setMapsEnabled(false)}>
+                    Karte deaktivieren
+                  </button>
+                ) : (
+                  <strong>SCHULTES IT / LUDWIGSBURG</strong>
+                )}
+              </div>
+            </div>
+
+            <div className="local-copy">
+              <span className="section-number">03 / LOKAL ERREICHBAR</span>
+              <h2>Support mit einem echten Standort.</h2>
+              <p>
+                Schultes IT & Netzwerksupport entsteht in Ludwigsburg – als direkte technische
+                Anlaufstelle für Menschen und kleine Unternehmen aus der Region. Für Vor-Ort-Termine
+                komme ich zu dir nach Hause oder in deinen Betrieb; du musst deine Technik nicht
+                erst irgendwohin transportieren.
+              </p>
+              <p className="maps-presence">Schultes IT & Netzwerksupport auf Google Maps</p>
+              <div className="trust-points">
+                <div>
+                  <MapPin aria-hidden="true" />
+                  <span><small>REGION</small>Ludwigsburg & Umgebung</span>
+                </div>
+                <div>
+                  <Building2 aria-hidden="true" />
+                  <span><small>FÜR WEN</small>Privat & kleine Unternehmen</span>
+                </div>
+                <div>
+                  <Radio aria-hidden="true" />
+                  <span><small>MODUS</small>Bei dir vor Ort & Remote-Hilfe</span>
+                </div>
+              </div>
+              <div className="local-actions">
+                <a href={mapsUrl} target="_blank" rel="noreferrer">
+                  In Google Maps öffnen <ExternalLink aria-hidden="true" />
+                </a>
+                <button type="button" onClick={copyPhone} className={copied ? 'is-copied' : ''}>
+                  {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
+                  {copied ? 'Nummer kopiert' : 'Telefonnummer kopieren'}
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
         <section className="process section-shell" id="arbeitsweise">
           <div className="process-grid">
             <motion.div
@@ -1725,7 +1778,7 @@ function MarketingApp() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <span className="section-number">03 / ARBEITSWEISE</span>
+              <span className="section-number">04 / ARBEITSWEISE</span>
               <h2>Keine Show. Ein System.</h2>
               <p>
                 Ich interessiere mich nicht für Lösungen, die nur auf dem Papier funktionieren.
@@ -1778,7 +1831,7 @@ function MarketingApp() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.25 }}
           >
-            <span className="section-number">04 / PROJEKTE</span>
+            <span className="section-number">05 / PROJEKTE</span>
             <h2>
               Mehr als Support.
               <br />
@@ -1844,24 +1897,6 @@ function MarketingApp() {
               })}
             </motion.div>
           </div>
-
-          <motion.div
-            className="website-project-note"
-            variants={serviceCardReveal}
-            initial={motionInitial}
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.35 }}
-          >
-            <Globe2 aria-hidden="true" />
-            <div>
-              <span>WEBSEITEN FÜR LOKALE UNTERNEHMEN</span>
-              <p>
-                Vertrauen, Mobilansicht und Kontaktaufnahme zuerst. Design ist dabei kein
-                Selbstzweck, sondern macht ein Angebot klarer und einfacher erreichbar.
-              </p>
-            </div>
-            <ArrowUpRight aria-hidden="true" />
-          </motion.div>
         </section>
 
         <section className="capability-section section-shell" id="kompetenzen">
@@ -1872,7 +1907,7 @@ function MarketingApp() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <span className="section-number">05 / KOMPETENZMATRIX</span>
+            <span className="section-number">06 / KOMPETENZMATRIX</span>
             <h2>
               Breites Fundament.
               <br />
@@ -1945,7 +1980,7 @@ function MarketingApp() {
                 <span className="orbit-dot" />
               </div>
               <div>
-                <span className="section-number">06 / PERSON</span>
+                <span className="section-number">07 / PERSON</span>
                 <h2>Andrej Schultes</h2>
                 <p>Angehender IT-Systemelektroniker · Builder · Problemlöser</p>
               </div>
@@ -1989,100 +2024,6 @@ function MarketingApp() {
                   Erwartung. Genau deshalb denke ich gern in Systemen: Erst das Gesamtbild
                   verstehen, dann an der richtigen Stelle handeln.
                 </p>
-              </div>
-              <div className="builder-sequence">
-                {[
-                  ['01', 'Neugierig bleiben', 'Neue Themen schnell verstehen und selbst testen.'],
-                  ['02', 'Klar zerlegen', 'Komplexität in nachvollziehbare Schritte übersetzen.'],
-                  ['03', 'Echt bauen', 'Nicht nur erklären – umsetzen, prüfen und verbessern.'],
-                  ['04', 'Nutzbar machen', 'Die Lösung muss im Alltag zuverlässig funktionieren.'],
-                ].map(([number, title, copy]) => (
-                  <div key={number}>
-                    <span>{number}</span>
-                    <strong>{title}</strong>
-                    <p>{copy}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        <section className="local-trust section-shell" id="ludwigsburg">
-          <motion.div
-            className="local-grid"
-            variants={reveal}
-            initial={motionInitial}
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <div className="map-frame">
-              {mapsEnabled ? (
-                <iframe
-                  title="Standort von Schultes IT & Netzwerksupport"
-                  src={mapsEmbedUrl}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              ) : (
-                <div className="map-consent">
-                  <ShieldCheck aria-hidden="true" />
-                  <span>EXTERNAL SERVICE / GOOGLE MAPS</span>
-                  <h3>Karte bleibt privat, bis du sie lädst.</h3>
-                  <p>
-                    Erst nach deiner Einwilligung wird eine Verbindung zu Google aufgebaut. Dabei
-                    können personenbezogene Daten an Google übertragen werden.
-                  </p>
-                  <button type="button" onClick={() => setMapsEnabled(true)}>
-                    Google Maps laden
-                  </button>
-                  <a href="#/datenschutz">Details im Datenschutz</a>
-                </div>
-              )}
-              <div className="map-hud">
-                <span><i /> LOCAL NODE ONLINE</span>
-                {mapsEnabled ? (
-                  <button type="button" onClick={() => setMapsEnabled(false)}>
-                    Karte deaktivieren
-                  </button>
-                ) : (
-                  <strong>SCHULTES IT / LUDWIGSBURG</strong>
-                )}
-              </div>
-            </div>
-
-            <div className="local-copy">
-              <span className="section-number">07 / LOKAL ERREICHBAR</span>
-              <h2>Support mit einem echten Standort.</h2>
-              <p>
-                Schultes IT & Netzwerksupport entsteht in Ludwigsburg – als direkte technische
-                Anlaufstelle für Menschen und kleine Unternehmen aus der Region. Für Vor-Ort-Termine
-                komme ich zu dir nach Hause oder in deinen Betrieb; du musst deine Technik nicht
-                erst irgendwohin transportieren.
-              </p>
-              <p className="maps-presence">Schultes IT & Netzwerksupport auf Google Maps</p>
-              <div className="trust-points">
-                <div>
-                  <MapPin aria-hidden="true" />
-                  <span><small>REGION</small>Ludwigsburg & Umgebung</span>
-                </div>
-                <div>
-                  <Building2 aria-hidden="true" />
-                  <span><small>FÜR WEN</small>Privat & kleine Unternehmen</span>
-                </div>
-                <div>
-                  <Radio aria-hidden="true" />
-                  <span><small>MODUS</small>Bei dir vor Ort & Remote-Hilfe</span>
-                </div>
-              </div>
-              <div className="local-actions">
-                <a href={mapsUrl} target="_blank" rel="noreferrer">
-                  In Google Maps öffnen <ExternalLink aria-hidden="true" />
-                </a>
-                <button type="button" onClick={copyPhone} className={copied ? 'is-copied' : ''}>
-                  {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
-                  {copied ? 'Nummer kopiert' : 'Telefonnummer kopieren'}
-                </button>
               </div>
             </div>
           </motion.div>
