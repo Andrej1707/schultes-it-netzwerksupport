@@ -33,6 +33,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Validate SEO routes
+        run: npm run seo:check
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

@@ -654,6 +654,11 @@ function SiteFooter() {
         <span>© {new Date().getFullYear()} Andrej Schultes</span>
       </div>
       <div className="footer-links">
+        {servicePages.map((service) => (
+          <a key={service.slug} href={`/${service.slug}/`}>
+            {service.shortTitle}
+          </a>
+        ))}
         <a href="https://github.com/Andrej1707" target="_blank" rel="noreferrer">
           <GitBranch aria-hidden="true" /> GitHub
         </a>

@@ -1721,7 +1721,9 @@ main {
 
 .footer-links {
   display: flex;
+  max-width: 720px;
   flex-wrap: wrap;
+  justify-content: flex-end;
   justify-self: end;
   gap: 1rem;
 }
@@ -4437,6 +4439,7 @@ body[data-legal-page='true'] {
   }
 
   .footer-links {
+    justify-content: flex-start;
     justify-self: start;
   }
 
