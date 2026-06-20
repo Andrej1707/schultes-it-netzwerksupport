@@ -647,12 +647,17 @@ main {
 
 .radar-sweep {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 50%;
-  height: 50%;
-  background: conic-gradient(from 270deg, rgba(82, 208, 255, 0.26), transparent 36%);
-  transform-origin: top left;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from -90deg at 50% 50%,
+    transparent 0deg,
+    rgba(82, 208, 255, 0.03) 10deg,
+    rgba(82, 208, 255, 0.2) 58deg,
+    rgba(82, 208, 255, 0.3) 72deg,
+    transparent 73deg
+  );
+  transform-origin: center;
   animation: radar-sweep 5s linear infinite;
 }
 
