@@ -208,34 +208,31 @@ const serviceHeroSequence: Variants = {
 }
 
 const serviceHeroItem: Variants = {
-  hidden: { opacity: 0, y: 24, filter: 'blur(7px)' },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: 'blur(0px)',
     transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
   },
 }
 
 const serviceTitleLine: Variants = {
-  hidden: { opacity: 0, y: '58%', rotateX: -12, filter: 'blur(9px)' },
+  hidden: { opacity: 0, y: '58%', rotateX: -12 },
   visible: {
     opacity: 1,
     y: '0%',
     rotateX: 0,
-    filter: 'blur(0px)',
     transition: { duration: 0.88, ease: [0.16, 1, 0.3, 1] },
   },
 }
 
 const servicePanelReveal: Variants = {
-  hidden: { opacity: 0, x: 46, scale: 0.965, rotateY: -5, filter: 'blur(8px)' },
+  hidden: { opacity: 0, x: 46, scale: 0.965, rotateY: -5 },
   visible: {
     opacity: 1,
     x: 0,
     scale: 1,
     rotateY: 0,
-    filter: 'blur(0px)',
     transition: { duration: 0.95, delay: 0.28, ease: [0.16, 1, 0.3, 1] },
   },
 }
@@ -248,12 +245,11 @@ const serviceGridReveal: Variants = {
 }
 
 const serviceCardReveal: Variants = {
-  hidden: { opacity: 0, y: 34, scale: 0.985, filter: 'blur(7px)' },
+  hidden: { opacity: 0, y: 34, scale: 0.985 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    filter: 'blur(0px)',
     transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
   },
 }
@@ -1826,7 +1822,11 @@ function MarketingApp() {
                     {capability.skills.map(([skill, level]) => (
                       <div className="capability-row" key={skill}>
                         <span>{skill}</span>
-                        <div className={`signal-level signal-${level}`} aria-label={level}>
+                        <div
+                          className={`signal-level signal-${level}`}
+                          role="img"
+                          aria-label={`Kompetenzniveau: ${level}`}
+                        >
                           <i />
                           <i />
                           <i />
