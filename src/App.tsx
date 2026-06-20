@@ -94,6 +94,51 @@ const diagnostics = [
   'STATUS   System stabil · Übergabe verständlich',
 ]
 
+const everydayProblems = [
+  {
+    icon: Laptop,
+    title: 'Mein PC geht nicht mehr an',
+    text: 'Der Rechner bleibt schwarz, startet nur kurz oder Windows fährt nicht mehr hoch.',
+    href: '/pc-system/',
+    label: 'PC-Hilfe',
+  },
+  {
+    icon: Cpu,
+    title: 'Mein PC oder Laptop ist sehr langsam',
+    text: 'Programme brauchen ewig, Updates hängen oder das Gerät reagiert nur noch zäh.',
+    href: '/pc-system/',
+    label: 'Computerhilfe',
+  },
+  {
+    icon: Router,
+    title: 'Mein WLAN geht nicht',
+    text: 'Die Verbindung ist weg, bricht ständig ab oder reicht nicht bis ins Arbeitszimmer.',
+    href: '/netzwerk-wlan/',
+    label: 'WLAN-Hilfe',
+  },
+  {
+    icon: Radio,
+    title: 'WLAN verbunden, aber kein Internet',
+    text: 'Handy oder Laptop zeigen WLAN an, trotzdem lädt keine Seite zuverlässig.',
+    href: '/netzwerk-wlan/',
+    label: 'Netzwerkhilfe',
+  },
+  {
+    icon: Wrench,
+    title: 'Drucker oder neues Gerät einrichten',
+    text: 'Treiber, Konten und Verbindungen sollen ohne Rätselraten startklar werden.',
+    href: '/pc-system/',
+    label: 'Einrichtung',
+  },
+  {
+    icon: Phone,
+    title: 'Ich brauche IT-Hilfe in Ludwigsburg',
+    text: 'Du musst das Problem nicht benennen können. Sag einfach, was nicht funktioniert.',
+    href: '#kontakt',
+    label: 'Direkter Kontakt',
+  },
+]
+
 const projects = [
   {
     code: 'RP/01',
@@ -182,6 +227,7 @@ const capabilities = [
 
 const chapters = [
   ['top', 'Start'],
+  ['alltagshilfe', 'IT-Hilfe'],
   ['leistungen', 'Support'],
   ['preise', 'Preise'],
   ['arbeitsweise', 'System'],
@@ -1428,6 +1474,51 @@ function MarketingApp() {
           </div>
         </section>
 
+        <section className="problem-finder section-shell" id="alltagshilfe">
+          <motion.div
+            className="problem-finder-heading"
+            variants={reveal}
+            initial={motionInitial}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <div>
+              <span className="section-number">01B / IT-HILFE LUDWIGSBURG</span>
+              <h2>
+                Sag einfach,
+                <span> was nicht geht.</span>
+              </h2>
+            </div>
+            <p>
+              Keine Diagnose nötig: Ob PC kaputt, Laptop langsam, WLAN weg oder Drucker nicht
+              verbunden – ich übersetze dein Alltagsproblem in einen sinnvollen nächsten Schritt.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="problem-finder-grid"
+            variants={serviceGridReveal}
+            initial={motionInitial}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.12 }}
+          >
+            {everydayProblems.map((problem) => {
+              const ProblemIcon = problem.icon
+              return (
+                <motion.a key={problem.title} href={problem.href} variants={serviceCardReveal}>
+                  <ProblemIcon aria-hidden="true" />
+                  <span>
+                    <small>{problem.label}</small>
+                    <strong>{problem.title}</strong>
+                    <p>{problem.text}</p>
+                  </span>
+                  <ArrowUpRight aria-hidden="true" />
+                </motion.a>
+              )
+            })}
+          </motion.div>
+        </section>
+
         <section className="services section-shell" id="leistungen">
           <motion.div
             className="section-heading"
@@ -1997,7 +2088,7 @@ function MarketingApp() {
           </motion.div>
         </section>
 
-        <section className="final-cta section-shell">
+        <section className="final-cta section-shell" id="kontakt">
           <motion.div
             className="cta-frame"
             variants={reveal}

@@ -36,11 +36,11 @@ export const servicePages: ServicePageData[] = [
     description:
       'Wenn Windows streikt, Software nervt oder ein Gerät sauber eingerichtet werden soll: Problem eingrenzen, verständlich erklären, lösen.',
     tags: ['Windows', 'Software', 'Einrichtung'],
-    seoTitle: 'PC-Hilfe Ludwigsburg | Schultes IT-Support',
+    seoTitle: 'PC-Hilfe Ludwigsburg | Computer- & Laptop-Hilfe',
     seoDescription:
-      'Verständliche PC-Hilfe in Ludwigsburg für Privatpersonen, Senioren und kleine Firmen. Ich komme zu dir oder helfe per Fernwartung.',
+      'PC-Hilfe in Ludwigsburg, wenn Computer oder Laptop langsam sind, nicht starten oder Windows Probleme macht. Bei dir vor Ort oder per Fernhilfe.',
     keywords:
-      'PC Hilfe Ludwigsburg, Computerhilfe Ludwigsburg, Windows Hilfe, PC Hilfe Senioren, Computer einrichten, IT Support Privatkunden',
+      'PC Hilfe Ludwigsburg, Computerhilfe Ludwigsburg, Laptop Hilfe Ludwigsburg, PC geht nicht an, PC langsam, Windows Hilfe, PC Hilfe Senioren',
     heroLead: 'PC-Hilfe ohne Fachchinesisch.',
     heroAccent: 'Damit Technik wieder Alltag wird.',
     heroText:
@@ -66,20 +66,20 @@ export const servicePages: ServicePageData[] = [
     ],
     situations: [
       {
-        title: 'Der PC ist plötzlich langsam',
-        text: 'Programme starten ewig, der Lüfter dreht hoch oder Windows reagiert nur noch zäh.',
+        title: 'Mein PC oder Laptop ist sehr langsam',
+        text: 'Programme starten ewig, der Lüfter dreht hoch oder Windows reagiert nur noch zäh. Ich prüfe, was das Gerät wirklich ausbremst.',
       },
       {
-        title: 'Programme machen Probleme',
+        title: 'Mein PC geht nicht mehr an',
+        text: 'Der Bildschirm bleibt schwarz, der Rechner startet nur kurz oder Windows fährt nicht mehr vollständig hoch.',
+      },
+      {
+        title: 'Windows zeigt Fehler oder hängt fest',
         text: 'Fehlermeldungen, Updates oder Einstellungen blockieren die tägliche Nutzung.',
       },
       {
-        title: 'Ein neues Gerät soll startklar sein',
-        text: 'Konten, Updates, Programme und Drucker sollen von Anfang an sinnvoll eingerichtet werden.',
-      },
-      {
-        title: 'Die Ursache ist völlig unklar',
-        text: 'Du weißt nur: Gestern ging es noch. Genau dort beginnt eine strukturierte Diagnose.',
+        title: 'Drucker oder Zubehör funktionieren nicht',
+        text: 'Das Gerät wird nicht gefunden, der Treiber fehlt oder die Verbindung bricht immer wieder ab.',
       },
     ],
     solutions: [
@@ -161,6 +161,16 @@ export const servicePages: ServicePageData[] = [
         answer:
           'Ich prüfe zuerst realistisch, ob es sich um ein Software-, Einrichtungs- oder Hardwareproblem handelt. Wenn eine Spezialreparatur nötig ist, sage ich das offen.',
       },
+      {
+        question: 'Was kann ich tun, wenn mein PC nicht mehr angeht?',
+        answer:
+          'Trenne nicht wahllos Kabel und öffne das Gerät nicht auf Verdacht. Ruf kurz an und beschreibe, ob noch Lichter, Lüfter oder Töne zu hören sind. Danach klären wir, ob ein Termin bei dir sinnvoll ist.',
+      },
+      {
+        question: 'Warum ist mein PC plötzlich so langsam?',
+        answer:
+          'Mögliche Ursachen reichen von Updates und überlasteten Programmen bis zu wenig Speicher oder einem technischen Defekt. Ich prüfe erst die Ursache, bevor Programme gelöscht oder Teile empfohlen werden.',
+      },
     ],
     related: ['netzwerk-wlan', 'webseiten', 'tools-automation'],
   },
@@ -173,11 +183,11 @@ export const servicePages: ServicePageData[] = [
     description:
       'Stabiles WLAN, Router-Konfiguration und ein Heim- oder Firmennetz, das nicht genau dann aussteigt, wenn es gebraucht wird.',
     tags: ['WLAN', 'Router', 'Heimnetz'],
-    seoTitle: 'WLAN-Hilfe Ludwigsburg | Netzwerk & Router',
+    seoTitle: 'WLAN-Hilfe Ludwigsburg | Router & Internet-Probleme',
     seoDescription:
-      'WLAN- und Netzwerkhilfe in Ludwigsburg: Router einrichten, Verbindungsprobleme lösen und Heim- oder Firmennetze verständlich optimieren.',
+      'WLAN-Hilfe in Ludwigsburg, wenn Internet ausfällt, WLAN trotz Verbindung nicht geht oder der Router Probleme macht. Hilfe bei dir vor Ort.',
     keywords:
-      'WLAN Hilfe Ludwigsburg, Router einrichten, Netzwerk Hilfe, schlechtes WLAN, Heimnetz einrichten, Firmennetz Ludwigsburg',
+      'WLAN Hilfe Ludwigsburg, WLAN geht nicht, WLAN verbunden kein Internet, Router Hilfe, Fritzbox einrichten, Netzwerk Hilfe, schlechtes WLAN',
     heroLead: 'Stabiles WLAN. Saubere Verbindungen.',
     heroAccent: 'Genau dort, wo du sie brauchst.',
     heroText:
@@ -203,20 +213,20 @@ export const servicePages: ServicePageData[] = [
     ],
     situations: [
       {
+        title: 'Mein WLAN geht nicht mehr',
+        text: 'Die Verbindung ist plötzlich weg, bricht ständig ab oder einzelne Geräte kommen nicht mehr ins Netz.',
+      },
+      {
+        title: 'WLAN verbunden, aber kein Internet',
+        text: 'Handy oder Laptop zeigen eine WLAN-Verbindung an, trotzdem laden Webseiten und Apps nicht.',
+      },
+      {
         title: 'WLAN reicht nicht in alle Räume',
-        text: 'In Küche, Arbeitszimmer oder Obergeschoss bricht die Verbindung regelmäßig weg.',
+        text: 'In Küche, Arbeitszimmer oder Obergeschoss wird das Signal langsam oder bricht regelmäßig weg.',
       },
       {
-        title: 'Der Router ist eingerichtet – irgendwie',
-        text: 'Zugangsdaten, Gastnetz, Updates und Sicherheitseinstellungen sind unübersichtlich.',
-      },
-      {
-        title: 'Einzelne Geräte verlieren die Verbindung',
-        text: 'Drucker, Fernseher oder Laptop tauchen auf, verschwinden aber immer wieder aus dem Netz.',
-      },
-      {
-        title: 'Homeoffice ist nicht zuverlässig',
-        text: 'Videokonferenzen stocken oder die Verbindung fällt genau während wichtiger Termine aus.',
+        title: 'PC, Drucker oder Fernseher verlieren WLAN',
+        text: 'Einzelne Geräte tauchen im Netz auf, verschwinden aber immer wieder oder verbinden sich gar nicht.',
       },
     ],
     solutions: [
@@ -297,6 +307,16 @@ export const servicePages: ServicePageData[] = [
         question: 'Muss ich einen neuen Router kaufen?',
         answer:
           'Oft nicht. Zuerst wird geprüft, ob Standort, Einstellungen oder vorhandene Erweiterungen verbessert werden können.',
+      },
+      {
+        question: 'Was tun, wenn WLAN verbunden ist, aber kein Internet geht?',
+        answer:
+          'Das kann am Anschluss, Router, DNS, einer Störung oder nur an einem einzelnen Gerät liegen. Ich grenze systematisch ein, ob das Problem das ganze Netzwerk oder nur Handy, Laptop oder PC betrifft.',
+      },
+      {
+        question: 'Warum geht das WLAN am Handy, aber nicht am PC?',
+        answer:
+          'Dann liegt die Ursache häufig am Computer, WLAN-Adapter, Treiber oder an gespeicherten Netzwerkeinstellungen. Das lässt sich meist prüfen, ohne den gesamten Router neu einzurichten.',
       },
     ],
     related: ['pc-system', 'tools-automation', 'webseiten'],
