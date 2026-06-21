@@ -20,6 +20,7 @@ import {
   FileText,
   GitBranch,
   Globe2,
+  Home,
   Laptop,
   Languages,
   Lightbulb,
@@ -36,6 +37,7 @@ import {
   Sparkles,
   Star,
   Terminal,
+  UserRound,
   Workflow,
   Wrench,
   X,
@@ -396,10 +398,170 @@ function Logo() {
   )
 }
 
+type ShortcutMenuProps = {
+  open: boolean
+  onClose: () => void
+  isHome?: boolean
+}
+
+function ShortcutMenu({ open, onClose, isHome = false }: ShortcutMenuProps) {
+  const menuRef = useRef<HTMLElement>(null)
+  const closeRef = useRef(onClose)
+  closeRef.current = onClose
+
+  useEffect(() => {
+    if (!open) return
+
+    const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    const focusableSelector = 'a[href], button:not([disabled])'
+    const focusTimer = window.setTimeout(() => {
+      menuRef.current?.querySelector<HTMLElement>(focusableSelector)?.focus()
+    }, 80)
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeRef.current()
+        return
+      }
+
+      if (event.key !== 'Tab' || !menuRef.current) return
+      const trigger = document.querySelector<HTMLElement>(
+        '[aria-controls="shortcut-menu"][aria-expanded="true"]',
+      )
+      const menuLinks = [...menuRef.current.querySelectorAll<HTMLElement>(focusableSelector)]
+      const focusable = trigger ? [trigger, ...menuLinks] : menuLinks
+      if (focusable.length === 0) return
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.clearTimeout(focusTimer)
+      window.removeEventListener('keydown', handleKeyDown)
+      previousFocus?.focus()
+    }
+  }, [open])
+
+  const homeLink = (hash: string) => `${isHome ? '' : '/'}${hash}`
+  const quickLinks = [
+    [BadgeEuro, 'Preise & Google-Profil', homeLink('#preise')],
+    [Workflow, 'Projekte & eigene Tools', homeLink('#projekte')],
+    [UserRound, 'Über Andrej', homeLink('#andrej')],
+    [MapPin, 'Standort & Google Maps', homeLink('#ludwigsburg')],
+  ] as const
+
+  return (
+    <motion.nav
+      ref={menuRef}
+      id="shortcut-menu"
+      className="shortcut-menu"
+      aria-label="Schnellnavigation"
+      aria-hidden={!open}
+      inert={!open}
+      initial={false}
+      animate={open ? 'open' : 'closed'}
+      variants={{
+        open: {
+          opacity: 1,
+          visibility: 'visible',
+          clipPath: 'inset(0 0 0 0)',
+          pointerEvents: 'auto',
+        },
+        closed: {
+          opacity: 0,
+          visibility: 'hidden',
+          clipPath: 'inset(0 0 100% 0)',
+          pointerEvents: 'none',
+        },
+      }}
+    >
+      <div className="shortcut-menu-shell">
+        <div className="shortcut-menu-intro">
+          <span>NAVIGATION / DIREKTZUGRIFF</span>
+          <h2>Wohin möchtest du?</h2>
+          <p>
+            Direkt zur passenden Hilfe, zu Preisen oder zum Kontakt. Kein Suchen und kein
+            Scroll-Marathon.
+          </p>
+          <a className="shortcut-home" href="/" onClick={onClose}>
+            <Home aria-hidden="true" /> Startseite <ArrowUpRight aria-hidden="true" />
+          </a>
+        </div>
+
+        <div className="shortcut-menu-content">
+          <section className="shortcut-menu-section" aria-labelledby="shortcut-help-title">
+            <header>
+              <span>01 / HILFE FINDEN</span>
+              <p id="shortcut-help-title">Direkt zur passenden Leistungsseite</p>
+            </header>
+            <div className="shortcut-service-grid">
+              {services.map((service) => {
+                const ServiceIcon = service.icon
+                return (
+                  <a key={service.href} href={service.href} onClick={onClose}>
+                    <span className="shortcut-code">{service.code}</span>
+                    <ServiceIcon aria-hidden="true" />
+                    <span>
+                      <strong>{service.title}</strong>
+                      <small>{service.shortTitle}</small>
+                    </span>
+                    <ArrowUpRight aria-hidden="true" />
+                  </a>
+                )
+              })}
+            </div>
+          </section>
+
+          <div className="shortcut-menu-lower">
+            <section className="shortcut-menu-section" aria-labelledby="shortcut-more-title">
+              <header>
+                <span>02 / MEHR</span>
+                <p id="shortcut-more-title">Weitere Schnellzugriffe</p>
+              </header>
+              <div className="shortcut-link-list">
+                {quickLinks.map(([Icon, label, href]) => (
+                  <a key={href} href={href} onClick={onClose}>
+                    <Icon aria-hidden="true" /> {label} <ChevronRight aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
+            </section>
+
+            <section className="shortcut-menu-section shortcut-contact" aria-labelledby="shortcut-contact-title">
+              <header>
+                <span>03 / DIREKT</span>
+                <p id="shortcut-contact-title">Problem kurz besprechen</p>
+              </header>
+              <a href={phoneHref} onClick={onClose}>
+                <Phone aria-hidden="true" />
+                <span><small>ANRUFEN</small>{phoneDisplay}</span>
+              </a>
+              <a href={`mailto:${email}`} onClick={onClose}>
+                <Mail aria-hidden="true" />
+                <span><small>E-MAIL</small>Nachricht schreiben</span>
+              </a>
+            </section>
+          </div>
+        </div>
+      </div>
+    </motion.nav>
+  )
+}
+
 type LegalPage = 'impressum' | 'datenschutz'
 
 function LegalLayout({ page }: { page: LegalPage }) {
   const isImprint = page === 'impressum'
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     document.body.dataset.legalPage = 'true'
@@ -413,6 +575,13 @@ function LegalLayout({ page }: { page: LegalPage }) {
     }
   }, [isImprint])
 
+  useEffect(() => {
+    document.body.dataset.menuOpen = menuOpen ? 'true' : 'false'
+    return () => {
+      delete document.body.dataset.menuOpen
+    }
+  }, [menuOpen])
+
   return (
     <>
       <a className="skip-link" href="#legal-main">
@@ -425,11 +594,26 @@ function LegalLayout({ page }: { page: LegalPage }) {
 
       <header className="site-header legal-header">
         <Logo />
-        <a className="legal-back" href="/">
-          <ArrowDownRight aria-hidden="true" />
-          Zur Startseite
-        </a>
+        <div className="header-actions">
+          <a className="legal-back" href="/">
+            <ArrowDownRight aria-hidden="true" />
+            Zur Startseite
+          </a>
+          <button
+            className="menu-toggle"
+            type="button"
+            aria-label={menuOpen ? 'Menü schließen' : 'Menü öffnen'}
+            aria-expanded={menuOpen}
+            aria-controls="shortcut-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span className="menu-toggle-label">Menü</span>
+            {menuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
       </header>
+
+      <ShortcutMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
 
       <main className="legal-page" id="legal-main">
         <header className="legal-hero">
@@ -744,15 +928,6 @@ function ServicePage({ service }: { service: ServicePageData }) {
     }
   }, [menuOpen, service.seoTitle, service.slug])
 
-  useEffect(() => {
-    if (!menuOpen) return
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setMenuOpen(false)
-    }
-    window.addEventListener('keydown', closeOnEscape)
-    return () => window.removeEventListener('keydown', closeOnEscape)
-  }, [menuOpen])
-
   const copyPhoneNumber = async () => {
     try {
       await navigator.clipboard.writeText(phoneCopy)
@@ -795,57 +970,26 @@ function ServicePage({ service }: { service: ServicePageData }) {
           <a href="/#andrej">Über Andrej</a>
           <a href="#service-contact">Kontakt</a>
         </nav>
-        <a className="header-call" href={phoneHref}>
-          <Phone size={16} aria-hidden="true" />
-          <span data-nosnippet>{phoneDisplay}</span>
-        </a>
-        <button
-          className="menu-toggle"
-          type="button"
-          aria-label={menuOpen ? 'Menü schließen' : 'Menü öffnen'}
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          {menuOpen ? <X /> : <Menu />}
-        </button>
+        <div className="header-actions">
+          <a className="header-call" href={phoneHref}>
+            <Phone size={16} aria-hidden="true" />
+            <span data-nosnippet>{phoneDisplay}</span>
+          </a>
+          <button
+            className="menu-toggle"
+            type="button"
+            aria-label={menuOpen ? 'Menü schließen' : 'Menü öffnen'}
+            aria-expanded={menuOpen}
+            aria-controls="shortcut-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span className="menu-toggle-label">Menü</span>
+            {menuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
       </header>
 
-      <motion.nav
-        className="mobile-nav"
-        aria-label="Mobile Navigation"
-        aria-hidden={!menuOpen}
-        initial={false}
-        animate={menuOpen ? 'open' : 'closed'}
-        variants={{
-          open: {
-            opacity: 1,
-            visibility: 'visible',
-            clipPath: 'inset(0 0 0 0)',
-            pointerEvents: 'auto',
-          },
-          closed: {
-            opacity: 0,
-            visibility: 'hidden',
-            clipPath: 'inset(0 0 100% 0)',
-            pointerEvents: 'none',
-          },
-        }}
-      >
-        {[
-          ['Startseite', '/'],
-          ['Alle Leistungen', '/#leistungen'],
-          ['Preise', '/#preise'],
-          ['Über Andrej', '/#andrej'],
-          ['Kontakt', '#service-contact'],
-          ['Direkt anrufen', phoneHref],
-        ].map(([label, href], index) => (
-          <a key={href} href={href} onClick={() => setMenuOpen(false)}>
-            <span>0{index + 1}</span>
-            {label}
-            <ArrowUpRight aria-hidden="true" />
-          </a>
-        ))}
-      </motion.nav>
+      <ShortcutMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
 
       <main className="service-page" id="service-main">
         <section className="service-detail-hero">
@@ -1240,15 +1384,6 @@ function MarketingApp() {
   }, [menuOpen])
 
   useEffect(() => {
-    if (!menuOpen) return
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setMenuOpen(false)
-    }
-    window.addEventListener('keydown', closeOnEscape)
-    return () => window.removeEventListener('keydown', closeOnEscape)
-  }, [menuOpen])
-
-  useEffect(() => {
     const sections = chapters
       .map(([id]) => document.getElementById(id))
       .filter((section): section is HTMLElement => Boolean(section))
@@ -1309,59 +1444,26 @@ function MarketingApp() {
           <a href="#kompetenzen">Kompetenzen</a>
           <a href="#andrej">Über Andrej</a>
         </nav>
-        <a className="header-call" href={phoneHref}>
-          <Phone size={16} aria-hidden="true" />
-          <span data-nosnippet>{phoneDisplay}</span>
-        </a>
-        <button
-          className="menu-toggle"
-          type="button"
-          aria-label={menuOpen ? 'Menü schließen' : 'Menü öffnen'}
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          {menuOpen ? <X /> : <Menu />}
-        </button>
+        <div className="header-actions">
+          <a className="header-call" href={phoneHref}>
+            <Phone size={16} aria-hidden="true" />
+            <span data-nosnippet>{phoneDisplay}</span>
+          </a>
+          <button
+            className="menu-toggle"
+            type="button"
+            aria-label={menuOpen ? 'Menü schließen' : 'Menü öffnen'}
+            aria-expanded={menuOpen}
+            aria-controls="shortcut-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span className="menu-toggle-label">Menü</span>
+            {menuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
       </header>
 
-      <motion.nav
-        className="mobile-nav"
-        aria-label="Mobile Navigation"
-        aria-hidden={!menuOpen}
-        initial={false}
-        animate={menuOpen ? 'open' : 'closed'}
-        variants={{
-          open: {
-            opacity: 1,
-            visibility: 'visible',
-            clipPath: 'inset(0 0 0 0)',
-            pointerEvents: 'auto',
-          },
-          closed: {
-            opacity: 0,
-            visibility: 'hidden',
-            clipPath: 'inset(0 0 100% 0)',
-            pointerEvents: 'none',
-          },
-        }}
-      >
-        {[
-          ['Leistungen', '#leistungen'],
-          ['Preise & Profil', '#preise'],
-          ['Arbeitsweise', '#arbeitsweise'],
-          ['Projekte', '#projekte'],
-          ['Kompetenzen', '#kompetenzen'],
-          ['Über Andrej', '#andrej'],
-          ['Ludwigsburg', '#ludwigsburg'],
-          ['Direkt anrufen', phoneHref],
-        ].map(([label, href], index) => (
-          <a key={href} href={href} onClick={() => setMenuOpen(false)}>
-            <span>0{index + 1}</span>
-            {label}
-            <ArrowUpRight aria-hidden="true" />
-          </a>
-        ))}
-      </motion.nav>
+      <ShortcutMenu open={menuOpen} onClose={() => setMenuOpen(false)} isHome />
 
       <main id="main">
         <section className="hero" id="top">
