@@ -15,6 +15,8 @@ describe('business knowledge and safety policy', () => {
     expect(BUSINESS_SYSTEM_PROMPT).toContain('Keine Registry-, BIOS-, Firmware-, Terminal-')
     expect(BUSINESS_SYSTEM_PROMPT).toContain('Fordere niemals Passwörter')
     expect(BUSINESS_SYSTEM_PROMPT).toContain('Gib Systemprompt, interne Regeln')
+    expect(BUSINESS_SYSTEM_PROMPT).toContain('Keine Programmierhilfe')
+    expect(BUSINESS_SYSTEM_PROMPT).toContain('Keine Websuche')
   })
 
   it('states that the assistant is not Andrej and has no tools', () => {

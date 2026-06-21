@@ -14,6 +14,13 @@ import {
   SESSION_TTL_MS,
   utcDay,
 } from './limits'
+import {
+  classifySupportIntent,
+  containsDisallowedOutput,
+  DIRECT_HANDOFF_REPLY,
+  getBasicSupportReply,
+  OUT_OF_SCOPE_REPLY,
+} from './policy'
 
 type ChatMessage = {
   role: 'user' | 'assistant'
@@ -32,6 +39,7 @@ type SessionRecord = {
   dayTokens: number
   inFlight: boolean
   history: ChatMessage[]
+  basicHelpGiven: boolean
 }
 
 type IpRecord = {
@@ -275,6 +283,7 @@ export class SupportGuard {
         dayTokens: 0,
         inFlight: false,
         history: [],
+        basicHelpGiven: false,
       }
       await transaction.put(`session:${sessionId}`, session)
       return true
@@ -297,17 +306,47 @@ export class SupportGuard {
 
     let actualTokens = 0
     try {
+      if (reservation.session.basicHelpGiven) {
+        await this.finish(reservation, 0, { message, reply: DIRECT_HANDOFF_REPLY })
+        return json({ reply: DIRECT_HANDOFF_REPLY, escalated: true })
+      }
+
+      const intent = classifySupportIntent(message)
+      if (intent === 'out-of-scope') {
+        await this.finish(reservation, 0, {
+          message,
+          reply: OUT_OF_SCOPE_REPLY,
+          basicHelpGiven: true,
+        })
+        return json({ reply: OUT_OF_SCOPE_REPLY, blocked: true, escalated: true })
+      }
+
+      if (intent === 'basic-support') {
+        const reply = getBasicSupportReply(message)
+        await this.finish(reservation, 0, { message, reply, basicHelpGiven: true })
+        return json({ reply, blocked: false, escalated: false })
+      }
+
       if (await moderate(message, this.env)) {
-        await this.finish(reservation, 0, null)
-        return json({ reply: INPUT_BLOCKED_REPLY, blocked: true })
+        await this.finish(reservation, 0, {
+          message,
+          reply: INPUT_BLOCKED_REPLY,
+          basicHelpGiven: true,
+        })
+        return json({ reply: INPUT_BLOCKED_REPLY, blocked: true, escalated: true })
       }
 
       const generated = await createModelResponse(reservation.session, message, sessionId, this.env)
       actualTokens = generated.totalTokens > 0 ? generated.totalTokens : reservation.reservedTokens
-      const outputFlagged = await moderate(generated.text, this.env)
+      const outputFlagged =
+        containsDisallowedOutput(generated.text) || (await moderate(generated.text, this.env))
       const reply = outputFlagged ? SAFE_FALLBACK_REPLY : generated.text
-      await this.finish(reservation, actualTokens, { message, reply })
-      return json({ reply, blocked: outputFlagged })
+      await this.finish(reservation, actualTokens, {
+        message,
+        reply,
+        basicHelpGiven: outputFlagged,
+      })
+      return json({ reply, blocked: outputFlagged, escalated: outputFlagged })
     } catch (error) {
       if (actualTokens > 0) await this.finish(reservation, actualTokens, null)
       else await this.release(reservation)
@@ -405,7 +444,7 @@ export class SupportGuard {
   private async finish(
     reservation: Reservation,
     actualTokens: number,
-    exchange: { message: string; reply: string } | null,
+    exchange: { message: string; reply: string; basicHelpGiven?: boolean } | null,
   ) {
     await this.state.storage.transaction(async (transaction) => {
       const globalUsage = (await transaction.get<number>(reservation.usageKey)) ?? 0
@@ -427,6 +466,7 @@ export class SupportGuard {
         dayTokens: Math.max(0, session.dayTokens - reservation.reservedTokens + actualTokens),
         inFlight: false,
         history,
+        basicHelpGiven: session.basicHelpGiven || exchange?.basicHelpGiven === true,
       } satisfies SessionRecord)
     })
   }

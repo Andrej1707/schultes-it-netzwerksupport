@@ -3,6 +3,8 @@ import {
   ArrowUp,
   Bot,
   CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
   LoaderCircle,
   MessageSquareText,
   Phone,
@@ -48,14 +50,22 @@ const welcomeMessage: Message = {
   id: 'welcome',
   role: 'assistant',
   content:
-    'Hi, ich bin der digitale Assistent von Schultes IT. Beschreibe kurz dein Problem. Ich kann erste sichere Schritte erklären und sagen, wobei Andrej helfen kann.',
+    'Hi, ich bin der digitale Assistent von Schultes IT. Ich beantworte Fragen zum Betrieb und gebe genau einen sicheren Basischeck. Wenn das nicht hilft, leite ich dich direkt an Andrej weiter.',
 }
 
 const quickPrompts = [
   'Mein WLAN geht nicht',
+  'Internet ist überall weg',
+  'Mein PC startet nicht',
   'Mein PC ist sehr langsam',
+  'Mein Drucker druckt nicht',
+  'Mein Handy hat kein WLAN',
   'Was kostet Fernhilfe?',
+  'Was kostet Vor-Ort-Hilfe?',
   'Kommst du zu mir?',
+  'Wann bist du erreichbar?',
+  'Welche Leistungen gibt es?',
+  'Wie erreiche ich Andrej?',
 ]
 
 function readSession(): Session | null {
@@ -150,16 +160,19 @@ export default function SupportBot() {
   const [messages, setMessages] = useState<Message[]>(existingSession.current ? [welcomeMessage] : [])
   const [draft, setDraft] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
+  const [showDirectContact, setShowDirectContact] = useState(false)
   const turnstileContainer = useRef<HTMLDivElement>(null)
   const widgetId = useRef<string | null>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const launcherRef = useRef<HTMLButtonElement>(null)
   const messageEndRef = useRef<HTMLDivElement>(null)
+  const suggestionsRef = useRef<HTMLDivElement>(null)
 
   const clearSession = useCallback(() => {
     sessionStorage.removeItem(SESSION_STORAGE_KEY)
     setSession(null)
     setMessages([])
+    setShowDirectContact(false)
     setPhase('needs-verification')
     setErrorMessage('Deine Sitzung ist abgelaufen. Bitte bestätige kurz erneut, dass du ein Mensch bist.')
   }, [])
@@ -176,6 +189,7 @@ export default function SupportBot() {
       sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(nextSession))
       setSession(nextSession)
       setMessages([welcomeMessage])
+      setShowDirectContact(false)
       setPhase('ready')
       window.setTimeout(() => textareaRef.current?.focus(), 80)
     } catch (error) {
@@ -264,7 +278,7 @@ export default function SupportBot() {
     setPhase('sending')
 
     try {
-      const result = await requestJson<{ reply: string }>('/chat', {
+      const result = await requestJson<{ reply: string; escalated?: boolean }>('/chat', {
         method: 'POST',
         headers: { Authorization: `Bearer ${session.token}` },
         body: JSON.stringify({ message: content }),
@@ -273,6 +287,7 @@ export default function SupportBot() {
         ...current,
         { id: crypto.randomUUID(), role: 'assistant', content: result.reply },
       ])
+      if (result.escalated) setShowDirectContact(true)
       setPhase('ready')
       window.setTimeout(() => textareaRef.current?.focus(), 50)
     } catch (error) {
@@ -289,6 +304,13 @@ export default function SupportBot() {
   const close = () => {
     setOpen(false)
     window.setTimeout(() => launcherRef.current?.focus(), 0)
+  }
+
+  const scrollSuggestions = (direction: -1 | 1) => {
+    suggestionsRef.current?.scrollBy({
+      left: direction * Math.max(220, suggestionsRef.current.clientWidth * 0.72),
+      behavior: 'smooth',
+    })
   }
 
   return (
@@ -347,12 +369,46 @@ export default function SupportBot() {
               </div>
 
               {messages.length <= 1 && (
-                <div className="support-suggestions" aria-label="Häufige Fragen">
-                  {quickPrompts.map((prompt) => (
-                    <button type="button" key={prompt} onClick={() => void sendMessage(prompt)}>
-                      {prompt}
-                    </button>
-                  ))}
+                <section className="support-suggestion-block" aria-labelledby="support-suggestions-title">
+                  <header>
+                    <span id="support-suggestions-title">Schnellfragen · {quickPrompts.length}</span>
+                    <div>
+                      <button type="button" onClick={() => scrollSuggestions(-1)} aria-label="Fragen nach links scrollen">
+                        <ChevronLeft aria-hidden="true" />
+                      </button>
+                      <button type="button" onClick={() => scrollSuggestions(1)} aria-label="Fragen nach rechts scrollen">
+                        <ChevronRight aria-hidden="true" />
+                      </button>
+                    </div>
+                  </header>
+                  <div
+                    ref={suggestionsRef}
+                    className="support-suggestions"
+                    aria-label="Häufige Fragen"
+                    onWheel={(event) => {
+                      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return
+                      event.preventDefault()
+                      event.currentTarget.scrollBy({ left: event.deltaY, behavior: 'auto' })
+                    }}
+                  >
+                    {quickPrompts.map((prompt, index) => (
+                      <button type="button" key={prompt} onClick={() => void sendMessage(prompt)}>
+                        <small>{String(index + 1).padStart(2, '0')}</small>{prompt}
+                      </button>
+                    ))}
+                  </div>
+                  <small className="support-swipe-hint">Wischen, Mausrad oder Pfeile zum Wechseln</small>
+                </section>
+              )}
+
+              {showDirectContact && (
+                <div className="support-handoff" role="status">
+                  <Phone aria-hidden="true" />
+                  <span>
+                    <strong>Direkt zu Andrej</strong>
+                    <small>Keine weiteren Experimente nötig.</small>
+                  </span>
+                  <a href={phoneHref}>Anrufen</a>
                 </div>
               )}
 
@@ -363,37 +419,43 @@ export default function SupportBot() {
                 </div>
               )}
 
-              <form
-                className="support-compose"
-                onSubmit={(event) => {
-                  event.preventDefault()
-                  void sendMessage()
-                }}
-              >
-                <label htmlFor="support-message">Deine Nachricht</label>
-                <div>
-                  <textarea
-                    ref={textareaRef}
-                    id="support-message"
-                    value={draft}
-                    onChange={(event) => setDraft(event.target.value.slice(0, 1_200))}
-                    onKeyDown={(event) => {
-                      if (event.key === 'Enter' && !event.shiftKey) {
-                        event.preventDefault()
-                        void sendMessage()
-                      }
-                    }}
-                    placeholder="Zum Beispiel: Mein WLAN bricht ständig ab …"
-                    rows={2}
-                    maxLength={1_200}
-                    disabled={phase === 'sending'}
-                  />
-                  <button type="submit" disabled={!draft.trim() || phase === 'sending'} aria-label="Nachricht senden">
-                    {phase === 'sending' ? <LoaderCircle /> : <ArrowUp />}
-                  </button>
+              {!showDirectContact ? (
+                <form
+                  className="support-compose"
+                  onSubmit={(event) => {
+                    event.preventDefault()
+                    void sendMessage()
+                  }}
+                >
+                  <label htmlFor="support-message">Deine Nachricht</label>
+                  <div>
+                    <textarea
+                      ref={textareaRef}
+                      id="support-message"
+                      value={draft}
+                      onChange={(event) => setDraft(event.target.value.slice(0, 1_200))}
+                      onKeyDown={(event) => {
+                        if (event.key === 'Enter' && !event.shiftKey) {
+                          event.preventDefault()
+                          void sendMessage()
+                        }
+                      }}
+                      placeholder="Zum Beispiel: Mein WLAN bricht ständig ab …"
+                      rows={2}
+                      maxLength={1_200}
+                      disabled={phase === 'sending'}
+                    />
+                    <button type="submit" disabled={!draft.trim() || phase === 'sending'} aria-label="Nachricht senden">
+                      {phase === 'sending' ? <LoaderCircle /> : <ArrowUp />}
+                    </button>
+                  </div>
+                  <small>Keine Passwörter, PINs oder Zahlungsdaten senden.</small>
+                </form>
+              ) : (
+                <div className="support-locked">
+                  <ShieldCheck aria-hidden="true" /> Chat beendet · Bitte direkt mit Andrej klären
                 </div>
-                <small>Keine Passwörter, PINs oder Zahlungsdaten senden.</small>
-              </form>
+              )}
             </>
           )}
 

@@ -184,18 +184,86 @@ body[data-menu-open='true'] .support-bot {
 .is-typing p i:nth-child(3) { animation-delay: 240ms; }
 @keyframes support-dot { 50% { opacity: 0.35; transform: translateY(-3px); } }
 
-.support-suggestions {
-  display: flex;
+.support-suggestion-block {
+  position: relative;
   flex: 0 0 auto;
-  gap: 0.4rem;
-  padding: 0.2rem 0.9rem 0.7rem;
-  overflow-x: auto;
-  scrollbar-width: none;
+  border-top: 1px solid rgba(119, 228, 255, 0.09);
+  border-bottom: 1px solid rgba(119, 228, 255, 0.14);
+  background: linear-gradient(90deg, rgba(6, 13, 21, 0.98), rgba(8, 21, 31, 0.88));
 }
 
-.support-suggestions::-webkit-scrollbar { display: none; }
-.support-suggestions button { flex: 0 0 auto; padding: 0.55rem 0.65rem; border: 1px solid var(--line); color: #bcd0df; background: rgba(10, 24, 35, 0.82); cursor: pointer; font-size: 0.67rem; }
+.support-suggestion-block > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.9rem 0.4rem;
+}
+
+.support-suggestion-block > header > span {
+  color: #7791a4;
+  font: 700 0.52rem/1 var(--display);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.support-suggestion-block > header > div { display: flex; gap: 0.3rem; }
+.support-suggestion-block > header button { display: grid; width: 30px; height: 26px; place-items: center; border: 1px solid var(--line); color: var(--cyan); background: rgba(10, 24, 35, 0.9); cursor: pointer; }
+.support-suggestion-block > header button:hover { border-color: var(--line-strong); background: rgba(18, 43, 58, 0.92); }
+.support-suggestion-block > header button svg { width: 14px; }
+
+.support-suggestions {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.15rem 0.9rem 0.42rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  scrollbar-color: rgba(119, 228, 255, 0.38) rgba(119, 228, 255, 0.05);
+  scrollbar-width: thin;
+}
+
+.support-suggestions::-webkit-scrollbar { height: 3px; }
+.support-suggestions::-webkit-scrollbar-thumb { background: rgba(119, 228, 255, 0.38); }
+.support-suggestions button { display: flex; flex: 0 0 auto; align-items: center; gap: 0.42rem; min-height: 36px; padding: 0.55rem 0.68rem; scroll-snap-align: start; border: 1px solid var(--line); color: #bcd0df; background: rgba(10, 24, 35, 0.82); cursor: pointer; font-size: 0.67rem; white-space: nowrap; }
+.support-suggestions button small { color: var(--blue); font: 700 0.48rem/1 var(--display); letter-spacing: 0.08em; }
 .support-suggestions button:hover { color: var(--cyan); border-color: var(--line-strong); }
+
+.support-swipe-hint { display: block; padding: 0 0.9rem 0.5rem; color: #607789; font-size: 0.54rem; }
+
+.support-handoff {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0 0.9rem 0.7rem;
+  padding: 0.72rem;
+  border: 1px solid rgba(114, 241, 174, 0.3);
+  background: rgba(22, 70, 52, 0.18);
+}
+
+.support-handoff > svg { width: 18px; color: var(--green); }
+.support-handoff > span { display: flex; flex-direction: column; gap: 0.18rem; }
+.support-handoff strong { font-size: 0.72rem; }
+.support-handoff small { color: #8da69b; font-size: 0.56rem; }
+.support-handoff a { padding: 0.55rem 0.62rem; color: #04120c; background: var(--green); font: 750 0.61rem/1 var(--display); text-transform: uppercase; }
+
+.support-locked {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 0.42rem;
+  padding: 0.78rem 0.9rem;
+  border-top: 1px solid var(--line);
+  color: #8097a7;
+  background: rgba(5, 13, 21, 0.94);
+  font-size: 0.61rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.support-locked svg { width: 14px; color: var(--green); }
 
 .support-inline-error {
   display: flex;
@@ -271,6 +339,11 @@ body[data-menu-open='true'] .support-bot {
   .support-launcher { min-height: 42px; padding: 0.62rem 0.72rem; }
   .support-header { min-height: 64px; }
   .support-message p { max-width: 88%; font-size: 0.8rem; }
+  .support-suggestion-block > header { padding-top: 0.48rem; }
+  .support-suggestion-block > header button { width: 34px; height: 30px; }
+  .support-suggestions { padding-right: 1rem; padding-left: 1rem; }
+  .support-suggestions button { min-height: 40px; }
+  .support-swipe-hint { padding-left: 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
