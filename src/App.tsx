@@ -1384,6 +1384,35 @@ function MarketingApp() {
   }, [menuOpen])
 
   useEffect(() => {
+    let firstFrame = 0
+    let secondFrame = 0
+
+    const scrollToCurrentHash = () => {
+      const targetId = decodeURIComponent(window.location.hash.slice(1))
+      if (!targetId || targetId.startsWith('/')) return
+
+      window.cancelAnimationFrame(firstFrame)
+      window.cancelAnimationFrame(secondFrame)
+      firstFrame = window.requestAnimationFrame(() => {
+        secondFrame = window.requestAnimationFrame(() => {
+          document.getElementById(targetId)?.scrollIntoView({
+            behavior: reduceMotion ? 'auto' : 'smooth',
+            block: 'start',
+          })
+        })
+      })
+    }
+
+    scrollToCurrentHash()
+    window.addEventListener('hashchange', scrollToCurrentHash)
+    return () => {
+      window.cancelAnimationFrame(firstFrame)
+      window.cancelAnimationFrame(secondFrame)
+      window.removeEventListener('hashchange', scrollToCurrentHash)
+    }
+  }, [reduceMotion])
+
+  useEffect(() => {
     const sections = chapters
       .map(([id]) => document.getElementById(id))
       .filter((section): section is HTMLElement => Boolean(section))
