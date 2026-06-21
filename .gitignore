@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 .vite.log
+.dev.vars
+.wrangler
 
 # Editor directories and files
 .vscode/*

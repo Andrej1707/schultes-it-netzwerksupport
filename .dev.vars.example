@@ -1,0 +1,4 @@
+# Local Cloudflare Worker development only. Copy to .dev.vars (gitignored).
+OPENAI_API_KEY=replace-with-your-openai-api-key
+TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+HASH_SALT=replace-with-a-long-random-value

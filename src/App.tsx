@@ -51,6 +51,7 @@ import {
   type ServiceIconName,
   type ServicePageData,
 } from './serviceCatalog'
+import SupportBot from './support/SupportBot'
 
 const phoneParts = ['+49', '1523', '3364752']
 const phoneDisplay = phoneParts.join(' ')
@@ -852,7 +853,63 @@ function PrivacyContent() {
       </section>
 
       <section>
-        <span>07 / DEINE RECHTE</span>
+        <span>07 / BOT-SCHUTZ</span>
+        <h2>Cloudflare Turnstile und Support-Backend</h2>
+        <p>
+          Der digitale Assistent wird erst freigeschaltet, nachdem du die Sicherheitsprüfung
+          Cloudflare Turnstile aktiv durchlaufen hast. Turnstile hilft dabei, automatisierte
+          Zugriffe und Missbrauch zu erkennen. Dabei können technische Verbindungsdaten wie
+          IP-Adresse, Browser- und Geräteinformationen sowie Zeitpunkt und Ergebnis der Prüfung
+          durch Cloudflare verarbeitet werden.
+        </p>
+        <p>
+          Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte
+          Interesse liegt im Schutz des Assistenten und der dahinterliegenden kostenpflichtigen
+          Schnittstellen vor Spam und automatisiertem Missbrauch. Nach erfolgreicher Prüfung wird
+          eine zufällige, auf 24 Stunden begrenzte Sitzungskennung im Session Storage deines
+          Browsers gespeichert. Serverseitig werden die IP-Adresse nur pseudonymisiert für
+          Missbrauchsgrenzen und höchstens die letzten acht Chat-Nachrichten für den Gesprächskontext
+          verarbeitet. Die technische Verarbeitung erfolgt über Cloudflare Workers.
+        </p>
+        <p>
+          Weitere Informationen findest du in der{' '}
+          <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noreferrer">
+            Datenschutzerklärung von Cloudflare <ExternalLink aria-hidden="true" />
+          </a>
+          .
+        </p>
+      </section>
+
+      <section>
+        <span>08 / KI-ASSISTENT</span>
+        <h2>Textverarbeitung durch OpenAI</h2>
+        <p>
+          Wenn du den digitalen Assistenten freiwillig nutzt, werden deine eingegebenen Texte an
+          die OpenAI-API übermittelt, um eine passende Antwort zu erzeugen und sicherheitskritische
+          Inhalte zu prüfen. Anbieter ist für Nutzer im Europäischen Wirtschaftsraum OpenAI Ireland
+          Limited. Die Website übermittelt keine Dateien, Bilder, Browser-Suche oder automatisch
+          ausgelesene Inhalte. Bitte sende insbesondere keine Passwörter, PINs, Zahlungsdaten oder
+          andere vertrauliche Informationen.
+        </p>
+        <p>
+          Die Verarbeitung erfolgt bei vertragsbezogenen Anfragen auf Grundlage von Art. 6 Abs. 1
+          lit. b DSGVO, ansonsten auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO und dem Interesse an
+          einer schnellen, freiwilligen Erstorientierung. API-Anfragen werden mit deaktivierter
+          Antwortspeicherung (<code>store: false</code>) gesendet. Eine Verarbeitung außerhalb der
+          EU kann dennoch nicht ausgeschlossen werden. Der Assistent trifft keine Entscheidungen
+          mit rechtlicher oder ähnlich erheblicher Wirkung und ersetzt keine persönliche Diagnose.
+        </p>
+        <p>
+          Weitere Informationen findest du in der{' '}
+          <a href="https://openai.com/policies/privacy-policy/" target="_blank" rel="noreferrer">
+            Datenschutzerklärung von OpenAI <ExternalLink aria-hidden="true" />
+          </a>
+          .
+        </p>
+      </section>
+
+      <section>
+        <span>09 / DEINE RECHTE</span>
         <h2>Betroffenenrechte</h2>
         <p>
           Du hast im Rahmen der gesetzlichen Voraussetzungen das Recht auf Auskunft, Berichtigung,
@@ -867,9 +924,9 @@ function PrivacyContent() {
       </section>
 
       <section>
-        <span>08 / STAND</span>
+        <span>10 / STAND</span>
         <h2>Stand dieser Erklärung</h2>
-        <p>21. Juni 2026</p>
+        <p>22. Juni 2026</p>
       </section>
     </div>
   )
@@ -2260,11 +2317,17 @@ function App() {
     return () => window.removeEventListener('hashchange', updateHash)
   }, [])
 
-  if (hash === '#/impressum') return <LegalLayout page="impressum" />
-  if (hash === '#/datenschutz') return <LegalLayout page="datenschutz" />
-  if (servicePage) return <ServicePage service={servicePage} />
+  let page = <MarketingApp />
+  if (hash === '#/impressum') page = <LegalLayout page="impressum" />
+  else if (hash === '#/datenschutz') page = <LegalLayout page="datenschutz" />
+  else if (servicePage) page = <ServicePage service={servicePage} />
 
-  return <MarketingApp />
+  return (
+    <>
+      {page}
+      <SupportBot />
+    </>
+  )
 }
 
 export default App

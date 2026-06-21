@@ -1,0 +1,36 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "schultes-it-support",
+  "main": "worker/src/index.ts",
+  "compatibility_date": "2026-06-21",
+  "workers_dev": true,
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "ALLOWED_ORIGINS": "https://schultes-it.de",
+    "TURNSTILE_HOSTNAMES": "schultes-it.de",
+    "OPENAI_MODEL": "gpt-5.4-mini",
+    "DAILY_TOKEN_LIMIT": "1000000",
+    "SESSION_DAILY_TOKEN_LIMIT": "20000",
+    "SESSION_RPM_LIMIT": "5",
+    "SESSION_HOURLY_LIMIT": "30",
+    "IP_RPM_LIMIT": "12",
+    "IP_HOURLY_LIMIT": "100",
+    "IP_DAILY_LIMIT": "150"
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "SUPPORT_GUARD",
+        "class_name": "SupportGuard"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["SupportGuard"]
+    }
+  ]
+}
