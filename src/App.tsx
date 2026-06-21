@@ -633,19 +633,37 @@ function PrivacyContent() {
         <h2>Zwischenablage und externe Links</h2>
         <p>
           Die Funktion „Telefonnummer kopieren“ nutzt ausschließlich die lokale
-          Zwischenablage-Funktion deines Browsers. Dabei werden keine Daten an mich oder einen
-          Analysedienst übermittelt. Externe Angebote wie Google Maps oder GitHub werden erst
-          aufgerufen, wenn du den jeweiligen Link aktiv anklickst.
+          Zwischenablage-Funktion deines Browsers. Inhalte deiner Zwischenablage werden dabei nicht
+          an mich oder einen Analysedienst übermittelt. Externe Angebote wie Google Maps oder GitHub
+          werden erst aufgerufen, wenn du den jeweiligen Link aktiv anklickst.
         </p>
       </section>
 
       <section>
         <span>06 / TRACKING</span>
-        <h2>Keine Analyse und keine Werbe-Cookies</h2>
+        <h2>Cloudflare Web Analytics</h2>
         <p>
-          Auf dieser Website werden keine Analyse-, Marketing- oder Profiling-Dienste eingesetzt.
-          Es werden durch diese Website keine Werbe-Cookies gesetzt. Externe Schriftarten werden
-          nicht geladen.
+          Diese Website verwendet Cloudflare Web Analytics, einen Dienst der Cloudflare, Inc., 101
+          Townsend St, San Francisco, CA 94107, USA. Damit werden zusammengefasste Angaben wie
+          Seitenaufrufe, verweisende Seiten, ungefährer Standort, Gerätetyp und Browser ausgewertet.
+          Die Auswertung hilft mir zu verstehen, welche Inhalte genutzt werden und wo die Website
+          technisch verbessert werden kann.
+        </p>
+        <p>
+          Cloudflare Web Analytics arbeitet ohne Cookies, Local Storage oder geräteübergreifende
+          Nutzerprofile. Nach Angaben von Cloudflare werden keine einzelnen Besucher über mehrere
+          Websites hinweg verfolgt und keine Fingerabdrücke aus IP-Adresse, Browserkennung oder
+          anderen Merkmalen gebildet. Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit.
+          f DSGVO. Mein berechtigtes Interesse liegt in einer datensparsamen Reichweitenmessung und
+          der Verbesserung meines Webangebots.
+        </p>
+        <p>
+          Eine Verarbeitung in den USA kann nicht ausgeschlossen werden. Weitere Informationen
+          findest du in der{' '}
+          <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noreferrer">
+            Datenschutzerklärung von Cloudflare <ExternalLink aria-hidden="true" />
+          </a>
+          . Es werden weiterhin keine Werbe-Cookies oder externen Schriftarten geladen.
         </p>
       </section>
 
@@ -667,7 +685,7 @@ function PrivacyContent() {
       <section>
         <span>08 / STAND</span>
         <h2>Stand dieser Erklärung</h2>
-        <p>14. Juni 2026</p>
+        <p>21. Juni 2026</p>
       </section>
     </div>
   )
