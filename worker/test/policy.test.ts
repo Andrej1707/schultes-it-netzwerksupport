@@ -30,6 +30,8 @@ describe('support intent policy', () => {
     'Was kostet Fernhilfe?',
     'Wann ist Andrej erreichbar?',
     'Welche Leistungen bietet Schultes IT an?',
+    'Welche Leistungen bietest du an?',
+    'Was kosten Termine vor Ort?',
     'Bietet ihr Webseiten als Service an?',
     'Kommst du zu mir?',
   ])('allows business information: %s', (message) => {

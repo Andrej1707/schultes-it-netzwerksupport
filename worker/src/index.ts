@@ -306,18 +306,14 @@ export class SupportGuard {
 
     let actualTokens = 0
     try {
-      if (reservation.session.basicHelpGiven) {
+      const intent = classifySupportIntent(message)
+      if (reservation.session.basicHelpGiven && intent !== 'business') {
         await this.finish(reservation, 0, { message, reply: DIRECT_HANDOFF_REPLY })
         return json({ reply: DIRECT_HANDOFF_REPLY, escalated: true })
       }
 
-      const intent = classifySupportIntent(message)
       if (intent === 'out-of-scope') {
-        await this.finish(reservation, 0, {
-          message,
-          reply: OUT_OF_SCOPE_REPLY,
-          basicHelpGiven: true,
-        })
+        await this.finish(reservation, 0, { message, reply: OUT_OF_SCOPE_REPLY })
         return json({ reply: OUT_OF_SCOPE_REPLY, blocked: true, escalated: true })
       }
 
@@ -331,7 +327,6 @@ export class SupportGuard {
         await this.finish(reservation, 0, {
           message,
           reply: INPUT_BLOCKED_REPLY,
-          basicHelpGiven: true,
         })
         return json({ reply: INPUT_BLOCKED_REPLY, blocked: true, escalated: true })
       }
@@ -344,7 +339,7 @@ export class SupportGuard {
       await this.finish(reservation, actualTokens, {
         message,
         reply,
-        basicHelpGiven: outputFlagged,
+        basicHelpGiven: false,
       })
       return json({ reply, blocked: outputFlagged, escalated: outputFlagged })
     } catch (error) {

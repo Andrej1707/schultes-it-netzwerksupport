@@ -64,6 +64,7 @@ body[data-menu-open='true'] .support-bot {
   max-height: 640px;
   flex-direction: column;
   overflow: hidden;
+  overscroll-behavior: contain;
   border: 1px solid rgba(119, 228, 255, 0.3);
   background:
     linear-gradient(rgba(119, 228, 255, 0.025) 1px, transparent 1px),
@@ -165,6 +166,7 @@ body[data-menu-open='true'] .support-bot {
   padding: 1rem 0.9rem 0.55rem;
   scrollbar-width: thin;
   scrollbar-color: rgba(119, 228, 255, 0.3) transparent;
+  overscroll-behavior: contain;
 }
 
 .support-message {
@@ -219,6 +221,7 @@ body[data-menu-open='true'] .support-bot {
   overscroll-behavior-inline: contain;
   scroll-behavior: smooth;
   scroll-snap-type: x proximity;
+  touch-action: pan-x;
   scrollbar-color: rgba(119, 228, 255, 0.38) rgba(119, 228, 255, 0.05);
   scrollbar-width: thin;
 }
@@ -247,23 +250,6 @@ body[data-menu-open='true'] .support-bot {
 .support-handoff strong { font-size: 0.72rem; }
 .support-handoff small { color: #8da69b; font-size: 0.56rem; }
 .support-handoff a { padding: 0.55rem 0.62rem; color: #04120c; background: var(--green); font: 750 0.61rem/1 var(--display); text-transform: uppercase; }
-
-.support-locked {
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  gap: 0.42rem;
-  padding: 0.78rem 0.9rem;
-  border-top: 1px solid var(--line);
-  color: #8097a7;
-  background: rgba(5, 13, 21, 0.94);
-  font-size: 0.61rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.support-locked svg { width: 14px; color: var(--green); }
 
 .support-inline-error {
   display: flex;

@@ -206,8 +206,40 @@ export default function SupportBot() {
 
   useEffect(() => {
     document.body.dataset.supportOpen = open ? 'true' : 'false'
+    if (!open) {
+      return () => {
+        delete document.body.dataset.supportOpen
+      }
+    }
+
+    const scrollPosition = window.scrollY
+    const bodyStyle = document.body.style
+    const htmlStyle = document.documentElement.style
+    const previous = {
+      position: bodyStyle.position,
+      top: bodyStyle.top,
+      width: bodyStyle.width,
+      overflow: bodyStyle.overflow,
+      paddingRight: bodyStyle.paddingRight,
+      overscrollBehavior: htmlStyle.overscrollBehavior,
+    }
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+    bodyStyle.position = 'fixed'
+    bodyStyle.top = `-${scrollPosition}px`
+    bodyStyle.width = '100%'
+    bodyStyle.overflow = 'hidden'
+    if (scrollbarWidth > 0) bodyStyle.paddingRight = `${scrollbarWidth}px`
+    htmlStyle.overscrollBehavior = 'none'
+
     return () => {
       delete document.body.dataset.supportOpen
+      bodyStyle.position = previous.position
+      bodyStyle.top = previous.top
+      bodyStyle.width = previous.width
+      bodyStyle.overflow = previous.overflow
+      bodyStyle.paddingRight = previous.paddingRight
+      htmlStyle.overscrollBehavior = previous.overscrollBehavior
+      window.scrollTo(0, scrollPosition)
     }
   }, [open])
 
@@ -287,7 +319,7 @@ export default function SupportBot() {
         ...current,
         { id: crypto.randomUUID(), role: 'assistant', content: result.reply },
       ])
-      if (result.escalated) setShowDirectContact(true)
+      setShowDirectContact(Boolean(result.escalated))
       setPhase('ready')
       window.setTimeout(() => textareaRef.current?.focus(), 50)
     } catch (error) {
@@ -406,7 +438,7 @@ export default function SupportBot() {
                   <Phone aria-hidden="true" />
                   <span>
                     <strong>Direkt zu Andrej</strong>
-                    <small>Keine weiteren Experimente nötig.</small>
+                    <small>Servicefragen kannst du weiter stellen.</small>
                   </span>
                   <a href={phoneHref}>Anrufen</a>
                 </div>
@@ -419,43 +451,37 @@ export default function SupportBot() {
                 </div>
               )}
 
-              {!showDirectContact ? (
-                <form
-                  className="support-compose"
-                  onSubmit={(event) => {
-                    event.preventDefault()
-                    void sendMessage()
-                  }}
-                >
-                  <label htmlFor="support-message">Deine Nachricht</label>
-                  <div>
-                    <textarea
-                      ref={textareaRef}
-                      id="support-message"
-                      value={draft}
-                      onChange={(event) => setDraft(event.target.value.slice(0, 1_200))}
-                      onKeyDown={(event) => {
-                        if (event.key === 'Enter' && !event.shiftKey) {
-                          event.preventDefault()
-                          void sendMessage()
-                        }
-                      }}
-                      placeholder="Zum Beispiel: Mein WLAN bricht ständig ab …"
-                      rows={2}
-                      maxLength={1_200}
-                      disabled={phase === 'sending'}
-                    />
-                    <button type="submit" disabled={!draft.trim() || phase === 'sending'} aria-label="Nachricht senden">
-                      {phase === 'sending' ? <LoaderCircle /> : <ArrowUp />}
-                    </button>
-                  </div>
-                  <small>Keine Passwörter, PINs oder Zahlungsdaten senden.</small>
-                </form>
-              ) : (
-                <div className="support-locked">
-                  <ShieldCheck aria-hidden="true" /> Chat beendet · Bitte direkt mit Andrej klären
+              <form
+                className="support-compose"
+                onSubmit={(event) => {
+                  event.preventDefault()
+                  void sendMessage()
+                }}
+              >
+                <label htmlFor="support-message">Deine Nachricht</label>
+                <div>
+                  <textarea
+                    ref={textareaRef}
+                    id="support-message"
+                    value={draft}
+                    onChange={(event) => setDraft(event.target.value.slice(0, 1_200))}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' && !event.shiftKey) {
+                        event.preventDefault()
+                        void sendMessage()
+                      }
+                    }}
+                    placeholder={showDirectContact ? 'Frage zum Service, Preis oder Termin …' : 'Zum Beispiel: Mein WLAN bricht ständig ab …'}
+                    rows={2}
+                    maxLength={1_200}
+                    disabled={phase === 'sending'}
+                  />
+                  <button type="submit" disabled={!draft.trim() || phase === 'sending'} aria-label="Nachricht senden">
+                    {phase === 'sending' ? <LoaderCircle /> : <ArrowUp />}
+                  </button>
                 </div>
-              )}
+                <small>Keine Passwörter, PINs oder Zahlungsdaten senden.</small>
+              </form>
             </>
           )}
 

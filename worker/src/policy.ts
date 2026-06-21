@@ -12,7 +12,7 @@ const forbiddenPatterns = [
 ]
 
 const businessPattern =
-  /\b(preis|kost|fern(hilfe|wartung)|vor ort|kommst|zu mir|hausbesuch|termin|öffnungszeit|geöffnet|erreichbar|kontakt|telefon|nummer|e-?mail|adresse|standort|maps|ludwigsburg|leistung|angebot|andrej|schultes|betrieb|service|webseite|automation|tool|firma)\b/i
+  /\b(preise?|kosten?|kostet|fern(hilfe|wartung)|vor ort|kommst|zu mir|hausbesuch|termine?|öffnungszeiten?|geöffnet|erreichbar|kontakt|telefon|nummer|e-?mail|adresse|standort|maps|ludwigsburg|leistungen?|angebote?|andrej|schultes|betrieb|service|webseiten?|automation|tools?|firma)\b/i
 
 const techPattern =
   /\b(wlan|wi-?fi|internet|router|pc|computer|laptop|windows|drucker|smartphone|handy|gerät|software|programm|bildschirm|monitor|maus|tastatur)\b/i
