@@ -27,17 +27,16 @@ export function classifySupportIntent(message: string): SupportIntent {
   return 'conversation'
 }
 
-export function isBasicSupportFailureFollowUp(message: string) {
-  return /\b(hat nicht geholfen|hilft nicht|geht immer noch nicht|funktioniert immer noch nicht|problem besteht|noch immer|weiterhin kaputt)\b/i.test(
-    message,
+export function isBasicSupportDialogueFollowUp(message: string) {
+  return (
+    /\b(hat nicht geholfen|hilft nicht|geht immer noch nicht|funktioniert immer noch nicht|problem besteht|noch immer|weiterhin kaputt|wo ist|wo genau|wo finde|was genau|wie mache|wie geht das|welche taste|welcher knopf|was meinst du|nur ein gerät|mehrere geräte|alle geräte|nur mein|nur der|nur die)\b/i.test(
+      message,
+    ) || /^(ja|nein|weiß ich nicht|weiss ich nicht|keine ahnung)[.!?\s]*$/i.test(message.trim())
   )
 }
 
 export const OUT_OF_SCOPE_REPLY =
   'Dabei kann ich nicht helfen. Ich beantworte nur Fragen zu Schultes IT und gebe höchstens einen sicheren Basischeck wie Neustart, WLAN aus und an oder Router kurz vom Strom trennen. Für alles Weitere erreichst du Andrej direkt unter +49 1523 3364752 oder per E-Mail an it.schulteslb@gmail.com.'
-
-export const DIRECT_HANDOFF_REPLY =
-  'Der sichere Basischeck reicht hier nicht aus. Bitte probiere nicht weiter auf eigene Faust, sondern lass Andrej das Problem richtig prüfen. Du erreichst ihn unter +49 1523 3364752 oder per E-Mail an it.schulteslb@gmail.com.'
 
 export const BASIC_SUPPORT_CATEGORIES = [
   'wlan_unstable',
@@ -64,8 +63,11 @@ type BasicSupportStepId = (typeof BASIC_SUPPORT_STEP_IDS)[number]
 
 type BasicSupportPlan = {
   category: BasicSupportCategory
+  decision: 'assist' | 'escalate'
   intro: string
   step_ids: BasicSupportStepId[]
+  question: string
+  closing: string
 }
 
 const BASIC_SUPPORT_STEPS: Record<BasicSupportStepId, string> = {
@@ -80,12 +82,23 @@ const BASIC_SUPPORT_STEPS: Record<BasicSupportStepId, string> = {
   toggle_flight_mode: 'Schalte den Flugmodus kurz ein und anschließend wieder aus.',
 }
 
-export const BASIC_SUPPORT_ADAPTER_PROMPT = `Du bist der sichere Basischeck von Schultes IT & Netzwerksupport.
-Analysiere das konkrete Problem und gib ausschließlich ein JSON-Objekt nach dem vorgegebenen Schema zurück.
-Wähle ein passendes Thema und genau 1 bis 3 erlaubte Schritt-IDs. Passe Auswahl und Reihenfolge an die Nutzernachricht an.
-Die Einleitung darf höchstens 160 Zeichen lang sein, soll das Problem knapp und freundlich einordnen und darf selbst keine Anleitung enthalten.
-Erfinde keine Schritte. Gib keine Links, Kontaktdaten, Codes, Befehle, Downloads, Registry-, BIOS-, Reparatur- oder Sicherheitshinweise aus.
-Unterscheide instabiles oder schwaches WLAN von einem vollständigen Internetausfall.
+export const BASIC_SUPPORT_ADAPTER_PROMPT = `Du führst einen natürlichen, sicheren Hilfedialog für Schultes IT & Netzwerksupport.
+Analysiere die aktuelle Nachricht im Kontext des bisherigen Chats und gib ausschließlich ein JSON-Objekt nach dem vorgegebenen Schema zurück.
+
+ENTSCHEIDUNG
+- assist: Bei jedem neu beschriebenen Technikproblem. Wähle 1 bis 3 erlaubte Schritt-IDs und stelle bei Bedarf genau eine kurze Rückfrage.
+- escalate: Erst wenn der Nutzer ausdrücklich sagt, dass passende Basisschritte nicht geholfen haben, ein Risiko erkennbar ist oder eine persönliche Prüfung wirklich nötig ist.
+- Eine frühere Hilfsantwort, Smalltalk oder eine neue Problembeschreibung ist niemals allein ein Grund für escalate.
+- Wenn Details fehlen, entscheide assist, gib mindestens einen universell sicheren Schritt und frage gezielt nach Gerät, Anzeige oder betroffenen Geräten.
+
+FORMULIERUNG
+- Schreibe intro, question und closing selbst, natürlich, freundlich und passend zum konkreten Verlauf.
+- intro und closing dürfen jeweils höchstens 220 Zeichen, question höchstens 180 Zeichen lang sein.
+- Bei assist enthält closing eine kurze Einladung, das Ergebnis oder die Antwort auf die Rückfrage zu schreiben.
+- Bei escalate erklärt closing kurz und ohne Druck, warum Andrej persönlich sinnvoll helfen sollte. Kontaktdaten ergänzt der Server.
+- Erfinde keine weiteren Anleitungen in den Textfeldern. Gib dort keine Links, Kontaktdaten, Codes, Befehle, Downloads, Registry-, BIOS-, Reparatur- oder Sicherheitshinweise aus.
+- Unterscheide instabiles oder schwaches WLAN von einem vollständigen Internetausfall.
+
 Erlaubte Schritte:
 - toggle_wifi: WLAN am Gerät aus und wieder ein
 - check_other_devices: prüfen, ob andere Geräte betroffen sind
@@ -100,15 +113,22 @@ function isBasicSupportPlan(value: unknown): value is BasicSupportPlan {
   if (!value || typeof value !== 'object') return false
   const plan = value as Partial<BasicSupportPlan>
   if (!BASIC_SUPPORT_CATEGORIES.includes(plan.category as BasicSupportCategory)) return false
-  if (typeof plan.intro !== 'string') return false
-  const intro = plan.intro.trim()
-  if (!intro || intro.length > 160) return false
-  if (/https?:\/\/|www\.|\+49|@|```|\b(code|powershell|terminal|download|bios|registry)\b/i.test(intro)) {
+  if (plan.decision !== 'assist' && plan.decision !== 'escalate') return false
+  if (typeof plan.intro !== 'string' || typeof plan.question !== 'string' || typeof plan.closing !== 'string') {
     return false
   }
-  if (!Array.isArray(plan.step_ids) || plan.step_ids.length < 1 || plan.step_ids.length > 3) {
+  const fields = [plan.intro.trim(), plan.question.trim(), plan.closing.trim()]
+  if (!fields[0] || !fields[2] || fields[0].length > 220 || fields[1].length > 180 || fields[2].length > 220) {
     return false
   }
+  if (
+    fields.some((field) =>
+      /https?:\/\/|www\.|\+49|@|```|\b(code|powershell|terminal|download|bios|registry|firmware)\b/i.test(field),
+    )
+  ) return false
+  if (!Array.isArray(plan.step_ids) || plan.step_ids.length > 3) return false
+  if (plan.decision === 'assist' && plan.step_ids.length < 1) return false
+  if (plan.decision === 'escalate' && plan.step_ids.length > 0) return false
   return (
     new Set(plan.step_ids).size === plan.step_ids.length &&
     plan.step_ids.every((step) => BASIC_SUPPORT_STEP_IDS.includes(step as BasicSupportStepId))
@@ -118,7 +138,14 @@ function isBasicSupportPlan(value: unknown): value is BasicSupportPlan {
 export function renderBasicSupportPlan(value: unknown) {
   if (!isBasicSupportPlan(value)) return null
   const steps = value.step_ids.map((step, index) => `${index + 1}. ${BASIC_SUPPORT_STEPS[step]}`)
-  return `${value.intro.trim()}\n\n${steps.join('\n')}\n\nWenn das nicht hilft, prüft Andrej das gern persönlich. Du erreichst ihn unter +49 1523 3364752 oder per E-Mail an it.schulteslb@gmail.com.`
+  const parts = [value.intro.trim()]
+  if (steps.length > 0) parts.push(steps.join('\n'))
+  if (value.question.trim()) parts.push(value.question.trim())
+  parts.push(value.closing.trim())
+  if (value.decision === 'escalate') {
+    parts.push('Du erreichst Andrej unter +49 1523 3364752 oder per E-Mail an it.schulteslb@gmail.com.')
+  }
+  return { reply: parts.join('\n\n'), escalated: value.decision === 'escalate' }
 }
 
 export function getBasicSupportReply(message: string) {

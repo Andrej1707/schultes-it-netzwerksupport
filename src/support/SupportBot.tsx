@@ -50,7 +50,7 @@ const welcomeMessage: Message = {
   id: 'welcome',
   role: 'assistant',
   content:
-    'Hi, ich bin der digitale Assistent von Schultes IT. Du kannst mich ganz normal etwas fragen. Bei Technik gebe ich genau einen sicheren Basischeck; wenn das nicht hilft, ist Andrej direkt für dich da.',
+    'Hi, ich bin der digitale Assistent von Schultes IT. Erzähl mir einfach, wobei du Hilfe brauchst. Ich frage bei Bedarf nach, probiere mit dir sichere Basics und hole Andrej erst dazu, wenn persönliche Hilfe wirklich sinnvoll ist.',
 }
 
 const quickPrompts = [

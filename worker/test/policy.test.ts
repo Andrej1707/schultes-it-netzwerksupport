@@ -3,7 +3,7 @@ import {
   classifySupportIntent,
   containsDisallowedOutput,
   getBasicSupportReply,
-  isBasicSupportFailureFollowUp,
+  isBasicSupportDialogueFollowUp,
   renderBasicSupportPlan,
 } from '../src/policy'
 
@@ -58,33 +58,62 @@ describe('support intent policy', () => {
     expect(reply).not.toMatch(/BIOS|PowerShell|Download/i)
   })
 
-  it.each(['Hat nicht geholfen', 'Es geht immer noch nicht', 'Das Problem besteht weiterhin'])(
+  it.each([
+    'Hat nicht geholfen',
+    'Es geht immer noch nicht',
+    'Das Problem besteht weiterhin',
+    'Wo genau finde ich das?',
+    'Nur mein Handy',
+    'Nein',
+  ])(
     'recognizes an unsuccessful basic-check follow-up: %s',
     (message) => {
-      expect(isBasicSupportFailureFollowUp(message)).toBe(true)
+      expect(isBasicSupportDialogueFollowUp(message)).toBe(true)
     },
   )
 
   it('renders an adapted reply exclusively from approved support steps', () => {
     const reply = renderBasicSupportPlan({
       category: 'wlan_unstable',
+      decision: 'assist',
       intro: 'Das klingt nach einer zeitweise instabilen WLAN-Verbindung.',
       step_ids: ['check_other_devices', 'toggle_wifi'],
+      question: 'Ist nur ein Gerät betroffen?',
+      closing: 'Schreib mir kurz, was du bemerkst.',
     })
-    expect(reply).toContain('zeitweise instabilen WLAN-Verbindung')
-    expect(reply).toContain('1. Prüfe kurz, ob andere Geräte')
-    expect(reply).toContain('2. Schalte WLAN am betroffenen Gerät')
-    expect(reply).toContain('+49 1523 3364752')
-    expect(reply).not.toMatch(/BIOS|PowerShell|Download/i)
+    expect(reply?.reply).toContain('zeitweise instabilen WLAN-Verbindung')
+    expect(reply?.reply).toContain('1. Prüfe kurz, ob andere Geräte')
+    expect(reply?.reply).toContain('2. Schalte WLAN am betroffenen Gerät')
+    expect(reply?.reply).toContain('Ist nur ein Gerät betroffen?')
+    expect(reply?.reply).not.toContain('+49 1523 3364752')
+    expect(reply?.reply).not.toMatch(/BIOS|PowerShell|Download/i)
+    expect(reply?.escalated).toBe(false)
+  })
+
+  it('uses the model-written closing before a safe contact handoff', () => {
+    const result = renderBasicSupportPlan({
+      category: 'wlan_unstable',
+      decision: 'escalate',
+      intro: 'Danke fürs Ausprobieren.',
+      step_ids: [],
+      question: '',
+      closing: 'Andrej sollte sich die Verbindung jetzt persönlich ansehen.',
+    })
+    expect(result?.reply).toContain('Andrej sollte sich die Verbindung jetzt persönlich ansehen.')
+    expect(result?.reply).toContain('+49 1523 3364752')
+    expect(result?.escalated).toBe(true)
   })
 
   it.each([
-    { category: 'wlan_unstable', intro: 'Okay', step_ids: ['run_powershell'] },
-    { category: 'wlan_unstable', intro: 'Lade https://example.com', step_ids: ['toggle_wifi'] },
+    { category: 'wlan_unstable', decision: 'assist', intro: 'Okay', step_ids: ['run_powershell'], question: '', closing: 'Weiter.' },
+    { category: 'wlan_unstable', decision: 'assist', intro: 'Lade https://example.com', step_ids: ['toggle_wifi'], question: '', closing: 'Weiter.' },
     {
       category: 'wlan_unstable',
+      decision: 'assist',
       intro: 'Okay',
       step_ids: ['toggle_wifi', 'restart_device', 'note_error', 'check_other_devices'],
+      question: '',
+      closing: 'Weiter.',
     },
   ])('rejects unsafe or invalid adapted plans', (plan) => {
     expect(renderBasicSupportPlan(plan)).toBeNull()

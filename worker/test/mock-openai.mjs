@@ -28,12 +28,20 @@ const server = createServer(async (request, response) => {
 
     const lastMessage = body.input?.at?.(-1)?.content ?? ''
     if (body.text?.format?.name === 'basic_support_plan') {
+      const shouldEscalate = /nicht geholfen|immer noch nicht/i.test(lastMessage)
       response.end(
         JSON.stringify({
           output_text: JSON.stringify({
             category: 'wlan_unstable',
-            intro: 'Das klingt nach einer zeitweise instabilen WLAN-Verbindung.',
-            step_ids: ['check_other_devices', 'toggle_wifi', 'power_cycle_router'],
+            decision: shouldEscalate ? 'escalate' : 'assist',
+            intro: shouldEscalate
+              ? 'Danke fürs Ausprobieren. Dann steckt wahrscheinlich mehr als ein kurzer WLAN-Aussetzer dahinter.'
+              : 'Das klingt nach einer zeitweise instabilen WLAN-Verbindung. Lass uns zuerst zwei sichere Dinge eingrenzen.',
+            step_ids: shouldEscalate ? [] : ['check_other_devices', 'toggle_wifi'],
+            question: shouldEscalate ? '' : 'Sind nur ein Gerät oder mehrere Geräte betroffen?',
+            closing: shouldEscalate
+              ? 'Damit du nicht weiter im Kreis probierst, sollte Andrej sich die Verbindung persönlich ansehen.'
+              : 'Schreib mir kurz, was dabei herauskommt, dann ordnen wir den nächsten Schritt ein.',
           }),
           usage: { total_tokens: 95 },
         }),
