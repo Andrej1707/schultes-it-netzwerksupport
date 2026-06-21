@@ -995,6 +995,14 @@ main {
   display: flex;
   width: max-content;
   animation: ticker 28s linear infinite;
+  will-change: transform;
+}
+
+.signal-group {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-around;
+  min-width: 100vw;
 }
 
 .signal-track span {

@@ -1568,15 +1568,17 @@ function MarketingApp() {
 
         <section className="signal-strip" aria-label="Leistungsschwerpunkte">
           <div className="signal-track">
-            {[...Array(2)].flatMap((_, group) =>
-              ['IT-SUPPORT', 'NETZWERK', 'PC-HILFE', 'WEBSEITEN', 'AUTOMATION', 'REMOTE'].map(
-                (item) => (
-                  <span key={`${group}-${item}`}>
-                    <CircleDot aria-hidden="true" /> {item}
-                  </span>
-                ),
-              ),
-            )}
+            {[0, 1].map((group) => (
+              <div className="signal-group" key={group} aria-hidden={group === 1}>
+                {['IT-SUPPORT', 'NETZWERK', 'PC-HILFE', 'WEBSEITEN', 'AUTOMATION', 'REMOTE'].map(
+                  (item) => (
+                    <span key={item}>
+                      <CircleDot aria-hidden="true" /> {item}
+                    </span>
+                  ),
+                )}
+              </div>
+            ))}
           </div>
         </section>
 
