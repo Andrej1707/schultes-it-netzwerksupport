@@ -20,5 +20,6 @@ describe('business knowledge and safety policy', () => {
   it('states that the assistant is not Andrej and has no tools', () => {
     expect(BUSINESS_SYSTEM_PROMPT).toContain('nicht Andrej selbst')
     expect(BUSINESS_SYSTEM_PROMPT).toContain('keinen Webzugriff, keine Tools')
+    expect(BUSINESS_SYSTEM_PROMPT).toContain('Klartext ohne Markdown-Markierungen')
   })
 })
