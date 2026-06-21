@@ -27,6 +27,20 @@ const server = createServer(async (request, response) => {
     }
 
     const lastMessage = body.input?.at?.(-1)?.content ?? ''
+    if (body.text?.format?.name === 'basic_support_plan') {
+      response.end(
+        JSON.stringify({
+          output_text: JSON.stringify({
+            category: 'wlan_unstable',
+            intro: 'Das klingt nach einer zeitweise instabilen WLAN-Verbindung.',
+            step_ids: ['check_other_devices', 'toggle_wifi', 'power_cycle_router'],
+          }),
+          usage: { total_tokens: 95 },
+        }),
+      )
+      return
+    }
+
     response.end(
       JSON.stringify({
         output_text: `Testantwort zu: ${lastMessage}`,

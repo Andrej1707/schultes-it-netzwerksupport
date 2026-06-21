@@ -50,7 +50,7 @@ const welcomeMessage: Message = {
   id: 'welcome',
   role: 'assistant',
   content:
-    'Hi, ich bin der digitale Assistent von Schultes IT. Ich beantworte Fragen zum Betrieb und gebe genau einen sicheren Basischeck. Wenn das nicht hilft, leite ich dich direkt an Andrej weiter.',
+    'Hi, ich bin der digitale Assistent von Schultes IT. Du kannst mich ganz normal etwas fragen. Bei Technik gebe ich genau einen sicheren Basischeck; wenn das nicht hilft, ist Andrej direkt für dich da.',
 }
 
 const quickPrompts = [
@@ -438,7 +438,7 @@ export default function SupportBot() {
                   <Phone aria-hidden="true" />
                   <span>
                     <strong>Direkt zu Andrej</strong>
-                    <small>Servicefragen kannst du weiter stellen.</small>
+                    <small>Du kannst trotzdem ganz normal weiterfragen.</small>
                   </span>
                   <a href={phoneHref}>Anrufen</a>
                 </div>
@@ -471,7 +471,7 @@ export default function SupportBot() {
                         void sendMessage()
                       }
                     }}
-                    placeholder={showDirectContact ? 'Frage zum Service, Preis oder Termin …' : 'Zum Beispiel: Mein WLAN bricht ständig ab …'}
+                    placeholder={showDirectContact ? 'Frag einfach weiter …' : 'Schreib deine Frage …'}
                     rows={2}
                     maxLength={1_200}
                     disabled={phase === 'sending'}

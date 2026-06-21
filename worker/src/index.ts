@@ -15,11 +15,16 @@ import {
   utcDay,
 } from './limits'
 import {
+  BASIC_SUPPORT_ADAPTER_PROMPT,
+  BASIC_SUPPORT_CATEGORIES,
+  BASIC_SUPPORT_STEP_IDS,
   classifySupportIntent,
   containsDisallowedOutput,
   DIRECT_HANDOFF_REPLY,
   getBasicSupportReply,
+  isBasicSupportFailureFollowUp,
   OUT_OF_SCOPE_REPLY,
+  renderBasicSupportPlan,
 } from './policy'
 
 type ChatMessage = {
@@ -231,6 +236,59 @@ async function createModelResponse(session: SessionRecord, message: string, sess
   }
 }
 
+async function createBasicSupportResponse(message: string, sessionId: string, env: Env) {
+  const safetyId = await hmac(sessionId, env.HASH_SALT)
+  const response = await fetch(`${env.OPENAI_BASE_URL ?? 'https://api.openai.com/v1'}/responses`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.OPENAI_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: env.OPENAI_MODEL ?? 'gpt-5.4-mini',
+      instructions: BASIC_SUPPORT_ADAPTER_PROMPT,
+      input: [{ role: 'user', content: message }],
+      tools: [],
+      text: {
+        format: {
+          type: 'json_schema',
+          name: 'basic_support_plan',
+          strict: true,
+          schema: {
+            type: 'object',
+            properties: {
+              category: { type: 'string', enum: BASIC_SUPPORT_CATEGORIES },
+              intro: { type: 'string', maxLength: 160 },
+              step_ids: {
+                type: 'array',
+                items: { type: 'string', enum: BASIC_SUPPORT_STEP_IDS },
+                minItems: 1,
+                maxItems: 3,
+              },
+            },
+            required: ['category', 'intro', 'step_ids'],
+            additionalProperties: false,
+          },
+        },
+      },
+      max_output_tokens: 250,
+      store: false,
+      safety_identifier: `support_${safetyId}`,
+    }),
+    signal: AbortSignal.timeout(30_000),
+  })
+
+  if (!response.ok) throw new Error(`basic_responses_${response.status}`)
+  const payload = (await response.json()) as Record<string, unknown> & {
+    usage?: { total_tokens?: number }
+  }
+  const output = extractOutputText(payload)
+  if (!output) throw new Error('empty_basic_response')
+  const reply = renderBasicSupportPlan(JSON.parse(output))
+  if (!reply) throw new Error('invalid_basic_response')
+  return { reply, totalTokens: Math.max(0, payload.usage?.total_tokens ?? 0) }
+}
+
 export class SupportGuard {
   private state: DurableObjectState
   private env: Env
@@ -307,7 +365,10 @@ export class SupportGuard {
     let actualTokens = 0
     try {
       const intent = classifySupportIntent(message)
-      if (reservation.session.basicHelpGiven && intent !== 'business') {
+      if (
+        reservation.session.basicHelpGiven &&
+        (intent === 'basic-support' || isBasicSupportFailureFollowUp(message))
+      ) {
         await this.finish(reservation, 0, { message, reply: DIRECT_HANDOFF_REPLY })
         return json({ reply: DIRECT_HANDOFF_REPLY, escalated: true })
       }
@@ -317,18 +378,28 @@ export class SupportGuard {
         return json({ reply: OUT_OF_SCOPE_REPLY, blocked: true, escalated: true })
       }
 
-      if (intent === 'basic-support') {
-        const reply = getBasicSupportReply(message)
-        await this.finish(reservation, 0, { message, reply, basicHelpGiven: true })
-        return json({ reply, blocked: false, escalated: false })
-      }
-
       if (await moderate(message, this.env)) {
         await this.finish(reservation, 0, {
           message,
           reply: INPUT_BLOCKED_REPLY,
         })
         return json({ reply: INPUT_BLOCKED_REPLY, blocked: true, escalated: true })
+      }
+
+      if (intent === 'basic-support') {
+        let reply = getBasicSupportReply(message)
+        try {
+          const generated = await createBasicSupportResponse(message, sessionId, this.env)
+          actualTokens = generated.totalTokens > 0 ? generated.totalTokens : reservation.reservedTokens
+          reply = generated.reply
+        } catch (error) {
+          console.error(
+            'Basic support adaptation failed; using safe fallback',
+            error instanceof Error ? error.message : 'unknown',
+          )
+        }
+        await this.finish(reservation, actualTokens, { message, reply, basicHelpGiven: true })
+        return json({ reply, blocked: false, escalated: false })
       }
 
       const generated = await createModelResponse(reservation.session, message, sessionId, this.env)
