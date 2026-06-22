@@ -19,12 +19,14 @@ describe('support input limits', () => {
     expect(normalizeMessage('x'.repeat(MAX_MESSAGE_CHARS + 1))).toBeNull()
   })
 
-  it('reserves a conservative UTF-8 upper bound plus output budget', () => {
+  it('estimates tokens conservatively without counting every UTF-8 byte as a token', () => {
     const prompt = 'Du bist ein Assistent.'
     const history = [{ content: 'Mein Router blinkt.' }]
     const message = 'Was kann ich prüfen?'
+    const inputBytes = utf8Length([prompt, history[0].content, message].join('\n'))
     const reservation = reserveTokenUpperBound(prompt, history, message)
-    expect(reservation).toBeGreaterThan(utf8Length([prompt, history[0].content, message].join('\n')))
+    expect(reservation).toBeGreaterThan(inputBytes)
+    expect(reservation).toBeLessThan(inputBytes + 450 + 256)
   })
 
   it('uses safe defaults for invalid limits', () => {

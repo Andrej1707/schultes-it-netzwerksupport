@@ -438,7 +438,7 @@ export class SupportGuard {
     const sessionKey = `session:${sessionId}`
     const usageKey = `usage:${day}`
     const dailyLimit = parsePositiveLimit(this.env.DAILY_TOKEN_LIMIT, 1_000_000)
-    const sessionDailyLimit = parsePositiveLimit(this.env.SESSION_DAILY_TOKEN_LIMIT, 20_000)
+    const sessionDailyLimit = parsePositiveLimit(this.env.SESSION_DAILY_TOKEN_LIMIT, 40_000)
     const sessionRpm = parsePositiveLimit(this.env.SESSION_RPM_LIMIT, 5)
     const sessionHourly = parsePositiveLimit(this.env.SESSION_HOURLY_LIMIT, 30)
     const ipRpm = parsePositiveLimit(this.env.IP_RPM_LIMIT, 12)

@@ -16,7 +16,10 @@ export function utf8Length(value: string) {
 
 export function reserveTokenUpperBound(systemPrompt: string, history: Array<{ content: string }>, message: string) {
   const input = [systemPrompt, ...history.map((entry) => entry.content), message].join('\n')
-  return utf8Length(input) + MAX_OUTPUT_TOKENS + 256
+  // UTF-8 bytes are not tokens. Dividing by two stays deliberately conservative
+  // for short German support messages without reserving the prompt at 2-4x reality.
+  const estimatedInputTokens = Math.ceil(utf8Length(input) / 2)
+  return estimatedInputTokens + MAX_OUTPUT_TOKENS + 256
 }
 
 export function utcDay(timestamp = Date.now()) {

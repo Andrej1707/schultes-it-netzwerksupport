@@ -40,7 +40,7 @@ type Message = {
 type ApiError = Error & { code?: string; status?: number }
 type Phase = 'needs-verification' | 'verifying' | 'ready' | 'sending' | 'unavailable'
 
-const SESSION_STORAGE_KEY = 'schultes-support-session-v1'
+const SESSION_STORAGE_KEY = 'schultes-support-session-v2'
 const apiUrl = (import.meta.env.VITE_SUPPORT_API_URL ?? '').replace(/\/$/, '')
 const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY ?? ''
 const isConfigured = Boolean(apiUrl && turnstileSiteKey)
@@ -140,8 +140,9 @@ function getErrorMessage(code?: string) {
     case 'request_in_progress':
       return 'Das waren gerade zu viele Nachrichten. Warte bitte kurz und versuche es dann erneut.'
     case 'daily_limit_reached':
+      return 'Das gemeinsame Tagesbudget des Assistenten ist heute aufgebraucht. Andrej ist weiterhin direkt per Telefon erreichbar.'
     case 'session_limit_reached':
-      return 'Das Tageslimit des Assistenten ist erreicht. Andrej ist weiterhin direkt per Telefon erreichbar.'
+      return 'Diese Unterhaltung hat ihr Sicherheitslimit erreicht. Bestätige dich bitte kurz erneut, um einen frischen Chat zu starten.'
     case 'assistant_unavailable':
     case 'service_unavailable':
       return 'Der Assistent ist gerade nicht erreichbar. Du kannst Andrej direkt anrufen oder später erneut versuchen.'
@@ -168,13 +169,15 @@ export default function SupportBot() {
   const messageEndRef = useRef<HTMLDivElement>(null)
   const suggestionsRef = useRef<HTMLDivElement>(null)
 
-  const clearSession = useCallback(() => {
+  const clearSession = useCallback((message?: string) => {
     sessionStorage.removeItem(SESSION_STORAGE_KEY)
     setSession(null)
     setMessages([])
     setShowDirectContact(false)
     setPhase('needs-verification')
-    setErrorMessage('Deine Sitzung ist abgelaufen. Bitte bestätige kurz erneut, dass du ein Mensch bist.')
+    setErrorMessage(
+      message ?? 'Deine Sitzung ist abgelaufen. Bitte bestätige kurz erneut, dass du ein Mensch bist.',
+    )
   }, [])
 
   const createSession = useCallback(async (turnstileToken: string) => {
@@ -326,6 +329,10 @@ export default function SupportBot() {
       const apiError = error as ApiError
       if (apiError.status === 401 || apiError.code === 'session_expired') {
         clearSession()
+        return
+      }
+      if (apiError.code === 'session_limit_reached') {
+        clearSession(getErrorMessage(apiError.code))
         return
       }
       setErrorMessage(getErrorMessage(apiError.code))
