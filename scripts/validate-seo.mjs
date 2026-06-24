@@ -3,6 +3,7 @@ import { join } from 'node:path'
 
 const siteUrl = 'https://schultes-it.de'
 const cloudflareBeaconToken = '9ae74b8a40a94aa885b1c61231e312c6'
+const previewImageUrl = `${siteUrl}/og-cover.png`
 const routes = ['/', '/pc-system/', '/netzwerk-wlan/', '/webseiten/', '/tools-automation/']
 
 async function read(relativePath) {
@@ -35,6 +36,19 @@ for (const route of routes) {
   assert(
     html.includes('index, follow, max-image-preview:large'),
     `Indexing robots directive is missing in ${outputPath}.`,
+  )
+  assert(
+    html.includes(`<meta property="og:image" content="${previewImageUrl}" />`),
+    `Open Graph image is missing or not PNG in ${outputPath}.`,
+  )
+  assert(
+    html.includes('<meta property="og:image:width" content="1200" />') &&
+      html.includes('<meta property="og:image:height" content="630" />'),
+    `Open Graph image dimensions are missing in ${outputPath}.`,
+  )
+  assert(
+    html.includes(`<meta name="twitter:image" content="${previewImageUrl}" />`),
+    `Twitter preview image is missing or not PNG in ${outputPath}.`,
   )
   assert(
     html.includes('https://static.cloudflareinsights.com/beacon.min.js'),

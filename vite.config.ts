@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react'
 import { servicePages, type ServicePageData } from './src/serviceCatalog'
 
 const siteUrl = 'https://schultes-it.de'
+const previewImageUrl = `${siteUrl}/og-cover.png`
 
 function businessSchema() {
   return {
@@ -12,7 +13,7 @@ function businessSchema() {
     name: 'Schultes IT & Netzwerksupport',
     alternateName: 'Schultes IT- & Netzwerksupport',
     url: `${siteUrl}/`,
-    image: `${siteUrl}/og-cover.svg`,
+    image: previewImageUrl,
     telephone: '+49 1523 3364752',
     email: 'it.schulteslb@gmail.com',
     priceRange: 'Fernhilfe ab 25 EUR, Service beim Kunden ab 49 EUR',
