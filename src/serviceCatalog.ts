@@ -469,7 +469,7 @@ export const primaryServicePages: ServicePageData[] = [
     tags: ['Workflows', 'KI', 'Prototypen'],
     seoTitle: 'Automatisierung Ludwigsburg | Tools für Betriebe',
     seoDescription:
-      'Individuelle Tools und Automatisierungen für Selbstständige und kleine Firmen: Abläufe vereinfachen, Daten ordnen und Prototypen praxisnah entwickeln.',
+      'Individuelle Tools und Automatisierungen in Ludwigsburg für Selbstständige und kleine Firmen: Abläufe vereinfachen, Daten ordnen und Prototypen praxisnah entwickeln.',
     keywords:
       'Automatisierung Ludwigsburg, individuelle Software kleine Unternehmen, Workflow Automation, KI Tools, Prozessautomatisierung, Prototyp Entwicklung',
     heroLead: 'Wiederholungen raus. Klarheit rein.',

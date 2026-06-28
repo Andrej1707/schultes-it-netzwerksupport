@@ -65,6 +65,8 @@ function serviceSchema(service: ServicePageData) {
         description: service.seoDescription,
         isPartOf: { '@id': `${siteUrl}/#website` },
         about: { '@id': `${url}#service` },
+        publisher: { '@id': `${siteUrl}/#business` },
+        mainEntity: { '@id': `${url}#service` },
         inLanguage: 'de-DE',
       },
       {
