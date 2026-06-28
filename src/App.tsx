@@ -46,8 +46,10 @@ import {
 } from 'lucide-react'
 import type { Variants } from 'framer-motion'
 import {
+  primaryServicePages,
   servicePageBySlug,
   servicePages,
+  topicPages,
   type ServiceIconName,
   type ServicePageData,
 } from './serviceCatalog'
@@ -69,7 +71,13 @@ const serviceIcons: Record<ServiceIconName, LucideIcon> = {
   bot: Bot,
 }
 
-const services = servicePages.map((service) => ({
+const services = primaryServicePages.map((service) => ({
+  ...service,
+  icon: serviceIcons[service.icon],
+  href: `/${service.slug}/`,
+}))
+
+const topicServices = topicPages.map((service) => ({
   ...service,
   icon: serviceIcons[service.icon],
   href: `/${service.slug}/`,
@@ -522,10 +530,29 @@ function ShortcutMenu({ open, onClose, isHome = false }: ShortcutMenuProps) {
             </div>
           </section>
 
+          <section className="shortcut-menu-section shortcut-topics" aria-labelledby="shortcut-topics-title">
+            <header>
+              <span>02 / HÄUFIG GESUCHT</span>
+              <p id="shortcut-topics-title">Konkrete Hilfe für typische Probleme</p>
+            </header>
+            <div className="shortcut-topic-list">
+              {topicServices.map((service) => {
+                const TopicIcon = service.icon
+                return (
+                  <a key={service.href} href={service.href} onClick={onClose}>
+                    <TopicIcon aria-hidden="true" />
+                    <span>{service.title}</span>
+                    <ChevronRight aria-hidden="true" />
+                  </a>
+                )
+              })}
+            </div>
+          </section>
+
           <div className="shortcut-menu-lower">
             <section className="shortcut-menu-section" aria-labelledby="shortcut-more-title">
               <header>
-                <span>02 / MEHR</span>
+                <span>03 / MEHR</span>
                 <p id="shortcut-more-title">Weitere Schnellzugriffe</p>
               </header>
               <div className="shortcut-link-list">
@@ -539,7 +566,7 @@ function ShortcutMenu({ open, onClose, isHome = false }: ShortcutMenuProps) {
 
             <section className="shortcut-menu-section shortcut-contact" aria-labelledby="shortcut-contact-title">
               <header>
-                <span>03 / DIREKT</span>
+                <span>04 / DIREKT</span>
                 <p id="shortcut-contact-title">Problem kurz besprechen</p>
               </header>
               <a href={phoneHref} onClick={onClose}>

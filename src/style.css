@@ -465,6 +465,48 @@ button {
   margin-top: 2rem;
 }
 
+.shortcut-topics {
+  margin-top: 2rem;
+}
+
+.shortcut-topic-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.shortcut-topic-list a {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) 14px;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 54px;
+  padding: 0.85rem 0.95rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: #a9bdca;
+  font-size: 0.72rem;
+  background: rgba(8, 20, 30, 0.28);
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.shortcut-topic-list a:hover {
+  color: #e8f6ff;
+  border-color: var(--line-strong);
+  background: rgba(18, 50, 68, 0.5);
+}
+
+.shortcut-topic-list svg:first-child {
+  width: 16px;
+  color: var(--cyan);
+}
+
+.shortcut-topic-list svg:last-child {
+  width: 14px;
+  color: #587286;
+}
+
 .shortcut-link-list a,
 .shortcut-contact > a {
   display: grid;
@@ -4090,6 +4132,7 @@ body[data-legal-page='true'] {
   }
 
   .shortcut-service-grid,
+  .shortcut-topic-list,
   .shortcut-menu-lower {
     grid-template-columns: 1fr;
   }

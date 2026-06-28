@@ -4,7 +4,24 @@ import { join } from 'node:path'
 const siteUrl = 'https://schultes-it.de'
 const cloudflareBeaconToken = '9ae74b8a40a94aa885b1c61231e312c6'
 const previewImageUrl = `${siteUrl}/og-cover.png`
-const routes = ['/', '/pc-system/', '/netzwerk-wlan/', '/webseiten/', '/tools-automation/']
+const routes = [
+  '/',
+  '/pc-system/',
+  '/netzwerk-wlan/',
+  '/webseiten/',
+  '/tools-automation/',
+  '/installation/',
+  '/it-consulting/',
+  '/windows-einrichten/',
+  '/benutzerkonten/',
+  '/email/',
+  '/drucker/',
+  '/programme/',
+  '/office-installation/',
+  '/router-entstoerung/',
+  '/fernwartung/',
+  '/it-notdienst/',
+]
 
 async function read(relativePath) {
   return readFile(join(process.cwd(), 'dist', relativePath), 'utf8')
