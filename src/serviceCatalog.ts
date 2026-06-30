@@ -1500,8 +1500,8 @@ export const topicPages: ServicePageData[] = [
     title: 'Fernwartung',
     shortTitle: 'Fernwartung',
     description:
-      'Sichere Fernhilfe bei PC-, Windows-, E-Mail- und Programmproblemen, wenn kein Vor-Ort-Termin nötig ist.',
-    tags: ['Remote', 'Support', 'Schnellhilfe'],
+      'Sichere Fernhilfe mit RustDesk bei PC-, Windows-, E-Mail- und Programmproblemen, wenn kein Vor-Ort-Termin nötig ist.',
+    tags: ['Remote', 'RustDesk', 'Schnellhilfe'],
     seoTitle: 'Fernwartung Ludwigsburg | Remote IT-Hilfe',
     seoDescription:
       'Fernwartung und Remote IT-Hilfe in Ludwigsburg: PC-, Windows-, E-Mail- und Programmprobleme schnell prüfen, wenn Hilfe aus der Ferne ausreicht.',
@@ -1510,7 +1510,7 @@ export const topicPages: ServicePageData[] = [
     heroLead: 'Hilfe aus der Ferne.',
     heroAccent: 'Wenn Vor-Ort nicht nötig ist.',
     heroText:
-      'Viele Software-, Windows- oder E-Mail-Probleme lassen sich per Fernwartung schneller klären. Du bleibst dabei am Gerät und siehst, was passiert.',
+      'Viele Software-, Windows- oder E-Mail-Probleme lassen sich per Fernwartung schneller klären. Dafür brauchst du RustDesk auf deinem Windows-PC. Du bleibst am Gerät und siehst, was passiert.',
     price: 'Fernhilfe ab 25 €',
     audienceHint: 'Für schnelle Hilfe bei Problemen, die ohne Hardware-Anfassen lösbar sind.',
     situations: [
@@ -1534,7 +1534,11 @@ export const topicPages: ServicePageData[] = [
     solutions: [
       {
         title: 'Sichere Verbindung erklären',
-        text: 'Du bekommst erklärt, wie die Fernwartung startet und wie du sie beenden kannst.',
+        text: 'Du bekommst erklärt, wie RustDesk gestartet wird und wie du die Fernwartung jederzeit beenden kannst.',
+      },
+      {
+        title: 'RustDesk herunterladen',
+        text: 'Die Windows-Datei liegt direkt auf der Website bereit. Starte sie erst, wenn du mit Andrej sprichst.',
       },
       {
         title: 'Problem gemeinsam prüfen',
@@ -1570,7 +1574,12 @@ export const topicPages: ServicePageData[] = [
       {
         question: 'Ist Fernwartung sicher?',
         answer:
-          'Ja, wenn sie bewusst gestartet wird und du die Kontrolle behältst. Ich erkläre den Ablauf vorher.',
+          'Ja, wenn sie bewusst gestartet wird und du die Kontrolle behältst. Lade RustDesk nur von dieser Website oder der offiziellen Quelle und nenne ID oder Code nur, wenn du aktiv mit Andrej sprichst.',
+      },
+      {
+        question: 'Muss ich RustDesk installieren?',
+        answer:
+          'Für normale Fernhilfe reicht die bereitgestellte RustDesk-Datei in der Regel zum Starten. Für bestimmte Admin- oder Sicherheitsfenster kann zusätzliche Freigabe oder Installation nötig sein.',
       },
       {
         question: 'Welche Probleme gehen per Fernwartung?',

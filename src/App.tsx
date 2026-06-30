@@ -15,6 +15,7 @@ import {
   Code2,
   Copy,
   Cpu,
+  Download,
   ExternalLink,
   FileSearch,
   FileText,
@@ -63,6 +64,13 @@ const email = ['it.schulteslb', 'gmail.com'].join('@')
 const address = 'Egerländer Str. 24, 71638 Ludwigsburg'
 const mapsUrl = 'https://maps.app.goo.gl/9riyhNzidDpzvynd8'
 const mapsEmbedUrl = 'https://www.google.com/maps?q=48.8886228%2C9.2064228&z=17&output=embed'
+const remoteSupportDownload = {
+  href: '/downloads/rustdesk.exe',
+  fileName: 'rustdesk.exe',
+  version: 'RustDesk 1.4.5',
+  size: '23,1 MB',
+  sha256: '43A9B0CD46AFE1944D0010849CF3A90FC474D73B13359ACC984B766404FBEA37',
+}
 
 const serviceIcons: Record<ServiceIconName, LucideIcon> = {
   laptop: Laptop,
@@ -1032,6 +1040,7 @@ function ServicePage({ service }: { service: ServicePageData }) {
   const relatedServices = service.related
     .map((slug) => servicePageBySlug[slug])
     .filter((entry): entry is ServicePageData => Boolean(entry))
+  const showRemoteDownload = service.slug === 'fernwartung'
 
   return (
     <>
@@ -1299,6 +1308,65 @@ function ServicePage({ service }: { service: ServicePageData }) {
             ))}
           </motion.div>
         </section>
+
+        {showRemoteDownload && (
+          <section className="remote-download service-detail-shell" id="rustdesk-download">
+            <motion.div
+              className="remote-download-card"
+              variants={reveal}
+              initial={motionInitial}
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.25 }}
+            >
+              <div className="remote-download-copy">
+                <span className="section-number">05 / FERNWARTUNG STARTEN</span>
+                <Download aria-hidden="true" />
+                <h2>
+                  RustDesk herunterladen.
+                  <span> Erst starten, wenn wir sprechen.</span>
+                </h2>
+                <p>
+                  Für Fernwartung brauchst du RustDesk auf deinem Windows-PC. Lade die Datei
+                  herunter, öffne sie erst nach telefonischer Abstimmung und nenne ID oder Code nur
+                  Andrej.
+                </p>
+              </div>
+
+              <div className="remote-download-panel">
+                <a
+                  className="remote-download-action"
+                  href={remoteSupportDownload.href}
+                  download={remoteSupportDownload.fileName}
+                  type="application/vnd.microsoft.portable-executable"
+                >
+                  <span>
+                    <small>WINDOWS DOWNLOAD</small>
+                    {remoteSupportDownload.fileName}
+                  </span>
+                  <Download aria-hidden="true" />
+                </a>
+                <dl>
+                  <div>
+                    <dt>Version</dt>
+                    <dd>{remoteSupportDownload.version}</dd>
+                  </div>
+                  <div>
+                    <dt>Größe</dt>
+                    <dd>{remoteSupportDownload.size}</dd>
+                  </div>
+                  <div>
+                    <dt>SHA-256</dt>
+                    <dd>{remoteSupportDownload.sha256}</dd>
+                  </div>
+                </dl>
+                <p>
+                  Wichtig: Lade und starte Fernwartungssoftware nur, wenn du aktiv mit Andrej
+                  Schultes sprichst. Gib Codes niemals an fremde Personen weiter.
+                </p>
+              </div>
+            </motion.div>
+          </section>
+        )}
 
         <section className="service-confidence service-detail-shell">
           <motion.div
