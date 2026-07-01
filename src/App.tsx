@@ -118,15 +118,15 @@ const everydayProblems = [
     icon: Laptop,
     title: 'Mein PC geht nicht mehr an',
     text: 'Der Rechner bleibt schwarz, startet nur kurz oder Windows fährt nicht mehr hoch.',
-    href: '/pc-system/',
-    label: 'PC-Hilfe',
+    href: '/pc-startet-nicht/',
+    label: 'Startproblem',
   },
   {
     icon: Cpu,
     title: 'Mein PC oder Laptop ist sehr langsam',
     text: 'Programme brauchen ewig, Updates hängen oder das Gerät reagiert nur noch zäh.',
-    href: '/pc-system/',
-    label: 'Computerhilfe',
+    href: '/pc-langsam/',
+    label: 'PC langsam',
   },
   {
     icon: Router,
@@ -139,8 +139,22 @@ const everydayProblems = [
     icon: Radio,
     title: 'WLAN verbunden, aber kein Internet',
     text: 'Handy oder Laptop zeigen WLAN an, trotzdem lädt keine Seite zuverlässig.',
-    href: '/netzwerk-wlan/',
+    href: '/router-entstoerung/',
     label: 'Netzwerkhilfe',
+  },
+  {
+    icon: Router,
+    title: 'Fritzbox oder Mesh macht Probleme',
+    text: 'Repeater, Router oder WLAN-Abdeckung sollen bei dir vor Ort sauber eingerichtet werden.',
+    href: '/fritzbox-hilfe/',
+    label: 'Routerhilfe',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Verdächtige Mail oder SMS bekommen',
+    text: 'Nicht weiterklicken: Betrugsverdacht, Phishing und komische Konto-Warnungen ruhig einordnen.',
+    href: '/betrugsverdacht-phishing-hilfe/',
+    label: 'Sicherheit',
   },
 ]
 

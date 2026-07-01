@@ -21,6 +21,12 @@ const routes = [
   '/router-entstoerung/',
   '/fernwartung/',
   '/it-notdienst/',
+  '/pc-langsam/',
+  '/pc-startet-nicht/',
+  '/fritzbox-hilfe/',
+  '/mesh-wlan-einrichten/',
+  '/senioren-handy-hilfe/',
+  '/betrugsverdacht-phishing-hilfe/',
 ]
 
 async function read(relativePath) {
