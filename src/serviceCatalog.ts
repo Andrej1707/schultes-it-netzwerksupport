@@ -1693,87 +1693,87 @@ export const topicPages: ServicePageData[] = [
     title: 'PC langsam',
     shortTitle: 'PC langsam',
     description:
-      'Hilfe in Ludwigsburg, wenn PC oder Laptop langsam geworden sind, Programme ewig laden oder Windows nur noch traege reagiert.',
+      'Hilfe in Ludwigsburg, wenn PC oder Laptop langsam geworden sind, Programme ewig laden oder Windows nur noch träge reagiert.',
     tags: ['Langsam', 'Windows', 'Analyse'],
     seoTitle: 'PC langsam Ludwigsburg | Laptop schneller machen',
     seoDescription:
-      'PC langsam in Ludwigsburg? Hilfe, wenn Laptop oder Computer traege reagieren, Programme lange laden oder Windows haengt. Ursache pruefen, sauber erklaeren, sinnvoll loesen.',
+      'PC langsam in Ludwigsburg? Hilfe, wenn Laptop oder Computer träge reagieren, Programme lange laden oder Windows hängt. Ursache prüfen, sauber erklären, sinnvoll lösen.',
     keywords:
-      'PC langsam Ludwigsburg, Laptop langsam, Computer langsam, Windows langsam, PC schneller machen, Laptop haengt, PC Hilfe Ludwigsburg',
+      'PC langsam Ludwigsburg, Laptop langsam, Computer langsam, Windows langsam, PC schneller machen, Laptop hängt, PC Hilfe Ludwigsburg',
     heroLead: 'Wenn der PC nur noch kriecht.',
-    heroAccent: 'Erst Ursache finden, dann aufraeumen.',
+    heroAccent: 'Erst Ursache finden, dann aufräumen.',
     heroText:
-      'Ein langsamer PC muss nicht sofort ersetzt werden. Ich pruefe, ob Windows, Programme, Autostarts, Speicher, Updates oder Hardware die Ursache sind und erklaere dir verstaendlich, was wirklich sinnvoll ist.',
+      'Ein langsamer PC muss nicht sofort ersetzt werden. Ich prüfe, ob Windows, Programme, Autostarts, Speicher, Updates oder Hardware die Ursache sind und erkläre dir verständlich, was wirklich sinnvoll ist.',
     price: 'Fernhilfe ab 25 € · Bei dir vor Ort ab 49 €',
-    audienceHint: 'Fuer alle, deren PC oder Laptop im Alltag zu langsam geworden ist.',
+    audienceHint: 'Für alle, deren PC oder Laptop im Alltag zu langsam geworden ist.',
     situations: [
       {
         title: 'Programme starten sehr langsam',
-        text: 'Browser, Office oder E-Mail brauchen ewig, obwohl frueher alles schneller war.',
+        text: 'Browser, Office oder E-Mail brauchen ewig, obwohl früher alles schneller war.',
       },
       {
-        title: 'Windows haengt nach dem Start',
+        title: 'Windows hängt nach dem Start',
         text: 'Nach dem Einschalten dauert es lange, bis man wirklich arbeiten kann.',
       },
       {
-        title: 'Der Laptop wird laut oder heiss',
-        text: 'Der Luefter dreht hoch, das Geraet reagiert traege oder friert zwischendurch ein.',
+        title: 'Der Laptop wird laut oder heiß',
+        text: 'Der Lüfter dreht hoch, das Gerät reagiert träge oder friert zwischendurch ein.',
       },
       {
-        title: 'Du willst nichts Falsches loeschen',
+        title: 'Du willst nichts Falsches löschen',
         text: 'Unklare Programme, volle Laufwerke oder Warnungen sollen sauber eingeordnet werden.',
       },
     ],
     solutions: [
       {
-        title: 'Systemauslastung pruefen',
+        title: 'Systemauslastung prüfen',
         text: 'Schauen, ob Programme, Updates, Speicher oder Hintergrundprozesse das System bremsen.',
       },
       {
         title: 'Autostarts einordnen',
-        text: 'Unnoetige Startprogramme erkennen, ohne wichtige Funktionen blind abzuschalten.',
+        text: 'Unnötige Startprogramme erkennen, ohne wichtige Funktionen blind abzuschalten.',
       },
       {
         title: 'Speicherplatz bewerten',
-        text: 'Volle Laufwerke und alte Daten strukturiert ansehen, bevor etwas geloescht wird.',
+        text: 'Volle Laufwerke und alte Daten strukturiert ansehen, bevor etwas gelöscht wird.',
       },
       {
-        title: 'Updates und Treiber pruefen',
-        text: 'Windows, Programme und Geraete auf offensichtliche Konflikte kontrollieren.',
+        title: 'Updates und Treiber prüfen',
+        text: 'Windows, Programme und Geräte auf offensichtliche Konflikte kontrollieren.',
       },
       {
-        title: 'Hardware realistisch einschaetzen',
-        text: 'Wenn RAM, SSD oder Alter des Geraets eine Rolle spielen, bekommst du eine ehrliche Empfehlung.',
+        title: 'Hardware realistisch einschätzen',
+        text: 'Wenn RAM, SSD oder Alter des Geräts eine Rolle spielen, bekommst du eine ehrliche Empfehlung.',
       },
       {
         title: 'Alltagstest machen',
-        text: 'Am Ende zaehlt, ob Browser, E-Mail und deine wichtigen Programme wieder nutzbar laufen.',
+        text: 'Am Ende zählt, ob Browser, E-Mail und deine wichtigen Programme wieder nutzbar laufen.',
       },
     ],
     confidenceTitle: 'Nicht jeder langsame PC ist kaputt.',
     confidenceText:
-      'Viele Geraete werden durch Software, Autostarts, volle Laufwerke oder Updates ausgebremst. Ich pruefe erst, bevor teure Ersatzteile oder ein neuer PC empfohlen werden.',
+      'Viele Geräte werden durch Software, Autostarts, volle Laufwerke oder Updates ausgebremst. Ich prüfe erst, bevor teure Ersatzteile oder ein neuer PC empfohlen werden.',
     confidencePoints: [
-      'Keine blind geloeschten Daten',
+      'Keine blind gelöschten Daten',
       'Erst Analyse, dann Empfehlung',
-      'Verstaendlich fuer Senioren',
+      'Verständlich für Senioren',
       'Vor Ort oder per Fernhilfe',
     ],
     faqs: [
       {
         question: 'Kann man einen alten PC wieder schneller machen?',
         answer:
-          'Oft ja, zumindest spuerbar. Ob es sich lohnt, haengt von Alter, Speicher, Laufwerk und Zustand ab. Ich sage ehrlich, wenn ein Upgrade oder Ersatz sinnvoller ist.',
+          'Oft ja, zumindest spürbar. Ob es sich lohnt, hängt von Alter, Speicher, Laufwerk und Zustand ab. Ich sage ehrlich, wenn ein Upgrade oder Ersatz sinnvoller ist.',
       },
       {
-        question: 'Loeschst du einfach Programme?',
+        question: 'Löschst du einfach Programme?',
         answer:
-          'Nein. Ich pruefe zuerst, was gebraucht wird und erklaere dir, was entfernt oder deaktiviert werden kann.',
+          'Nein. Ich prüfe zuerst, was gebraucht wird und erkläre dir, was entfernt oder deaktiviert werden kann.',
       },
       {
-        question: 'Geht die Pruefung per Fernwartung?',
+        question: 'Geht die Prüfung per Fernwartung?',
         answer:
-          'Bei vielen Software-Ursachen ja. Wenn Hardware, Ueberhitzung oder Geraeusche wichtig sind, ist ein Termin bei dir vor Ort besser.',
+          'Bei vielen Software-Ursachen ja. Wenn Hardware, Überhitzung oder Geräusche wichtig sind, ist ein Termin bei dir vor Ort besser.',
       },
       {
         question: 'Was kann ich vorher selbst sicher versuchen?',
@@ -1790,7 +1790,7 @@ export const topicPages: ServicePageData[] = [
     title: 'PC startet nicht',
     shortTitle: 'Startproblem',
     description:
-      'Hilfe in Ludwigsburg, wenn PC oder Laptop nicht mehr starten, der Bildschirm schwarz bleibt oder Windows nicht hochfaehrt.',
+      'Hilfe in Ludwigsburg, wenn PC oder Laptop nicht mehr starten, der Bildschirm schwarz bleibt oder Windows nicht hochfährt.',
     tags: ['Startet nicht', 'Windows', 'Laptop'],
     seoTitle: 'PC startet nicht Ludwigsburg | Laptop geht nicht an',
     seoDescription:
@@ -1800,13 +1800,13 @@ export const topicPages: ServicePageData[] = [
     heroLead: 'Schwarzer Bildschirm. Kein Plan.',
     heroAccent: 'Ruhig bleiben, sauber eingrenzen.',
     heroText:
-      'Wenn ein PC nicht startet, ist Panik selten hilfreich. Ich pruefe mit dir, ob Strom, Bildschirm, Windows, Datentraeger oder Hardware betroffen sind und welche Schritte sicher sind.',
+      'Wenn ein PC nicht startet, ist Panik selten hilfreich. Ich prüfe mit dir, ob Strom, Bildschirm, Windows, Datenträger oder Hardware betroffen sind und welche Schritte sicher sind.',
     price: 'Bei dir vor Ort ab 49 € · Fernhilfe nur wenn erreichbar',
-    audienceHint: 'Fuer alle, deren Computer, Laptop oder Windows gerade gar nicht mehr nutzbar startet.',
+    audienceHint: 'Für alle, deren Computer, Laptop oder Windows gerade gar nicht mehr nutzbar startet.',
     situations: [
       {
         title: 'Der Bildschirm bleibt schwarz',
-        text: 'Das Geraet scheint an zu sein, aber es erscheint kein Bild oder nur kurz ein Logo.',
+        text: 'Das Gerät scheint an zu sein, aber es erscheint kein Bild oder nur kurz ein Logo.',
       },
       {
         title: 'Windows startet nicht',
@@ -1814,47 +1814,47 @@ export const topicPages: ServicePageData[] = [
       },
       {
         title: 'Laptop reagiert gar nicht',
-        text: 'Keine Lampe, kein Luefter oder nur ein kurzes Blinken beim Einschalten.',
+        text: 'Keine Lampe, kein Lüfter oder nur ein kurzes Blinken beim Einschalten.',
       },
       {
-        title: 'Wichtige Daten sind auf dem Geraet',
+        title: 'Wichtige Daten sind auf dem Gerät',
         text: 'Dann sollte nicht wild experimentiert werden, damit die Lage nicht schlimmer wird.',
       },
     ],
     solutions: [
       {
         title: 'Strom und Anzeige trennen',
-        text: 'Pruefen, ob das Problem am Geraet, Netzteil, Kabel, Bildschirm oder Windows liegt.',
+        text: 'Prüfen, ob das Problem am Gerät, Netzteil, Kabel, Bildschirm oder Windows liegt.',
       },
       {
         title: 'Startverhalten beobachten',
-        text: 'Lampen, Luefter, Töne, Logos und Fehlermeldungen richtig einordnen.',
+        text: 'Lampen, Lüfter, Töne, Logos und Fehlermeldungen richtig einordnen.',
       },
       {
-        title: 'Windows-Start pruefen',
-        text: 'Sichere Reparatur- und Diagnosewege bewerten, ohne Daten unnoetig zu gefaehrden.',
+        title: 'Windows-Start prüfen',
+        text: 'Sichere Reparatur- und Diagnosewege bewerten, ohne Daten unnötig zu gefährden.',
       },
       {
-        title: 'Datenrisiko einschaetzen',
+        title: 'Datenrisiko einschätzen',
         text: 'Wenn Daten wichtig sind, werden riskante Experimente vermieden.',
       },
       {
         title: 'Hardwaregrenze erkennen',
-        text: 'Wenn Netzteil, Akku, Laufwerk oder Mainboard verdächtig sind, bekommst du eine klare Einschaetzung.',
+        text: 'Wenn Netzteil, Akku, Laufwerk oder Mainboard verdächtig sind, bekommst du eine klare Einschätzung.',
       },
       {
-        title: 'Naechsten Schritt klären',
-        text: 'Vor Ort, Spezialreparatur oder Neuinstallation wird erst nach realistischer Pruefung empfohlen.',
+        title: 'Nächsten Schritt klären',
+        text: 'Vor Ort, Spezialreparatur oder Neuinstallation wird erst nach realistischer Prüfung empfohlen.',
       },
     ],
     confidenceTitle: 'Keine Rettungsversuche auf Verdacht.',
     confidenceText:
-      'Bei Startproblemen kann falsches Herumprobieren Daten gefaehrden. Ich arbeite deshalb vorsichtig und bespreche jeden riskanteren Schritt vorher.',
+      'Bei Startproblemen kann falsches Herumprobieren Daten gefährden. Ich arbeite deshalb vorsichtig und bespreche jeden riskanteren Schritt vorher.',
     confidencePoints: [
       'Datenrisiko beachten',
       'Strom, Anzeige und Windows trennen',
       'Keine BIOS-Bastelei per Chat',
-      'Vor-Ort-Pruefung bei Hardwareverdacht',
+      'Vor-Ort-Prüfung bei Hardwareverdacht',
     ],
     faqs: [
       {
@@ -1865,17 +1865,17 @@ export const topicPages: ServicePageData[] = [
       {
         question: 'Soll ich selbst Reparaturprogramme ausprobieren?',
         answer:
-          'Nicht, wenn wichtige Daten auf dem Geraet sind. Ruf lieber kurz an, bevor du riskante Schritte startest.',
+          'Nicht, wenn wichtige Daten auf dem Gerät sind. Ruf lieber kurz an, bevor du riskante Schritte startest.',
       },
       {
         question: 'Kannst du Daten retten?',
         answer:
-          'Ich kann die Lage vorsichtig einschaetzen und einfache sichere Optionen pruefen. Bei schweren Defekten oder hohem Datenwert ist ein spezialisierter Datenretter sinnvoll.',
+          'Ich kann die Lage vorsichtig einschätzen und einfache sichere Optionen prüfen. Bei schweren Defekten oder hohem Datenwert ist ein spezialisierter Datenretter sinnvoll.',
       },
       {
         question: 'Was soll ich vor dem Anruf notieren?',
         answer:
-          'Ob Lampen leuchten, Luefter laufen, ein Logo erscheint, Pieptoene kommen oder eine Fehlermeldung angezeigt wird.',
+          'Ob Lampen leuchten, Lüfter laufen, ein Logo erscheint, Pieptöne kommen oder eine Fehlermeldung angezeigt wird.',
       },
     ],
     related: ['pc-system', 'it-notdienst', 'fernwartung'],
@@ -1891,19 +1891,19 @@ export const topicPages: ServicePageData[] = [
     tags: ['Fritzbox', 'Router', 'WLAN'],
     seoTitle: 'Fritzbox Hilfe Ludwigsburg | WLAN, Internet & Mesh',
     seoDescription:
-      'Fritzbox Hilfe in Ludwigsburg: WLAN geht nicht, Internet faellt aus, Mesh oder Repeater einrichten, Router-Meldungen verstehen und stabilisieren.',
+      'Fritzbox Hilfe in Ludwigsburg: WLAN geht nicht, Internet fällt aus, Mesh oder Repeater einrichten, Router-Meldungen verstehen und stabilisieren.',
     keywords:
       'Fritzbox Hilfe Ludwigsburg, Fritzbox einrichten, Fritzbox WLAN geht nicht, Fritzbox Mesh, Router Hilfe Ludwigsburg, Internet Hilfe',
     heroLead: 'Fritzbox verstehen.',
     heroAccent: 'WLAN und Internet sauber ordnen.',
     heroText:
-      'Die Fritzbox kann viel, aber genau deshalb wirken Menues und Meldungen schnell unuebersichtlich. Ich helfe bei WLAN, Internet, Mesh, Geraeten und sinnvollen Einstellungen direkt bei dir in Ludwigsburg und Umgebung.',
+      'Die Fritzbox kann viel, aber genau deshalb wirken Menüs und Meldungen schnell unübersichtlich. Ich helfe bei WLAN, Internet, Mesh, Geräten und sinnvollen Einstellungen direkt bei dir in Ludwigsburg und Umgebung.',
     price: 'Bei dir vor Ort ab 49 € · Analyse nach Aufwand',
-    audienceHint: 'Fuer Haushalte, Senioren, Homeoffice und kleine Betriebe mit Fritzbox- oder Routerproblemen.',
+    audienceHint: 'Für Haushalte, Senioren, Homeoffice und kleine Betriebe mit Fritzbox- oder Routerproblemen.',
     situations: [
       {
         title: 'Fritzbox-WLAN ist instabil',
-        text: 'Geraete verlieren die Verbindung oder verbinden sich nur in bestimmten Raeumen.',
+        text: 'Geräte verlieren die Verbindung oder verbinden sich nur in bestimmten Räumen.',
       },
       {
         title: 'Internet geht trotz Fritzbox nicht',
@@ -1911,17 +1911,17 @@ export const topicPages: ServicePageData[] = [
       },
       {
         title: 'Mesh oder Repeater verwirren',
-        text: 'Mehrere Geraete sind vorhanden, aber die Verbindung wird nicht besser.',
+        text: 'Mehrere Geräte sind vorhanden, aber die Verbindung wird nicht besser.',
       },
       {
         title: 'Nach Update oder Anbieterwechsel ist alles anders',
-        text: 'Neue Oberflaeche, Zugangsdaten oder Einstellungen sollen wieder verstaendlich werden.',
+        text: 'Neue Oberfläche, Zugangsdaten oder Einstellungen sollen wieder verständlich werden.',
       },
     ],
     solutions: [
       {
         title: 'Fritzbox-Status einordnen',
-        text: 'Internet, WLAN, Mesh und Geraete getrennt betrachten.',
+        text: 'Internet, WLAN, Mesh und Geräte getrennt betrachten.',
       },
       {
         title: 'WLAN sinnvoll einstellen',
@@ -1929,24 +1929,24 @@ export const topicPages: ServicePageData[] = [
       },
       {
         title: 'Mesh verbinden',
-        text: 'Repeater oder Mesh-Geraete korrekt koppeln und passend platzieren.',
+        text: 'Repeater oder Mesh-Geräte korrekt koppeln und passend platzieren.',
       },
       {
-        title: 'Geraete pruefen',
+        title: 'Geräte prüfen',
         text: 'PC, Handy, Drucker oder Fernseher praktisch im Netzwerk testen.',
       },
       {
         title: 'Updates kontrollieren',
-        text: 'Firmware und Einstellungen vorsichtig pruefen, ohne den Anschluss zu riskieren.',
+        text: 'Firmware und Einstellungen vorsichtig prüfen, ohne den Anschluss zu riskieren.',
       },
       {
         title: 'Anbietergrenze erkennen',
-        text: 'Wenn die Leitung oder Zugangsdaten betroffen sind, bekommst du klare Hinweise fuer den Anbieter.',
+        text: 'Wenn die Leitung oder Zugangsdaten betroffen sind, bekommst du klare Hinweise für den Anbieter.',
       },
     ],
     confidenceTitle: 'Routerhilfe ohne Einstellungs-Chaos.',
     confidenceText:
-      'Ich fasse Router, WLAN und Endgeraete als ein System auf. So wird klarer, ob die Fritzbox selbst, das WLAN oder ein einzelnes Geraet das Problem macht.',
+      'Ich fasse Router, WLAN und Endgeräte als ein System auf. So wird klarer, ob die Fritzbox selbst, das WLAN oder ein einzelnes Gerät das Problem macht.',
     confidencePoints: [
       'Fritzbox und WLAN trennen',
       'Mesh sauber verbinden',
@@ -1957,12 +1957,12 @@ export const topicPages: ServicePageData[] = [
       {
         question: 'Richtest du Fritzbox Mesh ein?',
         answer:
-          'Ja. Ich pruefe, wie die Mesh-Geraete verbunden sind, wo sie stehen sollten und ob sie wirklich die Reichweite verbessern.',
+          'Ja. Ich prüfe, wie die Mesh-Geräte verbunden sind, wo sie stehen sollten und ob sie wirklich die Reichweite verbessern.',
       },
       {
         question: 'Kannst du bei Fritzbox-Internetproblemen helfen?',
         answer:
-          'Ja. Ich grenze ein, ob Fritzbox, Anschluss, WLAN oder Endgeraet betroffen ist. Eine echte Anbieterstoerung kann nur der Anbieter beheben.',
+          'Ja. Ich grenze ein, ob Fritzbox, Anschluss, WLAN oder Endgerät betroffen ist. Eine echte Anbieterstörung kann nur der Anbieter beheben.',
       },
       {
         question: 'Muss ich mein Fritzbox-Passwort schicken?',
@@ -1970,7 +1970,7 @@ export const topicPages: ServicePageData[] = [
           'Nein. Zugangsdaten solltest du nicht per Chat senden. Wenn sie gebraucht werden, gibst du sie selbst vor Ort ein.',
       },
       {
-        question: 'Hilfst du auch bei Telefonie ueber Fritzbox?',
+        question: 'Hilfst du auch bei Telefonie über Fritzbox?',
         answer:
           'Ich kann einfache Einstellungen und offensichtliche Fehler einordnen. Bei Anbieterfreischaltung oder Vertragsdaten muss oft der Anbieter helfen.',
       },
@@ -1984,19 +1984,19 @@ export const topicPages: ServicePageData[] = [
     title: 'Mesh WLAN einrichten',
     shortTitle: 'Mesh WLAN',
     description:
-      'Mesh WLAN und Repeater in Ludwigsburg einrichten, wenn WLAN nicht alle Raeume erreicht oder staendig abbricht.',
+      'Mesh WLAN und Repeater in Ludwigsburg einrichten, wenn WLAN nicht alle Räume erreicht oder ständig abbricht.',
     tags: ['Mesh', 'Repeater', 'WLAN'],
     seoTitle: 'Mesh WLAN einrichten Ludwigsburg | Repeater & Fritzbox',
     seoDescription:
-      'Mesh WLAN einrichten in Ludwigsburg: Fritzbox Mesh, Repeater, WLAN-Reichweite, Funkloecher und stabile Verbindung fuer Wohnung, Haus oder kleines Buero.',
+      'Mesh WLAN einrichten in Ludwigsburg: Fritzbox Mesh, Repeater, WLAN-Reichweite, Funklöcher und stabile Verbindung für Wohnung, Haus oder kleines Büro.',
     keywords:
       'Mesh WLAN einrichten Ludwigsburg, WLAN Repeater einrichten, Fritzbox Mesh Hilfe, WLAN Reichweite verbessern, Funkloch Wohnung, WLAN Hilfe Ludwigsburg',
     heroLead: 'WLAN soll im ganzen Zuhause ankommen.',
     heroAccent: 'Mesh richtig platzieren statt blind kaufen.',
     heroText:
-      'Repeater und Mesh helfen nur, wenn sie richtig eingesetzt werden. Ich pruefe Raeume, Routerstandort, vorhandene Geraete und richte das WLAN so ein, dass es dort stabiler wird, wo du es wirklich nutzt.',
+      'Repeater und Mesh helfen nur, wenn sie richtig eingesetzt werden. Ich prüfe Räume, Routerstandort, vorhandene Geräte und richte das WLAN so ein, dass es dort stabiler wird, wo du es wirklich nutzt.',
     price: 'Bei dir vor Ort ab 49 € · Hardware nur nach Absprache',
-    audienceHint: 'Fuer Wohnungen, Haeuser, Homeoffice und kleine Raeume mit schlechter WLAN-Abdeckung.',
+    audienceHint: 'Für Wohnungen, Häuser, Homeoffice und kleine Räume mit schlechter WLAN-Abdeckung.',
     situations: [
       {
         title: 'WLAN reicht nicht bis ins Arbeitszimmer',
@@ -2008,7 +2008,7 @@ export const topicPages: ServicePageData[] = [
       },
       {
         title: 'Handy springt zwischen Netzwerken',
-        text: 'Mehrere WLAN-Namen verwirren Geraete oder sorgen fuer Abbrueche.',
+        text: 'Mehrere WLAN-Namen verwirren Geräte oder sorgen für Abbrüche.',
       },
       {
         title: 'Streaming oder Videocalls ruckeln',
@@ -2017,8 +2017,8 @@ export const topicPages: ServicePageData[] = [
     ],
     solutions: [
       {
-        title: 'WLAN-Bereiche pruefen',
-        text: 'Raeume, Nutzung und typische Stoerstellen gemeinsam ansehen.',
+        title: 'WLAN-Bereiche prüfen',
+        text: 'Räume, Nutzung und typische Störstellen gemeinsam ansehen.',
       },
       {
         title: 'Routerstandort bewerten',
@@ -2026,14 +2026,14 @@ export const topicPages: ServicePageData[] = [
       },
       {
         title: 'Mesh oder Repeater koppeln',
-        text: 'Geraete korrekt verbinden, benennen und praktisch testen.',
+        text: 'Geräte korrekt verbinden, benennen und praktisch testen.',
       },
       {
         title: 'Netzwerknamen ordnen',
-        text: 'Ein verstaendliches WLAN fuer den Alltag statt verwirrender Doppelnetze.',
+        text: 'Ein verständliches WLAN für den Alltag statt verwirrender Doppelnetze.',
       },
       {
-        title: 'Geraete priorisieren',
+        title: 'Geräte priorisieren',
         text: 'Homeoffice, Fernseher, Smartphone oder Drucker dort testen, wo sie genutzt werden.',
       },
       {
@@ -2045,16 +2045,16 @@ export const topicPages: ServicePageData[] = [
     confidenceText:
       'Ein Mesh-System kann viel verbessern, aber nur bei passender Platzierung und sauberer Einrichtung. Ich schaue auf den echten Alltag in deiner Wohnung oder deinem Betrieb.',
     confidencePoints: [
-      'Vorhandene Geraete zuerst pruefen',
-      'Funkloecher praktisch testen',
+      'Vorhandene Geräte zuerst prüfen',
+      'Funklöcher praktisch testen',
       'Keine Hardware auf Verdacht',
-      'WLAN dort pruefen, wo du es nutzt',
+      'WLAN dort prüfen, wo du es nutzt',
     ],
     faqs: [
       {
         question: 'Brauche ich Mesh oder reicht ein Repeater?',
         answer:
-          'Das haengt von Wohnung, Routerstandort, Waenden und Nutzung ab. Ich pruefe zuerst die Situation und empfehle dann eine passende Loesung.',
+          'Das hängt von Wohnung, Routerstandort, Wänden und Nutzung ab. Ich prüfe zuerst die Situation und empfehle dann eine passende Lösung.',
       },
       {
         question: 'Kannst du vorhandene Repeater einrichten?',
@@ -2069,7 +2069,7 @@ export const topicPages: ServicePageData[] = [
       {
         question: 'Hilfst du auch in kleinen Firmen?',
         answer:
-          'Ja, bei pragmatischen WLAN-Loesungen fuer kleine Bueros, Praxen oder Arbeitsbereiche in Ludwigsburg und Umgebung.',
+          'Ja, bei pragmatischen WLAN-Lösungen für kleine Büros, Praxen oder Arbeitsbereiche in Ludwigsburg und Umgebung.',
       },
     ],
     related: ['netzwerk-wlan', 'fritzbox-hilfe', 'router-entstoerung'],
@@ -2081,57 +2081,57 @@ export const topicPages: ServicePageData[] = [
     title: 'Senioren Handy Hilfe',
     shortTitle: 'Senioren Handy',
     description:
-      'Geduldige Handy- und Smartphone-Hilfe fuer Seniorinnen und Senioren in Ludwigsburg: WLAN, Apps, Fotos, WhatsApp, E-Mail und Einstellungen.',
+      'Geduldige Handy- und Smartphone-Hilfe für Seniorinnen und Senioren in Ludwigsburg: WLAN, Apps, Fotos, WhatsApp, E-Mail und Einstellungen.',
     tags: ['Senioren', 'Handy', 'Smartphone'],
-    seoTitle: 'Senioren Handy Hilfe Ludwigsburg | Smartphone einfach erklaert',
+    seoTitle: 'Senioren Handy Hilfe Ludwigsburg | Smartphone einfach erklärt',
     seoDescription:
-      'Senioren Handy Hilfe in Ludwigsburg: Smartphone, WhatsApp, Fotos, WLAN, E-Mail und Einstellungen ruhig erklaert. Hilfe bei dir vor Ort.',
+      'Senioren Handy Hilfe in Ludwigsburg: Smartphone, WhatsApp, Fotos, WLAN, E-Mail und Einstellungen ruhig erklärt. Hilfe bei dir vor Ort.',
     keywords:
       'Senioren Handy Hilfe Ludwigsburg, Smartphone Hilfe Senioren, Handy einrichten Senioren, WhatsApp Hilfe, Handy Hilfe Ludwigsburg, Smartphone einrichten',
     heroLead: 'Handyhilfe ohne Stress.',
-    heroAccent: 'Ruhig, geduldig und verstaendlich.',
+    heroAccent: 'Ruhig, geduldig und verständlich.',
     heroText:
-      'Smartphones koennen praktisch sein, aber auch schnell ueberfordern. Ich erklaere WLAN, Apps, Fotos, WhatsApp, E-Mail und wichtige Einstellungen in normaler Sprache und in deinem Tempo.',
+      'Smartphones können praktisch sein, aber auch schnell überfordern. Ich erkläre WLAN, Apps, Fotos, WhatsApp, E-Mail und wichtige Einstellungen in normaler Sprache und in deinem Tempo.',
     price: 'Bei dir vor Ort ab 49 € · Fernhilfe nur wenn sinnvoll',
-    audienceHint: 'Fuer Seniorinnen, Senioren und Angehoerige, die Smartphone-Hilfe ruhig und verstaendlich brauchen.',
+    audienceHint: 'Für Seniorinnen, Senioren und Angehörige, die Smartphone-Hilfe ruhig und verständlich brauchen.',
     situations: [
       {
         title: 'WhatsApp, Fotos oder E-Mail sind unklar',
-        text: 'Nachrichten, Bilder, Anhaenge oder Kontakte sollen sicherer bedient werden.',
+        text: 'Nachrichten, Bilder, Anhänge oder Kontakte sollen sicherer bedient werden.',
       },
       {
         title: 'Das Handy ist neu',
         text: 'WLAN, Konto, Apps, Sicherheit und Grundbedienung sollen eingerichtet werden.',
       },
       {
-        title: 'Staendig kommen Meldungen',
-        text: 'Updates, Berechtigungen, Speicher oder Werbung sorgen fuer Unsicherheit.',
+        title: 'Ständig kommen Meldungen',
+        text: 'Updates, Berechtigungen, Speicher oder Werbung sorgen für Unsicherheit.',
       },
       {
-        title: 'Angehoerige wollen entlasten',
-        text: 'Eltern oder Grosseltern brauchen Hilfe, die geduldig erklaert und nicht nur schnell klickt.',
+        title: 'Angehörige wollen entlasten',
+        text: 'Eltern oder Großeltern brauchen Hilfe, die geduldig erklärt und nicht nur schnell klickt.',
       },
     ],
     solutions: [
       {
-        title: 'Grundfunktionen erklaeren',
+        title: 'Grundfunktionen erklären',
         text: 'Telefonieren, Nachrichten, Fotos, WLAN und wichtige Einstellungen in Ruhe zeigen.',
       },
       {
         title: 'Apps einrichten',
-        text: 'Benötigte Apps installieren, sortieren und unklare Berechtigungen erklaeren.',
+        text: 'Benötigte Apps installieren, sortieren und unklare Berechtigungen erklären.',
       },
       {
         title: 'Sicherheit besprechen',
-        text: 'PIN, Sperrbildschirm, Betrugsnachrichten und vorsichtiger Umgang mit Links verstaendlich machen.',
+        text: 'PIN, Sperrbildschirm, Betrugsnachrichten und vorsichtiger Umgang mit Links verständlich machen.',
       },
       {
-        title: 'E-Mail und Kontakte pruefen',
+        title: 'E-Mail und Kontakte prüfen',
         text: 'Konten, Kontakte und einfache Nutzung gemeinsam testen.',
       },
       {
         title: 'Fotos und Speicher ordnen',
-        text: 'Zeigen, wo Bilder liegen und was beim Loeschen oder Sichern wichtig ist.',
+        text: 'Zeigen, wo Bilder liegen und was beim Löschen oder Sichern wichtig ist.',
       },
       {
         title: 'Merkhilfe geben',
@@ -2142,7 +2142,7 @@ export const topicPages: ServicePageData[] = [
     confidenceText:
       'Gerade bei Handyhilfe ist Geduld wichtiger als Tempo. Ich nehme mir Zeit, damit du nicht nur zuschaust, sondern danach selbst sicherer wirst.',
     confidencePoints: [
-      'Geduldige Erklaerung',
+      'Geduldige Erklärung',
       'Keine Bloßstellung',
       'Sicherheit und Betrug mitdenken',
       'Hilfe bei dir vor Ort',
@@ -2151,22 +2151,22 @@ export const topicPages: ServicePageData[] = [
       {
         question: 'Hilfst du auch, wenn ich mich mit dem Handy kaum auskenne?',
         answer:
-          'Ja. Genau dafuer ist diese Hilfe gedacht. Du musst keine Fachbegriffe kennen.',
+          'Ja. Genau dafür ist diese Hilfe gedacht. Du musst keine Fachbegriffe kennen.',
       },
       {
-        question: 'Kannst du WhatsApp erklaeren?',
+        question: 'Kannst du WhatsApp erklären?',
         answer:
           'Ja, zum Beispiel Nachrichten, Bilder, Kontakte, Gruppen und worauf man bei unbekannten Links achten sollte.',
       },
       {
         question: 'Soll ich dir meine PIN schicken?',
         answer:
-          'Nein. PINs und Passwoerter niemals per Chat oder E-Mail senden. Wenn etwas entsperrt werden muss, gibst du es selbst ein.',
+          'Nein. PINs und Passwörter niemals per Chat oder E-Mail senden. Wenn etwas entsperrt werden muss, gibst du es selbst ein.',
       },
       {
         question: 'Kommst du zu Senioren nach Hause?',
         answer:
-          'Ja, Vor-Ort-Hilfe in Ludwigsburg und Umgebung ist moeglich. Details werden direkt mit Andrej abgestimmt.',
+          'Ja, Vor-Ort-Hilfe in Ludwigsburg und Umgebung ist möglich. Details werden direkt mit Andrej abgestimmt.',
       },
     ],
     related: ['benutzerkonten', 'email', 'betrugsverdacht-phishing-hilfe'],
@@ -2188,9 +2188,9 @@ export const topicPages: ServicePageData[] = [
     heroLead: 'Komische Mail? Verdächtiger Link?',
     heroAccent: 'Erst stoppen, dann sauber prüfen.',
     heroText:
-      'Wenn eine Nachricht, ein Anruf oder ein Link komisch wirkt, ist schnelle Ruhe wichtiger als hektisches Klicken. Ich helfe dir, sichere naechste Schritte zu klären und typische Betrugsmaschen einzuordnen.',
-    price: 'Ersteinschaetzung nach Anliegen · Vor Ort ab 49 €',
-    audienceHint: 'Fuer Privatpersonen, Senioren, Angehoerige und kleine Betriebe bei digitalem Betrugsverdacht.',
+      'Wenn eine Nachricht, ein Anruf oder ein Link komisch wirkt, ist schnelle Ruhe wichtiger als hektisches Klicken. Ich helfe dir, sichere nächste Schritte zu klären und typische Betrugsmaschen einzuordnen.',
+    price: 'Ersteinschätzung nach Anliegen · Vor Ort ab 49 €',
+    audienceHint: 'Für Privatpersonen, Senioren, Angehörige und kleine Betriebe bei digitalem Betrugsverdacht.',
     situations: [
       {
         title: 'Du hast auf einen Link geklickt',
@@ -2212,58 +2212,58 @@ export const topicPages: ServicePageData[] = [
     solutions: [
       {
         title: 'Situation ruhig einordnen',
-        text: 'Klaeren, was passiert ist: nur gesehen, geklickt, Daten eingegeben oder Geld ueberwiesen.',
+        text: 'Klären, was passiert ist: nur gesehen, geklickt, Daten eingegeben oder Geld überwiesen.',
       },
       {
         title: 'Sichere Sofortschritte nennen',
-        text: 'Keine weiteren Daten eingeben, keine Codes teilen, fragliche Seite schliessen und Belege sichern.',
+        text: 'Keine weiteren Daten eingeben, keine Codes teilen, fragliche Seite schließen und Belege sichern.',
       },
       {
-        title: 'Geraet und Konto trennen',
-        text: 'Pruefen, ob es eher um das Geraet, ein Online-Konto oder Zahlungsdaten geht.',
+        title: 'Gerät und Konto trennen',
+        text: 'Prüfen, ob es eher um das Gerät, ein Online-Konto oder Zahlungsdaten geht.',
       },
       {
-        title: 'Passwoerter sinnvoll behandeln',
-        text: 'Keine Passwoerter im Chat. Wenn noetig, wird direkt am Geraet sicher geaendert.',
+        title: 'Passwörter sinnvoll behandeln',
+        text: 'Keine Passwörter im Chat. Wenn nötig, wird direkt am Gerät sicher geändert.',
       },
       {
-        title: 'Naechste Stellen benennen',
-        text: 'Bei Geld, Bank oder Identitaetsdaten kann Bank, Anbieter oder Polizei wichtiger sein als IT-Hilfe.',
+        title: 'Nächste Stellen benennen',
+        text: 'Bei Geld, Bank oder Identitätsdaten kann Bank, Anbieter oder Polizei wichtiger sein als IT-Hilfe.',
       },
       {
-        title: 'Vorbeugung erklaeren',
+        title: 'Vorbeugung erklären',
         text: 'Typische Merkmale von Fake-Mails, SMS und Support-Betrug in einfacher Sprache zeigen.',
       },
     ],
-    confidenceTitle: 'Bei Betrug zaehlt Vorsicht mehr als Mut.',
+    confidenceTitle: 'Bei Betrug zählt Vorsicht mehr als Mut.',
     confidenceText:
       'Ich gebe keine riskanten Experimente vor. Wenn Geld, Ausweise, Banking oder Kontozugriff betroffen sind, wird klar gesagt, welche offizielle Stelle du kontaktieren solltest.',
     confidencePoints: [
-      'Keine Passwoerter teilen',
+      'Keine Passwörter teilen',
       'Keine Codes im Chat',
       'Bank/Anbieter bei Geldthemen',
-      'Besonders ruhig fuer Senioren',
+      'Besonders ruhig für Senioren',
     ],
     faqs: [
       {
         question: 'Was soll ich sofort tun, wenn ich einen Phishing-Link geklickt habe?',
         answer:
-          'Gib keine weiteren Daten ein, schliesse die Seite, mache wenn moeglich einen Screenshot und notiere, was du eingegeben hast. Wenn Bankdaten betroffen sind, sofort die Bank kontaktieren.',
+          'Gib keine weiteren Daten ein, schließe die Seite, mache wenn möglich einen Screenshot und notiere, was du eingegeben hast. Wenn Bankdaten betroffen sind, sofort die Bank kontaktieren.',
       },
       {
-        question: 'Kannst du pruefen, ob mein Konto gehackt wurde?',
+        question: 'Kannst du prüfen, ob mein Konto gehackt wurde?',
         answer:
-          'Ich kann sichere Hinweise einordnen und dir helfen, Kontosicherheit am Geraet zu pruefen. Verbindliche Konto- oder Anbieterentscheidungen trifft aber der jeweilige Anbieter.',
+          'Ich kann sichere Hinweise einordnen und dir helfen, Kontosicherheit am Gerät zu prüfen. Verbindliche Konto- oder Anbieterentscheidungen trifft aber der jeweilige Anbieter.',
       },
       {
-        question: 'Soll ich Passwoerter schicken?',
+        question: 'Soll ich Passwörter schicken?',
         answer:
-          'Nein. Niemals Passwoerter, PINs, TANs oder Codes senden. Wenn ein Passwort geaendert werden muss, machst du das selbst am Geraet.',
+          'Nein. Niemals Passwörter, PINs, TANs oder Codes senden. Wenn ein Passwort geändert werden muss, machst du das selbst am Gerät.',
       },
       {
         question: 'Hilfst du Senioren bei Betrugsnachrichten?',
         answer:
-          'Ja. Ich erklaere ruhig, woran man typische Fake-SMS, Fake-Mails und falschen Support erkennen kann.',
+          'Ja. Ich erkläre ruhig, woran man typische Fake-SMS, Fake-Mails und falschen Support erkennen kann.',
       },
     ],
     related: ['senioren-handy-hilfe', 'email', 'benutzerkonten'],
