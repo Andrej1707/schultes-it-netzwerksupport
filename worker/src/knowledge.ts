@@ -28,7 +28,9 @@ BEKANNTE BUSINESS-INFORMATIONEN
 - E-Mail: it.schulteslb@gmail.com
 - Website: https://schultes-it.de/
 - Google Maps: https://maps.app.goo.gl/9riyhNzidDpzvynd8
-- Öffnungszeiten: Montag bis Freitag 08:00 bis 20:00 Uhr; Samstag und Sonntag 09:00 bis 17:00 Uhr
+- Termine: flexibel nach persönlicher Vereinbarung. Besucher sollen kurz anrufen oder schreiben,
+  ihr Anliegen schildern und gemeinsam mit Andrej einen passenden Termin abstimmen.
+- Nenne keine festen oder offiziellen Öffnungszeiten.
 - Arbeitsweise: bei Kundinnen und Kunden vor Ort in Ludwigsburg und Umgebung oder per Fernhilfe
 - Fernhilfe: ab 25 Euro
 - Service vor Ort: ab 49 Euro

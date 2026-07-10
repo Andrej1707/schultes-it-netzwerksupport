@@ -1518,7 +1518,7 @@ main {
 }
 
 .profile-catalog-head span,
-.hours-head small {
+.appointment-head small {
   display: block;
   margin-bottom: 0.55rem;
   color: var(--cyan);
@@ -1562,7 +1562,7 @@ main {
   background: rgba(8, 19, 28, 0.82);
 }
 
-.hours-head {
+.appointment-head {
   display: flex;
   align-items: center;
   gap: 0.8rem;
@@ -1570,38 +1570,54 @@ main {
   border-bottom: 1px solid var(--line);
 }
 
-.hours-head > svg {
+.appointment-head > svg {
   width: 21px;
   color: var(--cyan);
 }
 
-.hours-head > span {
+.appointment-head > span {
   color: #c6d5de;
   font: 500 1rem/1.2 var(--display);
 }
 
-.hours-list {
+.appointment-intro {
   margin: 0;
-}
-
-.hours-list > div {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 0;
+  padding: 1.2rem 0;
   border-bottom: 1px solid var(--line);
   color: #879eae;
-  font-size: 0.72rem;
+  font-size: 0.76rem;
+  line-height: 1.7;
 }
 
-.hours-list dt,
-.hours-list dd {
-  margin: 0;
+.appointment-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 16px minmax(0, 1fr) 16px minmax(0, 1fr);
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
 }
 
-.hours-list dd {
+.appointment-flow > span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.4rem;
   color: #c2d4de;
-  font-family: var(--display);
+  font: 500 0.62rem/1.35 var(--display);
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.appointment-flow small {
+  color: var(--cyan);
+  font: 500 0.49rem/1 var(--display);
+  letter-spacing: 0.1em;
+}
+
+.appointment-flow > svg {
+  width: 14px;
+  color: #4f6c7e;
 }
 
 .profile-options {

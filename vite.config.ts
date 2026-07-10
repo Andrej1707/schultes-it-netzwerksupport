@@ -25,20 +25,6 @@ function businessSchema() {
       addressCountry: 'DE',
     },
     areaServed: { '@type': 'City', name: 'Ludwigsburg' },
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '08:00',
-        closes: '20:00',
-      },
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Saturday', 'Sunday'],
-        opens: '09:00',
-        closes: '17:00',
-      },
-    ],
     sameAs: ['https://maps.app.goo.gl/9riyhNzidDpzvynd8'],
   }
 }

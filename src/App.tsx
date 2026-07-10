@@ -11,7 +11,6 @@ import {
   Check,
   ChevronRight,
   CircleDot,
-  Clock3,
   Code2,
   Copy,
   Cpu,
@@ -1501,7 +1500,8 @@ function ServicePage({ service }: { service: ServicePageData }) {
               <ArrowUpRight aria-hidden="true" />
             </a>
             <p>
-              <Clock3 aria-hidden="true" /> Montag–Freitag 08:00–20:00 · Samstag–Sonntag 09:00–17:00
+              <CalendarCheck2 aria-hidden="true" /> Termine nach Vereinbarung · Kurz melden und
+              gemeinsam einen passenden Termin finden.
             </p>
           </div>
         </section>
@@ -1974,23 +1974,24 @@ function MarketingApp() {
               className="profile-availability"
               variants={serviceCardReveal}
             >
-              <div className="hours-head">
-                <Clock3 aria-hidden="true" />
+              <div className="appointment-head">
+                <CalendarCheck2 aria-hidden="true" />
                 <span>
-                  <small>ERREICHBARKEIT</small>
-                  Öffnungszeiten
+                  <small>TERMINABSPRACHE</small>
+                  Kurz melden. Termin finden.
                 </span>
               </div>
-              <dl className="hours-list">
-                <div>
-                  <dt>Montag – Freitag</dt>
-                  <dd>08:00 – 20:00</dd>
-                </div>
-                <div>
-                  <dt>Samstag – Sonntag</dt>
-                  <dd>09:00 – 17:00</dd>
-                </div>
-              </dl>
+              <p className="appointment-intro">
+                Sag kurz, wobei du Hilfe brauchst. Ich melde mich zurück und wir finden gemeinsam
+                einen Termin, der wirklich passt.
+              </p>
+              <div className="appointment-flow" aria-label="So vereinbaren wir einen Termin">
+                <span><small>01</small>Anliegen senden</span>
+                <ChevronRight aria-hidden="true" />
+                <span><small>02</small>Kurz abstimmen</span>
+                <ChevronRight aria-hidden="true" />
+                <span><small>03</small>Termin steht</span>
+              </div>
               <div className="profile-options">
                 {googleProfileOptions.map(([Icon, option]) => (
                   <div key={option}>
@@ -2000,7 +2001,7 @@ function MarketingApp() {
                 ))}
               </div>
               <a href={phoneHref}>
-                Termin oder Problem besprechen <ArrowUpRight aria-hidden="true" />
+                Jetzt kurz melden <ArrowUpRight aria-hidden="true" />
               </a>
             </motion.aside>
           </motion.div>
