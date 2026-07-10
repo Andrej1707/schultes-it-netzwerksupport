@@ -469,7 +469,7 @@ export const primaryServicePages: ServicePageData[] = [
     tags: ['Workflows', 'KI', 'Prototypen'],
     seoTitle: 'Automatisierung Ludwigsburg | Tools für Betriebe',
     seoDescription:
-      'Individuelle Tools und Automatisierungen in Ludwigsburg für Selbstständige und kleine Firmen: Abläufe vereinfachen, Daten ordnen und Prototypen praxisnah entwickeln.',
+      'Tools und Automatisierung in Ludwigsburg für Selbstständige und kleine Firmen: Abläufe vereinfachen, Daten ordnen und Prototypen praxisnah entwickeln.',
     keywords:
       'Automatisierung Ludwigsburg, individuelle Software kleine Unternehmen, Workflow Automation, KI Tools, Prozessautomatisierung, Prototyp Entwicklung',
     heroLead: 'Wiederholungen raus. Klarheit rein.',
@@ -676,7 +676,7 @@ export const topicPages: ServicePageData[] = [
     tags: ['Geräte', 'Software', 'Treiber'],
     seoTitle: 'Installation Ludwigsburg | Geräte & Software einrichten',
     seoDescription:
-      'Hilfe bei Installation in Ludwigsburg: neue Geräte, Programme, Treiber und Zubehör einrichten. Verständlich, sauber getestet und bei dir vor Ort oder per Fernhilfe.',
+      'Installation in Ludwigsburg: Geräte, Programme, Treiber und Zubehör verständlich einrichten, testen und bei dir vor Ort oder per Fernhilfe erklären.',
     keywords:
       'Installation Ludwigsburg, Software installieren, Gerät einrichten, Treiber installieren, PC Einrichtung, technische Hilfe Installation',
     heroLead: 'Installation ohne Rätselraten.',
@@ -768,7 +768,7 @@ export const topicPages: ServicePageData[] = [
     tags: ['Beratung', 'Planung', 'Entscheidung'],
     seoTitle: 'IT Consulting Ludwigsburg | IT-Beratung verständlich',
     seoDescription:
-      'IT Consulting in Ludwigsburg für Privatpersonen und kleine Betriebe: Kaufberatung, Technikplanung, Netzwerk, Arbeitsplatz und digitale Abläufe verständlich einordnen.',
+      'IT Consulting in Ludwigsburg für Privatpersonen und kleine Betriebe: Kaufberatung, Technikplanung, Netzwerk und digitale Abläufe verständlich einordnen.',
     keywords:
       'IT Consulting Ludwigsburg, IT Beratung Ludwigsburg, Technikberatung, PC Kaufberatung, IT Hilfe kleine Unternehmen, Digitalberatung',
     heroLead: 'Erst verstehen. Dann entscheiden.',
@@ -1697,7 +1697,7 @@ export const topicPages: ServicePageData[] = [
     tags: ['Langsam', 'Windows', 'Analyse'],
     seoTitle: 'PC langsam Ludwigsburg | Laptop schneller machen',
     seoDescription:
-      'PC langsam in Ludwigsburg? Hilfe, wenn Laptop oder Computer träge reagieren, Programme lange laden oder Windows hängt. Ursache prüfen, sauber erklären, sinnvoll lösen.',
+      'PC langsam in Ludwigsburg? Hilfe bei trägem Laptop, langen Ladezeiten oder hängendem Windows. Ursache prüfen, verständlich erklären und sinnvoll lösen.',
     keywords:
       'PC langsam Ludwigsburg, Laptop langsam, Computer langsam, Windows langsam, PC schneller machen, Laptop hängt, PC Hilfe Ludwigsburg',
     heroLead: 'Wenn der PC nur noch kriecht.',

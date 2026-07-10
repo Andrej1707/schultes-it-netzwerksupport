@@ -23,6 +23,7 @@ Kompetenzmatrix, Google-Maps-Bereich und direktem Mobile-Kontakt.
 ## Highlights
 
 - Animierte Kommandozentrale mit reaktivem Netzwerk-Hintergrund
+- Statisch vorgerenderte Inhalte auf allen indexierbaren Routen
 - Leistungen, Arbeitsweise und persönliche Positionierung
 - Projektstream für Tools, Automationen und KI-Prototypen
 - Kompetenzmatrix ohne künstliche Prozentwerte
@@ -87,6 +88,10 @@ Die Secret Keys gehören weder in GitHub-Variablen noch in `.env.local` und werd
 
 Der Workflow unter `.github/workflows/deploy.yml` baut die Website bei jedem Push
 auf `main` und veröffentlicht den Inhalt von `dist` über GitHub Pages.
+
+Beim Produktions-Build werden Startseite und sämtliche Leistungsseiten bereits als
+vollständiges HTML ausgegeben und anschließend von React hydratisiert. Dadurch bleiben
+Inhalte, interne Links und Überschriften auch ohne JavaScript für Crawler lesbar.
 
 Im Repository muss unter **Settings → Pages → Build and deployment** als Quelle
 **GitHub Actions** ausgewählt sein.

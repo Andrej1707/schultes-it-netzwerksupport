@@ -1,6 +1,9 @@
 import { createHash } from 'node:crypto'
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
+import { createElement, StrictMode } from 'react'
+import { renderToString } from 'react-dom/server'
+import App from './src/App'
 import { servicePages, type ServicePageData } from './src/serviceCatalog'
 
 const siteUrl = 'https://schultes-it.de'
@@ -12,11 +15,19 @@ function businessSchema() {
     '@id': `${siteUrl}/#business`,
     name: 'Schultes IT & Netzwerksupport',
     alternateName: 'Schultes IT- & Netzwerksupport',
+    description:
+      'Persönliche IT-Hilfe, PC-Hilfe, Netzwerk- und WLAN-Support für Privatpersonen und kleine Unternehmen in Ludwigsburg.',
+    slogan: 'Technik, die funktioniert.',
     url: `${siteUrl}/`,
     image: previewImageUrl,
+    founder: {
+      '@type': 'Person',
+      name: 'Andrej Schultes',
+    },
     telephone: '+49 1523 3364752',
     email: 'it.schulteslb@gmail.com',
     priceRange: 'Fernhilfe ab 25 EUR, Service beim Kunden ab 49 EUR',
+    currenciesAccepted: 'EUR',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Egerländer Str. 24',
@@ -24,7 +35,21 @@ function businessSchema() {
       addressLocality: 'Ludwigsburg',
       addressCountry: 'DE',
     },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 48.8886228,
+      longitude: 9.2064228,
+    },
     areaServed: { '@type': 'City', name: 'Ludwigsburg' },
+    hasMap: 'https://maps.app.goo.gl/9riyhNzidDpzvynd8',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+49 1523 3364752',
+      email: 'it.schulteslb@gmail.com',
+      contactType: 'customer support',
+      areaServed: 'DE',
+      availableLanguage: ['German'],
+    },
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
@@ -39,7 +64,50 @@ function businessSchema() {
         closes: '17:00',
       },
     ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'IT-Support-Leistungen in Ludwigsburg',
+      itemListElement: servicePages.slice(0, 4).map((service) => ({
+        '@type': 'Offer',
+        url: `${siteUrl}/${service.slug}/`,
+        itemOffered: {
+          '@type': 'Service',
+          name: service.title,
+          description: service.description,
+        },
+      })),
+    },
     sameAs: ['https://maps.app.goo.gl/9riyhNzidDpzvynd8'],
+  }
+}
+
+function homeSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      businessSchema(),
+      {
+        '@type': 'WebSite',
+        '@id': `${siteUrl}/#website`,
+        url: `${siteUrl}/`,
+        name: 'Schultes IT & Netzwerksupport',
+        description: 'IT-Hilfe, PC-Hilfe und Netzwerksupport in Ludwigsburg.',
+        publisher: { '@id': `${siteUrl}/#business` },
+        inLanguage: 'de-DE',
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${siteUrl}/#webpage`,
+        url: `${siteUrl}/`,
+        name: 'IT-Hilfe & PC-Hilfe Ludwigsburg | Schultes IT',
+        description:
+          'Schultes IT & Netzwerksupport in Ludwigsburg: IT-Hilfe, PC-Hilfe, WLAN-Hilfe, Router-Service, Windows-Einrichtung und Fernhilfe verständlich vor Ort.',
+        isPartOf: { '@id': `${siteUrl}/#website` },
+        about: { '@id': `${siteUrl}/#business` },
+        mainEntity: { '@id': `${siteUrl}/#business` },
+        inLanguage: 'de-DE',
+      },
+    ],
   }
 }
 
@@ -147,6 +215,17 @@ function replaceMeta(html: string, attribute: 'name' | 'property', key: string, 
   )
 }
 
+function renderApplication(pathname: string) {
+  return renderToString(
+    createElement(StrictMode, null, createElement(App, { initialPath: pathname })),
+  )
+}
+
+function injectRenderedApplication(html: string, pathname: string) {
+  const markup = renderApplication(pathname)
+  return html.replace('<div id="root"></div>', `<div id="root">${markup}</div>`)
+}
+
 function servicePagesPlugin(): Plugin {
   return {
     name: 'generate-service-pages',
@@ -163,6 +242,17 @@ function servicePagesPlugin(): Plugin {
       }
 
       const baseHtml = String(indexAsset.source)
+      const homeStructuredData = JSON.stringify(homeSchema(), null, 2)
+      const homeStructuredDataInner = `\n${homeStructuredData}\n`
+      const homeHash = createHash('sha256').update(homeStructuredDataInner).digest('base64')
+      const homeHtml = baseHtml
+        .replace(
+          /<script type="application\/ld\+json">[\s\S]*?<\/script>/i,
+          `<script type="application/ld+json">${homeStructuredDataInner}</script>`,
+        )
+        .replace(/sha256-[^']+/, `sha256-${homeHash}`)
+
+      indexAsset.source = injectRenderedApplication(homeHtml, '/')
 
       servicePages.forEach((service) => {
         const url = `${siteUrl}/${service.slug}/`
@@ -189,6 +279,8 @@ function servicePagesPlugin(): Plugin {
         html = replaceMeta(html, 'property', 'og:url', url)
         html = replaceMeta(html, 'name', 'twitter:title', service.seoTitle)
         html = replaceMeta(html, 'name', 'twitter:description', service.seoDescription)
+
+        html = injectRenderedApplication(html, `/${service.slug}/`)
 
         this.emitFile({
           type: 'asset',

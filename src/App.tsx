@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import {
   ArrowDownRight,
@@ -77,6 +77,29 @@ const serviceIcons: Record<ServiceIconName, LucideIcon> = {
   router: Router,
   globe: Globe2,
   bot: Bot,
+}
+
+const serviceThemes: Record<ServiceIconName, CSSProperties> = {
+  laptop: {
+    '--service-accent': '#58d9ff',
+    '--service-accent-rgb': '88, 217, 255',
+    '--service-secondary': '#6f86ff',
+  } as CSSProperties,
+  router: {
+    '--service-accent': '#68efc0',
+    '--service-accent-rgb': '104, 239, 192',
+    '--service-secondary': '#55bfff',
+  } as CSSProperties,
+  globe: {
+    '--service-accent': '#8e83ff',
+    '--service-accent-rgb': '142, 131, 255',
+    '--service-secondary': '#58d9ff',
+  } as CSSProperties,
+  bot: {
+    '--service-accent': '#ffbf69',
+    '--service-accent-rgb': '255, 191, 105',
+    '--service-secondary': '#78e7ff',
+  } as CSSProperties,
 }
 
 const services = primaryServicePages.map((service) => ({
@@ -257,11 +280,11 @@ const chapters = [
 ]
 
 const reveal: Variants = {
-  hidden: { opacity: 0, y: 36 },
+  hidden: { opacity: 0.66, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.82, ease: [0.16, 1, 0.3, 1] },
   },
 }
 
@@ -273,11 +296,11 @@ const serviceHeroSequence: Variants = {
 }
 
 const serviceHeroItem: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 26 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.76, ease: [0.16, 1, 0.3, 1] },
   },
 }
 
@@ -310,12 +333,12 @@ const serviceGridReveal: Variants = {
 }
 
 const serviceCardReveal: Variants = {
-  hidden: { opacity: 0, y: 34, scale: 0.985 },
+  hidden: { opacity: 0.62, y: 18, scale: 0.995 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.74, ease: [0.16, 1, 0.3, 1] },
   },
 }
 
@@ -1098,7 +1121,12 @@ function ServicePage({ service }: { service: ServicePageData }) {
 
       <ShortcutMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
 
-      <main className="service-page" id="service-main">
+      <main
+        className="service-page"
+        id="service-main"
+        data-service-theme={service.icon}
+        style={serviceThemes[service.icon]}
+      >
         <section className="service-detail-hero">
           <motion.div
             className="service-detail-hero-copy"
@@ -1158,6 +1186,15 @@ function ServicePage({ service }: { service: ServicePageData }) {
             <div className="service-status-icon" aria-hidden="true">
               <Icon />
               <i />
+              <span className="service-orbit service-orbit-one" />
+              <span className="service-orbit service-orbit-two" />
+            </div>
+            <div className="service-status-route" aria-hidden="true">
+              <span>ANFRAGE</span>
+              <i />
+              <span>ANALYSE</span>
+              <i />
+              <span>LÖSUNG</span>
             </div>
             <dl>
               <div>
@@ -1707,6 +1744,21 @@ function MarketingApp() {
                 </a>
               </div>
             </motion.div>
+
+            <motion.ul className="hero-trust-rail" variants={serviceHeroItem}>
+              <li>
+                <MapPin aria-hidden="true" />
+                <span><strong>Vor Ort</strong>Ludwigsburg & Umgebung</span>
+              </li>
+              <li>
+                <Radio aria-hidden="true" />
+                <span><strong>Direkt</strong>Fernhilfe ab 25 EUR</span>
+              </li>
+              <li>
+                <ShieldCheck aria-hidden="true" />
+                <span><strong>Persönlich</strong>Andrej statt Callcenter</span>
+              </li>
+            </motion.ul>
           </motion.div>
 
           <motion.aside
@@ -1733,6 +1785,10 @@ function MarketingApp() {
               <span className="radar-point p1" />
               <span className="radar-point p2" />
               <span className="radar-point p3" />
+              <span className="radar-label radar-label-pc">PC</span>
+              <span className="radar-label radar-label-net">NETZ</span>
+              <span className="radar-label radar-label-web">WEB</span>
+              <span className="radar-label radar-label-tool">TOOLS</span>
             </div>
             <div className="diagnostic-output" aria-live="polite">
               <span>0{diagnosticIndex + 1}</span>
@@ -2415,16 +2471,24 @@ function MarketingApp() {
   )
 }
 
-function App() {
-  const [hash, setHash] = useState(window.location.hash)
-  const pathSlug = window.location.pathname.split('/').filter(Boolean)[0]
+type AppProps = {
+  initialPath?: string
+  initialHash?: string
+}
+
+function App({ initialPath, initialHash }: AppProps = {}) {
+  const isBrowser = typeof window !== 'undefined'
+  const path = initialPath ?? (isBrowser ? window.location.pathname : '/')
+  const [hash, setHash] = useState(initialHash ?? (isBrowser ? window.location.hash : ''))
+  const pathSlug = path.split('/').filter(Boolean)[0]
   const servicePage = pathSlug ? servicePageBySlug[pathSlug] : undefined
 
   useEffect(() => {
+    if (!isBrowser) return
     const updateHash = () => setHash(window.location.hash)
     window.addEventListener('hashchange', updateHash)
     return () => window.removeEventListener('hashchange', updateHash)
-  }, [])
+  }, [isBrowser])
 
   let page = <MarketingApp />
   if (hash === '#/impressum') page = <LegalLayout page="impressum" />

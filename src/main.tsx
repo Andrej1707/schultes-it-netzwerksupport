@@ -1,10 +1,21 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 import App from './App'
 import './style.css'
+import './support/support.css'
+import './redesign.css'
 
-createRoot(document.getElementById('root')!).render(
+const root = document.getElementById('root')!
+const app = (
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 )
+
+const isLegalHash = window.location.hash === '#/impressum' || window.location.hash === '#/datenschutz'
+
+if (root.hasChildNodes() && !isLegalHash) hydrateRoot(root, app)
+else {
+  if (root.hasChildNodes()) root.replaceChildren()
+  createRoot(root).render(app)
+}

@@ -12,7 +12,6 @@ import {
   ShieldCheck,
   X,
 } from 'lucide-react'
-import './support.css'
 
 type TurnstileApi = {
   render: (container: HTMLElement, options: Record<string, unknown>) => string
@@ -41,8 +40,8 @@ type ApiError = Error & { code?: string; status?: number }
 type Phase = 'needs-verification' | 'verifying' | 'ready' | 'sending' | 'unavailable'
 
 const SESSION_STORAGE_KEY = 'schultes-support-session-v2'
-const apiUrl = (import.meta.env.VITE_SUPPORT_API_URL ?? '').replace(/\/$/, '')
-const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY ?? ''
+const apiUrl = (import.meta.env?.VITE_SUPPORT_API_URL ?? '').replace(/\/$/, '')
+const turnstileSiteKey = import.meta.env?.VITE_TURNSTILE_SITE_KEY ?? ''
 const isConfigured = Boolean(apiUrl && turnstileSiteKey)
 const phoneHref = 'tel:+4915233364752'
 
@@ -69,6 +68,8 @@ const quickPrompts = [
 ]
 
 function readSession(): Session | null {
+  if (typeof window === 'undefined') return null
+
   try {
     const value = sessionStorage.getItem(SESSION_STORAGE_KEY)
     if (!value) return null

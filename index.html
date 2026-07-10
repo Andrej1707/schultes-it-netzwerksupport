@@ -4,8 +4,16 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05080d" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="author" content="Andrej Schultes" />
+    <meta name="geo.region" content="DE-BW" />
+    <meta name="geo.placename" content="Ludwigsburg" />
+    <meta name="geo.position" content="48.8886228;9.2064228" />
+    <meta name="ICBM" content="48.8886228, 9.2064228" />
     <meta name="referrer" content="no-referrer" /><meta
   name="robots"
   content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
@@ -28,6 +36,7 @@
 
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="de_DE" />
+<meta property="og:site_name" content="Schultes IT & Netzwerksupport" />
 <meta property="og:title" content="Schultes IT & Netzwerksupport | Ludwigsburg" />
 
 <meta
@@ -150,6 +159,20 @@
 
   </head>  <body>
     <div id="root"></div>
+    <noscript>
+      <style>
+        #root [style*='opacity:0'] {
+          opacity: 1 !important;
+          transform: none !important;
+          filter: none !important;
+        }
+
+        #root .support-bot,
+        #root .menu-toggle {
+          display: none !important;
+        }
+      </style>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
     <!-- Cloudflare Web Analytics -->
     <script
