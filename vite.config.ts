@@ -14,7 +14,7 @@ function businessSchema() {
     alternateName: 'Schultes IT- & Netzwerksupport',
     url: `${siteUrl}/`,
     image: previewImageUrl,
-    telephone: '+49 1523 3364752',
+    telephone: '+49 1567 9616310',
     email: 'it.schulteslb@gmail.com',
     priceRange: 'Fernhilfe ab 25 EUR, Service beim Kunden ab 49 EUR',
     address: {

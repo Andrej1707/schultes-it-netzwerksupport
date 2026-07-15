@@ -4,7 +4,7 @@ import { BUSINESS_SYSTEM_PROMPT } from '../src/knowledge'
 describe('business knowledge and safety policy', () => {
   it('contains the verified contact and pricing facts', () => {
     expect(BUSINESS_SYSTEM_PROMPT).toContain('Andrej Schultes')
-    expect(BUSINESS_SYSTEM_PROMPT).toContain('+49 1523 3364752')
+    expect(BUSINESS_SYSTEM_PROMPT).toContain('+49 1567 9616310')
     expect(BUSINESS_SYSTEM_PROMPT).toContain('it.schulteslb@gmail.com')
     expect(BUSINESS_SYSTEM_PROMPT).toContain('Fernhilfe: ab 25 Euro')
     expect(BUSINESS_SYSTEM_PROMPT).toContain('Service vor Ort: ab 49 Euro')

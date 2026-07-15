@@ -44,7 +44,7 @@ const SESSION_STORAGE_KEY = 'schultes-support-session-v2'
 const apiUrl = (import.meta.env.VITE_SUPPORT_API_URL ?? '').replace(/\/$/, '')
 const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY ?? ''
 const isConfigured = Boolean(apiUrl && turnstileSiteKey)
-const phoneHref = 'tel:+4915233364752'
+const phoneHref = 'tel:+4915679616310'
 
 const welcomeMessage: Message = {
   id: 'welcome',

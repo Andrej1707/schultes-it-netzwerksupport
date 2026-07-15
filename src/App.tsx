@@ -55,7 +55,7 @@ import {
 } from './serviceCatalog'
 import SupportBot from './support/SupportBot'
 
-const phoneParts = ['+49', '1523', '3364752']
+const phoneParts = ['+49', '1567', '9616310']
 const phoneDisplay = phoneParts.join(' ')
 const phoneHref = `tel:${phoneParts.join('')}`
 const phoneCopy = phoneDisplay

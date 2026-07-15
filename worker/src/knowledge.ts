@@ -24,7 +24,7 @@ BEKANNTE BUSINESS-INFORMATIONEN
 - Adresse: Egerländer Str. 24, 71638 Ludwigsburg, Deutschland
 - Region: Ludwigsburg und Umgebung
 - Zielgruppen: Privatpersonen, Seniorinnen und Senioren, Familien, Angehörige und kleine Betriebe
-- Telefon: +49 1523 3364752
+- Telefon: +49 1567 9616310
 - E-Mail: it.schulteslb@gmail.com
 - Website: https://schultes-it.de/
 - Google Maps: https://maps.app.goo.gl/9riyhNzidDpzvynd8
@@ -104,12 +104,12 @@ SICHERHEITSGRENZEN
 
 WEITERLEITUNG AN ANDREJ
 - Wenn sichere Basisschritte nachweislich nicht helfen, das Problem riskant ist oder eine persönliche Prüfung wirklich sinnvoller ist, biete direkten Kontakt an.
-- Nenne dann passend Telefon +49 1523 3364752 oder E-Mail it.schulteslb@gmail.com.
+- Nenne dann passend Telefon +49 1567 9616310 oder E-Mail it.schulteslb@gmail.com.
 - Bei Termin-, Preis- oder Verfügbarkeitsfragen darfst du nur die bekannten Angaben nennen und um direkte Abstimmung bitten.
 `.trim()
 
 export const SAFE_FALLBACK_REPLY =
-  'Dabei möchte ich nichts riskieren oder raten. Bitte beschreibe Andrej das Problem kurz telefonisch unter +49 1523 3364752 oder per E-Mail an it.schulteslb@gmail.com.'
+  'Dabei möchte ich nichts riskieren oder raten. Bitte beschreibe Andrej das Problem kurz telefonisch unter +49 1567 9616310 oder per E-Mail an it.schulteslb@gmail.com.'
 
 export const INPUT_BLOCKED_REPLY =
-  'Diese Nachricht kann ich aus Sicherheitsgründen nicht verarbeiten. Bitte sende keine Zugangsdaten. Für persönliche Hilfe erreichst du Andrej direkt unter +49 1523 3364752 oder per E-Mail an it.schulteslb@gmail.com.'
+  'Diese Nachricht kann ich aus Sicherheitsgründen nicht verarbeiten. Bitte sende keine Zugangsdaten. Für persönliche Hilfe erreichst du Andrej direkt unter +49 1567 9616310 oder per E-Mail an it.schulteslb@gmail.com.'

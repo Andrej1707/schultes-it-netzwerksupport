@@ -36,7 +36,7 @@ export function isBasicSupportDialogueFollowUp(message: string) {
 }
 
 export const OUT_OF_SCOPE_REPLY =
-  'Dabei kann ich nicht helfen. Ich beantworte nur Fragen zu Schultes IT und gebe höchstens einen sicheren Basischeck wie Neustart, WLAN aus und an oder Router kurz vom Strom trennen. Für alles Weitere erreichst du Andrej direkt unter +49 1523 3364752 oder per E-Mail an it.schulteslb@gmail.com.'
+  'Dabei kann ich nicht helfen. Ich beantworte nur Fragen zu Schultes IT und gebe höchstens einen sicheren Basischeck wie Neustart, WLAN aus und an oder Router kurz vom Strom trennen. Für alles Weitere erreichst du Andrej direkt unter +49 1567 9616310 oder per E-Mail an it.schulteslb@gmail.com.'
 
 export const BASIC_SUPPORT_CATEGORIES = [
   'wlan_unstable',
@@ -143,22 +143,22 @@ export function renderBasicSupportPlan(value: unknown) {
   if (value.question.trim()) parts.push(value.question.trim())
   parts.push(value.closing.trim())
   if (value.decision === 'escalate') {
-    parts.push('Du erreichst Andrej unter +49 1523 3364752 oder per E-Mail an it.schulteslb@gmail.com.')
+    parts.push('Du erreichst Andrej unter +49 1567 9616310 oder per E-Mail an it.schulteslb@gmail.com.')
   }
   return { reply: parts.join('\n\n'), escalated: value.decision === 'escalate' }
 }
 
 export function getBasicSupportReply(message: string) {
   if (/\b(wlan|wi-?fi|internet|router)\b/i.test(message)) {
-    return 'Bitte probiere nur diese sicheren Basics: WLAN am Gerät einmal aus und wieder an. Wenn alle Geräte betroffen sind, den Router etwa 30 Sekunden vom Strom trennen, wieder anschließen und einige Minuten warten. Hilft das nicht, kontaktiere Andrej unter +49 1523 3364752 oder it.schulteslb@gmail.com.'
+    return 'Bitte probiere nur diese sicheren Basics: WLAN am Gerät einmal aus und wieder an. Wenn alle Geräte betroffen sind, den Router etwa 30 Sekunden vom Strom trennen, wieder anschließen und einige Minuten warten. Hilft das nicht, kontaktiere Andrej unter +49 1567 9616310 oder it.schulteslb@gmail.com.'
   }
   if (/\b(drucker)\b/i.test(message)) {
-    return 'Bitte prüfe nur Stromversorgung, Papier und sichtbare Fehlermeldungen und starte den Drucker einmal normal neu. Hilft das nicht, kontaktiere Andrej unter +49 1523 3364752 oder it.schulteslb@gmail.com.'
+    return 'Bitte prüfe nur Stromversorgung, Papier und sichtbare Fehlermeldungen und starte den Drucker einmal normal neu. Hilft das nicht, kontaktiere Andrej unter +49 1567 9616310 oder it.schulteslb@gmail.com.'
   }
   if (/\b(handy|smartphone)\b/i.test(message)) {
-    return 'Bitte starte das Handy einmal normal neu und schalte Flugmodus sowie WLAN kurz aus und wieder an. Hilft das nicht, kontaktiere Andrej unter +49 1523 3364752 oder it.schulteslb@gmail.com.'
+    return 'Bitte starte das Handy einmal normal neu und schalte Flugmodus sowie WLAN kurz aus und wieder an. Hilft das nicht, kontaktiere Andrej unter +49 1567 9616310 oder it.schulteslb@gmail.com.'
   }
-  return 'Bitte starte das Gerät einmal normal neu und prüfe nur sichtbare Strom- und Bildschirmkabel auf festen Sitz. Notiere eine genaue Fehlermeldung. Hilft das nicht, kontaktiere Andrej unter +49 1523 3364752 oder it.schulteslb@gmail.com.'
+  return 'Bitte starte das Gerät einmal normal neu und prüfe nur sichtbare Strom- und Bildschirmkabel auf festen Sitz. Notiere eine genaue Fehlermeldung. Hilft das nicht, kontaktiere Andrej unter +49 1567 9616310 oder it.schulteslb@gmail.com.'
 }
 
 export function containsDisallowedOutput(text: string) {
