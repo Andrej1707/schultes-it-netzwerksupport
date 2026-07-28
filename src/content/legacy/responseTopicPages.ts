@@ -83,7 +83,7 @@ export const responseTopicPages: ServicePageData[] = [
         {
           question: 'Ist Fernwartung sicher?',
           answer:
-            'Ja, wenn sie bewusst gestartet wird und du die Kontrolle behältst. Lade RustDesk nur von dieser Website oder der offiziellen Quelle und nenne ID oder Code nur, wenn du aktiv mit Andrej sprichst.',
+            'Ja, wenn sie bewusst gestartet wird und du die Kontrolle behältst. Lade RustDesk nur von dieser Website oder der offiziellen Quelle und nenne ID oder Code ausschließlich während eines vorher vereinbarten Supporttermins an deinen zuständigen Schultes-IT-Ansprechpartner.',
         },
         {
           question: 'Muss ich RustDesk installieren?',

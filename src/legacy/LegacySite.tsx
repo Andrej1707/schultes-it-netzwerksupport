@@ -1468,8 +1468,9 @@ export function ServicePage({ service }: { service: ServicePageData }) {
                   </div>
                 </dl>
                 <p>
-                  Wichtig: Lade und starte Fernwartungssoftware nur, wenn du aktiv mit Andrej
-                  Schultes sprichst. Gib Codes niemals an fremde Personen weiter.
+                  Wichtig: Lade und starte Fernwartungssoftware nur nach vorheriger Absprache mit
+                  deinem zuständigen Schultes-IT-Ansprechpartner. Gib Zugangscodes ausschließlich
+                  während des vereinbarten Supporttermins weiter und niemals an unbekannte Personen.
                 </p>
               </div>
             </motion.div>
