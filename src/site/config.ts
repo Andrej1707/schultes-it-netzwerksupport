@@ -16,7 +16,7 @@ export const siteConfig = {
     operatorName: 'Andrej Schultes',
     phoneDisplay: '+49 1567 9616310',
     phoneHref: 'tel:+4915679616310',
-    email: 'it.schulteslb@gmail.com',
+    email: 'kontakt@schultes-it.de',
     priceFrom: '25 €',
     contactNote:
       'Die deutschlandweite Fernwartung wird zentral durch Schultes IT und Andrej Schultes betreut.',

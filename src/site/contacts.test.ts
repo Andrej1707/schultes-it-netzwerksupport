@@ -16,6 +16,7 @@ describe('contact resolution', () => {
       supportContextId: 'central-remote',
       operatorName: 'Andrej Schultes',
       phoneHref: 'tel:+4915679616310',
+      email: 'kontakt@schultes-it.de',
     })
   })
 
@@ -27,6 +28,7 @@ describe('contact resolution', () => {
     expect(contact.source).toBe('location')
     expect(contact.displayName).toBe('Schultes IT & Netzwerksupport')
     expect(contact.operatorName).toBe('Andrej Schultes')
+    expect(contact.email).toBe('kontakt@schultes-it.de')
     expect(contact.remoteSupportNote).toContain('Standort')
   })
 

@@ -107,7 +107,7 @@ export const locations: ServiceLocation[] = [
     ],
     phoneDisplay: '+49 1567 9616310',
     phoneHref: 'tel:+4915679616310',
-    email: 'it.schulteslb@gmail.com',
+    email: 'kontakt@schultes-it.de',
     mapsUrl: 'https://maps.app.goo.gl/9riyhNzidDpzvynd8',
     mapsEmbedUrl: 'https://www.google.com/maps?q=48.8886228%2C9.2064228&z=17&output=embed',
     pricing: {
@@ -157,7 +157,7 @@ export const locations: ServiceLocation[] = [
       },
       businessPhoneDisplay: '+49 1567 9616310',
       businessPhoneHref: 'tel:+4915679616310',
-      businessEmail: 'it.schulteslb@gmail.com',
+      businessEmail: 'kontakt@schultes-it.de',
       responsiblePerson: 'Andrej Schultes',
       imprint: {
         url: '/impressum/',
