@@ -66,8 +66,6 @@ if (!ludwigsburgLocation) {
 }
 
 const ludwigsburgContact = contactForLocation(ludwigsburgLocation)
-const phoneDisplay = ludwigsburgContact.phoneDisplay
-const phoneHref = ludwigsburgContact.phoneHref
 const email = ludwigsburgContact.email
 const address =
   `${ludwigsburgLocation.streetAddress}, ${ludwigsburgLocation.postalCode} ` +
@@ -795,10 +793,6 @@ function ImprintContent() {
         <h2>Direkter Kontakt</h2>
         <p>
           <span data-nosnippet>
-            Telefon: <a href={phoneHref}>{phoneDisplay}</a>
-          </span>
-          <br />
-          <span data-nosnippet>
             E-Mail: <a href={`mailto:${email}`}>{email}</a>
           </span>
         </p>
@@ -854,10 +848,6 @@ function PrivacyContent() {
           Deutschland
         </address>
         <p>
-          <span data-nosnippet>
-            Telefon: <a href={phoneHref}>{phoneDisplay}</a>
-          </span>
-          <br />
           <span data-nosnippet>
             E-Mail: <a href={`mailto:${email}`}>{email}</a>
           </span>

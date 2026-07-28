@@ -285,7 +285,7 @@ function legalContent(page: SitePage) {
     <p>Andrej Schultes · Egerländer Str. 24 · 71638 Ludwigsburg</p>
     ${
       legalContact
-        ? `<p><a href="${legalContact.phoneHref}">${escapeHtml(legalContact.phoneDisplay)}</a> · <a href="mailto:${legalContact.email}">${escapeHtml(legalContact.email)}</a></p>`
+        ? `<p><a href="mailto:${legalContact.email}">${escapeHtml(legalContact.email)}</a></p>`
         : ''
     }
     <p>Die vollständigen ${page.legalPage === 'impressum' ? 'Anbieterangaben' : 'Datenschutzhinweise'} werden direkt auf dieser Seite angezeigt.</p>
