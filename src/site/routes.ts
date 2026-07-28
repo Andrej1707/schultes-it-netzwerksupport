@@ -1,5 +1,5 @@
-import { servicePages } from '../content/services'
-import { locations } from './locations'
+import { activeLocations } from './locations'
+import { publicServicePages } from './publicServices'
 import type { SitePage, ResolvedSiteRoute, SchemaKind } from './types'
 
 const lastModified = '2026-07-28'
@@ -16,10 +16,10 @@ const structuralPages: SitePage[] = [
     keywords:
       'Schultes IT, Fernwartung Deutschland, IT Hilfe, PC Hilfe, regionale IT Standorte, Computerhilfe',
     eyebrow: 'SCHULTES IT / DEUTSCHLAND',
-    heading: 'IT-Hilfe ohne Entfernung.',
-    accent: 'Persönlich, wo Nähe zählt.',
+    heading: 'Technik-Hilfe,',
+    accent: 'die dich erreicht.',
     intro:
-      'Deutschlandweite Fernwartung und regionale Vor-Ort-Hilfe unter einer gemeinsamen Marke.',
+      'Schultes IT verbindet sichere Fernwartung in ganz Deutschland mit persönlicher Hilfe durch regionale Ansprechpartner.',
     indexable: true,
     lastModified,
     changeFrequency: 'weekly',
@@ -165,9 +165,7 @@ const structuralPages: SitePage[] = [
   },
 ]
 
-const locationSitePages: SitePage[] = locations
-  .filter((location) => location.status === 'active')
-  .map((location) => ({
+const locationSitePages: SitePage[] = activeLocations.map((location) => ({
     id: `location-${location.id}`,
     kind: 'location',
     schemaKind: 'location',
@@ -199,7 +197,7 @@ function schemaKindForService(scope: string | undefined): SchemaKind {
   return 'network-service'
 }
 
-const serviceSitePages: SitePage[] = servicePages.map((service) => ({
+const serviceSitePages: SitePage[] = publicServicePages.map((service) => ({
   id: `service-${service.slug}`,
   kind: 'service',
   schemaKind: schemaKindForService(service.scope),

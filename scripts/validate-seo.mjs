@@ -119,6 +119,11 @@ const robots = await read('robots.txt')
 const logo = await read('logo-512.svg')
 const sitemapLines = textSitemap.trim().split(/\r?\n/)
 const inboundLinks = new Map(manifest.pages.map((page) => [page.path, 0]))
+const aliasPaths = new Set(
+  manifest.pages.flatMap((page) =>
+    page.aliases.map((alias) => (alias === '/' ? '/' : `${alias.replace(/\/+$/, '')}/`)),
+  ),
+)
 
 assert(
   robots.includes(`Sitemap: ${siteUrl}/sitemap.xml`),
@@ -170,6 +175,10 @@ for (const page of manifest.pages) {
 
   for (const match of html.matchAll(/href="(\/[^"#?]*)"/g)) {
     const href = match[1] === '/' ? '/' : `${match[1].replace(/\/+$/, '')}/`
+    assert(
+      !aliasPaths.has(href),
+      `Internal link ${href} in ${canonicalOutput} points to a compatibility alias.`,
+    )
     if (inboundLinks.has(href) && href !== page.path) {
       inboundLinks.set(href, inboundLinks.get(href) + 1)
     }

@@ -1,6 +1,8 @@
-import { servicePageBySlug, servicePages } from '../content/services'
+import { servicePageBySlug } from '../content/services'
 import { siteConfig } from './config'
-import { locationById, locations } from './locations'
+import { contactForLocation, contactForPage } from './contacts'
+import { activeLocationById, activeLocations } from './locations'
+import { publicServicePages } from './publicServices'
 import type { SitePage } from './types'
 
 function escapeHtml(value: string) {
@@ -29,14 +31,35 @@ function siteNavigation() {
 }
 
 function homeContent() {
-  const locationsList = locations
-    .filter((location) => location.status === 'active')
+  const firstLocation = activeLocations[0]
+  const locationsList = activeLocations
     .map((location) =>
       pageLink(
         location.path,
         `Standort ${location.city}`,
         `Persönliche IT-Hilfe durch ${location.operator.name}`,
       ),
+    )
+    .join('')
+  const problemLinks = [
+    'pc-langsam',
+    'pc-startet-nicht',
+    'router-entstoerung',
+    'fernwartung-email-outlook',
+  ]
+    .map((slug) => servicePageBySlug[slug])
+    .map((service) =>
+      pageLink(service.path ?? `/${service.slug}/`, service.situations[0]?.title ?? service.title),
+    )
+    .join('')
+  const serviceLinks = publicServicePages
+    .filter((service) => service.scope === 'network')
+    .map((service) => pageLink(service.path ?? `/${service.slug}/`, service.title, service.description))
+    .join('')
+  const remoteProcess = servicePageBySlug.fernwartung.process
+    .map(
+      (step) =>
+        `<li><strong>${escapeHtml(step.title)}</strong><span>${escapeHtml(step.text)}</span></li>`,
     )
     .join('')
 
@@ -58,13 +81,60 @@ function homeContent() {
   <section aria-labelledby="aktive-standorte">
     <h2 id="aktive-standorte">Aktive Standorte</h2>
     <ul>${locationsList}</ul>
+  </section>
+  <section aria-labelledby="haeufige-probleme">
+    <h2 id="haeufige-probleme">Häufige IT-Probleme</h2>
+    <ul>${problemLinks}</ul>
+  </section>
+  <section aria-labelledby="wichtigste-leistungen">
+    <h2 id="wichtigste-leistungen">Wichtigste Leistungen</h2>
+    <ul>${serviceLinks}</ul>
+  </section>
+  <section aria-labelledby="zielgruppen">
+    <h2 id="zielgruppen">Hilfe für Privatkunden und kleine Unternehmen</h2>
+    <p>Privatpersonen erhalten ruhige, verständliche Unterstützung für Technik im Alltag. Kleine Unternehmen bekommen pragmatische Hilfe für Arbeitsplätze, Netzwerke, Webseiten und Abläufe.</p>
+  </section>
+  <section aria-labelledby="fernwartungsablauf">
+    <h2 id="fernwartungsablauf">Ablauf einer Fernwartung</h2>
+    <ol>${remoteProcess}</ol>
+    <p><a href="/fernwartung/">Deutschlandweite Fernwartung ansehen</a></p>
+  </section>
+  <section aria-labelledby="einstiegspreise">
+    <h2 id="einstiegspreise">Transparente Einstiegspreise</h2>
+    <p>${escapeHtml(siteConfig.remoteSupport.price)}${
+      firstLocation
+        ? ` · Service bei dir in ${escapeHtml(firstLocation.city)} ab ${escapeHtml(firstLocation.pricing.onSiteFrom)}`
+        : ''
+    }</p>
+    <p>${firstLocation ? escapeHtml(firstLocation.pricing.note) : 'Der genaue Umfang wird vorab abgestimmt.'}</p>
+  </section>
+  <section aria-labelledby="vertrauen">
+    <h2 id="vertrauen">Vertrauen und vorhandene Nachweise</h2>
+    ${
+      firstLocation?.trust
+        ? `<p>${escapeHtml(firstLocation.trust.source)}: ${escapeHtml(
+            firstLocation.trust.ratingValue.toLocaleString('de-DE', {
+              minimumFractionDigits: 1,
+            }),
+          )} von 5 bei ${firstLocation.trust.reviewCount} Rezensionen.</p><p><a href="${firstLocation.trust.profileUrl}">Google-Profil ansehen</a></p>`
+        : '<p>Direkte Ansprechpartner, nachvollziehbare Abläufe und transparente Abstimmung.</p>'
+    }
+  </section>
+  <section aria-labelledby="ueber-andrej">
+    <h2 id="ueber-andrej">Schultes IT und Andrej Schultes</h2>
+    <p>Schultes IT steht für verständliche Hilfe, ehrliche Grenzen und Lösungen, die im Alltag funktionieren.</p>
+    <p><a href="/ueber-schultes-it/">Mehr über Schultes IT</a> · <a href="/standortinhaber-werden/">Eigenen Standort aufbauen</a></p>
+  </section>
+  <section aria-labelledby="direkter-kontakt">
+    <h2 id="direkter-kontakt">Problem direkt besprechen</h2>
+    <p><a href="${siteConfig.phoneHref}">${escapeHtml(siteConfig.phoneDisplay)}</a> · <a href="mailto:${siteConfig.email}">${escapeHtml(siteConfig.email)}</a></p>
   </section>`
 }
 
 function servicesContent() {
   return `<section aria-labelledby="leistungsbereiche">
     <h2 id="leistungsbereiche">Leistungsbereiche</h2>
-    <ul>${servicePages
+    <ul>${publicServicePages
       .filter((service) => service.scope === 'network')
       .map((service) => pageLink(service.path ?? `/${service.slug}/`, service.title, service.description))
       .join('')}</ul>
@@ -74,7 +144,7 @@ function servicesContent() {
 function remoteContent() {
   return `<section aria-labelledby="fernwartungsthemen">
     <h2 id="fernwartungsthemen">Fernwartungsthemen</h2>
-    <ul>${servicePages
+    <ul>${publicServicePages
       .filter((service) => service.scope === 'national')
       .map((service) => pageLink(service.path ?? `/${service.slug}/`, service.title, service.description))
       .join('')}</ul>
@@ -84,8 +154,7 @@ function remoteContent() {
 function locationsContent() {
   return `<section aria-labelledby="standortliste">
     <h2 id="standortliste">Aktive Schultes-IT-Standorte</h2>
-    <ul>${locations
-      .filter((location) => location.status === 'active')
+    <ul>${activeLocations
       .map((location) =>
         pageLink(
           location.path,
@@ -99,17 +168,19 @@ function locationsContent() {
 }
 
 function locationContent(page: SitePage) {
-  const location = page.locationId ? locationById[page.locationId] : undefined
+  const location = page.locationId ? activeLocationById[page.locationId] : undefined
   if (!location) return ''
+  const contact = contactForLocation(location)
 
-  const localServices = servicePages
+  const localServices = publicServicePages
     .filter((service) => service.locationId === location.id)
 
   return `<section aria-labelledby="standortkontakt">
-    <h2 id="standortkontakt">${escapeHtml(location.operator.name)}</h2>
+    <h2 id="standortkontakt">${escapeHtml(contact.operatorName)}</h2>
     <p>${escapeHtml(location.operator.role)} für ${escapeHtml(location.city)} und Umgebung.</p>
     <p>Einsatzgebiet: ${escapeHtml(location.serviceAreas.join(', '))}</p>
-    <p><a href="${location.phoneHref}">${escapeHtml(location.phoneDisplay)}</a> · <a href="mailto:${location.email}">${escapeHtml(location.email)}</a></p>
+    <p><a href="${contact.phoneHref}">${escapeHtml(contact.phoneDisplay)}</a> · <a href="mailto:${contact.email}">${escapeHtml(contact.email)}</a></p>
+    ${contact.ownAccountNotice ? `<p>${escapeHtml(contact.ownAccountNotice)}</p>` : ''}
   </section>
   <section aria-labelledby="hilfe-${escapeHtml(location.slug)}">
     <h2 id="hilfe-${escapeHtml(location.slug)}">Häufig gesuchte Hilfe in ${escapeHtml(location.city)}</h2>
@@ -122,6 +193,7 @@ function locationContent(page: SitePage) {
 function serviceContent(page: SitePage) {
   const service = page.serviceSlug ? servicePageBySlug[page.serviceSlug] : undefined
   if (!service) return ''
+  const contact = contactForPage(page)
 
   return `<section aria-labelledby="typische-probleme">
     <h2 id="typische-probleme">Typische Probleme</h2>
@@ -159,11 +231,17 @@ function serviceContent(page: SitePage) {
       )
       .join('')}
   </section>
+  <section aria-labelledby="service-kontakt">
+    <h2 id="service-kontakt">Direkter Kontakt</h2>
+    <p>${escapeHtml(contact.displayName)} · ${escapeHtml(contact.operatorName)}</p>
+    <p><a href="${contact.phoneHref}">${escapeHtml(contact.phoneDisplay)}</a> · <a href="mailto:${contact.email}">${escapeHtml(contact.email)}</a></p>
+    <p>${escapeHtml(contact.remoteSupportNote)}</p>
+  </section>
   ${service.slug === 'fernwartung' ? remoteContent() : ''}`
 }
 
 function guidesContent() {
-  const guides = servicePages.filter(
+  const guides = publicServicePages.filter(
     (service) => service.scope === 'national' || service.scope === 'location',
   )
 
@@ -196,12 +274,15 @@ function supplementalContent(page: SitePage) {
     return `<section><h2>Regional selbstständig. Zentral unterstützt.</h2><p>Schultes IT bereitet eine skalierbare Struktur für eigenständige regionale Standortinhaber vor.</p><p><a href="mailto:${siteConfig.email}?subject=Interesse%20als%20Standortinhaber">Interesse unverbindlich mitteilen</a></p></section>`
   }
   if (page.kind === 'about') {
-    return `<section><h2>Aus Ludwigsburg für ganz Deutschland</h2><p>Schultes IT verbindet zentrale Fernwartung mit eigenverantwortlich betriebenen regionalen Standorten.</p><p><a href="/standorte/ludwigsburg/">Ersten Standort ansehen</a> · <a href="/standortinhaber-werden/">Standortinhaber werden</a></p></section>`
+    const firstLocation = activeLocations[0]
+    return `<section><h2>${firstLocation ? `Begonnen in ${escapeHtml(firstLocation.city)}.` : 'Regional gedacht.'} Für ganz Deutschland.</h2><p>Schultes IT verbindet zentrale Fernwartung mit eigenverantwortlich betriebenen regionalen Standorten.</p><p>${firstLocation ? `<a href="${firstLocation.path}">Ersten Standort ansehen</a> · ` : ''}<a href="/standortinhaber-werden/">Standortinhaber werden</a></p></section>`
   }
   return ''
 }
 
 export function renderStaticPageContent(page: SitePage) {
+  const contact = contactForPage(page)
+
   return `<div class="seo-prerender" data-prerendered="true">
     <a class="seo-skip-link" href="#seo-main">Zum Inhalt springen</a>
     <header>
@@ -217,7 +298,7 @@ export function renderStaticPageContent(page: SitePage) {
     <footer>
       <a href="/impressum/">Impressum</a>
       <a href="/datenschutz/">Datenschutz</a>
-      <a href="${siteConfig.phoneHref}">${escapeHtml(siteConfig.phoneDisplay)}</a>
+      <a href="${contact.phoneHref}">${escapeHtml(contact.phoneDisplay)}</a>
     </footer>
   </div>`
 }

@@ -5,6 +5,8 @@ import {
   resolveSiteRoute,
   sitePages,
 } from './routes'
+import { activeLocations } from './locations'
+import { publicServicePages } from './publicServices'
 
 describe('site routing', () => {
   it('normalizes nested paths and trailing slashes', () => {
@@ -46,5 +48,20 @@ describe('site routing', () => {
     expect(indexableSitePages).toHaveLength(sitePages.length - 2)
     expect(resolveSiteRoute('/impressum/')?.page.legalPage).toBe('impressum')
     expect(resolveSiteRoute('/datenschutz/')?.page.indexable).toBe(false)
+  })
+
+  it('publishes location routes only for active locations', () => {
+    const activeIds = new Set(activeLocations.map((location) => location.id))
+    const publishedLocationIds = sitePages
+      .filter((page) => page.locationId)
+      .map((page) => page.locationId)
+
+    expect(publishedLocationIds.length).toBeGreaterThan(0)
+    expect(publishedLocationIds.every((locationId) => activeIds.has(locationId!))).toBe(true)
+    expect(
+      publicServicePages
+        .filter((service) => service.locationId)
+        .every((service) => activeIds.has(service.locationId!)),
+    ).toBe(true)
   })
 })

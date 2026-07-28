@@ -23,10 +23,11 @@ import {
   getServicePath,
   nationalRemotePages,
   primaryServicePages,
-  topicPages,
 } from '../content/services'
 import type { ServiceIconName } from '../content/types'
-import { siteConfig } from '../site/config'
+import { centralContact, type ContactProfile } from '../site/contacts'
+import { activeLocations } from '../site/locations'
+import { publicTopicPages } from '../site/publicServices'
 
 const serviceIcons: Record<ServiceIconName, LucideIcon> = {
   laptop: Laptop,
@@ -41,7 +42,7 @@ const services = primaryServicePages.map((service) => ({
   href: getServicePath(service),
 }))
 
-const topicServices = topicPages.map((service) => ({
+const topicServices = publicTopicPages.map((service) => ({
   ...service,
   icon: serviceIcons[service.icon],
   href: getServicePath(service),
@@ -161,7 +162,15 @@ export function Logo() {
   )
 }
 
-export function ShortcutMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
+export function ShortcutMenu({
+  open,
+  onClose,
+  contact = centralContact,
+}: {
+  open: boolean
+  onClose: () => void
+  contact?: ContactProfile
+}) {
   const menuRef = useRef<HTMLElement>(null)
   const closeRef = useRef(onClose)
   closeRef.current = onClose
@@ -332,11 +341,11 @@ export function ShortcutMenu({ open, onClose }: { open: boolean; onClose: () => 
                 <span>05 / DIREKT</span>
                 <p id="shortcut-contact-title">Problem kurz besprechen</p>
               </header>
-              <a href={siteConfig.phoneHref} onClick={onClose}>
+              <a href={contact.phoneHref} onClick={onClose}>
                 <Phone aria-hidden="true" />
-                <span><small>ANRUFEN</small>{siteConfig.phoneDisplay}</span>
+                <span><small>ANRUFEN</small>{contact.phoneDisplay}</span>
               </a>
-              <a href={`mailto:${siteConfig.email}`} onClick={onClose}>
+              <a href={`mailto:${contact.email}`} onClick={onClose}>
                 <Mail aria-hidden="true" />
                 <span><small>E-MAIL</small>Nachricht schreiben</span>
               </a>
@@ -348,12 +357,17 @@ export function ShortcutMenu({ open, onClose }: { open: boolean; onClose: () => 
   )
 }
 
-export function SiteFooter() {
+export function SiteFooter({ contact = centralContact }: { contact?: ContactProfile }) {
   return (
     <footer className="site-footer">
       <Logo />
       <div className="footer-meta">
-        <span>Deutschlandweit · Standort Ludwigsburg</span>
+        <span>
+          Deutschlandweit ·{' '}
+          {activeLocations.length === 1
+            ? `Standort ${activeLocations[0].city}`
+            : `${activeLocations.length} aktive Standorte`}
+        </span>
         <span>© {new Date().getFullYear()} Andrej Schultes</span>
       </div>
       <div className="footer-links">
@@ -375,7 +389,7 @@ export function SiteFooter() {
           <LockKeyhole aria-hidden="true" /> Datenschutz
         </a>
         <span className="footer-private" data-nosnippet>
-          <a href={`mailto:${siteConfig.email}`}>
+          <a href={`mailto:${contact.email}`}>
             <Mail aria-hidden="true" /> E-Mail
           </a>
         </span>

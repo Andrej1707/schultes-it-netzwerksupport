@@ -17,6 +17,8 @@ export const siteConfig = {
   remoteSupport: {
     downloadPath: '/downloads/rustdesk.exe',
     price: 'Fernhilfe ab 25 €',
+    contactNote:
+      'Die zentrale Fernwartung wird direkt durch Schultes IT angeboten und deutschlandweit betreut.',
   },
 } as const
 

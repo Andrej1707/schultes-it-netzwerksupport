@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { motion, useReducedMotion, useScroll } from 'framer-motion'
 import {
   ArrowUpRight,
+  BadgeEuro,
   Bot,
   Building2,
   CheckCircle2,
@@ -19,6 +20,7 @@ import {
   Router,
   ShieldCheck,
   Sparkles,
+  Star,
   UserRound,
   Workflow,
   X,
@@ -28,7 +30,7 @@ import {
   getServicePath,
   nationalRemotePages,
   primaryServicePages,
-  topicPages,
+  servicePageBySlug,
 } from '../content/services'
 import type { ServiceIconName } from '../content/types'
 import {
@@ -38,8 +40,14 @@ import {
   SiteFooter,
 } from '../components/SiteChrome'
 import { findNearestLocation } from '../site/locationFinder'
-import { locationById, locations } from '../site/locations'
+import { activeLocationById, activeLocations } from '../site/locations'
 import { siteConfig } from '../site/config'
+import {
+  contactForLocation,
+  contactForPage,
+  type ContactProfile,
+} from '../site/contacts'
+import { publicTopicPages } from '../site/publicServices'
 import type { SitePage } from '../site/types'
 
 const iconByName: Record<ServiceIconName, LucideIcon> = {
@@ -57,6 +65,17 @@ const reveal = {
     transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const },
   },
 }
+
+const homeProblemSlugs = [
+  'pc-langsam',
+  'pc-startet-nicht',
+  'router-entstoerung',
+  'fernwartung-email-outlook',
+] as const
+
+const homeProblems = homeProblemSlugs.map((slug) => servicePageBySlug[slug])
+const remoteOverview = servicePageBySlug.fernwartung
+const firstActiveLocation = activeLocations[0]
 
 type LocationState =
   | { status: 'idle' }
@@ -81,7 +100,7 @@ function LocationFinder({ autoDetectGranted = false }: { autoDetectGranted?: boo
       ({ coords }) => {
         const match = findNearestLocation(
           { latitude: coords.latitude, longitude: coords.longitude },
-          locations,
+          activeLocations,
         )
 
         if (!match) {
@@ -155,9 +174,11 @@ function LocationFinder({ autoDetectGranted = false }: { autoDetectGranted?: boo
 function NetworkHeader({
   menuOpen,
   onMenuToggle,
+  contact,
 }: {
   menuOpen: boolean
   onMenuToggle: () => void
+  contact: ContactProfile
 }) {
   return (
     <header className="site-header service-header">
@@ -170,9 +191,9 @@ function NetworkHeader({
         <a href="/ueber-schultes-it/">Über Schultes IT</a>
       </nav>
       <div className="header-actions">
-        <a className="header-call" href={siteConfig.phoneHref}>
+        <a className="header-call" href={contact.phoneHref}>
           <Phone size={16} aria-hidden="true" />
-          <span data-nosnippet>{siteConfig.phoneDisplay}</span>
+          <span data-nosnippet>{contact.phoneDisplay}</span>
         </a>
         <button
           className="menu-toggle"
@@ -201,6 +222,7 @@ function NetworkShell({
 }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const { scrollYProgress } = useScroll()
+  const contact = contactForPage(page)
 
   useEffect(() => {
     document.body.dataset.networkPage = page.kind
@@ -228,27 +250,28 @@ function NetworkShell({
       <NetworkHeader
         menuOpen={menuOpen}
         onMenuToggle={() => setMenuOpen((current) => !current)}
+        contact={contact}
       />
-      <ShortcutMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <ShortcutMenu open={menuOpen} onClose={() => setMenuOpen(false)} contact={contact} />
 
       <main className={`network-page ${compact ? 'network-page-compact' : ''}`} id="network-main">
         {children}
       </main>
 
       <div className="mobile-contact-dock" aria-label="Schnellkontakt">
-        <a href={siteConfig.phoneHref}>
+        <a href={contact.phoneHref}>
           <Phone aria-hidden="true" />
           <span>
             <small>JETZT ANRUFEN</small>
-            <span data-nosnippet>{siteConfig.phoneDisplay}</span>
+            <span data-nosnippet>{contact.phoneDisplay}</span>
           </span>
         </a>
-        <a href={`mailto:${siteConfig.email}`}>
+        <a href={`mailto:${contact.email}`}>
           <Mail aria-hidden="true" />
           <span>E-Mail</span>
         </a>
       </div>
-      <SiteFooter />
+      <SiteFooter contact={contact} />
     </>
   )
 }
@@ -365,33 +388,178 @@ export function BrandHomePage({ page }: { page: SitePage }) {
         </div>
       </section>
 
-      <section className="network-principles">
+      <section className="guide-group brand-home-section">
         <header>
-          <span>03 / EIN SYSTEM, ZWEI WEGE</span>
-          <h2>Die Hilfe richtet sich nach dem Problem. Nicht nach der Entfernung.</h2>
+          <span>03 / HÄUFIGE PROBLEME</span>
+          <h2>Du musst die Ursache nicht kennen. Das Symptom reicht.</h2>
+        </header>
+        <div className="guide-link-grid">
+          {homeProblems.map((service) => {
+            const Icon = iconByName[service.icon]
+            return (
+              <a href={getServicePath(service)} key={service.slug}>
+                <Icon aria-hidden="true" />
+                <span>
+                  <strong>{service.situations[0]?.title ?? service.shortTitle}</strong>
+                  <small>{service.description}</small>
+                </span>
+                <ChevronRight aria-hidden="true" />
+              </a>
+            )
+          })}
+        </div>
+      </section>
+
+      <section className="brand-home-section">
+        <header className="brand-section-heading">
+          <span>04 / WICHTIGSTE LEISTUNGEN</span>
+          <h2>Vom einzelnen PC bis zum digitalen Arbeitsablauf.</h2>
+        </header>
+        <ServiceOverview />
+      </section>
+
+      <section className="about-network brand-audiences">
+        <article>
+          <span>05 / PRIVATKUNDEN</span>
+          <UserRound aria-hidden="true" />
+          <h2>Ruhige Hilfe für Technik im Alltag.</h2>
+          <p>
+            PC, Laptop, WLAN, Drucker oder E-Mail werden verständlich geprüft. Du musst keine
+            Fachbegriffe kennen und behältst bei Fernwartung jederzeit die Kontrolle.
+          </p>
+          <a href="/ratgeber/">
+            Passende Hilfe finden <ArrowUpRight aria-hidden="true" />
+          </a>
+        </article>
+        <article>
+          <span>06 / KLEINE UNTERNEHMEN</span>
+          <Building2 aria-hidden="true" />
+          <h2>Pragmatischer Support ohne Ticket-Labyrinth.</h2>
+          <p>
+            Unterstützung für Arbeitsplätze, Netzwerk, Webseiten und wiederkehrende Abläufe.
+            Umfang, Verantwortung und Kosten werden vor der Umsetzung klar abgestimmt.
+          </p>
+          <a href="/leistungen/">
+            Leistungen für Betriebe <ArrowUpRight aria-hidden="true" />
+          </a>
+        </article>
+      </section>
+
+      <section className="network-principles brand-process">
+        <header>
+          <span>07 / FERNWARTUNG</span>
+          <h2>Vier klare Schritte. Du siehst jederzeit, was passiert.</h2>
         </header>
         <div>
-          <article>
-            <ShieldCheck aria-hidden="true" />
-            <strong>Sicher und nachvollziehbar</strong>
-            <p>Keine versteckten Zugriffe, keine Passwörter im Chat und klare nächste Schritte.</p>
-          </article>
-          <article>
-            <Network aria-hidden="true" />
-            <strong>Zentral organisiert</strong>
-            <p>Eine Marke, gemeinsame Standards und eine Website für bundesweite Sichtbarkeit.</p>
-          </article>
-          <article>
-            <UserRound aria-hidden="true" />
-            <strong>Regional verantwortlich</strong>
-            <p>Vor-Ort-Service wird von einem klar zuständigen Ansprechpartner übernommen.</p>
-          </article>
+          {remoteOverview.process.map((step, index) => (
+            <article key={step.title}>
+              <span className="brand-step-number">{String(index + 1).padStart(2, '0')}</span>
+              <Workflow aria-hidden="true" />
+              <strong>{step.title}</strong>
+              <p>{step.text}</p>
+            </article>
+          ))}
         </div>
+      </section>
+
+      <section className="brand-offer-section">
+        <header className="brand-section-heading">
+          <span>08 / PREISE & VERTRAUEN</span>
+          <h2>Ein klarer Einstieg. Keine versteckten Versprechen.</h2>
+        </header>
+        <div className="brand-offer-grid">
+          <article>
+            <BadgeEuro aria-hidden="true" />
+            <small>DEUTSCHLANDWEIT / REMOTE</small>
+            <h3>{siteConfig.remoteSupport.price}</h3>
+            <p>Geeignete Probleme werden nach direkter Abstimmung sicher per Fernwartung geprüft.</p>
+            <a href="/fernwartung/">
+              Fernwartung ansehen <ArrowUpRight aria-hidden="true" />
+            </a>
+          </article>
+          <article>
+            <MapPin aria-hidden="true" />
+            <small>{firstActiveLocation?.city.toUpperCase() ?? 'REGIONAL'} / VOR ORT</small>
+            <h3>
+              Service bei dir ab {firstActiveLocation?.pricing.onSiteFrom ?? 'individueller Absprache'}
+            </h3>
+            <p>
+              {firstActiveLocation?.pricing.note ??
+                'Der zuständige Standort stimmt Umfang und mögliche Zusatzkosten vorher ab.'}
+            </p>
+            <a href={firstActiveLocation?.path ?? '/standorte/'}>
+              Standort ansehen <ArrowUpRight aria-hidden="true" />
+            </a>
+          </article>
+          {firstActiveLocation?.trust ? (
+            <article className="brand-trust-card">
+              <Star aria-hidden="true" />
+              <small>{firstActiveLocation.trust.source.toUpperCase()} / NACHWEIS</small>
+              <h3>
+                {firstActiveLocation.trust.ratingValue.toLocaleString('de-DE', {
+                  minimumFractionDigits: 1,
+                })}{' '}
+                von 5
+              </h3>
+              <p>
+                {firstActiveLocation.trust.reviewCount} Google-Rezensionen
+                {firstActiveLocation.trust.quote
+                  ? ` · „${firstActiveLocation.trust.quote}“`
+                  : ''}
+              </p>
+              <a href={firstActiveLocation.trust.profileUrl} target="_blank" rel="noreferrer">
+                Google-Profil öffnen <ArrowUpRight aria-hidden="true" />
+              </a>
+            </article>
+          ) : null}
+        </div>
+      </section>
+
+      <section className="brand-location-section">
+        <header className="brand-section-heading">
+          <span>09 / STANDORTFINDER</span>
+          <h2>Persönliche Hilfe beginnt beim richtigen Ansprechpartner.</h2>
+        </header>
+        <LocationFinder />
+        <a className="brand-inline-link" href="/standorte/">
+          Alle aktiven Standorte ansehen <ArrowUpRight aria-hidden="true" />
+        </a>
+      </section>
+
+      <section className="about-network brand-about">
+        <article>
+          <span>10 / SCHULTES IT</span>
+          <ShieldCheck aria-hidden="true" />
+          <h2>Direkt aufgebaut von Andrej Schultes.</h2>
+          <p>
+            Schultes IT steht für verständliche Hilfe, ehrliche Grenzen und Lösungen, die im Alltag
+            funktionieren.
+            {firstActiveLocation
+              ? ` ${firstActiveLocation.city} ist der erste inhabergeführte Standort des Netzwerks.`
+              : ''}
+          </p>
+          <a href="/ueber-schultes-it/">
+            Mehr über Schultes IT <ArrowUpRight aria-hidden="true" />
+          </a>
+        </article>
+        <article className="brand-owner-entry">
+          <span>11 / NETZWERK AUFBAUEN</span>
+          <Network aria-hidden="true" />
+          <h2>Eigene Region. Gemeinsame Marke.</h2>
+          <p>
+            Für selbstständige IT-Dienstleister entsteht eine klare Grundlage für regionale
+            Schultes-IT-Standorte. Noch ohne automatisiertes Bewerberportal und ohne vorschnelle
+            Gebietszusage.
+          </p>
+          <a href="/standortinhaber-werden/">
+            Modell kennenlernen <ArrowUpRight aria-hidden="true" />
+          </a>
+        </article>
       </section>
 
       <section className="network-cta">
         <div>
-          <span>04 / NICHT SICHER?</span>
+          <span>12 / DIREKTER KONTAKT</span>
           <h2>Beschreib einfach, was nicht funktioniert.</h2>
           <p>
             Schultes IT klärt mit dir, ob Fernwartung reicht oder ein regionaler Termin sinnvoller
@@ -438,10 +606,10 @@ function LocationsOverview() {
       <LocationFinder autoDetectGranted />
       <section className="location-list" aria-label="Aktive Schultes-IT-Standorte">
         <header>
-          <span>AKTIVE STANDORTE / {String(locations.length).padStart(2, '0')}</span>
+          <span>AKTIVE STANDORTE / {String(activeLocations.length).padStart(2, '0')}</span>
           <h2>Regional erreichbar. Klar verantwortlich.</h2>
         </header>
-        {locations.map((location) => (
+        {activeLocations.map((location) => (
           <article key={location.id}>
             <div className="location-list-code">
               <MapPin aria-hidden="true" />
@@ -470,8 +638,9 @@ function LocationsOverview() {
 }
 
 function LocationDetailOverview({ locationId }: { locationId: string }) {
-  const location = locationById[locationId]
+  const location = activeLocationById[locationId]
   if (!location) return null
+  const contact = contactForLocation(location)
 
   return (
     <>
@@ -484,6 +653,7 @@ function LocationDetailOverview({ locationId }: { locationId: string }) {
             definierten regionalen Einsatzgebiet und arbeitet nach den gemeinsamen
             Schultes-IT-Qualitätsstandards.
           </p>
+          {contact.ownAccountNotice ? <p>{contact.ownAccountNotice}</p> : null}
           <div className="location-area-tags">
             {location.serviceAreas.map((area) => (
               <span key={area}>{area}</span>
@@ -506,11 +676,11 @@ function LocationDetailOverview({ locationId }: { locationId: string }) {
             ist.
           </p>
         </div>
-        <a href={location.phoneHref}>
+        <a href={contact.phoneHref}>
           <Phone aria-hidden="true" />
           <span>
             <small>STANDORT ANRUFEN</small>
-            <strong data-nosnippet>{location.phoneDisplay}</strong>
+            <strong data-nosnippet>{contact.phoneDisplay}</strong>
           </span>
           <ArrowUpRight aria-hidden="true" />
         </a>
@@ -617,46 +787,53 @@ function GuideOverview() {
           ))}
         </div>
       </section>
-      <section className="guide-group">
-        <header>
-          <span>02 / STANDORT LUDWIGSBURG</span>
-          <h2>Konkrete Hilfe bei typischen Problemen</h2>
-        </header>
-        <div className="guide-link-grid">
-          {topicPages.map((service) => {
-            const Icon = iconByName[service.icon]
-            return (
-              <a href={getServicePath(service)} key={service.slug}>
-                <Icon aria-hidden="true" />
-                <span>
-                  <strong>{service.shortTitle}</strong>
-                  <small>{service.description}</small>
-                </span>
-                <ChevronRight aria-hidden="true" />
-              </a>
-            )
-          })}
-        </div>
-      </section>
+      {firstActiveLocation && publicTopicPages.length > 0 ? (
+        <section className="guide-group">
+          <header>
+            <span>02 / STANDORT {firstActiveLocation.city.toUpperCase()}</span>
+            <h2>Konkrete Hilfe bei typischen Problemen</h2>
+          </header>
+          <div className="guide-link-grid">
+            {publicTopicPages.map((service) => {
+              const Icon = iconByName[service.icon]
+              return (
+                <a href={getServicePath(service)} key={service.slug}>
+                  <Icon aria-hidden="true" />
+                  <span>
+                    <strong>{service.shortTitle}</strong>
+                    <small>{service.description}</small>
+                  </span>
+                  <ChevronRight aria-hidden="true" />
+                </a>
+              )
+            })}
+          </div>
+        </section>
+      ) : null}
     </>
   )
 }
 
 function AboutOverview() {
+  const firstLocation = activeLocations[0]
+
   return (
     <>
       <section className="about-network">
         <article>
           <span>01 / URSPRUNG</span>
-          <h2>Begonnen in Ludwigsburg.</h2>
+          <h2>{firstLocation ? `Begonnen in ${firstLocation.city}.` : 'Regional aufgebaut.'}</h2>
           <p>
-            Andrej Schultes hat Schultes IT als direkten, verständlichen IT-Service aufgebaut. Der
-            Standort Ludwigsburg bleibt inhabergeführt und bildet den ersten realen Standort des
-            Netzwerks.
+            Andrej Schultes hat Schultes IT als direkten, verständlichen IT-Service aufgebaut.
+            {firstLocation
+              ? ` Standort ${firstLocation.city} bleibt inhabergeführt und bildet den ersten realen Standort des Netzwerks.`
+              : ' Der erste aktive Standort wird hier veröffentlicht, sobald er vollständig vorbereitet ist.'}
           </p>
-          <a href="/standorte/ludwigsburg/">
-            Standort Ludwigsburg <ArrowUpRight aria-hidden="true" />
-          </a>
+          {firstLocation ? (
+            <a href={firstLocation.path}>
+              Standort {firstLocation.city} <ArrowUpRight aria-hidden="true" />
+            </a>
+          ) : null}
         </article>
         <article>
           <span>02 / RICHTUNG</span>

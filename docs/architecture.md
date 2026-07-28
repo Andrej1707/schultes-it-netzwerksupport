@@ -15,6 +15,7 @@ unterscheidet inhabergeführte Standorte und künftig rechtlich selbstständige 
 - `src/site/config.ts`: Marke, Kontakt, Domain und zentrale Fernwartung
 - `src/site/locations.ts`: aktive und vorbereitete Standorte, Betreiber, Gebiete und Koordinaten
 - `src/content/services.ts`: normalisierte Leistungsseiten und ihre Reichweite
+- `src/site/publicServices.ts`: öffentlich freigegebene Leistungen aktiver Standorte
 - `src/site/routes.ts`: kanonische Seiten, Seitentypen und alte Alias-URLs
 - `src/site/schema.ts`: strukturierte Daten passend zum Seitentyp
 
@@ -59,6 +60,17 @@ remote erbringbare und regional verfügbare Leistungen zusammenführen.
 Nur aktive Standortdaten erzeugen lokale `ProfessionalService`-Daten. Betreiber, Adresse,
 Koordinaten und Einsatzgebiete stammen aus einem einzelnen Standortdatensatz.
 
+`activeLocations` ist die zentrale öffentliche Standortliste. Standortübersicht, Standortfinder,
+Routen, Sitemap, Schema.org, Menüs und Ratgeber verwenden ausschließlich aktive Standorte oder
+daraus abgeleitete öffentliche Leistungsdaten. `preparing` bleibt damit intern vorbereitbar, ohne
+als aktiver Standort gezählt oder verlinkt zu werden.
+
+Das optionale Betreibermodell kann Geschäftsbezeichnung, Rechtsform, Geschäftsanschrift,
+geschäftliche Telefonnummer und E-Mail, verantwortliche Person, Umsatzsteuer-ID,
+Impressumsangaben sowie den Hinweis zur Tätigkeit im eigenen Namen und auf eigene Rechnung
+aufnehmen. Lokale Seiten lösen Kontakt und Fernwartungshinweis aus diesem Standortdatensatz auf;
+zentrale Fernwartungsseiten verwenden weiterhin die Markenkonfiguration.
+
 Lokale Detailseiten werden unter `/standorte/<standort>/<thema>/` erzeugt. Bestehende flache URLs
 bleiben als `noindex, follow`-Alias mit Canonical auf die neue Route erreichbar.
 
@@ -86,6 +98,9 @@ Später kann dieselbe Schnittstelle um PLZ-Suche oder serverseitige Gebietspolyg
 
 Ein Bewerberportal, Gebietsvertrag, Ticketing und Abrechnung gehören bewusst noch nicht zu diesem
 Website-Baustein. Die Daten- und URL-Struktur ist aber auf diese Erweiterungen vorbereitet.
+Auch eine automatisch erzeugte separate Impressumsseite pro selbstständigem Betreiber ist noch
+nicht Teil dieses Schritts; dafür kann zunächst eine geprüfte URL oder ein strukturierter
+Impressumshinweis am Standort hinterlegt werden.
 
 ## Kompatibilität
 

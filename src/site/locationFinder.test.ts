@@ -1,6 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import { distanceInKm, findNearestLocation } from './locationFinder'
-import { locations, type ServiceLocation } from './locations'
+import {
+  activeLocations,
+  filterActiveLocations,
+  locations,
+  type ServiceLocation,
+} from './locations'
 
 describe('location finder', () => {
   it('calculates zero distance for identical coordinates', () => {
@@ -48,5 +53,11 @@ describe('location finder', () => {
     )
 
     expect(result?.location.id).toBe('ludwigsburg')
+    expect(filterActiveLocations([...locations, preparing])).toEqual(activeLocations)
+  })
+
+  it('publishes only active locations through the central list', () => {
+    expect(activeLocations.length).toBeGreaterThan(0)
+    expect(activeLocations.every((location) => location.status === 'active')).toBe(true)
   })
 })

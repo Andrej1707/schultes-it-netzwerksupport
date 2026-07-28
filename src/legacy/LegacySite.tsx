@@ -50,18 +50,30 @@ import {
   nationalRemotePages,
   primaryServicePages,
   servicePageBySlug,
-  topicPages,
 } from '../content/services'
 import type { ServiceIconName, ServicePageData } from '../content/types'
+import {
+  centralContact,
+  contactForLocation,
+  contactForService,
+  type ContactProfile,
+} from '../site/contacts'
+import { activeLocationById, activeLocations, locationById } from '../site/locations'
+import { publicTopicPages } from '../site/publicServices'
 
-const phoneParts = ['+49', '1567', '9616310']
-const phoneDisplay = phoneParts.join(' ')
-const phoneHref = `tel:${phoneParts.join('')}`
-const phoneCopy = phoneDisplay
-const email = ['it.schulteslb', 'gmail.com'].join('@')
-const address = 'Egerländer Str. 24, 71638 Ludwigsburg'
-const mapsUrl = 'https://maps.app.goo.gl/9riyhNzidDpzvynd8'
-const mapsEmbedUrl = 'https://www.google.com/maps?q=48.8886228%2C9.2064228&z=17&output=embed'
+const ludwigsburgLocation = locationById.ludwigsburg
+if (!ludwigsburgLocation) {
+  throw new Error('The Ludwigsburg location configuration is required for the local marketing page.')
+}
+
+const phoneDisplay = centralContact.phoneDisplay
+const phoneHref = centralContact.phoneHref
+const email = centralContact.email
+const address =
+  `${ludwigsburgLocation.streetAddress}, ${ludwigsburgLocation.postalCode} ` +
+  ludwigsburgLocation.city
+const mapsUrl = ludwigsburgLocation.mapsUrl
+const mapsEmbedUrl = ludwigsburgLocation.mapsEmbedUrl
 const remoteSupportDownload = {
   href: '/downloads/rustdesk.exe',
   fileName: 'rustdesk.exe',
@@ -83,7 +95,7 @@ const services = primaryServicePages.map((service) => ({
   href: getServicePath(service),
 }))
 
-const topicServices = topicPages.map((service) => ({
+const topicServices = publicTopicPages.map((service) => ({
   ...service,
   icon: serviceIcons[service.icon],
   href: getServicePath(service),
@@ -122,42 +134,42 @@ const everydayProblems = [
     icon: Laptop,
     title: 'Mein PC geht nicht mehr an',
     text: 'Der Rechner bleibt schwarz, startet nur kurz oder Windows fährt nicht mehr hoch.',
-    href: '/pc-startet-nicht/',
+    href: getServicePath(servicePageBySlug['pc-startet-nicht']),
     label: 'Startproblem',
   },
   {
     icon: Cpu,
     title: 'Mein PC oder Laptop ist sehr langsam',
     text: 'Programme brauchen ewig, Updates hängen oder das Gerät reagiert nur noch zäh.',
-    href: '/pc-langsam/',
+    href: getServicePath(servicePageBySlug['pc-langsam']),
     label: 'PC langsam',
   },
   {
     icon: Router,
     title: 'Mein WLAN geht nicht',
     text: 'Die Verbindung ist weg, bricht ständig ab oder reicht nicht bis ins Arbeitszimmer.',
-    href: '/netzwerk-wlan/',
+    href: getServicePath(servicePageBySlug['netzwerk-wlan']),
     label: 'WLAN-Hilfe',
   },
   {
     icon: Radio,
     title: 'WLAN verbunden, aber kein Internet',
     text: 'Handy oder Laptop zeigen WLAN an, trotzdem lädt keine Seite zuverlässig.',
-    href: '/router-entstoerung/',
+    href: getServicePath(servicePageBySlug['router-entstoerung']),
     label: 'Netzwerkhilfe',
   },
   {
     icon: Router,
     title: 'Fritzbox oder Mesh macht Probleme',
     text: 'Repeater, Router oder WLAN-Abdeckung sollen bei dir vor Ort sauber eingerichtet werden.',
-    href: '/fritzbox-hilfe/',
+    href: getServicePath(servicePageBySlug['fritzbox-hilfe']),
     label: 'Routerhilfe',
   },
   {
     icon: ShieldCheck,
     title: 'Verdächtige Mail oder SMS bekommen',
     text: 'Nicht weiterklicken: Betrugsverdacht, Phishing und komische Konto-Warnungen ruhig einordnen.',
-    href: '/betrugsverdacht-phishing-hilfe/',
+    href: getServicePath(servicePageBySlug['betrugsverdacht-phishing-hilfe']),
     label: 'Sicherheit',
   },
 ]
@@ -437,9 +449,14 @@ type ShortcutMenuProps = {
   open: boolean
   onClose: () => void
   isHome?: boolean
+  contact?: ContactProfile
 }
 
-export function ShortcutMenu({ open, onClose }: ShortcutMenuProps) {
+export function ShortcutMenu({
+  open,
+  onClose,
+  contact = centralContact,
+}: ShortcutMenuProps) {
   const menuRef = useRef<HTMLElement>(null)
   const closeRef = useRef(onClose)
   closeRef.current = onClose
@@ -613,11 +630,11 @@ export function ShortcutMenu({ open, onClose }: ShortcutMenuProps) {
                 <span>05 / DIREKT</span>
                 <p id="shortcut-contact-title">Problem kurz besprechen</p>
               </header>
-              <a href={phoneHref} onClick={onClose}>
+              <a href={contact.phoneHref} onClick={onClose}>
                 <Phone aria-hidden="true" />
-                <span><small>ANRUFEN</small>{phoneDisplay}</span>
+                <span><small>ANRUFEN</small>{contact.phoneDisplay}</span>
               </a>
-              <a href={`mailto:${email}`} onClick={onClose}>
+              <a href={`mailto:${contact.email}`} onClick={onClose}>
                 <Mail aria-hidden="true" />
                 <span><small>E-MAIL</small>Nachricht schreiben</span>
               </a>
@@ -1020,12 +1037,17 @@ function PrivacyContent() {
   )
 }
 
-export function SiteFooter() {
+export function SiteFooter({ contact = centralContact }: { contact?: ContactProfile }) {
   return (
     <footer className="site-footer">
       <Logo />
       <div className="footer-meta">
-        <span>Deutschlandweit · Standort Ludwigsburg</span>
+        <span>
+          Deutschlandweit ·{' '}
+          {activeLocations.length === 1
+            ? `Standort ${activeLocations[0].city}`
+            : `${activeLocations.length} aktive Standorte`}
+        </span>
         <span>© {new Date().getFullYear()} Andrej Schultes</span>
       </div>
       <div className="footer-links">
@@ -1047,7 +1069,7 @@ export function SiteFooter() {
           <LockKeyhole aria-hidden="true" /> Datenschutz
         </a>
         <span className="footer-private" data-nosnippet>
-          <a href={`mailto:${email}`}>
+          <a href={`mailto:${contact.email}`}>
             <Mail aria-hidden="true" /> E-Mail
           </a>
         </span>
@@ -1064,6 +1086,10 @@ export function ServicePage({ service }: { service: ServicePageData }) {
   const heroLift = useTransform(scrollYProgress, [0, 0.2], [0, reduceMotion ? 0 : -54])
   const Icon = serviceIcons[service.icon]
   const motionInitial = reduceMotion ? false : 'hidden'
+  const contact = contactForService(service)
+  const serviceLocation = service.locationId
+    ? activeLocationById[service.locationId]
+    : undefined
 
   useEffect(() => {
     document.body.dataset.servicePage = service.slug
@@ -1078,10 +1104,10 @@ export function ServicePage({ service }: { service: ServicePageData }) {
 
   const copyPhoneNumber = async () => {
     try {
-      await navigator.clipboard.writeText(phoneCopy)
+      await navigator.clipboard.writeText(contact.phoneDisplay)
     } catch {
       const input = document.createElement('textarea')
-      input.value = phoneCopy
+      input.value = contact.phoneDisplay
       input.style.position = 'fixed'
       input.style.opacity = '0'
       document.body.appendChild(input)
@@ -1122,9 +1148,9 @@ export function ServicePage({ service }: { service: ServicePageData }) {
           <a href="#service-contact">Kontakt</a>
         </nav>
         <div className="header-actions">
-          <a className="header-call" href={phoneHref}>
+          <a className="header-call" href={contact.phoneHref}>
             <Phone size={16} aria-hidden="true" />
-            <span data-nosnippet>{phoneDisplay}</span>
+            <span data-nosnippet>{contact.phoneDisplay}</span>
           </a>
           <button
             className="menu-toggle"
@@ -1140,7 +1166,11 @@ export function ServicePage({ service }: { service: ServicePageData }) {
         </div>
       </header>
 
-      <ShortcutMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <ShortcutMenu
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        contact={contact}
+      />
 
       <main className="service-page" id="service-main">
         <section className="service-detail-hero">
@@ -1162,7 +1192,9 @@ export function ServicePage({ service }: { service: ServicePageData }) {
                 <>
                   <a href="/standorte/">Standorte</a>
                   <ChevronRight aria-hidden="true" />
-                  <a href="/standorte/ludwigsburg/">Ludwigsburg</a>
+                  <a href={serviceLocation?.path ?? '/standorte/'}>
+                    {serviceLocation?.city ?? 'Regionaler Standort'}
+                  </a>
                   <ChevronRight aria-hidden="true" />
                 </>
               ) : service.scope === 'national' && getServicePath(service) !== '/fernwartung/' ? (
@@ -1191,10 +1223,10 @@ export function ServicePage({ service }: { service: ServicePageData }) {
             </motion.h1>
             <motion.p variants={serviceHeroItem}>{service.heroText}</motion.p>
             <motion.div className="service-detail-actions" variants={serviceHeroItem}>
-              <a className="primary-action" href={phoneHref}>
+              <a className="primary-action" href={contact.phoneHref}>
                 <span>
                   Problem besprechen
-                  <small data-nosnippet>{phoneDisplay}</small>
+                  <small data-nosnippet>{contact.phoneDisplay}</small>
                 </span>
                 <ArrowUpRight aria-hidden="true" />
               </a>
@@ -1541,41 +1573,41 @@ export function ServicePage({ service }: { service: ServicePageData }) {
               <span> Erzähl mir, was nicht funktioniert.</span>
             </h2>
             <p>
-              Gemeinsam klären wir, ob Fernhilfe passt, ein Termin bei dir sinnvoll ist oder ein
-              anderes Vorgehen ehrlicher wäre.
+              Gemeinsam mit {contact.operatorName} klärst du, ob Fernhilfe passt, ein Termin bei
+              dir sinnvoll ist oder ein anderes Vorgehen ehrlicher wäre.
             </p>
           </div>
           <div className="service-contact-panel">
-            <a href={phoneHref}>
+            <a href={contact.phoneHref}>
               <Phone aria-hidden="true" />
               <span>
                 <small>JETZT ANRUFEN</small>
-                <strong data-nosnippet>{phoneDisplay}</strong>
+                <strong data-nosnippet>{contact.phoneDisplay}</strong>
               </span>
               <ArrowUpRight aria-hidden="true" />
             </a>
-            <a href={`mailto:${email}`}>
+            <a href={`mailto:${contact.email}`}>
               <Mail aria-hidden="true" />
               <span>
                 <small>PER E-MAIL</small>
-                <strong data-nosnippet>{email}</strong>
+                <strong data-nosnippet>{contact.email}</strong>
               </span>
               <ArrowUpRight aria-hidden="true" />
             </a>
             <p>
-              <CalendarCheck2 aria-hidden="true" /> Termine nach Vereinbarung · Kurz melden und
-              gemeinsam einen passenden Termin finden.
+              <CalendarCheck2 aria-hidden="true" /> {contact.displayName} ·{' '}
+              {contact.remoteSupportNote}
             </p>
           </div>
         </section>
       </main>
 
       <div className="mobile-contact-dock" aria-label="Schnellkontakt">
-        <a href={phoneHref}>
+        <a href={contact.phoneHref}>
           <Phone aria-hidden="true" />
           <span>
             <small>JETZT ANRUFEN</small>
-            <span data-nosnippet>{phoneDisplay}</span>
+            <span data-nosnippet>{contact.phoneDisplay}</span>
           </span>
         </a>
         <button type="button" onClick={copyPhoneNumber} aria-label="Telefonnummer kopieren">
@@ -1584,7 +1616,7 @@ export function ServicePage({ service }: { service: ServicePageData }) {
         </button>
       </div>
 
-      <SiteFooter />
+      <SiteFooter contact={contact} />
     </>
   )
 }
@@ -1600,6 +1632,11 @@ export function MarketingApp() {
   const { scrollYProgress } = useScroll()
   const heroLift = useTransform(scrollYProgress, [0, 0.22], [0, reduceMotion ? 0 : -72])
   const heroFade = useTransform(scrollYProgress, [0, 0.18], [1, 0.45])
+  const locationContact = contactForLocation(ludwigsburgLocation)
+  const phoneDisplay = locationContact.phoneDisplay
+  const phoneHref = locationContact.phoneHref
+  const phoneCopy = locationContact.phoneDisplay
+  const locationTrust = ludwigsburgLocation.trust
 
   useEffect(() => {
     document.title = 'IT-Hilfe Ludwigsburg | Schultes IT Standort'
@@ -1708,7 +1745,7 @@ export function MarketingApp() {
           <a href="#preise">Preise</a>
           <a href="#projekte">Projekte</a>
           <a href="#kompetenzen">Kompetenzen</a>
-          <a href="#andrej">Über Andrej</a>
+          <a href="#andrej">Über {locationContact.operatorName.split(' ')[0]}</a>
         </nav>
         <div className="header-actions">
           <a className="header-call" href={phoneHref}>
@@ -1729,7 +1766,11 @@ export function MarketingApp() {
         </div>
       </header>
 
-      <ShortcutMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <ShortcutMenu
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        contact={locationContact}
+      />
 
       <main id="main">
         <section className="hero" id="top">
@@ -1966,13 +2007,24 @@ export function MarketingApp() {
               </h2>
             </div>
             <div className="google-proof">
-              <div className="google-rating" aria-label="5,0 von 5 Sternen bei 2 Google-Rezensionen">
+              <div
+                className="google-rating"
+                aria-label={`${locationTrust?.ratingValue.toLocaleString('de-DE', {
+                  minimumFractionDigits: 1,
+                }) ?? 'Keine Bewertung'} von 5 Sternen bei ${
+                  locationTrust?.reviewCount ?? 0
+                } Google-Rezensionen`}
+              >
                 <Star aria-hidden="true" />
-                <strong>5,0</strong>
-                <span>2 Google-Rezensionen</span>
+                <strong>
+                  {locationTrust?.ratingValue.toLocaleString('de-DE', {
+                    minimumFractionDigits: 1,
+                  }) ?? '–'}
+                </strong>
+                <span>{locationTrust?.reviewCount ?? 0} Google-Rezensionen</span>
               </div>
-              <blockquote>„Super schnelle Hilfe“</blockquote>
-              <a href={mapsUrl} target="_blank" rel="noreferrer">
+              {locationTrust?.quote ? <blockquote>„{locationTrust.quote}“</blockquote> : null}
+              <a href={locationTrust?.profileUrl ?? mapsUrl} target="_blank" rel="noreferrer">
                 Angaben im Google-Profil ansehen <ExternalLink aria-hidden="true" />
               </a>
             </div>
@@ -2001,7 +2053,9 @@ export function MarketingApp() {
                     Fernhilfe
                   </span>
                 </div>
-                <strong><small>AB</small> 25 €</strong>
+                <strong>
+                  <small>AB</small> {ludwigsburgLocation.pricing.remoteFrom ?? 'auf Anfrage'}
+                </strong>
               </div>
               <div className="price-row">
                 <div>
@@ -2011,13 +2065,12 @@ export function MarketingApp() {
                     Service bei dir
                   </span>
                 </div>
-                <strong><small>AB</small> 49 €</strong>
+                <strong><small>AB</small> {ludwigsburgLocation.pricing.onSiteFrom}</strong>
               </div>
               <div className="price-policy">
                 <BadgeEuro aria-hidden="true" />
                 <p>
-                  Weitere Leistungen werden transparent nach Aufwand berechnet. Material- und
-                  Zusatzkosten entstehen nur nach vorheriger Absprache.
+                  {ludwigsburgLocation.pricing.note}
                 </p>
               </div>
             </motion.article>
@@ -2142,7 +2195,10 @@ export function MarketingApp() {
                 </div>
                 <div>
                   <Radio aria-hidden="true" />
-                  <span><small>MODUS</small>Bei dir vor Ort & Remote-Hilfe</span>
+                  <span>
+                    <small>MODUS</small>
+                    Bei dir vor Ort · {locationContact.remoteSupportNote}
+                  </span>
                 </div>
               </div>
               <div className="local-actions">
@@ -2176,7 +2232,7 @@ export function MarketingApp() {
               </p>
               <a className="inline-call" href={phoneHref}>
                 <Phone aria-hidden="true" />
-                Direkt mit Andrej sprechen
+                Direkt mit {locationContact.operatorName} sprechen
                 <ArrowUpRight aria-hidden="true" />
               </a>
             </motion.div>
@@ -2227,8 +2283,9 @@ export function MarketingApp() {
               <span>Ideen werden Systeme.</span>
             </h2>
             <p>
-              Andrej verbindet klassisches IT-Verständnis mit Builder-Mentalität: Problem sehen,
-              Lösungsidee entwickeln, testen und daraus etwas praktisch Nutzbares bauen.
+              {locationContact.operatorName} verbindet klassisches IT-Verständnis mit
+              Builder-Mentalität: Problem sehen, Lösungsidee entwickeln, testen und daraus etwas
+              praktisch Nutzbares bauen.
             </p>
           </motion.div>
 
@@ -2303,8 +2360,9 @@ export function MarketingApp() {
               <span>Klarer Praxisfokus.</span>
             </h2>
             <p>
-              Keine Fantasie-Prozentwerte. Die Matrix zeigt, wo Andrej bereits praktisch arbeitet,
-              wo sein besonderer Fokus liegt und welche Felder er aktiv weiter ausbaut.
+              Keine Fantasie-Prozentwerte. Die Matrix zeigt, wo {locationContact.operatorName}{' '}
+              bereits praktisch arbeitet, wo der besondere Fokus liegt und welche Felder aktiv
+              weiter ausgebaut werden.
             </p>
             <div className="matrix-legend" aria-label="Legende der Kompetenzmatrix">
               <span><i className="level-praxis" /> Praxis</span>
@@ -2370,7 +2428,7 @@ export function MarketingApp() {
               </div>
               <div>
                 <span className="section-number">07 / PERSON</span>
-                <h2>Andrej Schultes</h2>
+                <h2>{locationContact.operatorName}</h2>
                 <p>Angehender IT-Systemelektroniker · Builder · Problemlöser</p>
               </div>
             </div>
@@ -2482,7 +2540,7 @@ export function MarketingApp() {
         </button>
       </div>
 
-      <SiteFooter />
+      <SiteFooter contact={locationContact} />
     </>
   )
 }

@@ -1,5 +1,5 @@
 import { servicePageBySlug } from '../content/services'
-import { locationById, locations } from './locations'
+import { activeLocationById, activeLocations } from './locations'
 import { logoImageUrl, previewImageUrl, siteConfig } from './config'
 import { sitePages } from './routes'
 import type { SitePage } from './types'
@@ -59,31 +59,46 @@ function websiteSchema(): SchemaNode {
 }
 
 function locationSchema(locationId: string): SchemaNode | undefined {
-  const location = locationById[locationId]
+  const location = activeLocationById[locationId]
   if (!location) return undefined
+  const operator = location.operator
+  const businessAddress = operator.businessAddress ?? {
+    streetAddress: location.streetAddress,
+    postalCode: location.postalCode,
+    city: location.city,
+    country: location.country,
+  }
+  const phoneDisplay = operator.businessPhoneDisplay ?? location.phoneDisplay
+  const email = operator.businessEmail ?? location.email
 
   return {
     '@type': 'ProfessionalService',
     '@id': `${siteConfig.url}${location.path}#location`,
-    name: location.name,
+    name: operator.businessName ?? location.name,
+    legalName: operator.businessName,
     url: `${siteConfig.url}${location.path}`,
     image: previewImageUrl,
-    telephone: location.phoneDisplay,
-    email: location.email,
-    priceRange: 'Fernhilfe ab 25 EUR, Service beim Kunden ab 49 EUR',
+    telephone: phoneDisplay,
+    email,
+    priceRange:
+      `Fernhilfe ab ${location.pricing.remoteFrom ?? siteConfig.remoteSupport.price.replace('Fernhilfe ab ', '')}, ` +
+      `Service beim Kunden ab ${location.pricing.onSiteFrom}`,
     brand: { '@id': organizationId },
-    founder: {
-      '@type': 'Person',
-      name: location.operator.name,
-      jobTitle: location.operator.role,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      name: operator.responsiblePerson ?? operator.name,
+      telephone: phoneDisplay,
+      email,
+      contactType: 'customer service',
+      availableLanguage: ['de'],
     },
     address: {
       '@type': 'PostalAddress',
-      streetAddress: location.streetAddress,
-      postalCode: location.postalCode,
-      addressLocality: location.city,
+      streetAddress: businessAddress.streetAddress,
+      postalCode: businessAddress.postalCode,
+      addressLocality: businessAddress.city,
       addressRegion: location.region,
-      addressCountry: location.country,
+      addressCountry: businessAddress.country,
     },
     geo: {
       '@type': 'GeoCoordinates',
@@ -94,6 +109,8 @@ function locationSchema(locationId: string): SchemaNode | undefined {
       '@type': 'City',
       name,
     })),
+    vatID: operator.vatId,
+    description: operator.ownAccountNotice,
     sameAs: [location.mapsUrl],
   }
 }
@@ -132,7 +149,7 @@ function serviceSchema(page: SitePage): SchemaNode[] {
 
   const pageUrl = `${siteConfig.url}${page.path}`
   const national = page.schemaKind === 'national-service'
-  const location = service.locationId ? locationById[service.locationId] : undefined
+  const location = service.locationId ? activeLocationById[service.locationId] : undefined
   const providerId = location
     ? `${siteConfig.url}${location.path}#location`
     : organizationId
@@ -200,9 +217,7 @@ export function structuredDataForPage(page: SitePage) {
   if (page.kind === 'locations') {
     graph.push({
       '@type': 'ItemList',
-      itemListElement: locations
-        .filter((location) => location.status === 'active')
-        .map((location, index) => ({
+      itemListElement: activeLocations.map((location, index) => ({
           '@type': 'ListItem',
           position: index + 1,
           item: { '@id': `${siteConfig.url}${location.path}#location` },
