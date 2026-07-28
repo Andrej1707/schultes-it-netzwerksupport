@@ -18,17 +18,27 @@ describe('site routing', () => {
   })
 
   it('resolves the full nested route instead of only the first segment', () => {
-    const route = resolveSiteRoute('/fernwartung/windows-hilfe/')
+    const route = resolveSiteRoute('/standorte/ludwigsburg/fernwartung/windows-hilfe/')
 
-    expect(route?.page.serviceSlug).toBe('fernwartung-windows-hilfe')
+    expect(route?.page.serviceSlug).toBe('ludwigsburg--fernwartung-windows-hilfe')
+    expect(route?.page.locationId).toBe('ludwigsburg')
     expect(route?.isAlias).toBe(false)
   })
 
   it('keeps old service URLs as non-canonical compatibility aliases', () => {
     const route = resolveSiteRoute('/pc-system/')
 
-    expect(route?.page.path).toBe('/leistungen/pc-laptop/')
+    expect(route?.page.path).toBe('/standorte/ludwigsburg/pc-laptop/')
     expect(route?.isAlias).toBe(true)
+  })
+
+  it('keeps former central remote URLs only as compatibility aliases', () => {
+    const legacy = resolveSiteRoute('/fernwartung/windows-hilfe/')
+
+    expect(legacy?.page.path).toBe(
+      '/standorte/ludwigsburg/fernwartung/windows-hilfe/',
+    )
+    expect(legacy?.isAlias).toBe(true)
   })
 
   it('moves local problem pages below the Ludwigsburg location', () => {

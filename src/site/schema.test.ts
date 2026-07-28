@@ -13,14 +13,22 @@ function graphFor(path: string) {
 }
 
 describe('structured data', () => {
-  it('marks national remote support as serving Germany', () => {
-    const service = graphFor('/fernwartung/windows-hilfe/').find(
+  it('marks remote support as owned by the location and remotely available', () => {
+    const location = activeLocationById.ludwigsburg
+    const service = graphFor('/standorte/ludwigsburg/fernwartung/windows-hilfe/').find(
       (node) => node['@type'] === 'Service',
     )
 
+    expect(service?.provider).toEqual({
+      '@id': `https://schultes-it.de${location.path}#location`,
+    })
     expect(service?.areaServed).toEqual({
       '@type': 'Country',
       name: 'Deutschland',
+    })
+    expect(service?.availableChannel).toMatchObject({
+      '@type': 'ServiceChannel',
+      availableLanguage: 'Deutsch',
     })
   })
 

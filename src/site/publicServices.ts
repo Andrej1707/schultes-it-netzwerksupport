@@ -6,5 +6,5 @@ export const publicServicePages = servicePages.filter(
 )
 
 export const publicTopicPages = publicServicePages.filter(
-  (service) => service.scope === 'location',
+  (service) => service.serviceGroup === 'topic',
 )

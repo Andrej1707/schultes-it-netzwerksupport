@@ -36,7 +36,7 @@ export function isBasicSupportDialogueFollowUp(message: string) {
 }
 
 export const OUT_OF_SCOPE_REPLY =
-  'Dabei kann ich nicht helfen. Ich beantworte nur Fragen zu Schultes IT und gebe höchstens einen sicheren Basischeck wie Neustart, WLAN aus und an oder Router kurz vom Strom trennen. Für alles Weitere erreichst du Andrej direkt unter +49 1567 9616310 oder per E-Mail an it.schulteslb@gmail.com.'
+  'Dabei kann ich nicht helfen. Ich beantworte nur Fragen zu Schultes IT und gebe höchstens einen sicheren Basischeck wie Neustart, WLAN aus und an oder Router kurz vom Strom trennen. Für alles Weitere nutze bitte den Kontakt deines zuständigen Standorts.'
 
 export const BASIC_SUPPORT_CATEGORIES = [
   'wlan_unstable',
@@ -95,7 +95,7 @@ FORMULIERUNG
 - Schreibe intro, question und closing selbst, natürlich, freundlich und passend zum konkreten Verlauf.
 - intro und closing dürfen jeweils höchstens 220 Zeichen, question höchstens 180 Zeichen lang sein.
 - Bei assist enthält closing eine kurze Einladung, das Ergebnis oder die Antwort auf die Rückfrage zu schreiben.
-- Bei escalate erklärt closing kurz und ohne Druck, warum Andrej persönlich sinnvoll helfen sollte. Kontaktdaten ergänzt der Server.
+- Bei escalate erklärt closing kurz und ohne Druck, warum der zuständige Standort persönlich sinnvoll helfen sollte. Kontaktdaten ergänzt der Server.
 - Erfinde keine weiteren Anleitungen in den Textfeldern. Gib dort keine Links, Kontaktdaten, Codes, Befehle, Downloads, Registry-, BIOS-, Reparatur- oder Sicherheitshinweise aus.
 - Unterscheide instabiles oder schwaches WLAN von einem vollständigen Internetausfall.
 
@@ -135,30 +135,28 @@ function isBasicSupportPlan(value: unknown): value is BasicSupportPlan {
   )
 }
 
-export function renderBasicSupportPlan(value: unknown) {
+export function renderBasicSupportPlan(value: unknown, contactSentence?: string) {
   if (!isBasicSupportPlan(value)) return null
   const steps = value.step_ids.map((step, index) => `${index + 1}. ${BASIC_SUPPORT_STEPS[step]}`)
   const parts = [value.intro.trim()]
   if (steps.length > 0) parts.push(steps.join('\n'))
   if (value.question.trim()) parts.push(value.question.trim())
   parts.push(value.closing.trim())
-  if (value.decision === 'escalate') {
-    parts.push('Du erreichst Andrej unter +49 1567 9616310 oder per E-Mail an it.schulteslb@gmail.com.')
-  }
+  if (value.decision === 'escalate' && contactSentence) parts.push(contactSentence)
   return { reply: parts.join('\n\n'), escalated: value.decision === 'escalate' }
 }
 
 export function getBasicSupportReply(message: string) {
   if (/\b(wlan|wi-?fi|internet|router)\b/i.test(message)) {
-    return 'Bitte probiere nur diese sicheren Basics: WLAN am Gerät einmal aus und wieder an. Wenn alle Geräte betroffen sind, den Router etwa 30 Sekunden vom Strom trennen, wieder anschließen und einige Minuten warten. Hilft das nicht, kontaktiere Andrej unter +49 1567 9616310 oder it.schulteslb@gmail.com.'
+    return 'Bitte probiere nur diese sicheren Basics: WLAN am Gerät einmal aus und wieder an. Wenn alle Geräte betroffen sind, den Router etwa 30 Sekunden vom Strom trennen, wieder anschließen und einige Minuten warten. Hilft das nicht, kontaktiere deinen zuständigen Standort.'
   }
   if (/\b(drucker)\b/i.test(message)) {
-    return 'Bitte prüfe nur Stromversorgung, Papier und sichtbare Fehlermeldungen und starte den Drucker einmal normal neu. Hilft das nicht, kontaktiere Andrej unter +49 1567 9616310 oder it.schulteslb@gmail.com.'
+    return 'Bitte prüfe nur Stromversorgung, Papier und sichtbare Fehlermeldungen und starte den Drucker einmal normal neu. Hilft das nicht, kontaktiere deinen zuständigen Standort.'
   }
   if (/\b(handy|smartphone)\b/i.test(message)) {
-    return 'Bitte starte das Handy einmal normal neu und schalte Flugmodus sowie WLAN kurz aus und wieder an. Hilft das nicht, kontaktiere Andrej unter +49 1567 9616310 oder it.schulteslb@gmail.com.'
+    return 'Bitte starte das Handy einmal normal neu und schalte Flugmodus sowie WLAN kurz aus und wieder an. Hilft das nicht, kontaktiere deinen zuständigen Standort.'
   }
-  return 'Bitte starte das Gerät einmal normal neu und prüfe nur sichtbare Strom- und Bildschirmkabel auf festen Sitz. Notiere eine genaue Fehlermeldung. Hilft das nicht, kontaktiere Andrej unter +49 1567 9616310 oder it.schulteslb@gmail.com.'
+  return 'Bitte starte das Gerät einmal normal neu und prüfe nur sichtbare Strom- und Bildschirmkabel auf festen Sitz. Notiere eine genaue Fehlermeldung. Hilft das nicht, kontaktiere deinen zuständigen Standort.'
 }
 
 export function containsDisallowedOutput(text: string) {

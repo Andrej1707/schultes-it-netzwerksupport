@@ -6,6 +6,7 @@ import {
   StructuredNetworkPage,
 } from './pages/NetworkPages'
 import { resolveSiteRoute } from './site/routes'
+import { centralContact, contactForPage } from './site/contacts'
 
 const legacySite = () => import('./legacy/LegacySite')
 const LegalLayout = lazy(() =>
@@ -31,6 +32,7 @@ function RouteLoading() {
 function App() {
   const [hash, setHash] = useState(window.location.hash)
   const route = resolveSiteRoute(window.location.pathname)
+  const supportContact = route ? contactForPage(route.page) : centralContact
 
   useEffect(() => {
     const updateHash = () => setHash(window.location.hash)
@@ -59,7 +61,7 @@ function App() {
     <>
       <Suspense fallback={<RouteLoading />}>{page}</Suspense>
       <Suspense fallback={null}>
-        <SupportBot />
+        <SupportBot contact={supportContact} />
       </Suspense>
     </>
   )

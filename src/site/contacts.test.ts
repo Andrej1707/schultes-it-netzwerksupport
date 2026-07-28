@@ -1,21 +1,27 @@
 import { describe, expect, it } from 'vitest'
-import { servicePageBySlug } from '../content/services'
+import { getLocationService } from '../content/services'
 import {
-  centralContact,
   contactForLocation,
   contactForService,
 } from './contacts'
 import { activeLocationById, type ServiceLocation } from './locations'
 
 describe('contact resolution', () => {
-  it('keeps national remote support on the central contact', () => {
-    expect(contactForService(servicePageBySlug['fernwartung-windows-hilfe'])).toEqual(
-      centralContact,
-    )
+  it('uses the owning location contact for remote support', () => {
+    const service = getLocationService('ludwigsburg', 'fernwartung-windows-hilfe')
+    if (!service) throw new Error('Missing Ludwigsburg remote support page.')
+
+    expect(contactForService(service)).toMatchObject({
+      source: 'location',
+      locationId: 'ludwigsburg',
+      operatorName: 'Andrej Schultes',
+    })
   })
 
   it('uses the configured location contact for local services', () => {
-    const contact = contactForService(servicePageBySlug['pc-langsam'])
+    const service = getLocationService('ludwigsburg', 'pc-langsam')
+    if (!service) throw new Error('Missing Ludwigsburg problem page.')
+    const contact = contactForService(service)
 
     expect(contact.source).toBe('location')
     expect(contact.displayName).toBe('Schultes IT & Netzwerksupport')

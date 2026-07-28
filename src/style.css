@@ -3281,6 +3281,23 @@ body[data-legal-page='true'] {
   grid-column: 1 / -1;
 }
 
+.service-location-context .confidence-points {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-left: 1px solid var(--line-strong);
+}
+
+.service-location-context .confidence-points > div {
+  grid-template-columns: 34px 24px 1fr;
+  min-height: 190px;
+  border-right: 1px solid var(--line);
+  border-bottom: 0;
+}
+
+.service-location-context .confidence-points > div:last-child {
+  border-right: 0;
+}
+
 .service-detail-heading h2 {
   margin: 0;
   font: 500 clamp(2.8rem, 5.7vw, 6rem) / 0.94 var(--display);
@@ -4856,6 +4873,20 @@ body[data-legal-page='true'] {
   .footer-links {
     justify-content: flex-start;
     justify-self: start;
+  }
+
+  .mobile-contact-dock.mobile-location-dock {
+    grid-template-columns: 1fr;
+  }
+
+  .service-location-context .confidence-points {
+    grid-template-columns: 1fr;
+  }
+
+  .service-location-context .confidence-points > div {
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
   }
 
   .legal-page {

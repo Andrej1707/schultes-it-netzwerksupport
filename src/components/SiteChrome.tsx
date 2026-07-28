@@ -20,14 +20,16 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import {
+  getLocationServicePath,
+  getLocationServicesByGroup,
   getServicePath,
-  nationalRemotePages,
-  primaryServicePages,
+  primaryServiceTemplates,
+  remoteServiceTemplates,
+  topicServiceTemplates,
 } from '../content/services'
 import type { ServiceIconName } from '../content/types'
 import { centralContact, type ContactProfile } from '../site/contacts'
 import { activeLocations } from '../site/locations'
-import { publicTopicPages } from '../site/publicServices'
 
 const serviceIcons: Record<ServiceIconName, LucideIcon> = {
   laptop: Laptop,
@@ -36,23 +38,26 @@ const serviceIcons: Record<ServiceIconName, LucideIcon> = {
   bot: Bot,
 }
 
-const services = primaryServicePages.map((service) => ({
-  ...service,
-  icon: serviceIcons[service.icon],
-  href: getServicePath(service),
-}))
+function menuGroup(
+  contact: ContactProfile,
+  group: 'primary' | 'remote' | 'topic',
+) {
+  const templates =
+    group === 'primary'
+      ? primaryServiceTemplates
+      : group === 'remote'
+        ? remoteServiceTemplates
+        : topicServiceTemplates
+  const entries = contact.locationId
+    ? getLocationServicesByGroup(contact.locationId, group)
+    : templates
 
-const topicServices = publicTopicPages.map((service) => ({
-  ...service,
-  icon: serviceIcons[service.icon],
-  href: getServicePath(service),
-}))
-
-const remoteServices = nationalRemotePages.map((service) => ({
-  ...service,
-  icon: serviceIcons[service.icon],
-  href: getServicePath(service),
-}))
+  return entries.map((service) => ({
+    ...service,
+    icon: serviceIcons[service.icon],
+    href: contact.locationId ? getServicePath(service) : '/standorte/',
+  }))
+}
 
 export function NetworkCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -217,8 +222,14 @@ export function ShortcutMenu({
     }
   }, [open])
 
+  const services = menuGroup(contact, 'primary')
+  const remoteServices = menuGroup(contact, 'remote')
+  const topicServices = menuGroup(contact, 'topic')
+  const remoteHref = contact.locationId
+    ? getLocationServicePath(contact.locationId, 'fernwartung') ?? '/standorte/'
+    : '/standorte/'
   const quickLinks = [
-    [BadgeEuro, 'Fernwartung deutschlandweit', '/fernwartung/'],
+    [BadgeEuro, contact.locationId ? 'Fernwartung dieses Standorts' : 'Fernwartung nach Standort', remoteHref],
     [MapPin, 'Standorte & Hilfe vor Ort', '/standorte/'],
     [UserRound, 'Über Schultes IT', '/ueber-schultes-it/'],
     [Building2, 'Standortinhaber werden', '/standortinhaber-werden/'],
@@ -261,9 +272,13 @@ export function ShortcutMenu({
 
         <div className="shortcut-menu-content">
           <section className="shortcut-menu-section" aria-labelledby="shortcut-help-title">
-            <header>
-              <span>01 / HILFE FINDEN</span>
-              <p id="shortcut-help-title">Direkt zur passenden Leistungsseite</p>
+              <header>
+                <span>01 / HILFE FINDEN</span>
+              <p id="shortcut-help-title">
+                {contact.locationId
+                  ? 'Direkt zur passenden Leistung dieses Standorts'
+                  : 'Leistung wählen und zuständigen Standort finden'}
+              </p>
             </header>
             <div className="shortcut-service-grid">
               {services.map((service) => {
@@ -286,7 +301,11 @@ export function ShortcutMenu({
           <section className="shortcut-menu-section shortcut-topics" aria-labelledby="shortcut-remote-title">
             <header>
               <span>02 / FERNWARTUNG</span>
-              <p id="shortcut-remote-title">Deutschlandweite Hilfe ohne Anfahrt</p>
+              <p id="shortcut-remote-title">
+                {contact.locationId
+                  ? `Fernhilfe durch ${contact.displayName}`
+                  : 'Fernhilfe wird über deinen Standort betreut'}
+              </p>
             </header>
             <div className="shortcut-topic-list">
               {remoteServices.map((service) => {
@@ -341,14 +360,23 @@ export function ShortcutMenu({
                 <span>05 / DIREKT</span>
                 <p id="shortcut-contact-title">Problem kurz besprechen</p>
               </header>
-              <a href={contact.phoneHref} onClick={onClose}>
-                <Phone aria-hidden="true" />
-                <span><small>ANRUFEN</small>{contact.phoneDisplay}</span>
-              </a>
-              <a href={`mailto:${contact.email}`} onClick={onClose}>
-                <Mail aria-hidden="true" />
-                <span><small>E-MAIL</small>Nachricht schreiben</span>
-              </a>
+              {contact.phoneHref && contact.phoneDisplay && contact.email ? (
+                <>
+                  <a href={contact.phoneHref} onClick={onClose}>
+                    <Phone aria-hidden="true" />
+                    <span><small>ANRUFEN</small>{contact.phoneDisplay}</span>
+                  </a>
+                  <a href={`mailto:${contact.email}`} onClick={onClose}>
+                    <Mail aria-hidden="true" />
+                    <span><small>E-MAIL</small>Nachricht schreiben</span>
+                  </a>
+                </>
+              ) : (
+                <a href={contact.actionHref} onClick={onClose}>
+                  <MapPin aria-hidden="true" />
+                  <span><small>DIREKTE HILFE</small>{contact.actionLabel}</span>
+                </a>
+              )}
             </section>
           </div>
         </div>
@@ -358,6 +386,13 @@ export function ShortcutMenu({
 }
 
 export function SiteFooter({ contact = centralContact }: { contact?: ContactProfile }) {
+  const footerServices = contact.locationId
+    ? [
+        ...getLocationServicesByGroup(contact.locationId, 'primary'),
+        ...getLocationServicesByGroup(contact.locationId, 'remote'),
+      ]
+    : []
+
   return (
     <footer className="site-footer">
       <Logo />
@@ -371,11 +406,12 @@ export function SiteFooter({ contact = centralContact }: { contact?: ContactProf
         <span>© {new Date().getFullYear()} Andrej Schultes</span>
       </div>
       <div className="footer-links">
-        {[...primaryServicePages, ...nationalRemotePages].map((service) => (
+        {footerServices.map((service) => (
           <a key={service.slug} href={getServicePath(service)}>
             {service.shortTitle}
           </a>
         ))}
+        <a href="/leistungen/">Leistungen</a>
         <a href="/standorte/">Standorte</a>
         <a href="/ratgeber/">Ratgeber</a>
         <a href="/ueber-schultes-it/">Über Schultes IT</a>
@@ -388,11 +424,13 @@ export function SiteFooter({ contact = centralContact }: { contact?: ContactProf
         <a href="/datenschutz/">
           <LockKeyhole aria-hidden="true" /> Datenschutz
         </a>
-        <span className="footer-private" data-nosnippet>
-          <a href={`mailto:${contact.email}`}>
-            <Mail aria-hidden="true" /> E-Mail
-          </a>
-        </span>
+        {contact.email ? (
+          <span className="footer-private" data-nosnippet>
+            <a href={`mailto:${contact.email}`}>
+              <Mail aria-hidden="true" /> E-Mail
+            </a>
+          </span>
+        ) : null}
       </div>
     </footer>
   )

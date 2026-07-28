@@ -25,6 +25,12 @@ import {
   OUT_OF_SCOPE_REPLY,
   renderBasicSupportPlan,
 } from './policy'
+import {
+  directContactSentence,
+  resolveSupportLocation,
+  supportContextInstructions,
+  type SupportLocationContext,
+} from './supportContext'
 
 type ChatMessage = {
   role: 'user' | 'assistant'
@@ -202,7 +208,13 @@ function extractOutputText(payload: Record<string, unknown>) {
   return ''
 }
 
-async function createModelResponse(session: SessionRecord, message: string, sessionId: string, env: Env) {
+async function createModelResponse(
+  session: SessionRecord,
+  message: string,
+  sessionId: string,
+  location: SupportLocationContext | undefined,
+  env: Env,
+) {
   const input = [...session.history, { role: 'user' as const, content: message }]
   const safetyId = await hmac(sessionId, env.HASH_SALT)
   const response = await fetch(`${env.OPENAI_BASE_URL ?? 'https://api.openai.com/v1'}/responses`, {
@@ -213,7 +225,7 @@ async function createModelResponse(session: SessionRecord, message: string, sess
     },
     body: JSON.stringify({
       model: env.OPENAI_MODEL ?? 'gpt-5.4-mini',
-      instructions: BUSINESS_SYSTEM_PROMPT,
+      instructions: `${BUSINESS_SYSTEM_PROMPT}\n\n${supportContextInstructions(location)}`,
       input,
       tools: [],
       max_output_tokens: MAX_OUTPUT_TOKENS,
@@ -239,6 +251,7 @@ async function createBasicSupportResponse(
   session: SessionRecord,
   message: string,
   sessionId: string,
+  location: SupportLocationContext | undefined,
   env: Env,
 ) {
   const safetyId = await hmac(sessionId, env.HASH_SALT)
@@ -250,7 +263,7 @@ async function createBasicSupportResponse(
     },
     body: JSON.stringify({
       model: env.OPENAI_MODEL ?? 'gpt-5.4-mini',
-      instructions: BASIC_SUPPORT_ADAPTER_PROMPT,
+      instructions: `${BASIC_SUPPORT_ADAPTER_PROMPT}\n\n${supportContextInstructions(location)}`,
       input: [...session.history, { role: 'user', content: message }],
       tools: [],
       text: {
@@ -291,7 +304,10 @@ async function createBasicSupportResponse(
   }
   const output = extractOutputText(payload)
   if (!output) throw new Error('empty_basic_response')
-  const result = renderBasicSupportPlan(JSON.parse(output))
+  const result = renderBasicSupportPlan(
+    JSON.parse(output),
+    directContactSentence(location),
+  )
   if (!result) throw new Error('invalid_basic_response')
   return { ...result, totalTokens: Math.max(0, payload.usage?.total_tokens ?? 0) }
 }
@@ -364,6 +380,7 @@ export class SupportGuard {
   private async chat(body: Record<string, unknown>) {
     const sessionId = typeof body.sessionId === 'string' ? body.sessionId : ''
     const message = normalizeMessage(body.message)
+    const location = resolveSupportLocation(body.locationId)
     if (!sessionId || !message) return json({ error: 'invalid_message' }, 400)
 
     const reservation = await this.reserve(sessionId, message)
@@ -396,6 +413,7 @@ export class SupportGuard {
             reservation.session,
             message,
             sessionId,
+            location,
             this.env,
           )
           actualTokens = generated.totalTokens > 0 ? generated.totalTokens : reservation.reservedTokens
@@ -411,7 +429,13 @@ export class SupportGuard {
         return json({ reply, blocked: false, escalated })
       }
 
-      const generated = await createModelResponse(reservation.session, message, sessionId, this.env)
+      const generated = await createModelResponse(
+        reservation.session,
+        message,
+        sessionId,
+        location,
+        this.env,
+      )
       actualTokens = generated.totalTokens > 0 ? generated.totalTokens : reservation.reservedTokens
       const outputFlagged =
         containsDisallowedOutput(generated.text) || (await moderate(generated.text, this.env))
@@ -605,7 +629,11 @@ async function handleChat(request: Request, env: Env) {
   const guard = env.SUPPORT_GUARD.get(env.SUPPORT_GUARD.idFromName('global'))
   return guard.fetch('https://support.internal/chat', {
     method: 'POST',
-    body: JSON.stringify({ sessionId, message: body.message }),
+    body: JSON.stringify({
+      sessionId,
+      message: body.message,
+      locationId: body.locationId,
+    }),
   })
 }
 

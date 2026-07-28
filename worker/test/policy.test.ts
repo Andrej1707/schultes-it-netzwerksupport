@@ -54,7 +54,8 @@ describe('support intent policy', () => {
     const reply = getBasicSupportReply('Mein WLAN geht nicht')
     expect(reply).toContain('WLAN am Gerät einmal aus und wieder an')
     expect(reply).toContain('30 Sekunden vom Strom trennen')
-    expect(reply).toContain('+49 1567 9616310')
+    expect(reply).toContain('zuständigen Standort')
+    expect(reply).not.toContain('+49 1567 9616310')
     expect(reply).not.toMatch(/BIOS|PowerShell|Download/i)
   })
 
@@ -91,16 +92,19 @@ describe('support intent policy', () => {
   })
 
   it('uses the model-written closing before a safe contact handoff', () => {
-    const result = renderBasicSupportPlan({
-      category: 'wlan_unstable',
-      decision: 'escalate',
-      intro: 'Danke fürs Ausprobieren.',
-      step_ids: [],
-      question: '',
-      closing: 'Andrej sollte sich die Verbindung jetzt persönlich ansehen.',
-    })
-    expect(result?.reply).toContain('Andrej sollte sich die Verbindung jetzt persönlich ansehen.')
-    expect(result?.reply).toContain('+49 1567 9616310')
+    const result = renderBasicSupportPlan(
+      {
+        category: 'wlan_unstable',
+        decision: 'escalate',
+        intro: 'Danke fürs Ausprobieren.',
+        step_ids: [],
+        question: '',
+        closing: 'Der Standort sollte sich die Verbindung jetzt persönlich ansehen.',
+      },
+      'Du erreichst den zuständigen Standort direkt.',
+    )
+    expect(result?.reply).toContain('Der Standort sollte sich die Verbindung jetzt persönlich ansehen.')
+    expect(result?.reply).toContain('Du erreichst den zuständigen Standort direkt.')
     expect(result?.escalated).toBe(true)
   })
 

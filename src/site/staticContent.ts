@@ -1,5 +1,10 @@
-import { servicePageBySlug } from '../content/services'
-import { siteConfig } from './config'
+import {
+  getLocationServicesByGroup,
+  primaryServiceTemplates,
+  remoteServiceTemplates,
+  servicePageBySlug,
+  topicServiceTemplates,
+} from '../content/services'
 import { contactForLocation, contactForPage } from './contacts'
 import { activeLocationById, activeLocations } from './locations'
 import { publicServicePages } from './publicServices'
@@ -22,7 +27,7 @@ function pageLink(path: string, title: string, text?: string) {
 
 function siteNavigation() {
   return `<nav aria-label="Hauptnavigation">
-    <a href="/fernwartung/">Fernwartung</a>
+    <a href="/standorte/">Fernwartung</a>
     <a href="/leistungen/">Leistungen</a>
     <a href="/standorte/">Standorte</a>
     <a href="/ratgeber/">Ratgeber</a>
@@ -47,29 +52,33 @@ function homeContent() {
     'router-entstoerung',
     'fernwartung-email-outlook',
   ]
-    .map((slug) => servicePageBySlug[slug])
+    .map((slug) =>
+      [...topicServiceTemplates, ...remoteServiceTemplates].find(
+        (service) => service.slug === slug,
+      ),
+    )
+    .filter((service) => Boolean(service))
     .map((service) =>
-      pageLink(service.path ?? `/${service.slug}/`, service.situations[0]?.title ?? service.title),
+      pageLink('/standorte/', service?.situations[0]?.title ?? service?.title ?? 'IT-Hilfe'),
     )
     .join('')
-  const serviceLinks = publicServicePages
-    .filter((service) => service.scope === 'network')
-    .map((service) => pageLink(service.path ?? `/${service.slug}/`, service.title, service.description))
+  const serviceLinks = primaryServiceTemplates
+    .map((service) => pageLink('/standorte/', service.title, service.description))
     .join('')
-  const remoteProcess = servicePageBySlug.fernwartung.process
+  const remoteProcess = remoteServiceTemplates.find((service) => service.slug === 'fernwartung')?.process
     .map(
       (step) =>
         `<li><strong>${escapeHtml(step.title)}</strong><span>${escapeHtml(step.text)}</span></li>`,
     )
-    .join('')
+    .join('') ?? ''
 
   return `<section aria-labelledby="direkte-hilfe">
     <h2 id="direkte-hilfe">Zwei Wege zur passenden IT-Hilfe</h2>
     <ul>
       ${pageLink(
-        '/fernwartung/',
-        'Deutschlandweite IT-Hilfe per Fernwartung',
-        'Sichere Unterstützung für Windows, Drucker, E-Mail und typische PC-Probleme.',
+        '/standorte/',
+        'IT-Hilfe per Fernwartung über einen Standort',
+        'Wähle einen verantwortlichen Standort für Windows, Drucker, E-Mail und typische PC-Probleme.',
       )}
       ${pageLink(
         '/standorte/',
@@ -97,13 +106,13 @@ function homeContent() {
   <section aria-labelledby="fernwartungsablauf">
     <h2 id="fernwartungsablauf">Ablauf einer Fernwartung</h2>
     <ol>${remoteProcess}</ol>
-    <p><a href="/fernwartung/">Deutschlandweite Fernwartung ansehen</a></p>
+    <p><a href="/standorte/">Standort für Fernwartung auswählen</a></p>
   </section>
   <section aria-labelledby="einstiegspreise">
     <h2 id="einstiegspreise">Transparente Einstiegspreise</h2>
-    <p>${escapeHtml(siteConfig.remoteSupport.price)}${
+    <p>Fernwartung und Vor-Ort-Service werden vom gewählten Standort transparent angeboten.${
       firstLocation
-        ? ` · Service bei dir in ${escapeHtml(firstLocation.city)} ab ${escapeHtml(firstLocation.pricing.onSiteFrom)}`
+        ? ` Service bei dir in ${escapeHtml(firstLocation.city)} ab ${escapeHtml(firstLocation.pricing.onSiteFrom)}.`
         : ''
     }</p>
     <p>${firstLocation ? escapeHtml(firstLocation.pricing.note) : 'Der genaue Umfang wird vorab abgestimmt.'}</p>
@@ -126,26 +135,24 @@ function homeContent() {
     <p><a href="/ueber-schultes-it/">Mehr über Schultes IT</a> · <a href="/standortinhaber-werden/">Eigenen Standort aufbauen</a></p>
   </section>
   <section aria-labelledby="direkter-kontakt">
-    <h2 id="direkter-kontakt">Problem direkt besprechen</h2>
-    <p><a href="${siteConfig.phoneHref}">${escapeHtml(siteConfig.phoneDisplay)}</a> · <a href="mailto:${siteConfig.email}">${escapeHtml(siteConfig.email)}</a></p>
+    <h2 id="direkter-kontakt">Passenden Ansprechpartner finden</h2>
+    <p><a href="/standorte/">Aktiven Standort auswählen</a></p>
   </section>`
 }
 
 function servicesContent() {
   return `<section aria-labelledby="leistungsbereiche">
     <h2 id="leistungsbereiche">Leistungsbereiche</h2>
-    <ul>${publicServicePages
-      .filter((service) => service.scope === 'network')
-      .map((service) => pageLink(service.path ?? `/${service.slug}/`, service.title, service.description))
+    <ul>${primaryServiceTemplates
+      .map((service) => pageLink('/standorte/', service.title, service.description))
       .join('')}</ul>
   </section>`
 }
 
-function remoteContent() {
+function remoteContent(locationId: string) {
   return `<section aria-labelledby="fernwartungsthemen">
     <h2 id="fernwartungsthemen">Fernwartungsthemen</h2>
-    <ul>${publicServicePages
-      .filter((service) => service.scope === 'national')
+    <ul>${getLocationServicesByGroup(locationId, 'remote')
       .map((service) => pageLink(service.path ?? `/${service.slug}/`, service.title, service.description))
       .join('')}</ul>
   </section>`
@@ -163,7 +170,7 @@ function locationsContent() {
         ),
       )
       .join('')}</ul>
-    <p>Außerhalb eines aktiven Einsatzgebiets hilft Schultes IT deutschlandweit per <a href="/fernwartung/">Fernwartung</a>.</p>
+    <p>Jeder aktive Standort bietet seine eigenen Kontaktwege und weist aus, welche Anliegen vor Ort oder per Fernwartung betreut werden.</p>
   </section>`
 }
 
@@ -234,15 +241,32 @@ function serviceContent(page: SitePage) {
   <section aria-labelledby="service-kontakt">
     <h2 id="service-kontakt">Direkter Kontakt</h2>
     <p>${escapeHtml(contact.displayName)} · ${escapeHtml(contact.operatorName)}</p>
-    <p><a href="${contact.phoneHref}">${escapeHtml(contact.phoneDisplay)}</a> · <a href="mailto:${contact.email}">${escapeHtml(contact.email)}</a></p>
+    ${
+      contact.phoneHref && contact.phoneDisplay && contact.email
+        ? `<p><a href="${contact.phoneHref}">${escapeHtml(contact.phoneDisplay)}</a> · <a href="mailto:${contact.email}">${escapeHtml(contact.email)}</a></p>`
+        : `<p><a href="${contact.actionHref}">${escapeHtml(contact.actionLabel)}</a></p>`
+    }
     <p>${escapeHtml(contact.remoteSupportNote)}</p>
   </section>
-  ${service.slug === 'fernwartung' ? remoteContent() : ''}`
+  ${
+    service.templateSlug === 'fernwartung' && service.locationId
+      ? remoteContent(service.locationId)
+      : ''
+  }
+  ${
+    service.locationContext
+      ? `<section aria-labelledby="standort-kontext"><h2 id="standort-kontext">${escapeHtml(
+          service.locationContext.heading,
+        )}</h2><p>${escapeHtml(service.locationContext.text)}</p><ul>${service.locationContext.points
+          .map((point) => `<li>${escapeHtml(point)}</li>`)
+          .join('')}</ul></section>`
+      : ''
+  }`
 }
 
 function guidesContent() {
   const guides = publicServicePages.filter(
-    (service) => service.scope === 'national' || service.scope === 'location',
+    (service) => service.scope === 'location',
   )
 
   return `<section aria-labelledby="ratgeberthemen">
@@ -254,10 +278,16 @@ function guidesContent() {
 }
 
 function legalContent(page: SitePage) {
+  const legalLocation = activeLocations[0]
+  const legalContact = legalLocation ? contactForLocation(legalLocation) : undefined
   return `<section aria-labelledby="rechtlicher-kontakt">
     <h2 id="rechtlicher-kontakt">Schultes IT &amp; Netzwerksupport</h2>
     <p>Andrej Schultes · Egerländer Str. 24 · 71638 Ludwigsburg</p>
-    <p><a href="${siteConfig.phoneHref}">${escapeHtml(siteConfig.phoneDisplay)}</a> · <a href="mailto:${siteConfig.email}">${escapeHtml(siteConfig.email)}</a></p>
+    ${
+      legalContact
+        ? `<p><a href="${legalContact.phoneHref}">${escapeHtml(legalContact.phoneDisplay)}</a> · <a href="mailto:${legalContact.email}">${escapeHtml(legalContact.email)}</a></p>`
+        : ''
+    }
     <p>Die vollständigen ${page.legalPage === 'impressum' ? 'Anbieterangaben' : 'Datenschutzhinweise'} werden direkt auf dieser Seite angezeigt.</p>
   </section>`
 }
@@ -271,11 +301,11 @@ function supplementalContent(page: SitePage) {
   if (page.kind === 'guides') return guidesContent()
   if (page.kind === 'legal') return legalContent(page)
   if (page.kind === 'owner') {
-    return `<section><h2>Regional selbstständig. Zentral unterstützt.</h2><p>Schultes IT bereitet eine skalierbare Struktur für eigenständige regionale Standortinhaber vor.</p><p><a href="mailto:${siteConfig.email}?subject=Interesse%20als%20Standortinhaber">Interesse unverbindlich mitteilen</a></p></section>`
+    return `<section><h2>Regional selbstständig. Zentral unterstützt.</h2><p>Schultes IT bereitet eine skalierbare Struktur für eigenständige regionale Standortinhaber vor.</p><p><a href="/standorte/">Aktive Ansprechpartner ansehen</a></p></section>`
   }
   if (page.kind === 'about') {
     const firstLocation = activeLocations[0]
-    return `<section><h2>${firstLocation ? `Begonnen in ${escapeHtml(firstLocation.city)}.` : 'Regional gedacht.'} Für ganz Deutschland.</h2><p>Schultes IT verbindet zentrale Fernwartung mit eigenverantwortlich betriebenen regionalen Standorten.</p><p>${firstLocation ? `<a href="${firstLocation.path}">Ersten Standort ansehen</a> · ` : ''}<a href="/standortinhaber-werden/">Standortinhaber werden</a></p></section>`
+    return `<section><h2>${firstLocation ? `Begonnen in ${escapeHtml(firstLocation.city)}.` : 'Regional gedacht.'} Für ganz Deutschland.</h2><p>Schultes IT verbindet standortbetreute Fernwartung mit eigenverantwortlich betriebenen regionalen Standorten.</p><p>${firstLocation ? `<a href="${firstLocation.path}">Ersten Standort ansehen</a> · ` : ''}<a href="/standortinhaber-werden/">Standortinhaber werden</a></p></section>`
   }
   return ''
 }
@@ -298,7 +328,11 @@ export function renderStaticPageContent(page: SitePage) {
     <footer>
       <a href="/impressum/">Impressum</a>
       <a href="/datenschutz/">Datenschutz</a>
-      <a href="${contact.phoneHref}">${escapeHtml(contact.phoneDisplay)}</a>
+      ${
+        contact.phoneHref && contact.phoneDisplay
+          ? `<a href="${contact.phoneHref}">${escapeHtml(contact.phoneDisplay)}</a>`
+          : `<a href="${contact.actionHref}">${escapeHtml(contact.actionLabel)}</a>`
+      }
     </footer>
   </div>`
 }

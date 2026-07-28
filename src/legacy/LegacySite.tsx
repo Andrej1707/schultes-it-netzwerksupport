@@ -46,9 +46,9 @@ import {
 } from 'lucide-react'
 import type { Variants } from 'framer-motion'
 import {
+  getLocationServicePath,
+  getLocationServicesByGroup,
   getServicePath,
-  nationalRemotePages,
-  primaryServicePages,
   servicePageBySlug,
 } from '../content/services'
 import type { ServiceIconName, ServicePageData } from '../content/types'
@@ -59,16 +59,16 @@ import {
   type ContactProfile,
 } from '../site/contacts'
 import { activeLocationById, activeLocations, locationById } from '../site/locations'
-import { publicTopicPages } from '../site/publicServices'
 
 const ludwigsburgLocation = locationById.ludwigsburg
 if (!ludwigsburgLocation) {
   throw new Error('The Ludwigsburg location configuration is required for the local marketing page.')
 }
 
-const phoneDisplay = centralContact.phoneDisplay
-const phoneHref = centralContact.phoneHref
-const email = centralContact.email
+const ludwigsburgContact = contactForLocation(ludwigsburgLocation)
+const phoneDisplay = ludwigsburgContact.phoneDisplay
+const phoneHref = ludwigsburgContact.phoneHref
+const email = ludwigsburgContact.email
 const address =
   `${ludwigsburgLocation.streetAddress}, ${ludwigsburgLocation.postalCode} ` +
   ludwigsburgLocation.city
@@ -89,19 +89,19 @@ const serviceIcons: Record<ServiceIconName, LucideIcon> = {
   bot: Bot,
 }
 
-const services = primaryServicePages.map((service) => ({
+const services = getLocationServicesByGroup('ludwigsburg', 'primary').map((service) => ({
   ...service,
   icon: serviceIcons[service.icon],
   href: getServicePath(service),
 }))
 
-const topicServices = publicTopicPages.map((service) => ({
+const topicServices = getLocationServicesByGroup('ludwigsburg', 'topic').map((service) => ({
   ...service,
   icon: serviceIcons[service.icon],
   href: getServicePath(service),
 }))
 
-const remoteServices = nationalRemotePages.map((service) => ({
+const remoteServices = getLocationServicesByGroup('ludwigsburg', 'remote').map((service) => ({
   ...service,
   icon: serviceIcons[service.icon],
   href: getServicePath(service),
@@ -134,42 +134,44 @@ const everydayProblems = [
     icon: Laptop,
     title: 'Mein PC geht nicht mehr an',
     text: 'Der Rechner bleibt schwarz, startet nur kurz oder Windows fährt nicht mehr hoch.',
-    href: getServicePath(servicePageBySlug['pc-startet-nicht']),
+    href: getLocationServicePath('ludwigsburg', 'pc-startet-nicht') ?? ludwigsburgLocation.path,
     label: 'Startproblem',
   },
   {
     icon: Cpu,
     title: 'Mein PC oder Laptop ist sehr langsam',
     text: 'Programme brauchen ewig, Updates hängen oder das Gerät reagiert nur noch zäh.',
-    href: getServicePath(servicePageBySlug['pc-langsam']),
+    href: getLocationServicePath('ludwigsburg', 'pc-langsam') ?? ludwigsburgLocation.path,
     label: 'PC langsam',
   },
   {
     icon: Router,
     title: 'Mein WLAN geht nicht',
     text: 'Die Verbindung ist weg, bricht ständig ab oder reicht nicht bis ins Arbeitszimmer.',
-    href: getServicePath(servicePageBySlug['netzwerk-wlan']),
+    href: getLocationServicePath('ludwigsburg', 'netzwerk-wlan') ?? ludwigsburgLocation.path,
     label: 'WLAN-Hilfe',
   },
   {
     icon: Radio,
     title: 'WLAN verbunden, aber kein Internet',
     text: 'Handy oder Laptop zeigen WLAN an, trotzdem lädt keine Seite zuverlässig.',
-    href: getServicePath(servicePageBySlug['router-entstoerung']),
+    href: getLocationServicePath('ludwigsburg', 'router-entstoerung') ?? ludwigsburgLocation.path,
     label: 'Netzwerkhilfe',
   },
   {
     icon: Router,
     title: 'Fritzbox oder Mesh macht Probleme',
     text: 'Repeater, Router oder WLAN-Abdeckung sollen bei dir vor Ort sauber eingerichtet werden.',
-    href: getServicePath(servicePageBySlug['fritzbox-hilfe']),
+    href: getLocationServicePath('ludwigsburg', 'fritzbox-hilfe') ?? ludwigsburgLocation.path,
     label: 'Routerhilfe',
   },
   {
     icon: ShieldCheck,
     title: 'Verdächtige Mail oder SMS bekommen',
     text: 'Nicht weiterklicken: Betrugsverdacht, Phishing und komische Konto-Warnungen ruhig einordnen.',
-    href: getServicePath(servicePageBySlug['betrugsverdacht-phishing-hilfe']),
+    href:
+      getLocationServicePath('ludwigsburg', 'betrugsverdacht-phishing-hilfe') ??
+      ludwigsburgLocation.path,
     label: 'Sicherheit',
   },
 ]
@@ -503,8 +505,32 @@ export function ShortcutMenu({
     }
   }, [open])
 
+  const menuServices = contact.locationId
+    ? getLocationServicesByGroup(contact.locationId, 'primary').map((service) => ({
+        ...service,
+        icon: serviceIcons[service.icon],
+        href: getServicePath(service),
+      }))
+    : services.map((service) => ({ ...service, href: '/standorte/' }))
+  const menuRemoteServices = contact.locationId
+    ? getLocationServicesByGroup(contact.locationId, 'remote').map((service) => ({
+        ...service,
+        icon: serviceIcons[service.icon],
+        href: getServicePath(service),
+      }))
+    : remoteServices.map((service) => ({ ...service, href: '/standorte/' }))
+  const menuTopicServices = contact.locationId
+    ? getLocationServicesByGroup(contact.locationId, 'topic').map((service) => ({
+        ...service,
+        icon: serviceIcons[service.icon],
+        href: getServicePath(service),
+      }))
+    : topicServices.map((service) => ({ ...service, href: '/standorte/' }))
+  const remoteHref = contact.locationId
+    ? getLocationServicePath(contact.locationId, 'fernwartung') ?? '/standorte/'
+    : '/standorte/'
   const quickLinks = [
-    [BadgeEuro, 'Fernwartung deutschlandweit', '/fernwartung/'],
+    [BadgeEuro, contact.locationId ? 'Fernwartung dieses Standorts' : 'Fernwartung nach Standort', remoteHref],
     [MapPin, 'Standorte & Hilfe vor Ort', '/standorte/'],
     [UserRound, 'Über Schultes IT', '/ueber-schultes-it/'],
     [Building2, 'Standortinhaber werden', '/standortinhaber-werden/'],
@@ -555,7 +581,7 @@ export function ShortcutMenu({
               <p id="shortcut-help-title">Direkt zur passenden Leistungsseite</p>
             </header>
             <div className="shortcut-service-grid">
-              {services.map((service) => {
+              {menuServices.map((service) => {
                 const ServiceIcon = service.icon
                 return (
                   <a key={service.href} href={service.href} onClick={onClose}>
@@ -578,7 +604,7 @@ export function ShortcutMenu({
               <p id="shortcut-remote-title">Deutschlandweite Hilfe ohne Anfahrt</p>
             </header>
             <div className="shortcut-topic-list">
-              {remoteServices.map((service) => {
+              {menuRemoteServices.map((service) => {
                 const RemoteIcon = service.icon
                 return (
                   <a key={service.href} href={service.href} onClick={onClose}>
@@ -597,7 +623,7 @@ export function ShortcutMenu({
               <p id="shortcut-topics-title">Konkrete Hilfe für typische Probleme</p>
             </header>
             <div className="shortcut-topic-list">
-              {topicServices.map((service) => {
+              {menuTopicServices.map((service) => {
                 const TopicIcon = service.icon
                 return (
                   <a key={service.href} href={service.href} onClick={onClose}>
@@ -630,14 +656,23 @@ export function ShortcutMenu({
                 <span>05 / DIREKT</span>
                 <p id="shortcut-contact-title">Problem kurz besprechen</p>
               </header>
-              <a href={contact.phoneHref} onClick={onClose}>
-                <Phone aria-hidden="true" />
-                <span><small>ANRUFEN</small>{contact.phoneDisplay}</span>
-              </a>
-              <a href={`mailto:${contact.email}`} onClick={onClose}>
-                <Mail aria-hidden="true" />
-                <span><small>E-MAIL</small>Nachricht schreiben</span>
-              </a>
+              {contact.phoneHref && contact.phoneDisplay && contact.email ? (
+                <>
+                  <a href={contact.phoneHref} onClick={onClose}>
+                    <Phone aria-hidden="true" />
+                    <span><small>ANRUFEN</small>{contact.phoneDisplay}</span>
+                  </a>
+                  <a href={`mailto:${contact.email}`} onClick={onClose}>
+                    <Mail aria-hidden="true" />
+                    <span><small>E-MAIL</small>Nachricht schreiben</span>
+                  </a>
+                </>
+              ) : (
+                <a href={contact.actionHref} onClick={onClose}>
+                  <MapPin aria-hidden="true" />
+                  <span><small>DIREKTE HILFE</small>{contact.actionLabel}</span>
+                </a>
+              )}
             </section>
           </div>
         </div>
@@ -1038,6 +1073,13 @@ function PrivacyContent() {
 }
 
 export function SiteFooter({ contact = centralContact }: { contact?: ContactProfile }) {
+  const footerServices = contact.locationId
+    ? [
+        ...getLocationServicesByGroup(contact.locationId, 'primary'),
+        ...getLocationServicesByGroup(contact.locationId, 'remote'),
+      ]
+    : []
+
   return (
     <footer className="site-footer">
       <Logo />
@@ -1051,11 +1093,12 @@ export function SiteFooter({ contact = centralContact }: { contact?: ContactProf
         <span>© {new Date().getFullYear()} Andrej Schultes</span>
       </div>
       <div className="footer-links">
-        {[...primaryServicePages, ...nationalRemotePages].map((service) => (
+        {footerServices.map((service) => (
           <a key={service.slug} href={getServicePath(service)}>
             {service.shortTitle}
           </a>
         ))}
+        <a href="/leistungen/">Leistungen</a>
         <a href="/standorte/">Standorte</a>
         <a href="/ratgeber/">Ratgeber</a>
         <a href="/ueber-schultes-it/">Über Schultes IT</a>
@@ -1068,11 +1111,13 @@ export function SiteFooter({ contact = centralContact }: { contact?: ContactProf
         <a href="/datenschutz/">
           <LockKeyhole aria-hidden="true" /> Datenschutz
         </a>
-        <span className="footer-private" data-nosnippet>
-          <a href={`mailto:${contact.email}`}>
-            <Mail aria-hidden="true" /> E-Mail
-          </a>
-        </span>
+        {contact.email ? (
+          <span className="footer-private" data-nosnippet>
+            <a href={`mailto:${contact.email}`}>
+              <Mail aria-hidden="true" /> E-Mail
+            </a>
+          </span>
+        ) : null}
       </div>
     </footer>
   )
@@ -1122,7 +1167,11 @@ export function ServicePage({ service }: { service: ServicePageData }) {
   const relatedServices = service.related
     .map((slug) => servicePageBySlug[slug])
     .filter((entry): entry is ServicePageData => Boolean(entry))
-  const showRemoteDownload = service.scope === 'national'
+  const showRemoteDownload = service.deliveryMode === 'remote'
+  const locationRemotePath =
+    service.locationId
+      ? getLocationServicePath(service.locationId, 'fernwartung') ?? serviceLocation?.path
+      : '/standorte/'
 
   return (
     <>
@@ -1140,7 +1189,7 @@ export function ServicePage({ service }: { service: ServicePageData }) {
       <header className="site-header service-header">
         <Logo />
         <nav className="desktop-nav" aria-label="Hauptnavigation">
-          <a href="/fernwartung/">Fernwartung</a>
+          <a href={locationRemotePath}>Fernwartung</a>
           <a href="/leistungen/">Leistungen</a>
           <a href="/standorte/">Standorte</a>
           <a href="/ratgeber/">Ratgeber</a>
@@ -1188,28 +1237,18 @@ export function ServicePage({ service }: { service: ServicePageData }) {
             >
               <a href="/">Startseite</a>
               <ChevronRight aria-hidden="true" />
-              {service.scope === 'location' ? (
+              <a href="/standorte/">Standorte</a>
+              <ChevronRight aria-hidden="true" />
+              <a href={serviceLocation?.path ?? '/standorte/'}>
+                {serviceLocation?.city ?? 'Regionaler Standort'}
+              </a>
+              <ChevronRight aria-hidden="true" />
+              {service.serviceGroup === 'remote' && service.templateSlug !== 'fernwartung' ? (
                 <>
-                  <a href="/standorte/">Standorte</a>
-                  <ChevronRight aria-hidden="true" />
-                  <a href={serviceLocation?.path ?? '/standorte/'}>
-                    {serviceLocation?.city ?? 'Regionaler Standort'}
-                  </a>
+                  <a href={locationRemotePath}>Fernwartung</a>
                   <ChevronRight aria-hidden="true" />
                 </>
-              ) : service.scope === 'national' && getServicePath(service) !== '/fernwartung/' ? (
-                <>
-                  <a href="/fernwartung/">Fernwartung</a>
-                  <ChevronRight aria-hidden="true" />
-                </>
-              ) : (
-                <>
-                  <a href={service.scope === 'network' ? '/leistungen/' : '/fernwartung/'}>
-                    {service.scope === 'network' ? 'Leistungen' : 'Deutschlandweit'}
-                  </a>
-                  <ChevronRight aria-hidden="true" />
-                </>
-              )}
+              ) : null}
               <span aria-current="page">{service.title}</span>
             </motion.nav>
             <motion.span className="service-detail-code" variants={serviceHeroItem}>
@@ -1436,7 +1475,7 @@ export function ServicePage({ service }: { service: ServicePageData }) {
                 <p>
                   Für Fernwartung brauchst du RustDesk auf deinem Windows-PC. Lade die Datei
                   herunter, öffne sie erst nach telefonischer Abstimmung und nenne ID oder Code nur
-                  Andrej.
+                  {contact.operatorName}.
                 </p>
               </div>
 
@@ -1476,6 +1515,37 @@ export function ServicePage({ service }: { service: ServicePageData }) {
             </motion.div>
           </section>
         )}
+
+        {service.locationContext ? (
+          <section className="service-location-context service-detail-shell">
+            <motion.header
+              className="service-detail-heading"
+              variants={reveal}
+              initial={motionInitial}
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <span className="section-number">{service.locationContext.eyebrow}</span>
+              <h2>{service.locationContext.heading}</h2>
+              <p>{service.locationContext.text}</p>
+            </motion.header>
+            <motion.div
+              className="confidence-points"
+              variants={serviceGridReveal}
+              initial={motionInitial}
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.25 }}
+            >
+              {service.locationContext.points.map((point, index) => (
+                <motion.div key={point} variants={serviceCardReveal}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <MapPin aria-hidden="true" />
+                  <strong>{point}</strong>
+                </motion.div>
+              ))}
+            </motion.div>
+          </section>
+        ) : null}
 
         <section className="service-confidence service-detail-shell">
           <motion.div

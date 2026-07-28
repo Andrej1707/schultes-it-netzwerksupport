@@ -27,6 +27,16 @@ export type LocationOperator = {
   ownAccountNotice?: string
 }
 
+export type LocationContentProfile = {
+  brandLine: string
+  serviceAreaSummary: string
+  localSupportApproach: string
+  remoteSupportApproach: string
+  businessSupportApproach: string
+  operatorApproach: string
+  localProof: string
+}
+
 export type ServiceLocation = {
   id: string
   slug: string
@@ -34,6 +44,7 @@ export type ServiceLocation = {
   aliases?: string[]
   name: string
   status: 'active' | 'preparing'
+  ownsLegacyServiceAliases?: boolean
   city: string
   region: string
   postalCode: string
@@ -51,12 +62,14 @@ export type ServiceLocation = {
   pricing: {
     onSiteFrom: string
     remoteFrom?: string
+    projectLabel: string
     note: string
   }
   remoteSupport: {
     available: boolean
     note: string
   }
+  content: LocationContentProfile
   trust?: {
     source: 'Google'
     ratingValue: number
@@ -75,6 +88,7 @@ export const locations: ServiceLocation[] = [
     aliases: ['/ludwigsburg/'],
     name: 'Schultes IT Ludwigsburg',
     status: 'active',
+    ownsLegacyServiceAliases: true,
     city: 'Ludwigsburg',
     region: 'Landkreis Ludwigsburg',
     postalCode: '71638',
@@ -99,11 +113,29 @@ export const locations: ServiceLocation[] = [
     pricing: {
       onSiteFrom: '49 €',
       remoteFrom: '25 €',
+      projectLabel: 'Nach individueller Absprache',
       note: 'Weitere Leistungen und mögliche Zusatzkosten werden vorab transparent abgestimmt.',
     },
     remoteSupport: {
       available: true,
-      note: 'Der Standort kann geeignete Probleme ergänzend per Fernwartung bearbeiten.',
+      note:
+        'Fernwartung wird persönlich durch den Standort Ludwigsburg betreut und vorab direkt abgestimmt.',
+    },
+    content: {
+      brandLine:
+        'Der erste Schultes-IT-Standort verbindet persönliche Hilfe im Landkreis Ludwigsburg mit sicherer Fernwartung.',
+      serviceAreaSummary:
+        'Der Standort betreut Ludwigsburg sowie unter anderem Kornwestheim, Asperg, Remseck, Tamm und Bietigheim-Bissingen.',
+      localSupportApproach:
+        'Andrej kommt für geeignete Vor-Ort-Termine direkt zu Privatpersonen und kleinen Betrieben in der Region. Geräte müssen nicht erst zu einer anonymen Annahmestelle gebracht werden.',
+      remoteSupportApproach:
+        'Fernwartungsfälle werden vom Standort Ludwigsburg persönlich mit Andrej abgestimmt. Die Verbindung startest du selbst und behältst während der gesamten Sitzung die Kontrolle.',
+      businessSupportApproach:
+        'Kleine Unternehmen aus dem Landkreis erhalten pragmatische Unterstützung für Arbeitsplätze, Netzwerke, Webseiten und wiederkehrende digitale Abläufe.',
+      operatorApproach:
+        'Andrej grenzt die Ursache zuerst nachvollziehbar ein, erklärt die nächsten Schritte ohne Fachchinesisch und spricht Grenzen offen an.',
+      localProof:
+        'Der Standort ist mit einem eigenen Google-Unternehmensprofil, realer Geschäftsanschrift und direkten regionalen Kontaktdaten nachweisbar.',
     },
     trust: {
       source: 'Google',

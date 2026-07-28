@@ -12,14 +12,14 @@ const structuralPages: SitePage[] = [
     path: '/',
     title: 'Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort',
     description:
-      'Schultes IT verbindet deutschlandweite IT-Hilfe per Fernwartung mit persönlichem Vor-Ort-Service über regionale Standorte.',
+      'Schultes IT verbindet standortbetreute Fernwartung mit persönlichem Vor-Ort-Service über regionale, selbstständige Ansprechpartner.',
     keywords:
-      'Schultes IT, Fernwartung Deutschland, IT Hilfe, PC Hilfe, regionale IT Standorte, Computerhilfe',
+      'Schultes IT, Fernwartung, IT Hilfe, PC Hilfe, regionale IT Standorte, Computerhilfe',
     eyebrow: 'SCHULTES IT / DEUTSCHLAND',
     heading: 'Technik-Hilfe,',
     accent: 'die dich erreicht.',
     intro:
-      'Schultes IT verbindet sichere Fernwartung in ganz Deutschland mit persönlicher Hilfe durch regionale Ansprechpartner.',
+      'Schultes IT verbindet sichere Fernwartung mit persönlicher Hilfe durch klar verantwortliche regionale Ansprechpartner.',
     indexable: true,
     lastModified,
     changeFrequency: 'weekly',
@@ -39,7 +39,7 @@ const structuralPages: SitePage[] = [
     heading: 'Technikbereiche klar geordnet.',
     accent: 'Der passende Einstieg ohne Umwege.',
     intro:
-      'Vier Leistungsbereiche verbinden zentrale Expertise mit deutschlandweiter Fernwartung und regionalem Service.',
+      'Vier Leistungsbereiche werden über aktive Standorte persönlich betreut: vor Ort, per Fernwartung oder als klar abgestimmtes Projekt.',
     indexable: true,
     lastModified,
     changeFrequency: 'monthly',
@@ -192,7 +192,6 @@ const locationSitePages: SitePage[] = activeLocations.map((location) => ({
   }))
 
 function schemaKindForService(scope: string | undefined): SchemaKind {
-  if (scope === 'national') return 'national-service'
   if (scope === 'location') return 'location-service'
   return 'network-service'
 }
@@ -213,7 +212,12 @@ const serviceSitePages: SitePage[] = publicServicePages.map((service) => ({
   indexable: true,
   lastModified,
   changeFrequency: 'monthly',
-  priority: service.scope === 'national' ? 0.9 : service.scope === 'network' ? 0.85 : 0.72,
+  priority:
+    service.serviceGroup === 'primary'
+      ? 0.86
+      : service.serviceGroup === 'remote'
+        ? 0.82
+        : 0.72,
   serviceSlug: service.slug,
   locationId: service.locationId,
 }))

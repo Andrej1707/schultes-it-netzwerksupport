@@ -3,10 +3,12 @@ import {
   topicPages as legacyTopicPages,
 } from './legacy/serviceCatalog'
 import type { ServicePageData } from './types'
+import { activeLocations, type ServiceLocation } from '../site/locations'
 
 const categoryConfig = {
   'pc-system': {
     path: '/leistungen/pc-laptop/',
+    locationPath: 'pc-laptop/',
     legacyPaths: ['/pc-system/'],
     seoTitle: 'PC- & Laptop-Hilfe | Schultes IT Deutschland',
     seoDescription:
@@ -16,6 +18,7 @@ const categoryConfig = {
   },
   'netzwerk-wlan': {
     path: '/leistungen/netzwerk-wlan/',
+    locationPath: 'netzwerk-wlan/',
     legacyPaths: ['/netzwerk-wlan/'],
     seoTitle: 'Netzwerk- & WLAN-Hilfe | Schultes IT',
     seoDescription:
@@ -25,6 +28,7 @@ const categoryConfig = {
   },
   webseiten: {
     path: '/leistungen/webseiten/',
+    locationPath: 'webseiten/',
     legacyPaths: ['/webseiten/'],
     seoTitle: 'Webseiten für Selbstständige & Betriebe | Schultes IT',
     seoDescription:
@@ -34,6 +38,7 @@ const categoryConfig = {
   },
   'tools-automation': {
     path: '/leistungen/automation/',
+    locationPath: 'automation/',
     legacyPaths: ['/tools-automation/'],
     seoTitle: 'Tools & Automation für kleine Betriebe | Schultes IT',
     seoDescription:
@@ -43,41 +48,70 @@ const categoryConfig = {
   },
 } as const
 
-function replaceLocalBrandCopy(value: string) {
-  return value
-    .replaceAll('in Ludwigsburg und Umgebung', 'über regionale Schultes-IT-Standorte')
-    .replaceAll('aus Ludwigsburg', 'aus dem Schultes-IT-Netzwerk')
-    .replaceAll('in Ludwigsburg', 'bei Schultes IT')
-    .replaceAll('Ludwigsburg und Umgebung', 'regionale Einsatzgebiete')
-    .replaceAll('Ludwigsburg', 'Deutschland')
-}
-
 function mapServiceCopy(service: ServicePageData, transform: (value: string) => string) {
   return {
     ...service,
+    title: transform(service.title),
+    shortTitle: transform(service.shortTitle),
     description: transform(service.description),
+    seoTitle: transform(service.seoTitle),
+    seoDescription: transform(service.seoDescription),
+    keywords: transform(service.keywords),
+    heroLead: transform(service.heroLead),
+    heroAccent: transform(service.heroAccent),
     heroText: transform(service.heroText),
-    audiences: service.audiences.map((entry) => ({ ...entry, text: transform(entry.text) })),
-    situations: service.situations.map((entry) => ({ ...entry, text: transform(entry.text) })),
-    solutions: service.solutions.map((entry) => ({ ...entry, text: transform(entry.text) })),
-    process: service.process.map((entry) => ({ ...entry, text: transform(entry.text) })),
+    tags: service.tags.map(transform),
+    audiences: service.audiences.map((entry) => ({
+      label: transform(entry.label),
+      text: transform(entry.text),
+    })),
+    situations: service.situations.map((entry) => ({
+      title: transform(entry.title),
+      text: transform(entry.text),
+    })),
+    solutions: service.solutions.map((entry) => ({
+      title: transform(entry.title),
+      text: transform(entry.text),
+    })),
+    process: service.process.map((entry) => ({
+      title: transform(entry.title),
+      text: transform(entry.text),
+    })),
+    confidenceTitle: transform(service.confidenceTitle),
     confidenceText: transform(service.confidenceText),
     confidencePoints: service.confidencePoints.map(transform),
-    faqs: service.faqs.map((entry) => ({ ...entry, answer: transform(entry.answer) })),
+    faqs: service.faqs.map((entry) => ({
+      question: transform(entry.question),
+      answer: transform(entry.answer),
+    })),
   }
 }
 
-export const primaryServicePages: ServicePageData[] = legacyPrimaryServicePages.map((service) => {
+function neutralizeLocationCopy(value: string) {
+  return value
+    .replaceAll('in Ludwigsburg und Umgebung', 'über einen aktiven Schultes-IT-Standort')
+    .replaceAll('aus Ludwigsburg', 'aus dem Schultes-IT-Netzwerk')
+    .replaceAll('in Ludwigsburg', 'über einen regionalen Schultes-IT-Standort')
+    .replaceAll('Ludwigsburg und Umgebung', 'das regionale Einsatzgebiet')
+    .replaceAll('Ludwigsburg', 'deiner Region')
+}
+
+export const primaryServiceTemplates: ServicePageData[] = legacyPrimaryServicePages.map((service) => {
   const config = categoryConfig[service.slug as keyof typeof categoryConfig]
   if (!config) {
     throw new Error(`Missing category route configuration for ${service.slug}.`)
   }
 
   return {
-    ...mapServiceCopy(service, replaceLocalBrandCopy),
+    ...service,
     ...config,
     legacyPaths: [...config.legacyPaths],
     scope: 'network',
+    serviceGroup: 'primary',
+    deliveryMode:
+      service.slug === 'webseiten' || service.slug === 'tools-automation'
+        ? 'project'
+        : 'hybrid',
     areaLabel: 'Deutschland / regionale Standorte',
     modeLabel: 'Remote / regional vor Ort',
   }
@@ -110,6 +144,8 @@ function remoteService(input: {
     icon: input.icon ?? 'laptop',
     tags: ['Deutschlandweit', 'Fernwartung', 'Sichere Hilfe'],
     scope: 'national',
+    serviceGroup: 'remote',
+    deliveryMode: 'remote',
     areaLabel: 'Deutschlandweit',
     modeLabel: 'Sichere Fernwartung',
     price: input.price ?? 'Fernhilfe ab 25 €',
@@ -165,10 +201,12 @@ if (!legacyRemote) {
 }
 
 const nationalRemoteOverview: ServicePageData = {
-  ...mapServiceCopy(legacyRemote, replaceLocalBrandCopy),
+  ...mapServiceCopy(legacyRemote, neutralizeLocationCopy),
   path: '/fernwartung/',
   legacyPaths: [],
   scope: 'national',
+  serviceGroup: 'remote',
+  deliveryMode: 'remote',
   areaLabel: 'Deutschlandweit',
   modeLabel: 'Sichere Fernwartung',
   seoTitle: 'Fernwartung deutschlandweit | Schultes IT Remote-Hilfe',
@@ -417,25 +455,174 @@ const nationalRemoteChildren: ServicePageData[] = [
   }),
 ]
 
-export const nationalRemotePages = [nationalRemoteOverview, ...nationalRemoteChildren]
+export const remoteServiceTemplates = [nationalRemoteOverview, ...nationalRemoteChildren]
 
-export const topicPages: ServicePageData[] = legacyTopicPages
+export const topicServiceTemplates: ServicePageData[] = legacyTopicPages
   .filter((service) => service.slug !== 'fernwartung')
   .map((service) => ({
-    ...service,
-    path: `/standorte/ludwigsburg/${service.slug}/`,
+    ...mapServiceCopy(service, neutralizeLocationCopy),
     legacyPaths: [`/${service.slug}/`],
-    scope: 'location',
-    locationId: 'ludwigsburg',
-    areaLabel: 'Ludwigsburg & Umgebung',
-    modeLabel: 'Bei dir / ergänzend remote',
+    scope: 'network',
+    serviceGroup: 'topic',
+    deliveryMode: 'hybrid',
   }))
 
-export const servicePages: ServicePageData[] = [
-  ...primaryServicePages,
-  ...nationalRemotePages,
-  ...topicPages,
+export const serviceTemplates: ServicePageData[] = [
+  ...primaryServiceTemplates,
+  ...remoteServiceTemplates,
+  ...topicServiceTemplates,
 ]
+
+const serviceTemplateBySlug = Object.fromEntries(
+  serviceTemplates.map((service) => [service.slug, service]),
+) as Record<string, ServicePageData>
+
+function locationServiceSlug(location: ServiceLocation, templateSlug: string) {
+  return `${location.slug}--${templateSlug}`
+}
+
+function locationRelativePath(template: ServicePageData) {
+  if (template.serviceGroup === 'primary') {
+    const config = categoryConfig[template.slug as keyof typeof categoryConfig]
+    return config.locationPath
+  }
+
+  if (template.serviceGroup === 'remote') {
+    if (template.slug === 'fernwartung') return 'fernwartung/'
+    const child = template.path?.replace(/^\/fernwartung\//, '') ?? `${template.slug}/`
+    return `fernwartung/${child.replace(/^\/+/, '')}`
+  }
+
+  return `${template.slug}/`
+}
+
+function legacyAliasesForLocation(template: ServicePageData, location: ServiceLocation) {
+  if (!location.ownsLegacyServiceAliases) return []
+
+  const aliases = [...(template.legacyPaths ?? [])]
+  if (template.path) aliases.unshift(template.path)
+  return [...new Set(aliases)]
+}
+
+function localCopyTransform(location: ServiceLocation, deliveryMode: ServicePageData['deliveryMode']) {
+  const area = `${location.city} und Umgebung`
+
+  return (value: string) => {
+    const localized = value
+      .replaceAll('über regionale Schultes-IT-Standorte', `beim Schultes-IT-Standort ${location.city}`)
+      .replaceAll('über einen aktiven Schultes-IT-Standort', `beim Schultes-IT-Standort ${location.city}`)
+      .replaceAll('über einen regionalen Schultes-IT-Standort', `beim Schultes-IT-Standort ${location.city}`)
+      .replaceAll('aus dem Schultes-IT-Netzwerk', `vom Standort ${location.city}`)
+      .replaceAll('regionale Einsatzgebiete', area)
+      .replaceAll('das regionale Einsatzgebiet', area)
+      .replaceAll('Deutschland / regionale Standorte', area)
+      .replaceAll('deiner Region', location.city)
+      .replaceAll('in Ludwigsburg und Umgebung', `in ${area}`)
+      .replaceAll('Ludwigsburg und Umgebung', area)
+      .replaceAll('aus Ludwigsburg', `vom Standort ${location.city}`)
+      .replaceAll('in Ludwigsburg', `in ${location.city}`)
+      .replaceAll('Ludwigsburg', location.city)
+
+    if (deliveryMode === 'remote') return localized
+
+    return localized
+      .replaceAll('deutschlandweite', `vom Standort ${location.city} betreute`)
+      .replaceAll('Deutschlandweite', `Vom Standort ${location.city} betreute`)
+      .replaceAll('deutschlandweit', `über den Standort ${location.city}`)
+      .replaceAll('Deutschlandweit', `Standort ${location.city}`)
+  }
+}
+
+function conciseSeoDescription(value: string) {
+  if (value.length <= 160) return value
+  const shortened = value.slice(0, 157)
+  return `${shortened.slice(0, shortened.lastIndexOf(' '))}…`
+}
+
+function locationContextText(template: ServicePageData, location: ServiceLocation) {
+  if (template.deliveryMode === 'remote') return location.content.remoteSupportApproach
+  if (template.deliveryMode === 'project') return location.content.businessSupportApproach
+  return location.content.localSupportApproach
+}
+
+function createLocationService(
+  template: ServicePageData,
+  location: ServiceLocation,
+): ServicePageData {
+  const transform = localCopyTransform(location, template.deliveryMode)
+  const localized = mapServiceCopy(template, transform)
+  const templateSlug = template.slug
+  const operatorName = location.operator.responsiblePerson ?? location.operator.name
+  const contextText = locationContextText(template, location)
+  const path = `${location.path}${locationRelativePath(template)}`
+  const modeLabel =
+    template.deliveryMode === 'remote'
+      ? `Fernwartung durch Standort ${location.city}`
+      : template.deliveryMode === 'project'
+        ? `Projektbetreuung durch Standort ${location.city}`
+        : `Bei dir vor Ort / ergänzend per Fernwartung`
+  const seoTitle =
+    template.deliveryMode === 'remote'
+      ? templateSlug === 'fernwartung'
+        ? `Fernwartung deutschlandweit | Standort ${location.city}`
+        : `${localized.shortTitle} per Fernwartung | Standort ${location.city}`
+      : `${localized.shortTitle} ${location.city} | Schultes IT Standort`
+
+  return {
+    ...localized,
+    slug: locationServiceSlug(location, templateSlug),
+    templateSlug,
+    path,
+    legacyPaths: legacyAliasesForLocation(template, location),
+    scope: 'location',
+    locationId: location.id,
+    areaLabel:
+      template.deliveryMode === 'remote'
+        ? `Deutschlandweit / betreut aus ${location.city}`
+        : `${location.city} & ${location.region}`,
+    modeLabel,
+    seoTitle,
+    seoDescription: conciseSeoDescription(
+      `${localized.description} Persönlich betreut durch ${operatorName} vom Standort ${location.city}.`,
+    ),
+    keywords:
+      `${transform(template.keywords)}, ${localized.shortTitle} ${location.city}, ` +
+      `Schultes IT ${location.city}, IT Hilfe ${location.region}`,
+    heroText: `${localized.heroText} ${contextText}`,
+    price:
+      template.deliveryMode === 'remote'
+        ? `Fernhilfe ab ${location.pricing.remoteFrom ?? 'individueller Absprache'}`
+        : template.deliveryMode === 'project'
+          ? location.pricing.projectLabel
+          : `Service bei dir ab ${location.pricing.onSiteFrom}`,
+    faqs: [
+      ...localized.faqs,
+      {
+        question: `Wer betreut diese Leistung in ${location.city}?`,
+        answer:
+          `${operatorName} ist der verantwortliche Ansprechpartner des Standorts ${location.city}. ` +
+          `${location.content.operatorApproach}`,
+      },
+    ],
+    related: template.related
+      .filter((relatedSlug) => Boolean(serviceTemplateBySlug[relatedSlug]))
+      .map((relatedSlug) => locationServiceSlug(location, relatedSlug)),
+    locationContext: {
+      eyebrow: `STANDORT / ${location.city.toUpperCase()}`,
+      heading: `${localized.shortTitle} mit echter regionaler Verantwortung.`,
+      text: contextText,
+      points: [
+        location.content.operatorApproach,
+        location.content.serviceAreaSummary,
+        location.content.localProof,
+      ],
+    },
+  }
+}
+
+export const servicePages: ServicePageData[] = activeLocations.flatMap((location) =>
+  serviceTemplates.map((template) => createLocationService(template, location)),
+)
 
 export const servicePageBySlug = Object.fromEntries(
   servicePages.map((service) => [service.slug, service]),
@@ -447,4 +634,28 @@ export const servicePageByPath = Object.fromEntries(
 
 export function getServicePath(service: ServicePageData) {
   return service.path ?? `/${service.slug}/`
+}
+
+export function getLocationServices(locationId: string) {
+  return servicePages.filter((service) => service.locationId === locationId)
+}
+
+export function getLocationService(locationId: string, templateSlug: string) {
+  return servicePages.find(
+    (service) =>
+      service.locationId === locationId && service.templateSlug === templateSlug,
+  )
+}
+
+export function getLocationServicePath(locationId: string, templateSlug: string) {
+  return getLocationService(locationId, templateSlug)?.path
+}
+
+export function getLocationServicesByGroup(
+  locationId: string,
+  serviceGroup: NonNullable<ServicePageData['serviceGroup']>,
+) {
+  return getLocationServices(locationId).filter(
+    (service) => service.serviceGroup === serviceGroup,
+  )
 }

@@ -27,10 +27,11 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import {
+  getLocationServicesByGroup,
   getServicePath,
-  nationalRemotePages,
-  primaryServicePages,
-  servicePageBySlug,
+  primaryServiceTemplates,
+  remoteServiceTemplates,
+  topicServiceTemplates,
 } from '../content/services'
 import type { ServiceIconName } from '../content/types'
 import {
@@ -41,13 +42,11 @@ import {
 } from '../components/SiteChrome'
 import { findNearestLocation } from '../site/locationFinder'
 import { activeLocationById, activeLocations } from '../site/locations'
-import { siteConfig } from '../site/config'
 import {
   contactForLocation,
   contactForPage,
   type ContactProfile,
 } from '../site/contacts'
-import { publicTopicPages } from '../site/publicServices'
 import type { SitePage } from '../site/types'
 
 const iconByName: Record<ServiceIconName, LucideIcon> = {
@@ -73,8 +72,16 @@ const homeProblemSlugs = [
   'fernwartung-email-outlook',
 ] as const
 
-const homeProblems = homeProblemSlugs.map((slug) => servicePageBySlug[slug])
-const remoteOverview = servicePageBySlug.fernwartung
+const serviceTemplates = [
+  ...primaryServiceTemplates,
+  ...remoteServiceTemplates,
+  ...topicServiceTemplates,
+]
+const serviceTemplateBySlug = Object.fromEntries(
+  serviceTemplates.map((service) => [service.slug, service]),
+)
+const homeProblems = homeProblemSlugs.map((slug) => serviceTemplateBySlug[slug])
+const remoteOverview = serviceTemplateBySlug.fernwartung
 const firstActiveLocation = activeLocations[0]
 
 type LocationState =
@@ -119,7 +126,7 @@ function LocationFinder({ autoDetectGranted = false }: { autoDetectGranted?: boo
         setState({
           status: 'outside',
           message:
-            'Noch kein Vor-Ort-Standort deckt deine Region ab. Per Fernwartung kann Schultes IT dir trotzdem deutschlandweit helfen.',
+            'Noch kein Standort deckt deine Region ab. Wähle einen aktiven Standort und kläre dort, ob Fernwartung möglich ist.',
         })
       },
       (error) => {
@@ -162,9 +169,7 @@ function LocationFinder({ autoDetectGranted = false }: { autoDetectGranted?: boo
       {state.status !== 'idle' && state.status !== 'locating' ? (
         <p className="location-finder-result" role="status">
           {state.message}
-          {state.status === 'outside' ? (
-            <a href="/fernwartung/"> Zur deutschlandweiten Fernwartung</a>
-          ) : null}
+          {state.status === 'outside' ? <a href="/standorte/"> Standorte ansehen</a> : null}
         </p>
       ) : null}
     </div>
@@ -184,16 +189,16 @@ function NetworkHeader({
     <header className="site-header service-header">
       <Logo />
       <nav className="desktop-nav" aria-label="Hauptnavigation">
-        <a href="/fernwartung/">Fernwartung</a>
+        <a href="/standorte/">Fernwartung</a>
         <a href="/leistungen/">Leistungen</a>
         <a href="/standorte/">Standorte</a>
         <a href="/ratgeber/">Ratgeber</a>
         <a href="/ueber-schultes-it/">Über Schultes IT</a>
       </nav>
       <div className="header-actions">
-        <a className="header-call" href={contact.phoneHref}>
-          <Phone size={16} aria-hidden="true" />
-          <span data-nosnippet>{contact.phoneDisplay}</span>
+        <a className="header-call" href={contact.phoneHref ?? contact.actionHref}>
+          {contact.phoneHref ? <Phone size={16} aria-hidden="true" /> : <MapPin size={16} aria-hidden="true" />}
+          <span data-nosnippet>{contact.phoneDisplay ?? contact.actionLabel}</span>
         </a>
         <button
           className="menu-toggle"
@@ -258,19 +263,31 @@ function NetworkShell({
         {children}
       </main>
 
-      <div className="mobile-contact-dock" aria-label="Schnellkontakt">
-        <a href={contact.phoneHref}>
-          <Phone aria-hidden="true" />
-          <span>
-            <small>JETZT ANRUFEN</small>
-            <span data-nosnippet>{contact.phoneDisplay}</span>
-          </span>
-        </a>
-        <a href={`mailto:${contact.email}`}>
-          <Mail aria-hidden="true" />
-          <span>E-Mail</span>
-        </a>
-      </div>
+      {contact.phoneHref && contact.phoneDisplay && contact.email ? (
+        <div className="mobile-contact-dock" aria-label="Schnellkontakt">
+          <a href={contact.phoneHref}>
+            <Phone aria-hidden="true" />
+            <span>
+              <small>JETZT ANRUFEN</small>
+              <span data-nosnippet>{contact.phoneDisplay}</span>
+            </span>
+          </a>
+          <a href={`mailto:${contact.email}`}>
+            <Mail aria-hidden="true" />
+            <span>E-Mail</span>
+          </a>
+        </div>
+      ) : (
+        <div className="mobile-contact-dock mobile-location-dock" aria-label="Standort auswählen">
+          <a href={contact.actionHref}>
+            <MapPin aria-hidden="true" />
+            <span>
+              <small>DIREKTE HILFE</small>
+              <span>{contact.actionLabel}</span>
+            </span>
+          </a>
+        </div>
+      )}
       <SiteFooter contact={contact} />
     </>
   )
@@ -350,7 +367,7 @@ export function BrandHomePage({ page }: { page: SitePage }) {
 
         <div className="brand-entry-grid">
           <motion.a
-            href="/fernwartung/"
+            href="/standorte/"
             className="brand-entry brand-entry-remote"
             variants={reveal}
             initial={reduceMotion ? false : 'hidden'}
@@ -364,7 +381,7 @@ export function BrandHomePage({ page }: { page: SitePage }) {
               deiner Kontrolle.
             </p>
             <strong>
-              Fernwartung starten <ArrowUpRight aria-hidden="true" />
+              Standort für Fernwartung wählen <ArrowUpRight aria-hidden="true" />
             </strong>
           </motion.a>
           <motion.a
@@ -397,7 +414,7 @@ export function BrandHomePage({ page }: { page: SitePage }) {
           {homeProblems.map((service) => {
             const Icon = iconByName[service.icon]
             return (
-              <a href={getServicePath(service)} key={service.slug}>
+              <a href="/standorte/" key={service.slug}>
                 <Icon aria-hidden="true" />
                 <span>
                   <strong>{service.situations[0]?.title ?? service.shortTitle}</strong>
@@ -471,10 +488,10 @@ export function BrandHomePage({ page }: { page: SitePage }) {
           <article>
             <BadgeEuro aria-hidden="true" />
             <small>DEUTSCHLANDWEIT / REMOTE</small>
-            <h3>{siteConfig.remoteSupport.price}</h3>
-            <p>Geeignete Probleme werden nach direkter Abstimmung sicher per Fernwartung geprüft.</p>
-            <a href="/fernwartung/">
-              Fernwartung ansehen <ArrowUpRight aria-hidden="true" />
+            <h3>Preise je Standort</h3>
+            <p>Fernwartung wird vom ausgewählten Standort persönlich betreut und abgerechnet.</p>
+            <a href="/standorte/">
+              Standort auswählen <ArrowUpRight aria-hidden="true" />
             </a>
           </article>
           <article>
@@ -566,11 +583,11 @@ export function BrandHomePage({ page }: { page: SitePage }) {
             ist.
           </p>
         </div>
-        <a href={siteConfig.phoneHref}>
-          <Phone aria-hidden="true" />
+        <a href="/standorte/">
+          <MapPin aria-hidden="true" />
           <span>
-            <small>PROBLEM BESPRECHEN</small>
-            <strong data-nosnippet>{siteConfig.phoneDisplay}</strong>
+            <small>PASSENDEN KONTAKT FINDEN</small>
+            <strong>Standort auswählen</strong>
           </span>
           <ArrowUpRight aria-hidden="true" />
         </a>
@@ -582,10 +599,10 @@ export function BrandHomePage({ page }: { page: SitePage }) {
 function ServiceOverview() {
   return (
     <section className="network-card-grid" aria-label="Leistungsbereiche">
-      {primaryServicePages.map((service, index) => {
+      {primaryServiceTemplates.map((service, index) => {
         const Icon = iconByName[service.icon]
         return (
-          <a href={getServicePath(service)} key={service.slug}>
+          <a href="/standorte/" key={service.slug}>
             <span>0{index + 1}</span>
             <Icon aria-hidden="true" />
             <h2>{service.title}</h2>
@@ -641,6 +658,9 @@ function LocationDetailOverview({ locationId }: { locationId: string }) {
   const location = activeLocationById[locationId]
   if (!location) return null
   const contact = contactForLocation(location)
+  const primaryServices = getLocationServicesByGroup(locationId, 'primary')
+  const remoteServices = getLocationServicesByGroup(locationId, 'remote')
+  const topicServices = getLocationServicesByGroup(locationId, 'topic')
 
   return (
     <>
@@ -667,9 +687,51 @@ function LocationDetailOverview({ locationId }: { locationId: string }) {
           <p>{location.region} · Termine nach persönlicher Vereinbarung.</p>
         </div>
       </section>
+      <section className="guide-group">
+        <header>
+          <span>02 / LEISTUNGEN AM STANDORT</span>
+          <h2>Alle Hilfebereiche mit einem klar verantwortlichen Ansprechpartner.</h2>
+        </header>
+        <div className="guide-link-grid">
+          {[...primaryServices, ...remoteServices].map((service) => {
+            const Icon = iconByName[service.icon]
+            return (
+              <a href={getServicePath(service)} key={service.slug}>
+                <Icon aria-hidden="true" />
+                <span>
+                  <strong>{service.shortTitle}</strong>
+                  <small>{service.description}</small>
+                </span>
+                <ChevronRight aria-hidden="true" />
+              </a>
+            )
+          })}
+        </div>
+      </section>
+      <section className="guide-group">
+        <header>
+          <span>03 / HÄUFIG GESUCHT</span>
+          <h2>Direkte Einstiege für typische Probleme.</h2>
+        </header>
+        <div className="guide-link-grid">
+          {topicServices.map((service) => {
+            const Icon = iconByName[service.icon]
+            return (
+              <a href={getServicePath(service)} key={service.slug}>
+                <Icon aria-hidden="true" />
+                <span>
+                  <strong>{service.shortTitle}</strong>
+                  <small>{service.description}</small>
+                </span>
+                <ChevronRight aria-hidden="true" />
+              </a>
+            )
+          })}
+        </div>
+      </section>
       <section className="network-cta">
         <div>
-          <span>02 / DIREKTER KONTAKT</span>
+          <span>04 / DIREKTER KONTAKT</span>
           <h2>Problem kurz schildern. Passenden nächsten Schritt klären.</h2>
           <p>
             Der Standort prüft, ob ein Vor-Ort-Termin, Fernwartung oder ein anderer Weg sinnvoll
@@ -751,11 +813,11 @@ function OwnerOverview() {
             ersten unverbindlichen Austausch.
           </p>
         </div>
-        <a href={`mailto:${siteConfig.email}?subject=Interesse%20als%20Standortinhaber`}>
-          <Mail aria-hidden="true" />
+        <a href="/standorte/ludwigsburg/">
+          <MapPin aria-hidden="true" />
           <span>
-            <small>UNVERBINDLICH MELDEN</small>
-            <strong data-nosnippet>{siteConfig.email}</strong>
+            <small>ERSTEN KONTAKT FINDEN</small>
+            <strong>Aktiven Standort ansehen</strong>
           </span>
           <ArrowUpRight aria-hidden="true" />
         </a>
@@ -765,36 +827,23 @@ function OwnerOverview() {
 }
 
 function GuideOverview() {
-  const remoteGuides = nationalRemotePages.filter((service) => service.path !== '/fernwartung/')
-
   return (
     <>
-      <section className="guide-group">
-        <header>
-          <span>01 / DEUTSCHLANDWEIT</span>
-          <h2>Hilfe, die per Fernwartung möglich ist</h2>
-        </header>
-        <div className="guide-link-grid">
-          {remoteGuides.map((service) => (
-            <a href={getServicePath(service)} key={service.slug}>
-              <Globe2 aria-hidden="true" />
-              <span>
-                <strong>{service.shortTitle}</strong>
-                <small>{service.description}</small>
-              </span>
-              <ChevronRight aria-hidden="true" />
-            </a>
-          ))}
-        </div>
-      </section>
-      {firstActiveLocation && publicTopicPages.length > 0 ? (
+      {activeLocations.map((location, locationIndex) => {
+        const guides = [
+          ...getLocationServicesByGroup(location.id, 'remote').filter(
+            (service) => service.templateSlug !== 'fernwartung',
+          ),
+          ...getLocationServicesByGroup(location.id, 'topic'),
+        ]
+        return guides.length > 0 ? (
         <section className="guide-group">
           <header>
-            <span>02 / STANDORT {firstActiveLocation.city.toUpperCase()}</span>
-            <h2>Konkrete Hilfe bei typischen Problemen</h2>
+              <span>{String(locationIndex + 1).padStart(2, '0')} / STANDORT {location.city.toUpperCase()}</span>
+              <h2>Fernwartung und konkrete Hilfe aus {location.city}</h2>
           </header>
           <div className="guide-link-grid">
-            {publicTopicPages.map((service) => {
+              {guides.map((service) => {
               const Icon = iconByName[service.icon]
               return (
                 <a href={getServicePath(service)} key={service.slug}>
@@ -809,7 +858,8 @@ function GuideOverview() {
             })}
           </div>
         </section>
-      ) : null}
+        ) : null
+      })}
     </>
   )
 }
@@ -839,8 +889,8 @@ function AboutOverview() {
           <span>02 / RICHTUNG</span>
           <h2>Gedacht für ganz Deutschland.</h2>
           <p>
-            Zentrale Fernwartung und selbstständige regionale Standorte sollen gemeinsam wachsen,
-            ohne persönliche Verantwortung durch anonyme Strukturen zu ersetzen.
+            Standortgebundene Fernwartung und selbstständige regionale Standorte sollen gemeinsam
+            wachsen, ohne persönliche Verantwortung durch anonyme Strukturen zu ersetzen.
           </p>
           <a href="/standortinhaber-werden/">
             Netzwerkmodell ansehen <ArrowUpRight aria-hidden="true" />
@@ -902,7 +952,7 @@ export function NotFoundPage() {
     eyebrow: 'SYSTEM / 404',
     heading: 'Diese Seite ist nicht verbunden.',
     accent: 'Der nächste sinnvolle Weg ist es.',
-    intro: 'Nutze die Startseite, die Fernwartung oder die Standortsuche.',
+    intro: 'Nutze die Startseite oder die Standortsuche.',
     indexable: false,
     lastModified: '2026-07-28',
     changeFrequency: 'yearly',
@@ -915,9 +965,6 @@ export function NotFoundPage() {
       <section className="not-found-actions">
         <a href="/">
           Startseite <ArrowUpRight aria-hidden="true" />
-        </a>
-        <a href="/fernwartung/">
-          Fernwartung <ArrowUpRight aria-hidden="true" />
         </a>
         <a href="/standorte/">
           Standorte <ArrowUpRight aria-hidden="true" />

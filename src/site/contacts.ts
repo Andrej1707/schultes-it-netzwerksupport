@@ -5,39 +5,51 @@ import type { SitePage } from './types'
 
 export type ContactProfile = {
   source: 'central' | 'location'
+  locationId?: string
   displayName: string
   operatorName: string
-  phoneDisplay: string
-  phoneHref: string
-  email: string
+  phoneDisplay?: string
+  phoneHref?: string
+  email?: string
+  actionHref: string
+  actionLabel: string
   remoteSupportAvailable: boolean
   remoteSupportNote: string
   imprintUrl: string
   ownAccountNotice?: string
 }
 
+export type LocationContactProfile = ContactProfile & {
+  source: 'location'
+  phoneDisplay: string
+  phoneHref: string
+  email: string
+}
+
 export const centralContact: ContactProfile = {
   source: 'central',
-  displayName: siteConfig.legalName,
-  operatorName: siteConfig.founder.name,
-  phoneDisplay: siteConfig.phoneDisplay,
-  phoneHref: siteConfig.phoneHref,
-  email: siteConfig.email,
-  remoteSupportAvailable: true,
+  displayName: siteConfig.name,
+  operatorName: 'Schultes-IT-Netzwerk',
+  actionHref: '/standorte/',
+  actionLabel: 'Standort auswählen',
+  remoteSupportAvailable: false,
   remoteSupportNote: siteConfig.remoteSupport.contactNote,
   imprintUrl: '/impressum/',
 }
 
-export function contactForLocation(location: ServiceLocation): ContactProfile {
+export function contactForLocation(location: ServiceLocation): LocationContactProfile {
   const operator = location.operator
 
   return {
     source: 'location',
+    locationId: location.id,
     displayName: operator.businessName ?? location.name,
     operatorName: operator.responsiblePerson ?? operator.name,
     phoneDisplay: operator.businessPhoneDisplay ?? location.phoneDisplay,
     phoneHref: operator.businessPhoneHref ?? location.phoneHref,
     email: operator.businessEmail ?? location.email,
+    actionHref: operator.businessPhoneHref ?? location.phoneHref,
+    actionLabel: `${operator.responsiblePerson ?? operator.name} anrufen`,
     remoteSupportAvailable: location.remoteSupport.available,
     remoteSupportNote: location.remoteSupport.note,
     imprintUrl: operator.imprint?.url ?? '/impressum/',
@@ -51,9 +63,11 @@ export function contactForLocationId(locationId?: string) {
 }
 
 export function contactForService(service: ServicePageData) {
-  return service.scope === 'location'
-    ? contactForLocationId(service.locationId)
-    : centralContact
+  const location = service.locationId ? activeLocationById[service.locationId] : undefined
+  if (!location) {
+    throw new Error(`Service ${service.slug} has no active location contact.`)
+  }
+  return contactForLocation(location)
 }
 
 export function contactForPage(page: SitePage) {

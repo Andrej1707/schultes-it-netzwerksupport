@@ -6,9 +6,6 @@ export const siteConfig = {
   language: 'de-DE',
   country: 'DE',
   countryName: 'Deutschland',
-  email: 'it.schulteslb@gmail.com',
-  phoneDisplay: '+49 1567 9616310',
-  phoneHref: 'tel:+4915679616310',
   logoPath: '/logo-512.svg',
   previewImagePath: '/og-cover.png',
   founder: {
@@ -16,9 +13,8 @@ export const siteConfig = {
   },
   remoteSupport: {
     downloadPath: '/downloads/rustdesk.exe',
-    price: 'Fernhilfe ab 25 €',
     contactNote:
-      'Die zentrale Fernwartung wird direkt durch Schultes IT angeboten und deutschlandweit betreut.',
+      'Fernwartung wird durch den ausgewählten Schultes-IT-Standort persönlich betreut.',
   },
 } as const
 

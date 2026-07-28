@@ -107,7 +107,7 @@ function validateSharedHtml(html, page, path, canonicalUrl, indexable) {
     `Static H1 does not match the route content in ${path}.`,
   )
   assert(
-    /<nav aria-label="Hauptnavigation">[\s\S]+?href="\/fernwartung\/"/i.test(html),
+    /<nav aria-label="Hauptnavigation">[\s\S]+?href="\/standorte\/"/i.test(html),
     `Static crawlable navigation is missing in ${path}.`,
   )
 }
@@ -172,6 +172,10 @@ for (const page of manifest.pages) {
       organization.logo?.contentUrl === `${siteUrl}/logo-512.svg`,
     `Organization logo schema is invalid in ${canonicalOutput}.`,
   )
+  assert(
+    !organization.telephone && !organization.email,
+    `Central Organization schema leaks a location contact in ${canonicalOutput}.`,
+  )
 
   for (const match of html.matchAll(/href="(\/[^"#?]*)"/g)) {
     const href = match[1] === '/' ? '/' : `${match[1].replace(/\/+$/, '')}/`
@@ -184,13 +188,24 @@ for (const page of manifest.pages) {
     }
   }
 
-  if (page.schemaKind === 'national-service') {
+  if (page.schemaKind === 'location-service') {
     const service = graph.find((node) => node['@type'] === 'Service')
-    assert(service, `Service schema is missing in ${canonicalOutput}.`)
+    const location = graph.find((node) => node['@type'] === 'ProfessionalService')
+    assert(service, `Location-owned Service schema is missing in ${canonicalOutput}.`)
+    assert(location, `Owning ProfessionalService schema is missing in ${canonicalOutput}.`)
     assert(
-      service.areaServed?.['@type'] === 'Country' &&
-        service.areaServed?.name === 'Deutschland',
-      `National areaServed is invalid in ${canonicalOutput}.`,
+      (Array.isArray(service.areaServed) && service.areaServed.length > 0) ||
+        (service.areaServed?.['@type'] === 'Country' &&
+          service.areaServed?.name === 'Deutschland'),
+      `Service areaServed is invalid in ${canonicalOutput}.`,
+    )
+    assert(
+      service.provider?.['@id'] === location['@id'],
+      `Service provider does not reference its owning location in ${canonicalOutput}.`,
+    )
+    assert(
+      page.path.startsWith('/standorte/'),
+      `Location-owned service is outside the canonical location tree: ${page.path}.`,
     )
   }
 

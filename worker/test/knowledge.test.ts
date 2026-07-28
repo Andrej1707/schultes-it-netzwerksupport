@@ -1,17 +1,35 @@
 import { describe, expect, it } from 'vitest'
 import { BUSINESS_SYSTEM_PROMPT } from '../src/knowledge'
+import {
+  directContactSentence,
+  resolveSupportLocation,
+  supportContextInstructions,
+} from '../src/supportContext'
 
 describe('business knowledge and safety policy', () => {
-  it('contains the verified contact and pricing facts', () => {
+  it('keeps verified contact and pricing facts inside the location context', () => {
+    const location = resolveSupportLocation('ludwigsburg')
+    const context = supportContextInstructions(location)
+
     expect(BUSINESS_SYSTEM_PROMPT).toContain('Andrej Schultes')
-    expect(BUSINESS_SYSTEM_PROMPT).toContain('+49 1567 9616310')
-    expect(BUSINESS_SYSTEM_PROMPT).toContain('it.schulteslb@gmail.com')
-    expect(BUSINESS_SYSTEM_PROMPT).toContain('Fernhilfe: deutschlandweit ab 25 Euro')
-    expect(BUSINESS_SYSTEM_PROMPT).toContain('Service vor Ort: ab 49 Euro')
+    expect(BUSINESS_SYSTEM_PROMPT).not.toContain('+49 1567 9616310')
+    expect(BUSINESS_SYSTEM_PROMPT).not.toContain('it.schulteslb@gmail.com')
+    expect(context).toContain('+49 1567 9616310')
+    expect(context).toContain('it.schulteslb@gmail.com')
+    expect(context).toContain('Fernwartung ab 25 Euro')
+    expect(context).toContain('Vor-Ort-Service ab 49 Euro')
     expect(BUSINESS_SYSTEM_PROMPT).toContain('Aktuell aktiver Standort: Ludwigsburg')
     expect(BUSINESS_SYSTEM_PROMPT).toContain(
       'Weitere Standorte sind für die Zukunft geplant, aktuell aber noch nicht aktiv',
     )
+  })
+
+  it('does not leak a location contact without a selected location', () => {
+    const context = supportContextInstructions()
+
+    expect(context).toContain('noch keinen Standort gewählt')
+    expect(context).not.toContain('+49 1567 9616310')
+    expect(directContactSentence()).toContain('/standorte/')
   })
 
   it('limits self-help to low-risk first steps', () => {
@@ -23,8 +41,8 @@ describe('business knowledge and safety policy', () => {
     expect(BUSINESS_SYSTEM_PROMPT).toContain('Keine Websuche')
   })
 
-  it('states that the assistant is not Andrej and has no tools', () => {
-    expect(BUSINESS_SYSTEM_PROMPT).toContain('nicht Andrej selbst')
+  it('states that the assistant is not a human operator and has no tools', () => {
+    expect(BUSINESS_SYSTEM_PROMPT).toContain('niemals der menschliche Standortbetreiber selbst')
     expect(BUSINESS_SYSTEM_PROMPT).toContain('keinen Webzugriff und keine Tools')
     expect(BUSINESS_SYSTEM_PROMPT).toContain('Klartext ohne Markdown-Markierungen')
   })

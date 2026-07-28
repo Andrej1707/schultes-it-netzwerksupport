@@ -1,12 +1,17 @@
 export type ServiceIconName = 'laptop' | 'router' | 'globe' | 'bot'
 
 export type ServiceScope = 'national' | 'network' | 'location'
+export type ServiceGroup = 'primary' | 'remote' | 'topic'
+export type DeliveryMode = 'remote' | 'hybrid' | 'project'
 
 export type ServicePageData = {
   slug: string
+  templateSlug?: string
   path?: string
   legacyPaths?: string[]
   scope?: ServiceScope
+  serviceGroup?: ServiceGroup
+  deliveryMode?: DeliveryMode
   locationId?: string
   areaLabel?: string
   modeLabel?: string
@@ -32,4 +37,10 @@ export type ServicePageData = {
   confidencePoints: string[]
   faqs: Array<{ question: string; answer: string }>
   related: string[]
+  locationContext?: {
+    eyebrow: string
+    heading: string
+    text: string
+    points: string[]
+  }
 }

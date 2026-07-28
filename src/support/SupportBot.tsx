@@ -6,12 +6,14 @@ import {
   ChevronLeft,
   ChevronRight,
   LoaderCircle,
+  MapPin,
   MessageSquareText,
   Phone,
   RefreshCw,
   ShieldCheck,
   X,
 } from 'lucide-react'
+import type { ContactProfile } from '../site/contacts'
 import './support.css'
 
 type TurnstileApi = {
@@ -40,17 +42,19 @@ type Message = {
 type ApiError = Error & { code?: string; status?: number }
 type Phase = 'needs-verification' | 'verifying' | 'ready' | 'sending' | 'unavailable'
 
-const SESSION_STORAGE_KEY = 'schultes-support-session-v2'
+const SESSION_STORAGE_KEY_PREFIX = 'schultes-support-session-v3'
 const apiUrl = (import.meta.env.VITE_SUPPORT_API_URL ?? '').replace(/\/$/, '')
 const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY ?? ''
 const isConfigured = Boolean(apiUrl && turnstileSiteKey)
-const phoneHref = 'tel:+4915679616310'
-
-const welcomeMessage: Message = {
-  id: 'welcome',
-  role: 'assistant',
-  content:
-    'Hi, ich bin der digitale Assistent von Schultes IT. Erzähl mir einfach, wobei du Hilfe brauchst. Ich frage bei Bedarf nach, probiere mit dir sichere Basics und hole Andrej erst dazu, wenn persönliche Hilfe wirklich sinnvoll ist.',
+function welcomeMessage(contact: ContactProfile): Message {
+  return {
+    id: 'welcome',
+    role: 'assistant',
+    content:
+      contact.source === 'location'
+        ? `Hi, ich bin der digitale Assistent für ${contact.displayName}. Erzähl mir einfach, wobei du Hilfe brauchst. Ich frage bei Bedarf nach, probiere mit dir sichere Basics und hole ${contact.operatorName} erst dazu, wenn persönliche Hilfe wirklich sinnvoll ist.`
+        : 'Hi, ich bin der digitale Assistent von Schultes IT. Erzähl mir einfach, wobei du Hilfe brauchst. Ich gebe sichere erste Orientierung und helfe dir anschließend, den passenden Standort zu finden.',
+  }
 }
 
 const quickPrompts = [
@@ -65,21 +69,21 @@ const quickPrompts = [
   'Kommst du zu mir?',
   'Wann bist du erreichbar?',
   'Welche Leistungen gibt es?',
-  'Wie erreiche ich Andrej?',
+  'Wie erreiche ich meinen Standort?',
 ]
 
-function readSession(): Session | null {
+function readSession(storageKey: string): Session | null {
   try {
-    const value = sessionStorage.getItem(SESSION_STORAGE_KEY)
+    const value = sessionStorage.getItem(storageKey)
     if (!value) return null
     const parsed = JSON.parse(value) as Session
     if (!parsed.token || parsed.expiresAt <= Date.now() + 30_000) {
-      sessionStorage.removeItem(SESSION_STORAGE_KEY)
+      sessionStorage.removeItem(storageKey)
       return null
     }
     return parsed
   } catch {
-    sessionStorage.removeItem(SESSION_STORAGE_KEY)
+    sessionStorage.removeItem(storageKey)
     return null
   }
 }
@@ -140,25 +144,29 @@ function getErrorMessage(code?: string) {
     case 'request_in_progress':
       return 'Das waren gerade zu viele Nachrichten. Warte bitte kurz und versuche es dann erneut.'
     case 'daily_limit_reached':
-      return 'Das gemeinsame Tagesbudget des Assistenten ist heute aufgebraucht. Andrej ist weiterhin direkt per Telefon erreichbar.'
+      return 'Das gemeinsame Tagesbudget des Assistenten ist heute aufgebraucht. Dein zuständiger Standort bleibt weiterhin direkt erreichbar.'
     case 'session_limit_reached':
       return 'Diese Unterhaltung hat ihr Sicherheitslimit erreicht. Bestätige dich bitte kurz erneut, um einen frischen Chat zu starten.'
     case 'assistant_unavailable':
     case 'service_unavailable':
-      return 'Der Assistent ist gerade nicht erreichbar. Du kannst Andrej direkt anrufen oder später erneut versuchen.'
+      return 'Der Assistent ist gerade nicht erreichbar. Du kannst deinen Standort direkt kontaktieren oder es später erneut versuchen.'
     default:
       return 'Das hat gerade nicht geklappt. Bitte prüfe deine Verbindung und versuche es erneut.'
   }
 }
 
-export default function SupportBot() {
-  const existingSession = useRef<Session | null>(readSession())
+export default function SupportBot({ contact }: { contact: ContactProfile }) {
+  const sessionStorageKey =
+    `${SESSION_STORAGE_KEY_PREFIX}-${contact.locationId ?? 'central'}`
+  const existingSession = useRef<Session | null>(readSession(sessionStorageKey))
   const [open, setOpen] = useState(false)
   const [phase, setPhase] = useState<Phase>(
     !isConfigured ? 'unavailable' : existingSession.current ? 'ready' : 'needs-verification',
   )
   const [session, setSession] = useState<Session | null>(existingSession.current)
-  const [messages, setMessages] = useState<Message[]>(existingSession.current ? [welcomeMessage] : [])
+  const [messages, setMessages] = useState<Message[]>(
+    existingSession.current ? [welcomeMessage(contact)] : [],
+  )
   const [draft, setDraft] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [showDirectContact, setShowDirectContact] = useState(false)
@@ -170,7 +178,7 @@ export default function SupportBot() {
   const suggestionsRef = useRef<HTMLDivElement>(null)
 
   const clearSession = useCallback((message?: string) => {
-    sessionStorage.removeItem(SESSION_STORAGE_KEY)
+    sessionStorage.removeItem(sessionStorageKey)
     setSession(null)
     setMessages([])
     setShowDirectContact(false)
@@ -178,7 +186,7 @@ export default function SupportBot() {
     setErrorMessage(
       message ?? 'Deine Sitzung ist abgelaufen. Bitte bestätige kurz erneut, dass du ein Mensch bist.',
     )
-  }, [])
+  }, [sessionStorageKey])
 
   const createSession = useCallback(async (turnstileToken: string) => {
     setPhase('verifying')
@@ -189,9 +197,9 @@ export default function SupportBot() {
         body: JSON.stringify({ turnstileToken }),
       })
       const nextSession = { token: result.sessionToken, expiresAt: result.expiresAt }
-      sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(nextSession))
+      sessionStorage.setItem(sessionStorageKey, JSON.stringify(nextSession))
       setSession(nextSession)
-      setMessages([welcomeMessage])
+      setMessages([welcomeMessage(contact)])
       setShowDirectContact(false)
       setPhase('ready')
       window.setTimeout(() => textareaRef.current?.focus(), 80)
@@ -200,12 +208,12 @@ export default function SupportBot() {
       setPhase('needs-verification')
       setErrorMessage(
         apiError.code === 'verification_rate_limited'
-          ? 'Zu viele Prüfversuche. Bitte warte etwas oder ruf Andrej direkt an.'
+          ? 'Zu viele Prüfversuche. Bitte warte etwas oder kontaktiere deinen Standort direkt.'
           : 'Die Sicherheitsprüfung hat nicht geklappt. Bitte versuche es erneut.',
       )
       if (widgetId.current) window.turnstile?.reset(widgetId.current)
     }
-  }, [])
+  }, [contact, sessionStorageKey])
 
   useEffect(() => {
     document.body.dataset.supportOpen = open ? 'true' : 'false'
@@ -316,7 +324,7 @@ export default function SupportBot() {
       const result = await requestJson<{ reply: string; escalated?: boolean }>('/chat', {
         method: 'POST',
         headers: { Authorization: `Bearer ${session.token}` },
-        body: JSON.stringify({ message: content }),
+        body: JSON.stringify({ message: content, locationId: contact.locationId }),
       })
       setMessages((current) => [
         ...current,
@@ -378,8 +386,11 @@ export default function SupportBot() {
             <div className="support-state">
               <RefreshCw aria-hidden="true" />
               <h2>Assistent wird eingerichtet</h2>
-              <p>Die direkte Hilfe ist noch nicht freigeschaltet. Andrej erreichst du weiterhin telefonisch.</p>
-              <a href={phoneHref}><Phone aria-hidden="true" /> Jetzt anrufen</a>
+              <p>Die direkte Hilfe ist noch nicht freigeschaltet. Wähle deinen Standort für persönlichen Kontakt.</p>
+              <a href={contact.phoneHref ?? contact.actionHref}>
+                {contact.phoneHref ? <Phone aria-hidden="true" /> : <MapPin aria-hidden="true" />}
+                {contact.phoneHref ? 'Jetzt anrufen' : contact.actionLabel}
+              </a>
             </div>
           ) : phase === 'needs-verification' || phase === 'verifying' ? (
             <div className="support-state support-verification">
@@ -442,19 +453,28 @@ export default function SupportBot() {
 
               {showDirectContact && (
                 <div className="support-handoff" role="status">
-                  <Phone aria-hidden="true" />
+                  {contact.phoneHref ? <Phone aria-hidden="true" /> : <MapPin aria-hidden="true" />}
                   <span>
-                    <strong>Direkt zu Andrej</strong>
+                    <strong>
+                      {contact.source === 'location'
+                        ? `Direkt zu ${contact.operatorName}`
+                        : 'Passenden Standort wählen'}
+                    </strong>
                     <small>Du kannst trotzdem ganz normal weiterfragen.</small>
                   </span>
-                  <a href={phoneHref}>Anrufen</a>
+                  <a href={contact.phoneHref ?? contact.actionHref}>
+                    {contact.phoneHref ? 'Anrufen' : 'Auswählen'}
+                  </a>
                 </div>
               )}
 
               {errorMessage && (
                 <div className="support-inline-error" role="alert">
                   <span>{errorMessage}</span>
-                  <a href={phoneHref}><Phone aria-hidden="true" /> Anrufen</a>
+                  <a href={contact.phoneHref ?? contact.actionHref}>
+                    {contact.phoneHref ? <Phone aria-hidden="true" /> : <MapPin aria-hidden="true" />}
+                    {contact.phoneHref ? 'Anrufen' : 'Standort wählen'}
+                  </a>
                 </div>
               )}
 

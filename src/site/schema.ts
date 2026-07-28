@@ -25,8 +25,6 @@ function organizationSchema(): SchemaNode {
       height: 512,
     },
     image: previewImageUrl,
-    telephone: siteConfig.phoneDisplay,
-    email: siteConfig.email,
     founder: {
       '@type': 'Person',
       name: siteConfig.founder.name,
@@ -37,11 +35,10 @@ function organizationSchema(): SchemaNode {
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: siteConfig.phoneDisplay,
-      email: siteConfig.email,
       contactType: 'customer support',
       areaServed: siteConfig.country,
       availableLanguage: ['de'],
+      url: `${siteConfig.url}/standorte/`,
     },
   }
 }
@@ -81,7 +78,7 @@ function locationSchema(locationId: string): SchemaNode | undefined {
     telephone: phoneDisplay,
     email,
     priceRange:
-      `Fernhilfe ab ${location.pricing.remoteFrom ?? siteConfig.remoteSupport.price.replace('Fernhilfe ab ', '')}, ` +
+      `Fernhilfe ab ${location.pricing.remoteFrom ?? 'individueller Absprache'}, ` +
       `Service beim Kunden ab ${location.pricing.onSiteFrom}`,
     brand: { '@id': organizationId },
     contactPoint: {
@@ -148,7 +145,6 @@ function serviceSchema(page: SitePage): SchemaNode[] {
   if (!service) return []
 
   const pageUrl = `${siteConfig.url}${page.path}`
-  const national = page.schemaKind === 'national-service'
   const location = service.locationId ? activeLocationById[service.locationId] : undefined
   const providerId = location
     ? `${siteConfig.url}${location.path}#location`
@@ -162,12 +158,13 @@ function serviceSchema(page: SitePage): SchemaNode[] {
       serviceType: service.shortTitle,
       description: service.heroText,
       provider: { '@id': providerId },
-      areaServed: national
-        ? { '@type': 'Country', name: siteConfig.countryName }
-        : location
-          ? location.serviceAreas.map((name) => ({ '@type': 'City', name }))
-          : { '@type': 'Country', name: siteConfig.countryName },
-      availableChannel: national
+      areaServed:
+        service.deliveryMode === 'remote'
+          ? { '@type': 'Country', name: siteConfig.countryName }
+          : location
+            ? location.serviceAreas.map((name) => ({ '@type': 'City', name }))
+            : { '@type': 'Country', name: siteConfig.countryName },
+      availableChannel: service.deliveryMode === 'remote'
         ? {
             '@type': 'ServiceChannel',
             serviceUrl: pageUrl,

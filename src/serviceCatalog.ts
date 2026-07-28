@@ -1,10 +1,21 @@
 export {
+  getLocationService,
+  getLocationServicePath,
+  getLocationServices,
+  getLocationServicesByGroup,
   getServicePath,
-  nationalRemotePages,
-  primaryServicePages,
+  primaryServiceTemplates,
+  remoteServiceTemplates,
   servicePageByPath,
   servicePageBySlug,
   servicePages,
-  topicPages,
+  serviceTemplates,
+  topicServiceTemplates,
 } from './content/services'
-export type { ServiceIconName, ServicePageData, ServiceScope } from './content/types'
+export type {
+  DeliveryMode,
+  ServiceGroup,
+  ServiceIconName,
+  ServicePageData,
+  ServiceScope,
+} from './content/types'
