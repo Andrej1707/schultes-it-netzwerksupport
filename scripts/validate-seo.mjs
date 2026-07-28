@@ -176,6 +176,10 @@ for (const page of manifest.pages) {
     !organization.telephone && !organization.email,
     `Central Organization schema leaks a location contact in ${canonicalOutput}.`,
   )
+  assert(
+    organization.contactPoint?.email === 'kontakt@schultes-it.de',
+    `Central Organization contact email is invalid in ${canonicalOutput}.`,
+  )
 
   for (const match of html.matchAll(/href="(\/[^"#?]*)"/g)) {
     const href = match[1] === '/' ? '/' : `${match[1].replace(/\/+$/, '')}/`

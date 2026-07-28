@@ -36,6 +36,7 @@ function organizationSchema(): SchemaNode {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer support',
+      email: siteConfig.remoteSupport.email,
       areaServed: siteConfig.country,
       availableLanguage: ['de'],
       url: `${siteConfig.url}/standorte/`,

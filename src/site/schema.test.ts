@@ -13,6 +13,19 @@ function graphFor(path: string) {
 }
 
 describe('structured data', () => {
+  it('publishes the professional email as the central contact point', () => {
+    const organization = graphFor('/').find(
+      (node) => node['@type'] === 'Organization',
+    )
+
+    expect(organization?.contactPoint).toMatchObject({
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: 'kontakt@schultes-it.de',
+    })
+    expect(organization?.telephone).toBeUndefined()
+  })
+
   it('marks remote support as centrally owned and available in Germany', () => {
     const service = graphFor('/fernwartung/windows-hilfe/').find(
       (node) => node['@type'] === 'Service',
