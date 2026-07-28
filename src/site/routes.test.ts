@@ -43,6 +43,8 @@ describe('site routing', () => {
     const paths = sitePages.map((page) => page.path)
 
     expect(new Set(paths).size).toBe(paths.length)
-    expect(indexableSitePages).toHaveLength(sitePages.length)
+    expect(indexableSitePages).toHaveLength(sitePages.length - 2)
+    expect(resolveSiteRoute('/impressum/')?.page.legalPage).toBe('impressum')
+    expect(resolveSiteRoute('/datenschutz/')?.page.indexable).toBe(false)
   })
 })

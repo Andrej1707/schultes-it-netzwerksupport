@@ -9,6 +9,7 @@ export const siteConfig = {
   email: 'it.schulteslb@gmail.com',
   phoneDisplay: '+49 1567 9616310',
   phoneHref: 'tel:+4915679616310',
+  logoPath: '/logo-512.svg',
   previewImagePath: '/og-cover.png',
   founder: {
     name: 'Andrej Schultes',
@@ -20,3 +21,4 @@ export const siteConfig = {
 } as const
 
 export const previewImageUrl = `${siteConfig.url}${siteConfig.previewImagePath}`
+export const logoImageUrl = `${siteConfig.url}${siteConfig.logoPath}`

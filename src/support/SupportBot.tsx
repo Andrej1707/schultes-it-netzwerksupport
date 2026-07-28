@@ -494,7 +494,7 @@ export default function SupportBot() {
 
           <footer className="support-footer">
             <span><CheckCircle2 aria-hidden="true" /> Sichere erste Hilfe</span>
-            <a href="/#/datenschutz">Datenschutz</a>
+            <a href="/datenschutz/">Datenschutz</a>
           </footer>
         </section>
       )}

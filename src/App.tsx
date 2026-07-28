@@ -1,17 +1,32 @@
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { servicePageBySlug } from './content/services'
-import {
-  LegalLayout,
-  MarketingApp,
-  ServicePage,
-} from './legacy/LegacySite'
 import {
   BrandHomePage,
   NotFoundPage,
   StructuredNetworkPage,
 } from './pages/NetworkPages'
 import { resolveSiteRoute } from './site/routes'
-import SupportBot from './support/SupportBot'
+
+const legacySite = () => import('./legacy/LegacySite')
+const LegalLayout = lazy(() =>
+  legacySite().then((module) => ({ default: module.LegalLayout })),
+)
+const MarketingApp = lazy(() =>
+  legacySite().then((module) => ({ default: module.MarketingApp })),
+)
+const ServicePage = lazy(() =>
+  legacySite().then((module) => ({ default: module.ServicePage })),
+)
+const SupportBot = lazy(() => import('./support/SupportBot'))
+
+function RouteLoading() {
+  return (
+    <main className="route-loading" aria-live="polite">
+      <span>Schultes IT</span>
+      <p>Seite wird geladen…</p>
+    </main>
+  )
+}
 
 function App() {
   const [hash, setHash] = useState(window.location.hash)
@@ -27,7 +42,9 @@ function App() {
 
   if (hash === '#/impressum') page = <LegalLayout page="impressum" />
   else if (hash === '#/datenschutz') page = <LegalLayout page="datenschutz" />
-  else if (route?.page.kind === 'home') page = <BrandHomePage page={route.page} />
+  else if (route?.page.kind === 'legal' && route.page.legalPage) {
+    page = <LegalLayout page={route.page.legalPage} />
+  } else if (route?.page.kind === 'home') page = <BrandHomePage page={route.page} />
   else if (route?.page.kind === 'location' && route.page.locationId === 'ludwigsburg') {
     page = <MarketingApp />
   }
@@ -40,8 +57,10 @@ function App() {
 
   return (
     <>
-      {page}
-      <SupportBot />
+      <Suspense fallback={<RouteLoading />}>{page}</Suspense>
+      <Suspense fallback={null}>
+        <SupportBot />
+      </Suspense>
     </>
   )
 }

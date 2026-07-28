@@ -13,6 +13,19 @@ function assert(condition, message) {
   if (!condition) throw new Error(message)
 }
 
+function decodeHtml(value) {
+  return value
+    .replaceAll('&amp;', '&')
+    .replaceAll('&lt;', '<')
+    .replaceAll('&gt;', '>')
+    .replaceAll('&quot;', '"')
+    .replaceAll('&#39;', "'")
+}
+
+function plainText(value) {
+  return decodeHtml(value.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim())
+}
+
 function outputPath(route) {
   return route === '/' ? 'index.html' : `${route.slice(1)}index.html`
 }
@@ -80,13 +93,32 @@ function validateSharedHtml(html, page, path, canonicalUrl, indexable) {
     html.includes(`data-page-id="${page.id}"`),
     `Page identity is missing in ${path}.`,
   )
+  assert(
+    html.includes('data-prerendered="true"'),
+    `Static crawlable page content is missing in ${path}.`,
+  )
+  const staticHeading = html.match(/<h1>([\s\S]+?)<\/h1>/i)?.[1]
+  assert(
+    staticHeading,
+    `A static H1 is missing in ${path}.`,
+  )
+  assert(
+    plainText(staticHeading) === `${page.heading} ${page.accent}`,
+    `Static H1 does not match the route content in ${path}.`,
+  )
+  assert(
+    /<nav aria-label="Hauptnavigation">[\s\S]+?href="\/fernwartung\/"/i.test(html),
+    `Static crawlable navigation is missing in ${path}.`,
+  )
 }
 
 const manifest = JSON.parse(await read('site-manifest.json'))
 const sitemap = await read('sitemap.xml')
 const textSitemap = await read('sitemap.txt')
 const robots = await read('robots.txt')
+const logo = await read('logo-512.svg')
 const sitemapLines = textSitemap.trim().split(/\r?\n/)
+const inboundLinks = new Map(manifest.pages.map((page) => [page.path, 0]))
 
 assert(
   robots.includes(`Sitemap: ${siteUrl}/sitemap.xml`),
@@ -96,6 +128,14 @@ assert(!sitemap.includes('github.io'), 'sitemap.xml contains the old GitHub Page
 assert(
   new Set(sitemapLines).size === sitemapLines.length,
   'sitemap.txt contains duplicate canonical URLs.',
+)
+assert(
+  !sitemap.includes('<changefreq>') && !sitemap.includes('<priority>'),
+  'sitemap.xml contains values that Google explicitly ignores.',
+)
+assert(
+  /<svg[^>]+width="512"[^>]+height="512"/i.test(logo),
+  'The organization logo must expose stable dimensions of at least 112x112.',
 )
 
 for (const page of manifest.pages) {
@@ -121,6 +161,19 @@ for (const page of manifest.pages) {
 
   const organization = graph.find((node) => node['@type'] === 'Organization')
   assert(organization, `Organization schema is missing in ${canonicalOutput}.`)
+  assert(
+    organization.logo?.width >= 112 &&
+      organization.logo?.height >= 112 &&
+      organization.logo?.contentUrl === `${siteUrl}/logo-512.svg`,
+    `Organization logo schema is invalid in ${canonicalOutput}.`,
+  )
+
+  for (const match of html.matchAll(/href="(\/[^"#?]*)"/g)) {
+    const href = match[1] === '/' ? '/' : `${match[1].replace(/\/+$/, '')}/`
+    if (inboundLinks.has(href) && href !== page.path) {
+      inboundLinks.set(href, inboundLinks.get(href) + 1)
+    }
+  }
 
   if (page.schemaKind === 'national-service') {
     const service = graph.find((node) => node['@type'] === 'Service')
@@ -161,7 +214,25 @@ for (const page of manifest.pages) {
   }
 }
 
+for (const page of manifest.pages.filter((candidate) => candidate.indexable && candidate.path !== '/')) {
+  assert(
+    inboundLinks.get(page.path) > 0,
+    `Indexable route ${page.path} is orphaned from static internal links.`,
+  )
+}
+
+const notFoundHtml = await read('404.html')
+assert(
+  notFoundHtml.includes('<meta name="robots" content="noindex, follow, max-image-preview:large" />'),
+  '404.html must be excluded from indexing.',
+)
+assert(
+  notFoundHtml.includes('data-prerendered="true"'),
+  '404.html needs a static recovery page.',
+)
+
 console.log(
-  `SEO validation passed for ${manifest.pages.length} canonical routes and ` +
+  `SEO validation passed for ${manifest.pages.filter((page) => page.indexable).length} indexable routes, ` +
+    `${manifest.pages.filter((page) => !page.indexable).length} non-indexable canonical routes and ` +
     `${manifest.pages.flatMap((page) => page.aliases).length} compatibility aliases.`,
 )

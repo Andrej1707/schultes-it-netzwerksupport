@@ -36,7 +36,7 @@ import {
   NetworkCanvas,
   ShortcutMenu,
   SiteFooter,
-} from '../legacy/LegacySite'
+} from '../components/SiteChrome'
 import { findNearestLocation } from '../site/locationFinder'
 import { locationById, locations } from '../site/locations'
 import { siteConfig } from '../site/config'

@@ -1,6 +1,6 @@
 import { servicePageBySlug } from '../content/services'
 import { locationById, locations } from './locations'
-import { previewImageUrl, siteConfig } from './config'
+import { logoImageUrl, previewImageUrl, siteConfig } from './config'
 import { sitePages } from './routes'
 import type { SitePage } from './types'
 
@@ -14,9 +14,16 @@ function organizationSchema(): SchemaNode {
     '@type': 'Organization',
     '@id': organizationId,
     name: siteConfig.legalName,
+    legalName: siteConfig.legalName,
     alternateName: siteConfig.alternateName,
     url: `${siteConfig.url}/`,
-    logo: `${siteConfig.url}/favicon.svg`,
+    logo: {
+      '@type': 'ImageObject',
+      url: logoImageUrl,
+      contentUrl: logoImageUrl,
+      width: 512,
+      height: 512,
+    },
     image: previewImageUrl,
     telephone: siteConfig.phoneDisplay,
     email: siteConfig.email,
@@ -28,6 +35,14 @@ function organizationSchema(): SchemaNode {
       '@type': 'Country',
       name: siteConfig.countryName,
     },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: siteConfig.phoneDisplay,
+      email: siteConfig.email,
+      contactType: 'customer support',
+      areaServed: siteConfig.country,
+      availableLanguage: ['de'],
+    },
   }
 }
 
@@ -37,6 +52,7 @@ function websiteSchema(): SchemaNode {
     '@id': websiteId,
     url: `${siteConfig.url}/`,
     name: siteConfig.legalName,
+    alternateName: siteConfig.name,
     publisher: { '@id': organizationId },
     inLanguage: siteConfig.language,
   }

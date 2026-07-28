@@ -21,6 +21,22 @@ unterscheidet inhabergeführte Standorte und künftig rechtlich selbstständige 
 Die Sitemap, statischen HTML-Dateien und das Build-Manifest entstehen aus `routes.ts`. Neue Seiten
 werden deshalb nicht zusätzlich in einer separaten Sitemap-Liste gepflegt.
 
+## Statische Crawl-Schicht
+
+Jede kanonische URL wird beim Produktions-Build als eigene HTML-Datei erzeugt. Bereits ohne
+JavaScript enthält sie:
+
+- den richtigen Seitentitel, die Beschreibung, Canonical-URL und Robots-Anweisung;
+- den seitenspezifischen H1, die Einleitung und die wichtigsten Inhaltsblöcke;
+- echte interne Links mit `href`;
+- die zum Seitentyp passenden Schema.org-Daten.
+
+React übernimmt diese statische Erstansicht anschließend und lädt die interaktive Oberfläche.
+Damit bleiben Design, Animationen und SupportBot erhalten, während Suchmaschinen nicht erst auf
+clientseitiges Rendering angewiesen sind. `scripts/validate-seo.mjs` gleicht den statischen H1
+gegen den jeweiligen Routendatensatz ab, prüft verwaiste Seiten und verhindert, dass versehentlich
+Startseiten-Inhalte in andere HTML-Dateien kopiert werden.
+
 ## Seitentypen
 
 ### Marke
@@ -82,3 +98,7 @@ Alte URLs werden weiterhin statisch ausgeliefert. Sie:
 
 Damit bleiben vorhandene Links nutzbar, während Suchmaschinen schrittweise auf die neue Struktur
 wechseln können.
+
+Rechtstexte liegen unter `/impressum/` und `/datenschutz/` auf echten Pfaden. Die früheren
+Hash-Aufrufe bleiben in der Anwendung als Kompatibilitätsfall erhalten, sind aber keine
+indexierbaren Zielseiten.

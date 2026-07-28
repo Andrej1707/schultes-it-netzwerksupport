@@ -702,10 +702,10 @@ export function LegalLayout({ page }: { page: LegalPage }) {
               : 'Transparent erklärt: welche Daten beim Besuch dieser Website verarbeitet werden und warum.'}
           </p>
           <nav className="legal-switch" aria-label="Rechtliche Seiten">
-            <a href="/#/impressum" aria-current={isImprint ? 'page' : undefined}>
+            <a href="/impressum/" aria-current={isImprint ? 'page' : undefined}>
               Impressum
             </a>
-            <a href="/#/datenschutz" aria-current={!isImprint ? 'page' : undefined}>
+            <a href="/datenschutz/" aria-current={!isImprint ? 'page' : undefined}>
               Datenschutz
             </a>
           </nav>
@@ -1040,10 +1040,10 @@ export function SiteFooter() {
         <a href="https://github.com/Andrej1707" target="_blank" rel="noreferrer">
           <GitBranch aria-hidden="true" /> GitHub
         </a>
-        <a href="/#/impressum">
+        <a href="/impressum/">
           <FileText aria-hidden="true" /> Impressum
         </a>
-        <a href="/#/datenschutz">
+        <a href="/datenschutz/">
           <LockKeyhole aria-hidden="true" /> Datenschutz
         </a>
         <span className="footer-private" data-nosnippet>
@@ -2106,7 +2106,7 @@ export function MarketingApp() {
                   <button type="button" onClick={() => setMapsEnabled(true)}>
                     Google Maps laden
                   </button>
-                  <a href="#/datenschutz">Details im Datenschutz</a>
+                  <a href="/datenschutz/">Details im Datenschutz</a>
                 </div>
               )}
               <div className="map-hud">

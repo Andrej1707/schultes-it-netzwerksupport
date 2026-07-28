@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react'
 import { siteConfig } from './src/site/config'
 import { indexableSitePages, normalizePathname, sitePages } from './src/site/routes'
 import { structuredDataForPage } from './src/site/schema'
+import { renderStaticPageContent } from './src/site/staticContent'
 import type { SitePage } from './src/site/types'
 
 function escapeAttribute(value: string) {
@@ -41,16 +42,28 @@ function outputPath(pathname: string) {
   return normalized === '/' ? 'index.html' : `${normalized.slice(1)}index.html`
 }
 
+function replaceRootContent(html: string, page: SitePage) {
+  const root = `<div id="root"><!-- seo-prerender:start -->${renderStaticPageContent(page)}<!-- seo-prerender:end --></div>`
+  const prerenderedRoot =
+    /<div id="root"><!-- seo-prerender:start -->[\s\S]*?<!-- seo-prerender:end --><\/div>/
+
+  if (prerenderedRoot.test(html)) {
+    return html.replace(prerenderedRoot, root)
+  }
+
+  return html.replace('<div id="root"></div>', root)
+}
+
 function renderPageHtml(baseHtml: string, page: SitePage, isAlias = false) {
   const canonicalUrl = `${siteConfig.url}${page.path}`
   const structuredData = JSON.stringify(structuredDataForPage(page), null, 2)
   const structuredDataInner = `\n${structuredData}\n`
   const hash = createHash('sha256').update(structuredDataInner).digest('base64')
-  const robots = isAlias
+  const robots = isAlias || !page.indexable
     ? 'noindex, follow, max-image-preview:large'
     : 'index, follow, max-image-preview:large'
 
-  let html = baseHtml
+  let html = replaceRootContent(baseHtml, page)
     .replace(/<html\b([^>]*)>/i, (_match, attributes: string) => {
       const cleanAttributes = attributes
         .replace(/\s*data-page-id="[^"]*"/i, '')
@@ -89,8 +102,6 @@ function sitemapXml() {
       (page) => `  <url>
     <loc>${escapeXml(`${siteConfig.url}${page.path}`)}</loc>
     <lastmod>${page.lastModified}</lastmod>
-    <changefreq>${page.changeFrequency}</changefreq>
-    <priority>${page.priority.toFixed(2)}</priority>
   </url>`,
     )
     .join('\n')
@@ -147,6 +158,27 @@ function staticPagesPlugin(): Plugin {
         }
       }
 
+      const notFoundPage: SitePage = {
+        ...home,
+        id: 'not-found',
+        kind: 'not-found',
+        path: '/404.html',
+        title: 'Seite nicht gefunden | Schultes IT',
+        description:
+          'Die angeforderte Seite wurde nicht gefunden. Nutze die Navigation zu Fernwartung, Leistungen oder Standorten.',
+        eyebrow: 'SYSTEM / 404',
+        heading: 'Diese Seite gibt es nicht.',
+        accent: 'Die passende Hilfe aber schon.',
+        intro:
+          'Nutze die Hauptnavigation oder starte bei der deutschlandweiten Fernwartung.',
+        indexable: false,
+      }
+      this.emitFile({
+        type: 'asset',
+        fileName: '404.html',
+        source: renderPageHtml(baseHtml, notFoundPage),
+      })
+
       this.emitFile({
         type: 'asset',
         fileName: 'sitemap.xml',
@@ -170,6 +202,10 @@ function staticPagesPlugin(): Plugin {
               path: page.path,
               aliases: page.aliases ?? [],
               indexable: page.indexable,
+              lastModified: page.lastModified,
+              legalPage: page.legalPage,
+              heading: page.heading,
+              accent: page.accent,
             })),
           },
           null,

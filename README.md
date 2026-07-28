@@ -90,7 +90,9 @@ SEO-Validierung aller kanonischen Routen und Aliasse.
 - `vite.config.ts`: statische HTML-Ausgabe, Alias-Kompatibilität, Sitemap und Seitenmanifest
 - `scripts/validate-seo.mjs`: automatisierte Prüfung gegen das erzeugte Seitenmanifest
 
-Weitere Details stehen in [docs/architecture.md](docs/architecture.md).
+Weitere Details stehen in [docs/architecture.md](docs/architecture.md). Der messbare technische
+SEO-Gate und der Offpage-Aufbau sind in
+[docs/seo-authority-roadmap.md](docs/seo-authority-roadmap.md) dokumentiert.
 
 ## Business-Assistent
 
