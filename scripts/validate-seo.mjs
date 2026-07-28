@@ -209,6 +209,28 @@ for (const page of manifest.pages) {
     )
   }
 
+  if (page.schemaKind === 'network-service') {
+    const service = graph.find((node) => node['@type'] === 'Service')
+    assert(service, `Central Service schema is missing in ${canonicalOutput}.`)
+    assert(
+      page.path.startsWith('/fernwartung/'),
+      `Central remote service is outside the Fernwartung tree: ${page.path}.`,
+    )
+    assert(
+      service.provider?.['@id'] === `${siteUrl}/#organization`,
+      `Central remote provider is not Schultes IT in ${canonicalOutput}.`,
+    )
+    assert(
+      service.areaServed?.['@type'] === 'Country' &&
+        service.areaServed?.name === 'Deutschland',
+      `Central remote areaServed is not Germany in ${canonicalOutput}.`,
+    )
+    assert(
+      !graph.some((node) => node['@type'] === 'ProfessionalService'),
+      `Central remote page must not expose a regional provider in ${canonicalOutput}.`,
+    )
+  }
+
   if (page.schemaKind === 'location') {
     const location = graph.find((node) => node['@type'] === 'ProfessionalService')
     assert(location, `ProfessionalService schema is missing in ${canonicalOutput}.`)

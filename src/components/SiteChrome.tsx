@@ -20,7 +20,6 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import {
-  getLocationServicePath,
   getLocationServicesByGroup,
   getServicePath,
   primaryServiceTemplates,
@@ -48,14 +47,22 @@ function menuGroup(
       : group === 'remote'
         ? remoteServiceTemplates
         : topicServiceTemplates
-  const entries = contact.locationId
-    ? getLocationServicesByGroup(contact.locationId, group)
-    : templates
+  const entries =
+    group === 'remote'
+      ? templates
+      : contact.locationId
+        ? getLocationServicesByGroup(contact.locationId, group)
+        : templates
 
   return entries.map((service) => ({
     ...service,
     icon: serviceIcons[service.icon],
-    href: contact.locationId ? getServicePath(service) : '/standorte/',
+    href:
+      group === 'remote'
+        ? getServicePath(service)
+        : contact.locationId
+          ? getServicePath(service)
+          : '/standorte/',
   }))
 }
 
@@ -225,11 +232,8 @@ export function ShortcutMenu({
   const services = menuGroup(contact, 'primary')
   const remoteServices = menuGroup(contact, 'remote')
   const topicServices = menuGroup(contact, 'topic')
-  const remoteHref = contact.locationId
-    ? getLocationServicePath(contact.locationId, 'fernwartung') ?? '/standorte/'
-    : '/standorte/'
   const quickLinks = [
-    [BadgeEuro, contact.locationId ? 'Fernwartung dieses Standorts' : 'Fernwartung nach Standort', remoteHref],
+    [BadgeEuro, 'Fernwartung deutschlandweit', '/fernwartung/'],
     [MapPin, 'Standorte & Hilfe vor Ort', '/standorte/'],
     [UserRound, 'Über Schultes IT', '/ueber-schultes-it/'],
     [Building2, 'Standortinhaber werden', '/standortinhaber-werden/'],
@@ -302,9 +306,7 @@ export function ShortcutMenu({
             <header>
               <span>02 / FERNWARTUNG</span>
               <p id="shortcut-remote-title">
-                {contact.locationId
-                  ? `Fernhilfe durch ${contact.displayName}`
-                  : 'Fernhilfe wird über deinen Standort betreut'}
+                Zentrale Fernhilfe durch Schultes IT
               </p>
             </header>
             <div className="shortcut-topic-list">
@@ -386,12 +388,12 @@ export function ShortcutMenu({
 }
 
 export function SiteFooter({ contact = centralContact }: { contact?: ContactProfile }) {
-  const footerServices = contact.locationId
-    ? [
-        ...getLocationServicesByGroup(contact.locationId, 'primary'),
-        ...getLocationServicesByGroup(contact.locationId, 'remote'),
-      ]
-    : []
+  const footerServices = [
+    ...(contact.locationId
+      ? getLocationServicesByGroup(contact.locationId, 'primary')
+      : []),
+    ...remoteServiceTemplates,
+  ]
 
   return (
     <footer className="site-footer">

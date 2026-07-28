@@ -53,6 +53,8 @@ function welcomeMessage(contact: ContactProfile): Message {
     content:
       contact.source === 'location'
         ? `Hi, ich bin der digitale Assistent für ${contact.displayName}. Erzähl mir einfach, wobei du Hilfe brauchst. Ich frage bei Bedarf nach, probiere mit dir sichere Basics und hole ${contact.operatorName} erst dazu, wenn persönliche Hilfe wirklich sinnvoll ist.`
+        : contact.source === 'central-remote'
+          ? `Hi, ich bin der digitale Assistent für die deutschlandweite Fernwartung von Schultes IT. Erzähl mir einfach, was an deinem Gerät nicht funktioniert. Ich probiere mit dir sichere Basics und hole ${contact.operatorName} dazu, wenn Fernwartung sinnvoll ist.`
         : 'Hi, ich bin der digitale Assistent von Schultes IT. Erzähl mir einfach, wobei du Hilfe brauchst. Ich gebe sichere erste Orientierung und helfe dir anschließend, den passenden Standort zu finden.',
   }
 }
@@ -144,12 +146,12 @@ function getErrorMessage(code?: string) {
     case 'request_in_progress':
       return 'Das waren gerade zu viele Nachrichten. Warte bitte kurz und versuche es dann erneut.'
     case 'daily_limit_reached':
-      return 'Das gemeinsame Tagesbudget des Assistenten ist heute aufgebraucht. Dein zuständiger Standort bleibt weiterhin direkt erreichbar.'
+      return 'Das gemeinsame Tagesbudget des Assistenten ist heute aufgebraucht. Dein direkter Ansprechpartner bleibt weiterhin erreichbar.'
     case 'session_limit_reached':
       return 'Diese Unterhaltung hat ihr Sicherheitslimit erreicht. Bestätige dich bitte kurz erneut, um einen frischen Chat zu starten.'
     case 'assistant_unavailable':
     case 'service_unavailable':
-      return 'Der Assistent ist gerade nicht erreichbar. Du kannst deinen Standort direkt kontaktieren oder es später erneut versuchen.'
+      return 'Der Assistent ist gerade nicht erreichbar. Du kannst deinen Ansprechpartner direkt kontaktieren oder es später erneut versuchen.'
     default:
       return 'Das hat gerade nicht geklappt. Bitte prüfe deine Verbindung und versuche es erneut.'
   }
@@ -157,7 +159,7 @@ function getErrorMessage(code?: string) {
 
 export default function SupportBot({ contact }: { contact: ContactProfile }) {
   const sessionStorageKey =
-    `${SESSION_STORAGE_KEY_PREFIX}-${contact.locationId ?? 'central'}`
+    `${SESSION_STORAGE_KEY_PREFIX}-${contact.supportContextId}`
   const existingSession = useRef<Session | null>(readSession(sessionStorageKey))
   const [open, setOpen] = useState(false)
   const [phase, setPhase] = useState<Phase>(
@@ -208,7 +210,7 @@ export default function SupportBot({ contact }: { contact: ContactProfile }) {
       setPhase('needs-verification')
       setErrorMessage(
         apiError.code === 'verification_rate_limited'
-          ? 'Zu viele Prüfversuche. Bitte warte etwas oder kontaktiere deinen Standort direkt.'
+          ? 'Zu viele Prüfversuche. Bitte warte etwas oder nutze den direkten Kontakt.'
           : 'Die Sicherheitsprüfung hat nicht geklappt. Bitte versuche es erneut.',
       )
       if (widgetId.current) window.turnstile?.reset(widgetId.current)
@@ -324,7 +326,10 @@ export default function SupportBot({ contact }: { contact: ContactProfile }) {
       const result = await requestJson<{ reply: string; escalated?: boolean }>('/chat', {
         method: 'POST',
         headers: { Authorization: `Bearer ${session.token}` },
-        body: JSON.stringify({ message: content, locationId: contact.locationId }),
+        body: JSON.stringify({
+          message: content,
+          contextId: contact.supportContextId,
+        }),
       })
       setMessages((current) => [
         ...current,
@@ -456,7 +461,7 @@ export default function SupportBot({ contact }: { contact: ContactProfile }) {
                   {contact.phoneHref ? <Phone aria-hidden="true" /> : <MapPin aria-hidden="true" />}
                   <span>
                     <strong>
-                      {contact.source === 'location'
+                      {contact.phoneHref
                         ? `Direkt zu ${contact.operatorName}`
                         : 'Passenden Standort wählen'}
                     </strong>

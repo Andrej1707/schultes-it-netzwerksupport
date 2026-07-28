@@ -457,6 +457,22 @@ const nationalRemoteChildren: ServicePageData[] = [
 
 export const remoteServiceTemplates = [nationalRemoteOverview, ...nationalRemoteChildren]
 
+function remoteLocationRelativePath(template: ServicePageData) {
+  if (template.slug === 'fernwartung') return 'fernwartung/'
+  const child = template.path?.replace(/^\/fernwartung\//, '') ?? `${template.slug}/`
+  return `fernwartung/${child.replace(/^\/+/, '')}`
+}
+
+export const centralServicePages: ServicePageData[] = remoteServiceTemplates.map(
+  (template) => ({
+    ...template,
+    templateSlug: template.slug,
+    legacyPaths: activeLocations.map(
+      (location) => `${location.path}${remoteLocationRelativePath(template)}`,
+    ),
+  }),
+)
+
 export const topicServiceTemplates: ServicePageData[] = legacyTopicPages
   .filter((service) => service.slug !== 'fernwartung')
   .map((service) => ({
@@ -488,9 +504,7 @@ function locationRelativePath(template: ServicePageData) {
   }
 
   if (template.serviceGroup === 'remote') {
-    if (template.slug === 'fernwartung') return 'fernwartung/'
-    const child = template.path?.replace(/^\/fernwartung\//, '') ?? `${template.slug}/`
-    return `fernwartung/${child.replace(/^\/+/, '')}`
+    return remoteLocationRelativePath(template)
   }
 
   return `${template.slug}/`
@@ -606,7 +620,11 @@ function createLocationService(
     ],
     related: template.related
       .filter((relatedSlug) => Boolean(serviceTemplateBySlug[relatedSlug]))
-      .map((relatedSlug) => locationServiceSlug(location, relatedSlug)),
+      .map((relatedSlug) =>
+        serviceTemplateBySlug[relatedSlug].serviceGroup === 'remote'
+          ? relatedSlug
+          : locationServiceSlug(location, relatedSlug),
+      ),
     locationContext: {
       eyebrow: `STANDORT / ${location.city.toUpperCase()}`,
       heading: `${localized.shortTitle} mit echter regionaler Verantwortung.`,
@@ -620,9 +638,22 @@ function createLocationService(
   }
 }
 
-export const servicePages: ServicePageData[] = activeLocations.flatMap((location) =>
-  serviceTemplates.map((template) => createLocationService(template, location)),
+const locationServiceTemplates = [
+  ...primaryServiceTemplates,
+  ...topicServiceTemplates,
+]
+
+export const locationServicePages: ServicePageData[] = activeLocations.flatMap(
+  (location) =>
+    locationServiceTemplates.map((template) =>
+      createLocationService(template, location),
+    ),
 )
+
+export const servicePages: ServicePageData[] = [
+  ...centralServicePages,
+  ...locationServicePages,
+]
 
 export const servicePageBySlug = Object.fromEntries(
   servicePages.map((service) => [service.slug, service]),

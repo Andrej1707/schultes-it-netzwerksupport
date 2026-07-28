@@ -81,6 +81,12 @@ const serviceTemplateBySlug = Object.fromEntries(
   serviceTemplates.map((service) => [service.slug, service]),
 )
 const homeProblems = homeProblemSlugs.map((slug) => serviceTemplateBySlug[slug])
+const homeProblemHrefs: Record<(typeof homeProblemSlugs)[number], string> = {
+  'pc-langsam': '/fernwartung/windows-hilfe/',
+  'pc-startet-nicht': '/standorte/',
+  'router-entstoerung': '/standorte/',
+  'fernwartung-email-outlook': '/fernwartung/email-outlook/',
+}
 const remoteOverview = serviceTemplateBySlug.fernwartung
 const firstActiveLocation = activeLocations[0]
 
@@ -189,7 +195,7 @@ function NetworkHeader({
     <header className="site-header service-header">
       <Logo />
       <nav className="desktop-nav" aria-label="Hauptnavigation">
-        <a href="/standorte/">Fernwartung</a>
+        <a href="/fernwartung/">Fernwartung</a>
         <a href="/leistungen/">Leistungen</a>
         <a href="/standorte/">Standorte</a>
         <a href="/ratgeber/">Ratgeber</a>
@@ -367,7 +373,7 @@ export function BrandHomePage({ page }: { page: SitePage }) {
 
         <div className="brand-entry-grid">
           <motion.a
-            href="/standorte/"
+            href="/fernwartung/"
             className="brand-entry brand-entry-remote"
             variants={reveal}
             initial={reduceMotion ? false : 'hidden'}
@@ -381,7 +387,7 @@ export function BrandHomePage({ page }: { page: SitePage }) {
               deiner Kontrolle.
             </p>
             <strong>
-              Standort für Fernwartung wählen <ArrowUpRight aria-hidden="true" />
+              Fernwartung ansehen <ArrowUpRight aria-hidden="true" />
             </strong>
           </motion.a>
           <motion.a
@@ -411,10 +417,13 @@ export function BrandHomePage({ page }: { page: SitePage }) {
           <h2>Du musst die Ursache nicht kennen. Das Symptom reicht.</h2>
         </header>
         <div className="guide-link-grid">
-          {homeProblems.map((service) => {
+          {homeProblems.map((service, index) => {
             const Icon = iconByName[service.icon]
             return (
-              <a href="/standorte/" key={service.slug}>
+              <a
+                href={homeProblemHrefs[homeProblemSlugs[index]]}
+                key={service.slug}
+              >
                 <Icon aria-hidden="true" />
                 <span>
                   <strong>{service.situations[0]?.title ?? service.shortTitle}</strong>
@@ -477,6 +486,9 @@ export function BrandHomePage({ page }: { page: SitePage }) {
             </article>
           ))}
         </div>
+        <a className="brand-inline-link" href="/fernwartung/">
+          Fernwartung starten <ArrowUpRight aria-hidden="true" />
+        </a>
       </section>
 
       <section className="brand-offer-section">
@@ -488,10 +500,10 @@ export function BrandHomePage({ page }: { page: SitePage }) {
           <article>
             <BadgeEuro aria-hidden="true" />
             <small>DEUTSCHLANDWEIT / REMOTE</small>
-            <h3>Preise je Standort</h3>
-            <p>Fernwartung wird vom ausgewählten Standort persönlich betreut und abgerechnet.</p>
-            <a href="/standorte/">
-              Standort auswählen <ArrowUpRight aria-hidden="true" />
+            <h3>{remoteOverview.price}</h3>
+            <p>Die Fernwartung wird zentral durch Schultes IT und Andrej Schultes betreut.</p>
+            <a href="/fernwartung/">
+              Fernwartung ansehen <ArrowUpRight aria-hidden="true" />
             </a>
           </article>
           <article>
@@ -583,11 +595,11 @@ export function BrandHomePage({ page }: { page: SitePage }) {
             ist.
           </p>
         </div>
-        <a href="/standorte/">
-          <MapPin aria-hidden="true" />
+        <a href="/fernwartung/">
+          <Globe2 aria-hidden="true" />
           <span>
-            <small>PASSENDEN KONTAKT FINDEN</small>
-            <strong>Standort auswählen</strong>
+            <small>DEUTSCHLANDWEITE HILFE</small>
+            <strong>Fernwartung anfragen</strong>
           </span>
           <ArrowUpRight aria-hidden="true" />
         </a>
@@ -659,7 +671,6 @@ function LocationDetailOverview({ locationId }: { locationId: string }) {
   if (!location) return null
   const contact = contactForLocation(location)
   const primaryServices = getLocationServicesByGroup(locationId, 'primary')
-  const remoteServices = getLocationServicesByGroup(locationId, 'remote')
   const topicServices = getLocationServicesByGroup(locationId, 'topic')
 
   return (
@@ -693,7 +704,7 @@ function LocationDetailOverview({ locationId }: { locationId: string }) {
           <h2>Alle Hilfebereiche mit einem klar verantwortlichen Ansprechpartner.</h2>
         </header>
         <div className="guide-link-grid">
-          {[...primaryServices, ...remoteServices].map((service) => {
+          {primaryServices.map((service) => {
             const Icon = iconByName[service.icon]
             return (
               <a href={getServicePath(service)} key={service.slug}>
@@ -829,18 +840,36 @@ function OwnerOverview() {
 function GuideOverview() {
   return (
     <>
+      <section className="guide-group">
+        <header>
+          <span>01 / DEUTSCHLANDWEITE FERNWARTUNG</span>
+          <h2>Direkte Hilfe für Windows, Drucker, E-Mail und Outlook.</h2>
+        </header>
+        <div className="guide-link-grid">
+          {remoteServiceTemplates
+            .filter((service) => service.slug !== 'fernwartung')
+            .map((service) => {
+              const Icon = iconByName[service.icon]
+              return (
+                <a href={getServicePath(service)} key={service.slug}>
+                  <Icon aria-hidden="true" />
+                  <span>
+                    <strong>{service.shortTitle}</strong>
+                    <small>{service.description}</small>
+                  </span>
+                  <ChevronRight aria-hidden="true" />
+                </a>
+              )
+            })}
+        </div>
+      </section>
       {activeLocations.map((location, locationIndex) => {
-        const guides = [
-          ...getLocationServicesByGroup(location.id, 'remote').filter(
-            (service) => service.templateSlug !== 'fernwartung',
-          ),
-          ...getLocationServicesByGroup(location.id, 'topic'),
-        ]
+        const guides = getLocationServicesByGroup(location.id, 'topic')
         return guides.length > 0 ? (
         <section className="guide-group">
           <header>
-              <span>{String(locationIndex + 1).padStart(2, '0')} / STANDORT {location.city.toUpperCase()}</span>
-              <h2>Fernwartung und konkrete Hilfe aus {location.city}</h2>
+              <span>{String(locationIndex + 2).padStart(2, '0')} / STANDORT {location.city.toUpperCase()}</span>
+              <h2>Konkrete regionale Hilfe in {location.city}</h2>
           </header>
           <div className="guide-link-grid">
               {guides.map((service) => {
@@ -889,8 +918,8 @@ function AboutOverview() {
           <span>02 / RICHTUNG</span>
           <h2>Gedacht für ganz Deutschland.</h2>
           <p>
-            Standortgebundene Fernwartung und selbstständige regionale Standorte sollen gemeinsam
-            wachsen, ohne persönliche Verantwortung durch anonyme Strukturen zu ersetzen.
+            Zentrale deutschlandweite Fernwartung und selbstständige regionale Standorte sollen
+            gemeinsam wachsen, ohne persönliche Verantwortung durch anonyme Strukturen zu ersetzen.
           </p>
           <a href="/standortinhaber-werden/">
             Netzwerkmodell ansehen <ArrowUpRight aria-hidden="true" />

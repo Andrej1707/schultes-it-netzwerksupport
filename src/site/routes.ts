@@ -12,7 +12,7 @@ const structuralPages: SitePage[] = [
     path: '/',
     title: 'Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort',
     description:
-      'Schultes IT verbindet standortbetreute Fernwartung mit persönlichem Vor-Ort-Service über regionale, selbstständige Ansprechpartner.',
+      'Schultes IT verbindet zentrale deutschlandweite Fernwartung mit persönlichem Vor-Ort-Service über regionale, selbstständige Ansprechpartner.',
     keywords:
       'Schultes IT, Fernwartung, IT Hilfe, PC Hilfe, regionale IT Standorte, Computerhilfe',
     eyebrow: 'SCHULTES IT / DEUTSCHLAND',

@@ -13,8 +13,13 @@ export const siteConfig = {
   },
   remoteSupport: {
     downloadPath: '/downloads/rustdesk.exe',
+    operatorName: 'Andrej Schultes',
+    phoneDisplay: '+49 1567 9616310',
+    phoneHref: 'tel:+4915679616310',
+    email: 'it.schulteslb@gmail.com',
+    priceFrom: '25 €',
     contactNote:
-      'Fernwartung wird durch den ausgewählten Schultes-IT-Standort persönlich betreut.',
+      'Die deutschlandweite Fernwartung wird zentral durch Schultes IT und Andrej Schultes betreut.',
   },
 } as const
 

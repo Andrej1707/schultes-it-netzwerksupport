@@ -380,7 +380,7 @@ export class SupportGuard {
   private async chat(body: Record<string, unknown>) {
     const sessionId = typeof body.sessionId === 'string' ? body.sessionId : ''
     const message = normalizeMessage(body.message)
-    const location = resolveSupportLocation(body.locationId)
+    const location = resolveSupportLocation(body.contextId ?? body.locationId)
     if (!sessionId || !message) return json({ error: 'invalid_message' }, 400)
 
     const reservation = await this.reserve(sessionId, message)
@@ -632,7 +632,7 @@ async function handleChat(request: Request, env: Env) {
     body: JSON.stringify({
       sessionId,
       message: body.message,
-      locationId: body.locationId,
+      contextId: body.contextId ?? body.locationId,
     }),
   })
 }

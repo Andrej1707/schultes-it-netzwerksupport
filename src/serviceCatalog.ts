@@ -1,4 +1,5 @@
 export {
+  centralServicePages,
   getLocationService,
   getLocationServicePath,
   getLocationServices,
@@ -10,6 +11,7 @@ export {
   servicePageBySlug,
   servicePages,
   serviceTemplates,
+  locationServicePages,
   topicServiceTemplates,
 } from './content/services'
 export type {

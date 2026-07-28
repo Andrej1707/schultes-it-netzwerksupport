@@ -1,5 +1,4 @@
 import {
-  getLocationServicesByGroup,
   primaryServiceTemplates,
   remoteServiceTemplates,
   servicePageBySlug,
@@ -27,7 +26,7 @@ function pageLink(path: string, title: string, text?: string) {
 
 function siteNavigation() {
   return `<nav aria-label="Hauptnavigation">
-    <a href="/standorte/">Fernwartung</a>
+    <a href="/fernwartung/">Fernwartung</a>
     <a href="/leistungen/">Leistungen</a>
     <a href="/standorte/">Standorte</a>
     <a href="/ratgeber/">Ratgeber</a>
@@ -59,7 +58,14 @@ function homeContent() {
     )
     .filter((service) => Boolean(service))
     .map((service) =>
-      pageLink('/standorte/', service?.situations[0]?.title ?? service?.title ?? 'IT-Hilfe'),
+      pageLink(
+        service?.slug === 'pc-langsam'
+          ? '/fernwartung/windows-hilfe/'
+          : service?.serviceGroup === 'remote' && service.path
+            ? service.path
+            : '/standorte/',
+        service?.situations[0]?.title ?? service?.title ?? 'IT-Hilfe',
+      ),
     )
     .join('')
   const serviceLinks = primaryServiceTemplates
@@ -76,9 +82,9 @@ function homeContent() {
     <h2 id="direkte-hilfe">Zwei Wege zur passenden IT-Hilfe</h2>
     <ul>
       ${pageLink(
-        '/standorte/',
-        'IT-Hilfe per Fernwartung über einen Standort',
-        'Wähle einen verantwortlichen Standort für Windows, Drucker, E-Mail und typische PC-Probleme.',
+        '/fernwartung/',
+        'Deutschlandweite IT-Hilfe per Fernwartung',
+        'Windows, Drucker, E-Mail und typische PC-Probleme zentral mit Schultes IT prüfen.',
       )}
       ${pageLink(
         '/standorte/',
@@ -106,11 +112,13 @@ function homeContent() {
   <section aria-labelledby="fernwartungsablauf">
     <h2 id="fernwartungsablauf">Ablauf einer Fernwartung</h2>
     <ol>${remoteProcess}</ol>
-    <p><a href="/standorte/">Standort für Fernwartung auswählen</a></p>
+    <p><a href="/fernwartung/">Fernwartung direkt ansehen</a></p>
   </section>
   <section aria-labelledby="einstiegspreise">
     <h2 id="einstiegspreise">Transparente Einstiegspreise</h2>
-    <p>Fernwartung und Vor-Ort-Service werden vom gewählten Standort transparent angeboten.${
+    <p>Für die zentrale Fernwartung gilt: ${escapeHtml(
+      remoteServiceTemplates[0]?.price ?? 'individueller Absprache',
+    )}. Vor-Ort-Service wird vom gewählten Standort transparent angeboten.${
       firstLocation
         ? ` Service bei dir in ${escapeHtml(firstLocation.city)} ab ${escapeHtml(firstLocation.pricing.onSiteFrom)}.`
         : ''
@@ -136,7 +144,7 @@ function homeContent() {
   </section>
   <section aria-labelledby="direkter-kontakt">
     <h2 id="direkter-kontakt">Passenden Ansprechpartner finden</h2>
-    <p><a href="/standorte/">Aktiven Standort auswählen</a></p>
+    <p><a href="/fernwartung/">Fernwartung anfragen</a> · <a href="/standorte/">Aktiven Standort auswählen</a></p>
   </section>`
 }
 
@@ -149,10 +157,10 @@ function servicesContent() {
   </section>`
 }
 
-function remoteContent(locationId: string) {
+function remoteContent() {
   return `<section aria-labelledby="fernwartungsthemen">
     <h2 id="fernwartungsthemen">Fernwartungsthemen</h2>
-    <ul>${getLocationServicesByGroup(locationId, 'remote')
+    <ul>${remoteServiceTemplates
       .map((service) => pageLink(service.path ?? `/${service.slug}/`, service.title, service.description))
       .join('')}</ul>
   </section>`
@@ -249,8 +257,8 @@ function serviceContent(page: SitePage) {
     <p>${escapeHtml(contact.remoteSupportNote)}</p>
   </section>
   ${
-    service.templateSlug === 'fernwartung' && service.locationId
-      ? remoteContent(service.locationId)
+    service.templateSlug === 'fernwartung' && !service.locationId
+      ? remoteContent()
       : ''
   }
   ${
@@ -265,8 +273,10 @@ function serviceContent(page: SitePage) {
 }
 
 function guidesContent() {
-  const guides = publicServicePages.filter(
-    (service) => service.scope === 'location',
+  const guides = publicServicePages.filter((service) =>
+    service.serviceGroup === 'remote'
+      ? service.templateSlug !== 'fernwartung'
+      : service.scope === 'location' && service.serviceGroup === 'topic',
   )
 
   return `<section aria-labelledby="ratgeberthemen">
@@ -305,7 +315,7 @@ function supplementalContent(page: SitePage) {
   }
   if (page.kind === 'about') {
     const firstLocation = activeLocations[0]
-    return `<section><h2>${firstLocation ? `Begonnen in ${escapeHtml(firstLocation.city)}.` : 'Regional gedacht.'} Für ganz Deutschland.</h2><p>Schultes IT verbindet standortbetreute Fernwartung mit eigenverantwortlich betriebenen regionalen Standorten.</p><p>${firstLocation ? `<a href="${firstLocation.path}">Ersten Standort ansehen</a> · ` : ''}<a href="/standortinhaber-werden/">Standortinhaber werden</a></p></section>`
+    return `<section><h2>${firstLocation ? `Begonnen in ${escapeHtml(firstLocation.city)}.` : 'Regional gedacht.'} Für ganz Deutschland.</h2><p>Schultes IT verbindet zentrale deutschlandweite Fernwartung mit eigenverantwortlich betriebenen regionalen Standorten.</p><p><a href="/fernwartung/">Fernwartung ansehen</a> · ${firstLocation ? `<a href="${firstLocation.path}">Ersten Standort ansehen</a> · ` : ''}<a href="/standortinhaber-werden/">Standortinhaber werden</a></p></section>`
   }
   return ''
 }

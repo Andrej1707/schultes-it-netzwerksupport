@@ -24,6 +24,19 @@ describe('business knowledge and safety policy', () => {
     )
   })
 
+  it('uses the central Andrej contact on nationwide remote support pages', () => {
+    const remote = resolveSupportLocation('central-remote')
+    const context = supportContextInstructions(remote)
+
+    expect(context).toContain('zentralen deutschlandweiten Fernwartungsseite')
+    expect(context).toContain('Andrej Schultes')
+    expect(context).toContain('+49 1567 9616310')
+    expect(context).toContain('it.schulteslb@gmail.com')
+    expect(context).toContain('Fernwartung ab 25 Euro')
+    expect(context).not.toContain('Vor-Ort-Service ab')
+    expect(directContactSentence(remote)).toContain('zentrale Fernwartung')
+  })
+
   it('does not leak a location contact without a selected location', () => {
     const context = supportContextInstructions()
 

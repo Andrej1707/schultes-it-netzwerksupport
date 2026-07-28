@@ -18,10 +18,10 @@ describe('site routing', () => {
   })
 
   it('resolves the full nested route instead of only the first segment', () => {
-    const route = resolveSiteRoute('/standorte/ludwigsburg/fernwartung/windows-hilfe/')
+    const route = resolveSiteRoute('/fernwartung/windows-hilfe/')
 
-    expect(route?.page.serviceSlug).toBe('ludwigsburg--fernwartung-windows-hilfe')
-    expect(route?.page.locationId).toBe('ludwigsburg')
+    expect(route?.page.serviceSlug).toBe('fernwartung-windows-hilfe')
+    expect(route?.page.locationId).toBeUndefined()
     expect(route?.isAlias).toBe(false)
   })
 
@@ -32,12 +32,13 @@ describe('site routing', () => {
     expect(route?.isAlias).toBe(true)
   })
 
-  it('keeps former central remote URLs only as compatibility aliases', () => {
-    const legacy = resolveSiteRoute('/fernwartung/windows-hilfe/')
-
-    expect(legacy?.page.path).toBe(
+  it('keeps former regional remote URLs only as compatibility aliases', () => {
+    const legacy = resolveSiteRoute(
       '/standorte/ludwigsburg/fernwartung/windows-hilfe/',
     )
+
+    expect(legacy?.page.path).toBe('/fernwartung/windows-hilfe/')
+    expect(legacy?.page.locationId).toBeUndefined()
     expect(legacy?.isAlias).toBe(true)
   })
 

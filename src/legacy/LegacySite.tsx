@@ -49,6 +49,7 @@ import {
   getLocationServicePath,
   getLocationServicesByGroup,
   getServicePath,
+  remoteServiceTemplates,
   servicePageBySlug,
 } from '../content/services'
 import type { ServiceIconName, ServicePageData } from '../content/types'
@@ -99,7 +100,7 @@ const topicServices = getLocationServicesByGroup('ludwigsburg', 'topic').map((se
   href: getServicePath(service),
 }))
 
-const remoteServices = getLocationServicesByGroup('ludwigsburg', 'remote').map((service) => ({
+const remoteServices = remoteServiceTemplates.map((service) => ({
   ...service,
   icon: serviceIcons[service.icon],
   href: getServicePath(service),
@@ -510,13 +511,7 @@ export function ShortcutMenu({
         href: getServicePath(service),
       }))
     : services.map((service) => ({ ...service, href: '/standorte/' }))
-  const menuRemoteServices = contact.locationId
-    ? getLocationServicesByGroup(contact.locationId, 'remote').map((service) => ({
-        ...service,
-        icon: serviceIcons[service.icon],
-        href: getServicePath(service),
-      }))
-    : remoteServices.map((service) => ({ ...service, href: '/standorte/' }))
+  const menuRemoteServices = remoteServices
   const menuTopicServices = contact.locationId
     ? getLocationServicesByGroup(contact.locationId, 'topic').map((service) => ({
         ...service,
@@ -524,11 +519,8 @@ export function ShortcutMenu({
         href: getServicePath(service),
       }))
     : topicServices.map((service) => ({ ...service, href: '/standorte/' }))
-  const remoteHref = contact.locationId
-    ? getLocationServicePath(contact.locationId, 'fernwartung') ?? '/standorte/'
-    : '/standorte/'
   const quickLinks = [
-    [BadgeEuro, contact.locationId ? 'Fernwartung dieses Standorts' : 'Fernwartung nach Standort', remoteHref],
+    [BadgeEuro, 'Fernwartung deutschlandweit', '/fernwartung/'],
     [MapPin, 'Standorte & Hilfe vor Ort', '/standorte/'],
     [UserRound, 'Über Schultes IT', '/ueber-schultes-it/'],
     [Building2, 'Standortinhaber werden', '/standortinhaber-werden/'],
@@ -1063,12 +1055,12 @@ function PrivacyContent() {
 }
 
 export function SiteFooter({ contact = centralContact }: { contact?: ContactProfile }) {
-  const footerServices = contact.locationId
-    ? [
-        ...getLocationServicesByGroup(contact.locationId, 'primary'),
-        ...getLocationServicesByGroup(contact.locationId, 'remote'),
-      ]
-    : []
+  const footerServices = [
+    ...(contact.locationId
+      ? getLocationServicesByGroup(contact.locationId, 'primary')
+      : []),
+    ...remoteServiceTemplates,
+  ]
 
   return (
     <footer className="site-footer">
@@ -1158,10 +1150,7 @@ export function ServicePage({ service }: { service: ServicePageData }) {
     .map((slug) => servicePageBySlug[slug])
     .filter((entry): entry is ServicePageData => Boolean(entry))
   const showRemoteDownload = service.deliveryMode === 'remote'
-  const locationRemotePath =
-    service.locationId
-      ? getLocationServicePath(service.locationId, 'fernwartung') ?? serviceLocation?.path
-      : '/standorte/'
+  const remotePath = '/fernwartung/'
 
   return (
     <>
@@ -1179,7 +1168,7 @@ export function ServicePage({ service }: { service: ServicePageData }) {
       <header className="site-header service-header">
         <Logo />
         <nav className="desktop-nav" aria-label="Hauptnavigation">
-          <a href={locationRemotePath}>Fernwartung</a>
+          <a href={remotePath}>Fernwartung</a>
           <a href="/leistungen/">Leistungen</a>
           <a href="/standorte/">Standorte</a>
           <a href="/ratgeber/">Ratgeber</a>
@@ -1227,15 +1216,17 @@ export function ServicePage({ service }: { service: ServicePageData }) {
             >
               <a href="/">Startseite</a>
               <ChevronRight aria-hidden="true" />
-              <a href="/standorte/">Standorte</a>
-              <ChevronRight aria-hidden="true" />
-              <a href={serviceLocation?.path ?? '/standorte/'}>
-                {serviceLocation?.city ?? 'Regionaler Standort'}
-              </a>
-              <ChevronRight aria-hidden="true" />
-              {service.serviceGroup === 'remote' && service.templateSlug !== 'fernwartung' ? (
+              {serviceLocation ? (
                 <>
-                  <a href={locationRemotePath}>Fernwartung</a>
+                  <a href="/standorte/">Standorte</a>
+                  <ChevronRight aria-hidden="true" />
+                  <a href={serviceLocation.path}>{serviceLocation.city}</a>
+                  <ChevronRight aria-hidden="true" />
+                </>
+              ) : null}
+              {!serviceLocation && service.templateSlug !== 'fernwartung' ? (
+                <>
+                  <a href={remotePath}>Fernwartung</a>
                   <ChevronRight aria-hidden="true" />
                 </>
               ) : null}
@@ -1802,6 +1793,7 @@ export function MarketingApp() {
       <header className="site-header">
         <Logo />
         <nav className="desktop-nav" aria-label="Hauptnavigation">
+          <a href="/fernwartung/">Fernwartung</a>
           <a href="#leistungen">Leistungen</a>
           <a href="#preise">Preise</a>
           <a href="#projekte">Projekte</a>
