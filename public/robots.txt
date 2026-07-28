@@ -1,4 +1,4 @@
-# Keep ordinary search discovery available for local customers.
+# Keep ordinary search discovery available for customers across Germany.
 User-agent: Googlebot
 Allow: /
 

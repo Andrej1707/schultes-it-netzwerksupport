@@ -18,21 +18,21 @@
 
 <meta
   name="description"
-  content="Schultes IT & Netzwerksupport in Ludwigsburg: IT-Hilfe, PC-Hilfe, WLAN-Hilfe, Router-Service, Windows-Einrichtung und Fernhilfe verständlich vor Ort."
+  content="Schultes IT verbindet deutschlandweite IT-Hilfe per Fernwartung mit persönlichem Vor-Ort-Service über regionale Standorte."
 />
 
 <meta
   name="keywords"
-  content="IT Hilfe Ludwigsburg, PC Hilfe Ludwigsburg, Computerhilfe Ludwigsburg, Laptop Hilfe, WLAN Hilfe Ludwigsburg, Router Hilfe, PC langsam"
+  content="Schultes IT, Fernwartung Deutschland, IT Hilfe, PC Hilfe, regionale IT Standorte, Computerhilfe"
 />
 
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="de_DE" />
-<meta property="og:title" content="Schultes IT & Netzwerksupport | Ludwigsburg" />
+<meta property="og:title" content="Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort" />
 
 <meta
   property="og:description"
-  content="Schultes IT & Netzwerksupport in Ludwigsburg hilft bei Computer-, Laptop-, Windows-, WLAN- und Router-Problemen – verständlich und direkt."
+  content="Deutschlandweite Fernwartung und persönliche Vor-Ort-Hilfe über regionale Schultes-IT-Standorte."
 />
 
 <meta property="og:url" content="https://schultes-it.de/" />
@@ -41,92 +41,58 @@
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Schultes IT & Netzwerksupport in Ludwigsburg" />
+<meta property="og:image:alt" content="Schultes IT – Fernwartung und regionale IT-Hilfe" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Schultes IT & Netzwerksupport" />
 
 <meta
   name="twitter:description"
-  content="Schultes IT & Netzwerksupport: IT-Hilfe, PC-Hilfe und WLAN-Hilfe in Ludwigsburg – bei dir vor Ort oder per Fernhilfe."
+  content="Schultes IT: deutschlandweite Fernwartung und persönliche IT-Hilfe über regionale Standorte."
 />
 
 <meta name="twitter:image" content="https://schultes-it.de/og-cover.png" />
-<meta name="twitter:image:alt" content="Schultes IT & Netzwerksupport in Ludwigsburg" />
+<meta name="twitter:image:alt" content="Schultes IT – Fernwartung und regionale IT-Hilfe" />
 
 <link rel="canonical" href="https://schultes-it.de/" />
 
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "@id": "https://schultes-it.de/#business",
-    "name": "Schultes IT & Netzwerksupport",
-    "alternateName": "Schultes IT- & Netzwerksupport",
-    "founder": {
-      "@type": "Person",
-      "name": "Andrej Schultes"
-    },
-    "url": "https://schultes-it.de/",
-    "image": "https://schultes-it.de/og-cover.png",
-    "telephone": "+49 1567 9616310",
-    "email": "it.schulteslb@gmail.com",
-    "priceRange": "Fernhilfe ab 25 EUR, Service beim Kunden ab 49 EUR",
-    "areaServed": {
-      "@type": "City",
-      "name": "Ludwigsburg"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Egerländer Str. 24",
-      "postalCode": "71638",
-      "addressLocality": "Ludwigsburg",
-      "addressCountry": "DE"
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "IT-Support-Leistungen",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "PC & System",
-            "url": "https://schultes-it.de/pc-system/"
-          }
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://schultes-it.de/#organization",
+        "name": "Schultes IT & Netzwerksupport",
+        "alternateName": "Schultes IT- & Netzwerksupport",
+        "url": "https://schultes-it.de/",
+        "image": "https://schultes-it.de/og-cover.png",
+        "telephone": "+49 1567 9616310",
+        "email": "it.schulteslb@gmail.com",
+        "founder": {
+          "@type": "Person",
+          "name": "Andrej Schultes"
         },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Netzwerk & WLAN",
-            "url": "https://schultes-it.de/netzwerk-wlan/"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Webseiten",
-            "url": "https://schultes-it.de/webseiten/"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Tools & Automation",
-            "url": "https://schultes-it.de/tools-automation/"
-          }
+        "areaServed": {
+          "@type": "Country",
+          "name": "Deutschland"
         }
-      ]
-    },
-    "sameAs": ["https://maps.app.goo.gl/9riyhNzidDpzvynd8"],
-    "description": "Schnelle Hilfe bei PC-, Software- und Netzwerkproblemen für Privatkunden und kleine Betriebe in Ludwigsburg – beim Kunden vor Ort und per Fernwartung."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://schultes-it.de/#website",
+        "url": "https://schultes-it.de/",
+        "name": "Schultes IT & Netzwerksupport",
+        "publisher": {
+          "@id": "https://schultes-it.de/#organization"
+        },
+        "inLanguage": "de-DE"
+      }
+    ]
   }
 </script>
 
-<title>IT-Hilfe & PC-Hilfe Ludwigsburg | Schultes IT</title>
+<title>Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort</title>
 
   </head>  <body>
     <div id="root"></div>

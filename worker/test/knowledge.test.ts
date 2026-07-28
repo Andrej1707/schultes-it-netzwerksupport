@@ -6,8 +6,12 @@ describe('business knowledge and safety policy', () => {
     expect(BUSINESS_SYSTEM_PROMPT).toContain('Andrej Schultes')
     expect(BUSINESS_SYSTEM_PROMPT).toContain('+49 1567 9616310')
     expect(BUSINESS_SYSTEM_PROMPT).toContain('it.schulteslb@gmail.com')
-    expect(BUSINESS_SYSTEM_PROMPT).toContain('Fernhilfe: ab 25 Euro')
+    expect(BUSINESS_SYSTEM_PROMPT).toContain('Fernhilfe: deutschlandweit ab 25 Euro')
     expect(BUSINESS_SYSTEM_PROMPT).toContain('Service vor Ort: ab 49 Euro')
+    expect(BUSINESS_SYSTEM_PROMPT).toContain('Aktuell aktiver Standort: Ludwigsburg')
+    expect(BUSINESS_SYSTEM_PROMPT).toContain(
+      'Weitere Standorte sind für die Zukunft geplant, aktuell aber noch nicht aktiv',
+    )
   })
 
   it('limits self-help to low-risk first steps', () => {

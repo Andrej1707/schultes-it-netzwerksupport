@@ -1,10 +1,10 @@
 # Schultes IT & Netzwerksupport
 
-Die digitale Kommandozentrale von Andrej Schultes für IT-Support, Netzwerksupport,
-PC-Hilfe, Webseiten und kleine Automatisierungen in Ludwigsburg.
+Die digitale Grundlage für Schultes IT: deutschlandweite Fernwartung und regionale,
+rechtlich selbstständig betriebene Vor-Ort-Standorte unter einer gemeinsamen Marke.
 
-Die Seite verbindet lokale Service-Kommunikation mit einer persönlichen Projektübersicht,
-Kompetenzmatrix, Google-Maps-Bereich und direktem Mobile-Kontakt.
+Ludwigsburg ist der erste inhabergeführte Standort. Weitere echte Standorte können später
+über zentrale Inhaltsdaten ergänzt werden, ohne Routing, Sitemap oder SEO-Code zu kopieren.
 
 ## Live
 
@@ -22,13 +22,39 @@ Kompetenzmatrix, Google-Maps-Bereich und direktem Mobile-Kontakt.
 
 ## Highlights
 
-- Animierte Kommandozentrale mit reaktivem Netzwerk-Hintergrund
-- Leistungen, Arbeitsweise und persönliche Positionierung
+- Marken-Startseite mit zwei klaren Einstiegen: Fernwartung und regionale Standorte
+- Verschachtelte, statisch erzeugte Routen mit vollständiger Pfadauflösung
+- Seitentypabhängige Metadaten und Schema.org-Daten
+- Automatisch aus der Seiten-Registry erzeugte XML- und Text-Sitemap
+- Datenmodell für aktive Standorte, Betreiber, Einsatzgebiete und Koordinaten
+- Datenschutzfreundlicher Standortfinder mit lokaler Distanzberechnung
+- Animierte Ludwigsburg-Kommandozentrale als erster Standort
 - Projektstream für Tools, Automationen und KI-Prototypen
 - Kompetenzmatrix ohne künstliche Prozentwerte
-- Local-Trust-Bereich für Ludwigsburg
 - Sticky Mobile-CTA und Copy-Phone-Funktion
 - Spamgeschützter KI-Assistent mit Cloudflare Turnstile, festen Limits und OpenAI-Moderation
+
+## Seitenstruktur
+
+```text
+/fernwartung/
+  windows-hilfe/
+  drucker-hilfe/
+  email-outlook/
+/leistungen/
+  pc-laptop/
+  netzwerk-wlan/
+  webseiten/
+  automation/
+/standorte/
+  ludwigsburg/
+/standortinhaber-werden/
+/ratgeber/
+/ueber-schultes-it/
+```
+
+Bestehende flache URLs bleiben als Kompatibilitätsrouten erreichbar. Sie werden nicht in der
+Sitemap geführt und verweisen kanonisch auf die neue Zielroute.
 
 ## Lokal starten
 
@@ -44,6 +70,27 @@ npm run typecheck
 npm run build
 npm run preview
 ```
+
+Der vollständige Prüfpfad ist:
+
+```bash
+npm run check
+```
+
+Er umfasst Frontend- und Worker-TypeScript, Tests, Produktions-Build und die datengetriebene
+SEO-Validierung aller kanonischen Routen und Aliasse.
+
+## Architektur
+
+- `src/site/`: Marken- und Standortkonfiguration, vollständiges Routing, Seitentypen,
+  Distanzlogik und Schema.org-Erzeugung
+- `src/content/`: normalisierte Leistungsdaten und getrennte bestehende Inhaltsmodule
+- `src/pages/`: neue Marken-, Standort-, Ratgeber- und Netzwerkseiten
+- `src/legacy/`: bewährte Ludwigsburg-Oberfläche und bestehende Service-Komponenten
+- `vite.config.ts`: statische HTML-Ausgabe, Alias-Kompatibilität, Sitemap und Seitenmanifest
+- `scripts/validate-seo.mjs`: automatisierte Prüfung gegen das erzeugte Seitenmanifest
+
+Weitere Details stehen in [docs/architecture.md](docs/architecture.md).
 
 ## Business-Assistent
 
@@ -93,5 +140,5 @@ Im Repository muss unter **Settings → Pages → Build and deployment** als Que
 
 ## Kontakt
 
-Andrej Schultes · Ludwigsburg  
+Schultes IT · deutschlandweit per Fernwartung · Standort Ludwigsburg
 [+49 1567 9616310](tel:+4915679616310)
