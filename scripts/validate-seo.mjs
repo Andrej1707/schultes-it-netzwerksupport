@@ -112,6 +112,33 @@ function validateSharedHtml(html, page, path, canonicalUrl, indexable) {
   )
 }
 
+function validateRedirectAlias(html, page, path, canonicalUrl) {
+  assert(
+    html.includes(`<link rel="canonical" href="${canonicalUrl}" />`),
+    `Invalid canonical URL in redirect alias ${path}.`,
+  )
+  assert(
+    html.includes('<meta name="robots" content="index, follow, max-image-preview:large" />'),
+    `Redirect alias ${path} must remain crawlable so Google can process the redirect.`,
+  )
+  assert(
+    html.includes(`<meta http-equiv="refresh" content="0; url=${canonicalUrl}" />`),
+    `Redirect alias ${path} is missing its permanent zero-second meta refresh.`,
+  )
+  assert(
+    html.includes(`<a href="${canonicalUrl}">Zur aktuellen Seite</a>`),
+    `Redirect alias ${path} needs a crawlable fallback link.`,
+  )
+  assert(
+    html.includes(`data-page-id="${page.id}"`),
+    `Page identity is missing in redirect alias ${path}.`,
+  )
+  assert(
+    !html.includes('content="noindex, follow'),
+    `Redirect alias ${path} must not combine a permanent redirect with noindex.`,
+  )
+}
+
 const manifest = JSON.parse(await read('site-manifest.json'))
 const sitemap = await read('sitemap.xml')
 const textSitemap = await read('sitemap.txt')
@@ -256,7 +283,7 @@ for (const page of manifest.pages) {
   for (const alias of page.aliases) {
     const aliasOutput = outputPath(alias)
     const aliasHtml = await read(aliasOutput)
-    validateSharedHtml(aliasHtml, page, aliasOutput, canonicalUrl, false)
+    validateRedirectAlias(aliasHtml, page, aliasOutput, canonicalUrl)
     assert(
       !sitemapLines.includes(`${siteUrl}${alias}`),
       `Legacy alias ${alias} must not be included in the sitemap.`,
@@ -284,5 +311,5 @@ assert(
 console.log(
   `SEO validation passed for ${manifest.pages.filter((page) => page.indexable).length} indexable routes, ` +
     `${manifest.pages.filter((page) => !page.indexable).length} non-indexable canonical routes and ` +
-    `${manifest.pages.flatMap((page) => page.aliases).length} compatibility aliases.`,
+    `${manifest.pages.flatMap((page) => page.aliases).length} permanent compatibility redirects.`,
 )

@@ -54,16 +54,30 @@ function replaceRootContent(html: string, page: SitePage) {
   return html.replace('<div id="root"></div>', root)
 }
 
+function replaceAliasRootContent(html: string, canonicalUrl: string) {
+  const root = `<div id="root"><!-- seo-prerender:start --><main class="seo-redirect" data-prerendered="true"><h1>Diese Seite ist umgezogen.</h1><p>Du wirst direkt zur aktuellen Seite weitergeleitet.</p><p><a href="${escapeAttribute(canonicalUrl)}">Zur aktuellen Seite</a></p></main><!-- seo-prerender:end --></div>`
+  const prerenderedRoot =
+    /<div id="root"><!-- seo-prerender:start -->[\s\S]*?<!-- seo-prerender:end --><\/div>/
+
+  if (prerenderedRoot.test(html)) {
+    return html.replace(prerenderedRoot, root)
+  }
+
+  return html.replace('<div id="root"></div>', root)
+}
+
 function renderPageHtml(baseHtml: string, page: SitePage, isAlias = false) {
   const canonicalUrl = `${siteConfig.url}${page.path}`
   const structuredData = JSON.stringify(structuredDataForPage(page), null, 2)
   const structuredDataInner = `\n${structuredData}\n`
   const hash = createHash('sha256').update(structuredDataInner).digest('base64')
-  const robots = isAlias || !page.indexable
+  const robots = !page.indexable
     ? 'noindex, follow, max-image-preview:large'
     : 'index, follow, max-image-preview:large'
 
-  let html = replaceRootContent(baseHtml, page)
+  let html = (isAlias
+    ? replaceAliasRootContent(baseHtml, canonicalUrl)
+    : replaceRootContent(baseHtml, page))
     .replace(/<html\b([^>]*)>/i, (_match, attributes: string) => {
       const cleanAttributes = attributes
         .replace(/\s*data-page-id="[^"]*"/i, '')
@@ -92,6 +106,13 @@ function renderPageHtml(baseHtml: string, page: SitePage, isAlias = false) {
   html = replaceMeta(html, 'name', 'twitter:title', page.title)
   html = replaceMeta(html, 'name', 'twitter:description', page.description)
   html = replaceMeta(html, 'name', 'twitter:image:alt', page.title)
+
+  if (isAlias) {
+    html = html.replace(
+      '</head>',
+      `  <meta http-equiv="refresh" content="0; url=${escapeAttribute(canonicalUrl)}" />\n</head>`,
+    )
+  }
 
   return html
 }
