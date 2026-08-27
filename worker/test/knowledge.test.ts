@@ -12,9 +12,9 @@ describe('business knowledge and safety policy', () => {
     const context = supportContextInstructions(location)
 
     expect(BUSINESS_SYSTEM_PROMPT).toContain('Andrej Schultes')
-    expect(BUSINESS_SYSTEM_PROMPT).not.toContain('+49 1567 9616310')
+    expect(BUSINESS_SYSTEM_PROMPT).not.toContain('+49 179 1707411')
     expect(BUSINESS_SYSTEM_PROMPT).not.toContain('kontakt@schultes-it.de')
-    expect(context).toContain('+49 1567 9616310')
+    expect(context).toContain('+49 179 1707411')
     expect(context).toContain('kontakt@schultes-it.de')
     expect(context).toContain('Fernwartung ab 25 Euro')
     expect(context).toContain('Vor-Ort-Service ab 49 Euro')
@@ -30,7 +30,7 @@ describe('business knowledge and safety policy', () => {
 
     expect(context).toContain('zentralen deutschlandweiten Fernwartungsseite')
     expect(context).toContain('Andrej Schultes')
-    expect(context).toContain('+49 1567 9616310')
+    expect(context).toContain('+49 179 1707411')
     expect(context).toContain('kontakt@schultes-it.de')
     expect(context).toContain('Fernwartung ab 25 Euro')
     expect(context).not.toContain('Vor-Ort-Service ab')
@@ -41,7 +41,7 @@ describe('business knowledge and safety policy', () => {
     const context = supportContextInstructions()
 
     expect(context).toContain('noch keinen Standort gewählt')
-    expect(context).not.toContain('+49 1567 9616310')
+    expect(context).not.toContain('+49 179 1707411')
     expect(directContactSentence()).toContain('/standorte/')
   })
 

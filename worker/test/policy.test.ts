@@ -55,7 +55,7 @@ describe('support intent policy', () => {
     expect(reply).toContain('WLAN am Gerät einmal aus und wieder an')
     expect(reply).toContain('30 Sekunden vom Strom trennen')
     expect(reply).toContain('zuständigen Standort')
-    expect(reply).not.toContain('+49 1567 9616310')
+    expect(reply).not.toContain('+49 179 1707411')
     expect(reply).not.toMatch(/BIOS|PowerShell|Download/i)
   })
 
@@ -86,7 +86,7 @@ describe('support intent policy', () => {
     expect(reply?.reply).toContain('1. Prüfe kurz, ob andere Geräte')
     expect(reply?.reply).toContain('2. Schalte WLAN am betroffenen Gerät')
     expect(reply?.reply).toContain('Ist nur ein Gerät betroffen?')
-    expect(reply?.reply).not.toContain('+49 1567 9616310')
+    expect(reply?.reply).not.toContain('+49 179 1707411')
     expect(reply?.reply).not.toMatch(/BIOS|PowerShell|Download/i)
     expect(reply?.escalated).toBe(false)
   })

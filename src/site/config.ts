@@ -14,8 +14,8 @@ export const siteConfig = {
   remoteSupport: {
     downloadPath: '/downloads/rustdesk.exe',
     operatorName: 'Andrej Schultes',
-    phoneDisplay: '+49 1567 9616310',
-    phoneHref: 'tel:+4915679616310',
+    phoneDisplay: '+49 179 1707411',
+    phoneHref: 'tel:+491791707411',
     email: 'kontakt@schultes-it.de',
     priceFrom: '25 €',
     contactNote:

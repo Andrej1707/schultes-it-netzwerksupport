@@ -15,7 +15,7 @@ describe('contact resolution', () => {
       source: 'central-remote',
       supportContextId: 'central-remote',
       operatorName: 'Andrej Schultes',
-      phoneHref: 'tel:+4915679616310',
+      phoneHref: 'tel:+491791707411',
       email: 'kontakt@schultes-it.de',
     })
   })

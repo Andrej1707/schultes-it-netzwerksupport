@@ -143,4 +143,4 @@ Im Repository muss unter **Settings → Pages → Build and deployment** als Que
 ## Kontakt
 
 Schultes IT · deutschlandweit per Fernwartung · Standort Ludwigsburg
-[+49 1567 9616310](tel:+4915679616310)
+[+49 179 1707411](tel:+491791707411)
