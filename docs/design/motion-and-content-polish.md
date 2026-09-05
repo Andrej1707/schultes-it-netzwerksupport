@@ -59,7 +59,7 @@ und temporäre Stile entfernt. Es entstehen keine neuen Bibliotheks- oder Netzwe
 ## Performance
 
 Gegenüber der zuvor live ausgelieferten Fassung wachsen Haupt-JavaScript und Haupt-CSS zusammen
-um **1.637 Byte gzip** (mit identischen gzip-Einstellungen verglichen). Bilddateien und
+um **rund 1,7 KB gzip** (mit identischen gzip-Einstellungen verglichen). Bilddateien und
 zusätzliche Abhängigkeiten ändern sich nicht.
 
 Ein lokaler Browser-Kaltstart mit deaktiviertem Cache, vierfach gedrosselter CPU, 150 ms
