@@ -22,8 +22,11 @@ starten. Er benötigt keine zusätzlichen gespeicherten Zugangsdaten.
    `npm ci` und der gesamte Prüfpfad `npm run check`.
 5. Ausschließlich EXE und Metadaten werden durch `github-actions[bot]` auf `main` committed.
    Ein normaler Push ohne Force verhindert das Überschreiben paralleler Änderungen.
-6. Der Workflow startet die bestehende Pages-Pipeline ausdrücklich über `workflow_dispatch`.
-   Dort werden erneut alle Prüfungen ausgeführt, bevor die Website veröffentlicht wird.
+6. Der Workflow prüft auch bei unverändertem Download, ob für den aktuellen Commit bereits
+   eine erfolgreiche oder noch laufende Pages-Pipeline existiert. Fehlt sie, startet er die
+   Veröffentlichung ausdrücklich über `workflow_dispatch`. Dadurch wird auch eine zuvor
+   fehlgeschlagene Veröffentlichung beim nächsten Lauf erneut versucht. In der Pages-Pipeline
+   werden erneut alle Prüfungen ausgeführt, bevor die Website veröffentlicht wird.
 
 Der ausdrückliche Dispatch ist nötig, weil ein Push mit `GITHUB_TOKEN` alleine keine weitere
 Push-Pipeline auslöst. Siehe [GitHub: Workflows auslösen](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow).

@@ -85,12 +85,17 @@ jobs:
           git push origin HEAD:main
 
       # A GITHUB_TOKEN push does not trigger the normal push workflow.
-      - name: Deploy the verified main branch
-        if: steps.changes.outputs.changed == 'true'
-        run: gh workflow run deploy.yml --ref main
+      # Also retry a publication that failed after an earlier successful commit.
+      - name: Ensure the verified main branch is published
+        shell: bash
+        run: |
+          head=$(git rev-parse HEAD)
+          runs=$(gh run list --workflow deploy.yml --branch main --commit "$head" --limit 20 --json status,conclusion)
+          if jq -e '[.[] | select(.conclusion == "success" or .status != "completed")] | length > 0' <<< "$runs" > /dev/null; then
+            echo 'The current commit is already published or its deployment is running.' >> "$GITHUB_STEP_SUMMARY"
+          else
+            gh workflow run deploy.yml --ref main
+            echo 'Requested Pages deployment for the verified main branch, including any pending retry.' >> "$GITHUB_STEP_SUMMARY"
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Record publication request
-        if: steps.changes.outputs.changed == 'true'
-        run: echo 'RustDesk files committed to main; the full Pages deployment was requested.' >> "$GITHUB_STEP_SUMMARY"
