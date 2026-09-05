@@ -7,17 +7,26 @@ Produktions-Gate als 10/10, wenn alle folgenden Punkte automatisch bestehen:
 
 - jede indexierbare URL besitzt eine eigene statische HTML-Datei;
 - Statuspfad, Canonical, Robots-Angabe, Titel, Beschreibung und Open-Graph-Daten stimmen überein;
-- H1 und sichtbarer statischer Inhalt gehören nachweislich zur jeweiligen Route;
+- H1 und vollständiger statischer Inhalt stammen aus denselben React-Komponenten wie die
+  interaktive Website; auch Rechtstexte bleiben ohne JavaScript lesbar;
 - jede indexierbare Seite hat mindestens einen statisch crawlbaren internen Verweis;
 - XML- und Text-Sitemap werden aus derselben Seiten-Registry erzeugt;
-- Aliasse bleiben erreichbar, sind aber `noindex` und verweisen auf die kanonische Zielseite;
+- Aliasse bleiben für Crawler erreichbar und verweisen per sofortiger Meta-Refresh-Weiterleitung
+  und Canonical auf die aktuelle Zielseite; sie stehen nicht in der Sitemap und erhalten kein `noindex`;
 - strukturierte Daten passen zum Seitentyp und enthalten gültige Marken-, Service- oder
   Standortangaben;
 - nationale Fernwartung nennt Deutschland, lokale Seiten nur echte aktive Einsatzgebiete;
 - 404- und Rechtseiten gelangen nicht versehentlich in den Suchindex;
+- lokale Bild-, Schrift- und Skriptdateien sowie interne Ziele existieren im veröffentlichten Build;
+- strukturierte Daten besitzen einen zur Content-Security-Policy passenden SHA-256-Hash;
 - TypeScript, Tests, Produktions-Build und `npm run seo:check` bestehen gemeinsam.
 
 Dieser Gate schützt die technische Grundlage. Er garantiert weder Rankings noch Rich Results.
+Google zeigt FAQ-Rich-Results seit dem 7. Mai 2026 nicht mehr an. Die Fragen und Antworten helfen
+Besuchern weiterhin; vorhandenes, inhaltlich korrektes FAQ-Markup ist kein Ranking-Versprechen.
+Quellen: [Weiterleitungen](https://developers.google.com/search/docs/crawling-indexing/301-redirects),
+[Google-Dokumentationsänderungen](https://developers.google.com/search/updates),
+[Sitemap-Änderungsdaten](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap).
 
 ## Was "Autorität 8/10" bedeutet
 

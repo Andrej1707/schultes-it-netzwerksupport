@@ -2,7 +2,7 @@ import { activeLocations } from './locations'
 import { publicServicePages } from './publicServices'
 import type { SitePage, ResolvedSiteRoute, SchemaKind } from './types'
 
-const lastModified = '2026-07-28'
+const lastModified = '2026-09-05'
 
 const structuralPages: SitePage[] = [
   {
@@ -16,8 +16,8 @@ const structuralPages: SitePage[] = [
     keywords:
       'Schultes IT, Fernwartung, IT Hilfe, PC Hilfe, regionale IT Standorte, Computerhilfe',
     eyebrow: 'SCHULTES IT / DEUTSCHLAND',
-    heading: 'Technik-Hilfe,',
-    accent: 'die dich erreicht.',
+    heading: 'Einfach gute Technik.',
+    accent: 'Für deinen Alltag. Für dein Unternehmen.',
     intro:
       'Schultes IT verbindet sichere Fernwartung mit persönlicher Hilfe durch klar verantwortliche regionale Ansprechpartner.',
     indexable: true,
@@ -99,7 +99,7 @@ const structuralPages: SitePage[] = [
     heading: 'Technikprobleme verstehen.',
     accent: 'Sicher den nächsten Schritt wählen.',
     intro:
-      'Die vorhandenen Hilfeseiten werden hier thematisch gebündelt und künftig um weitere verständliche Beiträge ergänzt.',
+      'Windows, WLAN, E-Mail oder ein verdächtiger Anruf: Finde verständliche Orientierung und die passende Hilfe für dein Technikproblem.',
     indexable: true,
     lastModified,
     changeFrequency: 'weekly',
@@ -228,6 +228,17 @@ export const sitePages: SitePage[] = [
   ...serviceSitePages,
 ]
 export const indexableSitePages = sitePages.filter((page) => page.indexable)
+
+export const notFoundPage: SitePage = {
+  ...structuralPages[0],
+  id: 'not-found', kind: 'not-found', path: '/404.html',
+  title: 'Seite nicht gefunden | Schultes IT',
+  description: 'Die angeforderte Seite wurde nicht gefunden. Finde die passende IT-Hilfe bei Schultes IT.',
+  eyebrow: 'SEITE NICHT GEFUNDEN', heading: 'Diese Seite gibt es nicht.',
+  accent: 'Die passende Hilfe aber schon.',
+  intro: 'Vielleicht wurde der Link falsch geschrieben. Hier findest du den Weg zur passenden Unterstützung.',
+  indexable: false,
+}
 
 export function normalizePathname(pathname: string) {
   const withoutQueryOrHash = pathname.split(/[?#]/, 1)[0] || '/'

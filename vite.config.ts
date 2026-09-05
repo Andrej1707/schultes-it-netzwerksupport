@@ -2,7 +2,13 @@ import { createHash } from 'node:crypto'
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import { siteConfig } from './src/site/config'
-import { indexableSitePages, normalizePathname, sitePages } from './src/site/routes'
+import {
+  indexableSitePages,
+  normalizePathname,
+  notFoundPage,
+  resolveSiteRoute,
+  sitePages,
+} from './src/site/routes'
 import { structuredDataForPage } from './src/site/schema'
 import { renderStaticPageContent } from './src/site/staticContent'
 import type { SitePage } from './src/site/types'
@@ -85,7 +91,7 @@ function renderPageHtml(baseHtml: string, page: SitePage, isAlias = false) {
       const prefix = cleanAttributes ? ` ${cleanAttributes}` : ''
       return `<html${prefix} data-page-id="${page.id}">`
     })
-    .replace(/<title>[\s\S]*?<\/title>/i, `<title>${page.title}</title>`)
+    .replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeXml(page.title)}</title>`)
     .replace(
       /<link rel="canonical" href="[^"]*"\s*\/>/i,
       `<link rel="canonical" href="${canonicalUrl}" />`,
@@ -145,7 +151,12 @@ function staticPagesPlugin(): Plugin {
   return {
     name: 'generate-static-site-pages',
     enforce: 'post',
-    transformIndexHtml(html) {
+    transformIndexHtml(html, context) {
+      if (context.server) {
+        const pathname = new URL(context.originalUrl ?? context.path, siteConfig.url).pathname
+        const route = resolveSiteRoute(pathname)
+        return renderPageHtml(html, route?.page ?? notFoundPage, route?.isAlias ?? false)
+      }
       return renderPageHtml(html, home)
     },
     generateBundle(_options, bundle) {
@@ -179,21 +190,6 @@ function staticPagesPlugin(): Plugin {
         }
       }
 
-      const notFoundPage: SitePage = {
-        ...home,
-        id: 'not-found',
-        kind: 'not-found',
-        path: '/404.html',
-        title: 'Seite nicht gefunden | Schultes IT',
-        description:
-          'Die angeforderte Seite wurde nicht gefunden. Nutze die Navigation zu Fernwartung, Leistungen oder Standorten.',
-        eyebrow: 'SYSTEM / 404',
-        heading: 'Diese Seite gibt es nicht.',
-        accent: 'Die passende Hilfe aber schon.',
-        intro:
-          'Nutze die Hauptnavigation oder starte bei der deutschlandweiten Fernwartung.',
-        indexable: false,
-      }
       this.emitFile({
         type: 'asset',
         fileName: '404.html',
@@ -227,6 +223,8 @@ function staticPagesPlugin(): Plugin {
               legalPage: page.legalPage,
               heading: page.heading,
               accent: page.accent,
+              title: page.title,
+              description: page.description,
             })),
           },
           null,

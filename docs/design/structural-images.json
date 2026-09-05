@@ -1,0 +1,132 @@
+{
+  "mode": "built-in image_gen",
+  "generated": "2026-09-05",
+  "description": "Distinct illustrative equipment and service photographs generated for Schultes IT. No depicted client proof, identified persons or actual business premises.",
+  "encoding": {
+    "format": "webp",
+    "quality": 82,
+    "widths": [
+      640,
+      1280,
+      1920
+    ]
+  },
+  "assets": [
+    {
+      "key": "ludwigsburg-service",
+      "alt": "Illustrative Szene: anonyme Hände prüfen einen Laptop am Holztisch in einem Wohnraum.",
+      "prompt": "Use case: photorealistic-natural\nAsset type: premium IT support website photograph, standalone landscape 3:2 image.\nPrimary request: A realistic anonymous adult IT technician's hands testing an open silver laptop at a client's warm oak dining table, with a compact charcoal fabric toolbag next to the laptop and a few neatly placed compact diagnostic tools. The laptop is open normally for use, not disassembled. Only hands and partial forearms are visible, no face or identifying features. Natural believable hand posture: one hand rests near the keyboard while the other gently connects a small cable to the side of the laptop.\nScene/backdrop: warm contemporary real home interior, softly blurred pale dining chairs and cream curtains, subtly lived-in but uncluttered.\nComposition: distinctly side-on editorial view across the warm oak table, laptop and compact toolbag clearly separated in the frame, realistic scale, landscape 3:2. This must differ from a generic closeup of typing hands: show more of the home setting and the compact service toolbag.\nStyle: quiet premium product/editorial photography, natural textures and gentle daylight, restrained Apple-inspired photographic craftsmanship, realistic aluminum, wood, fabric and human skin.\nConstraints: single photographic scene, no text, no readable screens, no logos or brands, no watermark, no glowing effects, no floating UI, no exaggerated computer fantasy. This is generic illustrative service photography, not a portrait of Andrej Schultes or any actual identified business owner. Anatomically accurate hands with five fingers each.",
+      "files": [
+        {
+          "file": "public/images/ludwigsburg-service-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 30686
+        },
+        {
+          "file": "public/images/ludwigsburg-service-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 87814
+        },
+        {
+          "file": "public/images/ludwigsburg-service-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 143232
+        }
+      ],
+      "sourceDimensions": {
+        "width": 1536,
+        "height": 1024
+      }
+    },
+    {
+      "key": "about-workshop",
+      "alt": "Illustrativer kleiner IT-Arbeitsplatz mit Reparaturmatte, Werkzeugen, Notizbuch und dunklem Monitor.",
+      "prompt": "Use case: photorealistic-natural\nAsset type: standalone premium IT business about-page photograph, landscape 3:2.\nPrimary request: A neat personal small IT workbench seen from a calm overhead three-quarter angle. A muted graphite repair mat is centered on a light birch desk, with a compact precision screwdriver set neatly arranged at one edge, a closed unbranded paper notebook and pencil, and a dark switched-off slim monitor at the back of the desk. No laptop and no desktop tower in this scene. The desk feels like a thoughtful independent maker's small practical work area rather than a corporate showroom.\nScene/backdrop: pale warm-gray wall, soft daylight, subtle believable wood grain, functional small workbench and restrained personal scale, uncluttered without looking sterile.\nComposition: generous landscape 3:2 image, overhead-angled camera approximately forty-five degrees above the desk, all equipment physically resting on the workbench. The repair mat and compact tools form the main composition; the black screen is a quiet upper edge anchor.\nStyle: natural realistic editorial photography with premium restrained craftsmanship, tactile surfaces, calm neutral palette, soft shadows and credible material detail.\nConstraints: no people, no hands, no text or visible notebook writing, no readable screens, no logos, no brands, no watermark, no glow, no floating objects, no fake UI. Generic illustrative workshop image, not documentary proof of an actual named person's premises.",
+      "files": [
+        {
+          "file": "public/images/about-workshop-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 27136
+        },
+        {
+          "file": "public/images/about-workshop-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 90360
+        },
+        {
+          "file": "public/images/about-workshop-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 142092
+        }
+      ],
+      "sourceDimensions": {
+        "width": 1536,
+        "height": 1024
+      }
+    },
+    {
+      "key": "overview-pc",
+      "alt": "Illustrative Produktaufnahme eines dunklen Desktop-PCs und eines silbernen Laptops.",
+      "prompt": "Use case: product-mockup\nAsset type: premium IT services overview website photo, standalone landscape 3:2.\nPrimary request: An isolated charcoal compact desktop tower with refined flat surfaces and subtle ventilation, together with a slim silver laptop standing physically on a warm white seamless studio surface. The tower sits slightly behind the laptop, a simple charcoal wired keyboard rests naturally in front, with one understated visible cable. The laptop is open and its screen shows only a muted cool gray-blue abstract wallpaper with no text or interface. The tower is unbranded with no RGB and no glass-window gaming aesthetic.\nScene: clean warm white studio backdrop with soft real shadows beneath the equipment. No home interior, plants, people, monitor, decorative props or repeated generic desk scene.\nComposition: landscape 3:2, grounded premium product still life, three-quarter front angle, complete tower and laptop comfortably visible with generous negative space around them, visually strong shape contrast between the dark tower and silver laptop.\nStyle: quiet sophisticated product photography, real aluminum and matte charcoal material texture, restrained Apple-inspired photographic craftsmanship, softly diffused natural-looking light and realistic lens perspective.\nConstraints: no logos, no brands, no text, no watermark, no neon, no glow, no floating equipment, no UI graphics, no collage. A single credible photographed equipment composition.",
+      "files": [
+        {
+          "file": "public/images/overview-pc-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 11944
+        },
+        {
+          "file": "public/images/overview-pc-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 33148
+        },
+        {
+          "file": "public/images/overview-pc-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 54884
+        }
+      ],
+      "sourceDimensions": {
+        "width": 1536,
+        "height": 1024
+      }
+    },
+    {
+      "key": "overview-network",
+      "alt": "Illustratives Detail eines kleinen Netzwerkschranks mit Switch und sauber geführten blauen Netzwerkkabeln.",
+      "prompt": "Use case: photorealistic-natural\nAsset type: premium IT network services overview photograph, standalone landscape 3:2.\nPrimary request: A small organized white wall-mounted network cabinet in a tidy bright small office utility corner, cabinet door open to the side. Inside is a compact unbranded network switch on a simple rack shelf with a modest number of neatly looped blue Ethernet patch cables going into their ports. Cables follow believable restrained routing and are held with soft hook-and-loop ties. Include realistic connectors and modest ventilation details. Keep the installation small, credible and carefully organized, not a huge server room or fantasy data center.\nScene/backdrop: pale off-white wall with very subtle plaster texture and a little clean light oak shelving at the edge, daylight from outside the frame.\nComposition: landscape 3:2, close editorial interior detail, slight three-quarter angle so the depth of the cabinet and loops of blue cable are clearly visible; the cabinet fills most but not all of the image with calm wall space around it.\nStyle: realistic premium editorial photography, quiet modern craftsmanship, natural soft daylight and tactile surfaces, gentle shadows, bright clean whites and rich but restrained blue cable accents.\nConstraints: no people, no text, no labels, no readable port numbers, no logos, no brands, no watermark, no glow, no floating objects, no illustrated connectivity rings, no UI overlay. Generic illustrative network installation, not documentary proof of any specific client work.",
+      "files": [
+        {
+          "file": "public/images/overview-network-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 30618
+        },
+        {
+          "file": "public/images/overview-network-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 91000
+        },
+        {
+          "file": "public/images/overview-network-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 146666
+        }
+      ],
+      "sourceDimensions": {
+        "width": 1536,
+        "height": 1024
+      }
+    }
+  ]
+}

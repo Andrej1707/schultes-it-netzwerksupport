@@ -1,0 +1,127 @@
+{
+  "generatedAt": "2026-09-05",
+  "generator": "built-in image_gen",
+  "usage": "Illustrative generated editorial/product imagery for Schultes IT. Not photographs of actual client installations or endorsements. Generic devices, no brand logos.",
+  "assets": [
+    {
+      "name": "network-service",
+      "alt": "Weißer Router und Laptop in einem hellen Wohnraum mit großen Fenstern.",
+      "prompt": "Use case: photorealistic-natural\nAsset type: premium German IT company website service hero, illustrative editorial photograph\nPrimary request: a modern long white wireless router beside a compact open aluminum laptop, situated naturally in an airy contemporary living room with a large window overlooking quiet greenery.\nComposition/framing: landscape 3:2, 1536x1024; wide architectural interior photograph at eye level, router and laptop resting on a light oak desk in the lower foreground, calm living room depth and a window view filling the background. The router is the clear subject, the room feels lived in but uncluttered.\nStyle/medium: convincing premium editorial photography, real tactile surfaces, restrained natural color, subtle grain, authentic camera perspective. Soft daylight, gentle shadows, cool white and warm pale oak. The laptop screen has only a muted abstract wallpaper, no interface.\nConstraints: generic unbranded equipment, no readable text, no logos, no watermark, no neon, no glowing connections or floating UI, no people. A grounded real interior, not a sterile 3D render.",
+      "sourceFile": "exec-eb5775db-ecd4-411a-9037-ed02021bc5aa.png",
+      "sourceDimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "variants": [
+        {
+          "file": "public/images/network-service-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 26618
+        },
+        {
+          "file": "public/images/network-service-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 69134
+        },
+        {
+          "file": "public/images/network-service-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 108776
+        }
+      ]
+    },
+    {
+      "name": "fritzbox-service",
+      "alt": "Kompakter weißer Router mit rotem Akzent auf einem Sideboard aus heller Eiche.",
+      "prompt": "Use case: product-mockup\nAsset type: premium German IT company website router configuration service hero, illustrative product photograph\nPrimary request: close-up product photograph of a rounded white home wireless router with a subtle red lower trim, a few small tactile buttons and convincingly engineered ventilation and ports, standing on a pale oak sideboard.\nComposition/framing: landscape 3:2, 1536x1024; tight three-quarter side view at tabletop height, one router fills most of the right two thirds, clean cream wall behind, left side has natural calm negative space. Do not include a laptop or other network devices.\nStyle/medium: physically believable high-end product photography, matte molded plastic texture, fine wood grain, soft window daylight from one side and gentle contact shadow; restrained offwhite, oak and small deep red accent.\nConstraints: entirely generic unbranded device, no Fritzbox logo or invented wordmark, no readable text anywhere, no watermark, no neon, no floating objects or interface graphics, no people. Natural tactile realism, not glossy CGI.",
+      "sourceFile": "exec-2ae557db-1797-485c-960e-a53c8524b5f9.png",
+      "sourceDimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "variants": [
+        {
+          "file": "public/images/fritzbox-service-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 14212
+        },
+        {
+          "file": "public/images/fritzbox-service-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 37584
+        },
+        {
+          "file": "public/images/fritzbox-service-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 60776
+        }
+      ]
+    },
+    {
+      "name": "mesh-service",
+      "alt": "Drei weiße Mesh-Zugangspunkte verteilt auf Regalen in einem hellen Flur.",
+      "prompt": "Use case: photorealistic-natural\nAsset type: premium German IT company website mesh Wi-Fi service hero, illustrative editorial photograph\nPrimary request: three compact pale cylindrical mesh Wi-Fi access points placed at different depths across staggered pale wooden wall shelves in a bright hallway leading into a home office. All three devices clearly visible and recognizable as members of one understated product family.\nComposition/framing: landscape 3:2, 1536x1024; slightly elevated diagonal view along the hallway, closest device in left foreground on a narrow shelf, second centered midway back, third on a distant shelf near the home-office doorway. Architectural depth, no conventional flat row of devices, with generous white wall area.\nStyle/medium: believable premium editorial interior photograph, real matte plastic with tiny unobtrusive status light, textured oak and soft painted wall, bright diffused daylight, crisp closest device with mild background softness.\nConstraints: generic unbranded hardware, no readable text, no logos, no watermark, no people, no floating objects, no neon or drawn radio waves or interface graphics. Grounded natural photography, not a glossy CGI render.",
+      "sourceFile": "exec-ca5d0217-17fe-42b8-93dd-ffc56bfef4ba.png",
+      "sourceDimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "variants": [
+        {
+          "file": "public/images/mesh-service-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 11912
+        },
+        {
+          "file": "public/images/mesh-service-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 31278
+        },
+        {
+          "file": "public/images/mesh-service-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 51690
+        }
+      ]
+    },
+    {
+      "name": "router-service",
+      "alt": "Eine Hand verbindet ein blaues Netzwerkkabel mit einem weißen Router.",
+      "prompt": "Use case: photorealistic-natural\nAsset type: premium German IT company website router setup service hero, illustrative editorial macro photograph\nPrimary request: close-up of one adult hand gently connecting a blue Ethernet cable to a real RJ45 socket at the back of a small white router on a pale wooden tabletop. The socket and clear plastic RJ45 connector with blue strain relief are the hero.\nComposition/framing: landscape 3:2, 1536x1024; macro view just above table height, router rear panel occupies the left half and the hand enters from the right; correct connector insertion alignment and convincing cable curve; a neutral softly blurred cream background.\nStyle/medium: authentic high-end service-detail photography, natural window light, matte white plastic, tiny tactile engineering details, skin with realistic texture and natural anatomy, shallow depth of field centered on connection point. Calm warm gray and pale oak palette with the single blue cable accent.\nConstraints: exactly one anatomically plausible adult hand with thumb and index finger pinching the connector, other fingers naturally folded; generic unbranded device; no readable text, no logo, no watermark, no UI overlays, no neon, no sparks, no floating objects. Clearly physical Ethernet connection, not USB.",
+      "sourceFile": "exec-6e8a22f1-993b-4841-bea8-a0eabe0377c3.png",
+      "sourceDimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "variants": [
+        {
+          "file": "public/images/router-service-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 15108
+        },
+        {
+          "file": "public/images/router-service-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 37982
+        },
+        {
+          "file": "public/images/router-service-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 60506
+        }
+      ]
+    }
+  ]
+}

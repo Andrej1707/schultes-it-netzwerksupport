@@ -15,23 +15,28 @@ Ludwigsburg ist der erste inhabergeführte Standort. Weitere echte Standorte kö
 - React
 - TypeScript
 - Vite
-- Framer Motion
 - Lucide Icons
-- Custom CSS und Canvas-Animation
-- Google Maps Embed
+- Custom CSS mit responsiven Layouts und Reduced-Motion-Unterstützung
+- Lokal ausgelieferte WebP-Bilder mit `srcset`
+- Google Maps Embed nach aktivem Klick
+- Cloudflare Worker und Durable Objects für den Support-Assistenten
 
 ## Highlights
 
 - Marken-Startseite mit zwei klaren Einstiegen: Fernwartung und regionale Standorte
+- Helles Premium-Design mit großen Produktmotiven, klarer Typografie und eigenen
+  Gestaltungsvarianten für die einzelnen Themen
 - Verschachtelte, statisch erzeugte Routen mit vollständiger Pfadauflösung
+- Vollständiges React-HTML beim Build; dieselben Komponenten werden im Browser hydriert
 - Seitentypabhängige Metadaten und Schema.org-Daten
 - Automatisch aus der Seiten-Registry erzeugte XML- und Text-Sitemap
 - Datenmodell für aktive Standorte, Betreiber, Einsatzgebiete und Koordinaten
-- Datenschutzfreundlicher Standortfinder mit lokaler Distanzberechnung
-- Animierte Ludwigsburg-Kommandozentrale als erster Standort
-- Projektstream für Tools, Automationen und KI-Prototypen
-- Kompetenzmatrix ohne künstliche Prozentwerte
-- Sticky Mobile-CTA und Copy-Phone-Funktion
+- Durchsuchbares Standortverzeichnis und Standortfinder mit lokaler Distanzberechnung,
+  der erst nach einem Klick aktiv wird
+- Eigene Ludwigsburg-Seite mit Ansprechpartner, Einstiegspreisen, Einsatzgebiet und Kartenfreigabe
+- Projektübersicht mit ausdrücklich benanntem Konzept- oder Prototypenstatus
+- Durchsuchbare Hilfethemen mit Filtern für Fernwartung und regionale Hilfe
+- Mobile Navigation, direkte Kontaktwege und Copy-Phone-Funktion
 - Spamgeschützter KI-Assistent mit Cloudflare Turnstile, festen Limits und OpenAI-Moderation
 
 ## Seitenstruktur
@@ -42,26 +47,37 @@ Ludwigsburg ist der erste inhabergeführte Standort. Weitere echte Standorte kö
   drucker-hilfe/
   email-outlook/
 /leistungen/
-  pc-laptop/
-  netzwerk-wlan/
-  webseiten/
-  automation/
 /standorte/
   ludwigsburg/
+    pc-laptop/
+    netzwerk-wlan/
+    webseiten/
+    automation/
+    <weitere Hilfethemen>/
 /standortinhaber-werden/
 /ratgeber/
 /ueber-schultes-it/
+/impressum/
+/datenschutz/
 ```
 
-Bestehende flache URLs bleiben als Kompatibilitätsrouten erreichbar. Sie werden nicht in der
-Sitemap geführt und verweisen kanonisch auf die neue Zielroute.
+`/leistungen/` ist die zentrale Übersicht. Regionale Leistungsdetails liegen unter dem jeweiligen
+Standort; deutschlandweite Fernwartung liegt unter `/fernwartung/`.
+
+Bestehende flache URLs und ältere Leistungspfade bleiben als Kompatibilitätsrouten erreichbar.
+Sie verwenden `index, follow`, einen Canonical auf die Zielroute und eine Weiterleitung per
+Meta-Refresh mit null Sekunden. Ein normaler Link zur Zielseite bleibt als Rückfallebene sichtbar.
+Aliasse erscheinen nicht in der Sitemap; die rechtlichen Seiten und die Fehlerseite bleiben
+`noindex, follow`.
 
 ## Lokal starten
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
+
+Die GitHub-Actions-Pipeline verwendet Node.js 22.
 
 ## Prüfen und bauen
 
@@ -82,13 +98,27 @@ SEO-Validierung aller kanonischen Routen und Aliasse.
 
 ## Architektur
 
-- `src/site/`: Marken- und Standortkonfiguration, vollständiges Routing, Seitentypen,
-  Distanzlogik und Schema.org-Erzeugung
-- `src/content/`: normalisierte Leistungsdaten und getrennte bestehende Inhaltsmodule
-- `src/pages/`: neue Marken-, Standort-, Ratgeber- und Netzwerkseiten
-- `src/legacy/`: bewährte Ludwigsburg-Oberfläche und bestehende Service-Komponenten
+- `src/SiteView.tsx`: gemeinsamer, synchroner Seitenbaum für Build und Browser
+- `src/components/PremiumShell.tsx`: Navigation, Logo und Footer aller Seiten
+- `src/pages/PremiumHomePage.tsx`: Marken-Startseite
+- `src/pages/PremiumServicePage.tsx`: Leistungsdetails mit themenspezifischen Varianten
+- `src/pages/PremiumNetworkPages.tsx`: Leistungsübersicht, Standortverzeichnis, lokale Seite,
+  Ratgeber, Betreibermodell, Über-uns-Seite und 404
+- `src/pages/LegalContent.tsx`: vollständige Impressums- und Datenschutzinhalte
+- `src/premium.css`, `src/premium-service.css`, `src/premium-network.css`: gemeinsames Design
+  und die Gestaltungsvarianten der Seiten
+- `src/site/`: Marken- und Standortdaten, Kontakte, Routing, Distanzlogik,
+  Schema.org-Erzeugung und statisches Rendern
+- `src/content/`: normalisierte Leistungsdaten; `src/content/legacy/` enthält weiterhin
+  die bestehenden redaktionellen Leistungs- und Hilfetexte als Datenbasis
+- `public/images/`: generierte illustrative Motive in lokalen WebP-Größen;
+  Herkunft und Maße stehen in `assets.json`, die Prompts in
+  [docs/design/image-prompts.json](docs/design/image-prompts.json)
 - `vite.config.ts`: statische HTML-Ausgabe, Alias-Kompatibilität, Sitemap und Seitenmanifest
 - `scripts/validate-seo.mjs`: automatisierte Prüfung gegen das erzeugte Seitenmanifest
+
+Die Bildmotive zeigen allgemeine Technik-Szenen. Sie dokumentieren keine Kundenprojekte,
+keine Geschäftsräume und keine identifizierten Personen.
 
 Weitere Details stehen in [docs/architecture.md](docs/architecture.md). Der messbare technische
 SEO-Gate und der Offpage-Aufbau sind in
@@ -134,8 +164,10 @@ Die Secret Keys gehören weder in GitHub-Variablen noch in `.env.local` und werd
 
 ## GitHub Pages
 
-Der Workflow unter `.github/workflows/deploy.yml` baut die Website bei jedem Push
-auf `main` und veröffentlicht den Inhalt von `dist` über GitHub Pages.
+Der Workflow unter `.github/workflows/deploy.yml` installiert die gesperrten Abhängigkeiten mit
+`npm ci`, führt bei jedem Push auf `main` den vollständigen Prüfpfad `npm run check` aus und
+veröffentlicht anschließend den Inhalt von `dist` über GitHub Pages. Ein manueller Start über
+`workflow_dispatch` ist ebenfalls möglich. Die Worker-Veröffentlichung erfolgt separat.
 
 Im Repository muss unter **Settings → Pages → Build and deployment** als Quelle
 **GitHub Actions** ausgewählt sein.

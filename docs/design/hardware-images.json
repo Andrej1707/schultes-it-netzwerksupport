@@ -1,0 +1,132 @@
+{
+  "generator": "Built-in image_gen",
+  "generatedAt": "2026-09-05T01:56:32.793Z",
+  "format": "webp",
+  "quality": 82,
+  "images": [
+    {
+      "name": "pc-service",
+      "alt": "Silberner Laptop und kompakter schwarzer Mini-PC auf einer hellen Werkbank.",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium IT service website editorial photo. Create a landscape 3:2 photograph, 1536 by 1024 pixels. An open silver laptop and a compact matte black desktop mini-PC sit together on an off-white workbench. Three-quarter front camera view, a deliberately low product-photography angle, laptop to the left and mini-PC clearly visible on the right, physically plausible ports and keyboard. Laptop display is a calm muted slate blue, with no symbols or interface. Soft natural window light from left, subtle real shadows, brushed metal, fine desk texture, slight wear rather than sterile CGI perfection. Minimal warm white backdrop and generous breathing room around both objects. Premium believable editorial technology photography, crisp central details, restrained colors. No people, hands, floating technology, neon, text, logos, visible branding, watermark, 3D render appearance, or collage.",
+      "visualReview": "Visually inspected: distinct three-quarter product view, natural light, silver laptop plus matte black mini-PC, no visible brand or overlay text.",
+      "source": {
+        "generatedFile": "exec-debb170a-e999-4199-a54f-c9904a9eeb1a.png",
+        "width": 1536,
+        "height": 1024
+      },
+      "variants": [
+        {
+          "path": "/images/pc-service-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 12824
+        },
+        {
+          "path": "/images/pc-service-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 35818
+        },
+        {
+          "path": "/images/pc-service-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 59370
+        }
+      ]
+    },
+    {
+      "name": "installation-service",
+      "alt": "USB-C-Dockingstation mit angeschlossenem Laptop und Monitor auf einem aufgeräumten Holztisch.",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium IT installation service website photo. Create a landscape 3:2 photograph, 1536 by 1024 pixels. Close-up of a neat brushed silver USB-C docking station on a warm pale wood desk, physically connected by a short USB-C cable to an open dark charcoal laptop on the left; a single display on a simple stand is softly visible in the upper right background. Camera at a close low side angle focusing sharply on the docking station and connector, shallow but believable depth of field. Carefully arranged real black cables follow soft curves on the tabletop, plugs fully seated into appropriate ports. Warm daylight from right, visible wood grain and tactile metal, authentic quiet professional workspace. Distinct composition centered on the dock and connections rather than a general laptop portrait. Screen areas are plain dark muted blue without interface. Premium natural editorial photo, not a render. No people, hands, floating tech, neon, text, logos, branding, watermarks, or collage.",
+      "visualReview": "Visually inspected: unique close-up on a dock and actual cable connections, warm wood surface, no people or brand marks.",
+      "source": {
+        "generatedFile": "exec-30a50893-533b-4608-abe1-e635e8691a62.png",
+        "width": 1536,
+        "height": 1024
+      },
+      "variants": [
+        {
+          "path": "/images/installation-service-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 25582
+        },
+        {
+          "path": "/images/installation-service-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 70900
+        },
+        {
+          "path": "/images/installation-service-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 114962
+        }
+      ]
+    },
+    {
+      "name": "windows-service",
+      "alt": "Schwarzer Laptop mit ruhigem blauem Bildschirm neben einer kleinen Grünpflanze.",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium Windows setup service website editorial photograph. Create a landscape 3:2 photograph, 1536 by 1024 pixels. One new matte black slim laptop, opened and viewed straight on from front eye level, on a very pale cool-gray desk against a pale subtly textured backdrop. The laptop display is a calm simple muted blue field with a gentle natural illumination, completely free of text, icons, symbols, logos or interface. A single small real green plant in an unglazed light ceramic pot stands at the far right. No other accessories. Carefully balanced quiet composition, generous space, broad overcast daylight from the right, fine keyboard details, realistic reflections, subtle material imperfections. The subject is clean computer setup, with an inviting premium real editorial photography feel, not a CGI render. Distinct composition from a silver laptop product shot or cable close-up: centered front-facing black laptop, plant on right, cool neutral atmosphere. No people, hands, floating tech, neon, branding, watermark, or collage.",
+      "visualReview": "Visually inspected: distinct straight-on black laptop, pale cool backdrop and single real plant, screen contains no interface text.",
+      "source": {
+        "generatedFile": "exec-94f0ab3b-9b61-4406-a0a6-1f3ce34be684.png",
+        "width": 1536,
+        "height": 1024
+      },
+      "variants": [
+        {
+          "path": "/images/windows-service-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 11884
+        },
+        {
+          "path": "/images/windows-service-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 34664
+        },
+        {
+          "path": "/images/windows-service-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 56566
+        }
+      ]
+    },
+    {
+      "name": "slow-pc-service",
+      "alt": "Geöffnete Laptop-Unterseite mit SSD, Lüfter und Präzisionsschraubendreher auf einer hellen Arbeitsmatte.",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium slow-computer diagnosis service website editorial photograph. Create a landscape 3:2 photograph, 1536 by 1024 pixels. Macro overhead camera looking directly down at a silver laptop turned upside down with its lower cover removed, on a tidy very pale blue-gray anti-static work mat. Clearly visible internal black battery cells, a copper cooling heat pipe, cooling fan and a small realistic M.2 SSD module inside the chassis. The laptop takes the left two thirds of the composition and is slightly diagonal; one small precision screwdriver rests neatly on the mat to the right. Carefully believable consumer laptop construction, no exposed mains electricity, no floating parts, no hands. Soft diffuse daylight, precise details, fine natural texture, restrained professional editorial technology photography. A considered real repair workbench close-up, not futuristic or stylized. Avoid readable text, brand names, logos, watermark, glowing lights, neon, additional tools, collage or 3D render appearance.",
+      "visualReview": "Visually inspected: distinct overhead internal hardware scene with copper heat pipe, SSD and one screwdriver, no hands or labels.",
+      "source": {
+        "generatedFile": "exec-26a7be06-923f-4ab5-9a39-661f410038eb.png",
+        "width": 1536,
+        "height": 1024
+      },
+      "variants": [
+        {
+          "path": "/images/slow-pc-service-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 31924
+        },
+        {
+          "path": "/images/slow-pc-service-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 98124
+        },
+        {
+          "path": "/images/slow-pc-service-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 162050
+        }
+      ]
+    }
+  ]
+}

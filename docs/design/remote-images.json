@@ -1,0 +1,171 @@
+{
+  "generatedOn": "2026-09-05",
+  "generationMethod": "built-in image_gen; one generation call per asset",
+  "illustrationNote": "Generic AI-generated illustrative equipment scenes. People are incidental and do not depict Schultes IT staff or clients.",
+  "visualReview": "All four source images visually inspected; distinct compositions, natural light, no visible branding, no readable on-screen text or floating UI.",
+  "processing": {
+    "tool": "sharp",
+    "format": "webp",
+    "quality": 82,
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "note": "The 1920 px delivery variants are resized from 1536 px wide originals."
+  },
+  "assets": [
+    {
+      "name": "remote-main",
+      "alt": "Person mit dezentem Headset am Laptop in einem hellen Homeoffice, von hinten fotografiert.",
+      "prompt": "Use case: photorealistic-natural\nAsset type: standalone premium editorial website photograph, landscape 3:2.\nPrimary request: A distant over-the-shoulder view of an incidental adult wearing a subtle small headset and using an open silver laptop in a beautiful neutral home office. Camera is several steps behind and slightly to one side. Their face is entirely turned away and not identifiable; only the back of the head, shoulders and forearms appear. The person looks at the laptop naturally. This is generic illustrative photography, not a portrait of a business employee.\nScene/backdrop: real airy quiet home office, spacious pale desk, soft off-white walls, restrained natural oak details, a small neutral plant, plenty of clear breathing room. Laptop sits physically on the desk. Its small distant screen is softly out of focus with pale neutral content and no readable text.\nStyle/medium: Apple-like calm premium editorial photography, subtle honest natural materials, believable scale and technique, fine realistic photographic detail, not glossy CGI.\nComposition/framing: landscape 3:2, a wide room-context composition with laptop and seated person occupying the lower middle, daylight and negative space elsewhere. Distinctive distant composition, not a close crop of hands.\nLighting/mood: soft natural daylight, luminous white and pale cool-gray tones with warm natural wood, refined and inviting.\nConstraints: Single photo, no collage, no legible text, no text overlays, no logos, no watermark, no identifiable face. No neon, glow, holograms, floating UI or objects, fantasy cyber imagery.",
+      "source": {
+        "path": "exec-f3c579bc-cc18-41c9-81c4-08e185ce5e28.png",
+        "width": 1536,
+        "height": 1024,
+        "bytes": 1916938,
+        "format": "png"
+      },
+      "variants": [
+        {
+          "path": "public/images/remote-main-640.webp",
+          "url": "/images/remote-main-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 18888,
+          "format": "webp"
+        },
+        {
+          "path": "public/images/remote-main-1280.webp",
+          "url": "/images/remote-main-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 46250,
+          "format": "webp"
+        },
+        {
+          "path": "public/images/remote-main-1920.webp",
+          "url": "/images/remote-main-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 72830,
+          "format": "webp"
+        }
+      ]
+    },
+    {
+      "name": "remote-windows",
+      "alt": "Dunkler Laptop mit abstrakten blauen Einstellungsflächen auf einem hellen Schreibtisch.",
+      "prompt": "Use case: product-mockup\nAsset type: standalone premium editorial website photograph, landscape 3:2.\nPrimary request: Close oblique product photograph of a dark graphite Windows-style laptop on a pale clean desk. The laptop is generic and unbranded, physically believable with a dark thin chassis and real keyboard. Its screen contains tasteful flat blue settings panels, simple pale controls and neutral rectangular rows as a generic local settings interface, entirely without legible text or brand logos.\nScene/backdrop: luminous minimal light work area, pale matte tabletop, softly blurred off-white background, no person. Keep the equipment grounded in reality.\nStyle/medium: Apple-like calm premium editorial product photography, natural light and materials, convincing matte graphite texture, real reflections, sharp hardware detail with gentle background depth, not illustration or CGI.\nComposition/framing: landscape 3:2, close view at a pronounced diagonal oblique three-quarter angle from the laptop's front-left corner. Laptop fills much of the image, screen visible and keyboard in foreground. This should be compositionally distinct from a front-on silver desktop setup.\nLighting/mood: refined soft natural daylight, pale cool-gray surroundings with restrained blue on-screen, clean premium feel.\nConstraints: A single photographic scene. Absolutely no legible text, labels, text overlays, logos or watermark. No people, floating UI, neon, glow, holograms or fantasy technology. All screen content stays flat within the real display.",
+      "source": {
+        "path": "exec-559c1111-4733-46ca-b2c0-a7ba9182c3f5.png",
+        "width": 1536,
+        "height": 1024,
+        "bytes": 1742878,
+        "format": "png"
+      },
+      "variants": [
+        {
+          "path": "public/images/remote-windows-640.webp",
+          "url": "/images/remote-windows-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 18678,
+          "format": "webp"
+        },
+        {
+          "path": "public/images/remote-windows-1280.webp",
+          "url": "/images/remote-windows-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 46200,
+          "format": "webp"
+        },
+        {
+          "path": "public/images/remote-windows-1920.webp",
+          "url": "/images/remote-windows-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 71962,
+          "format": "webp"
+        }
+      ]
+    },
+    {
+      "name": "remote-printer",
+      "alt": "Kompakter weißer Drucker gibt ein Blatt neben einem Laptop auf einem grauen Schreibtisch aus.",
+      "prompt": "Use case: photorealistic-natural\nAsset type: standalone premium editorial website photograph, landscape 3:2.\nPrimary request: A compact white home-office printer beside a partly open silver laptop on a clean soft-gray desk, with one fresh blank white sheet visibly emerging from the printer's proper output slot onto its paper tray. Printer construction and printing mechanics must be physically believable; the printer is the dominant clear subject, laptop secondary. Everything is unbranded.\nScene/backdrop: quiet gray studio-home work area with restrained real materials and generous space, an airy pale wall and softly blurred subtle home background. No person.\nStyle/medium: Apple-like calm premium editorial photography, authentic matte white printer plastic, softly reflective aluminum, natural daylight, fine realistic photographic detail.\nComposition/framing: landscape 3:2, medium-height frontal three-quarter view focused on printer and emerging sheet, laptop beside it angled naturally toward a work position. Clearly different composition from a laptop close-up or home-office person photo.\nLighting/mood: luminous gentle natural daylight, soft neutral-gray shadows, pale white and gray palette, uncluttered and calm.\nConstraints: Single photo, no collage. No legible text on equipment, screen or paper, no brand logos, no watermarks. No neon, glow, holograms, floating UI or objects, impossible paper paths or futuristic technology.",
+      "source": {
+        "path": "exec-8ecb7135-8693-451e-bc6c-0c4e038be961.png",
+        "width": 1536,
+        "height": 1024,
+        "bytes": 1856590,
+        "format": "png"
+      },
+      "variants": [
+        {
+          "path": "public/images/remote-printer-640.webp",
+          "url": "/images/remote-printer-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 15074,
+          "format": "webp"
+        },
+        {
+          "path": "public/images/remote-printer-1280.webp",
+          "url": "/images/remote-printer-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 40644,
+          "format": "webp"
+        },
+        {
+          "path": "public/images/remote-printer-1920.webp",
+          "url": "/images/remote-printer-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 67192,
+          "format": "webp"
+        }
+      ]
+    },
+    {
+      "name": "remote-email",
+      "alt": "Dunkelblaues Tablet und Laptop mit abstrakten Postfachsymbolen, von oben auf einem hellen Arbeitsplatz fotografiert.",
+      "prompt": "Use case: product-mockup\nAsset type: standalone premium editorial website photograph, landscape 3:2.\nPrimary request: True overhead flat-lay photograph of a navy-blue tablet and an open slim laptop on a very pale desk, arranged with a small amount of pale-blue stationery. The real screens contain minimal generic envelope symbols and a few clean inbox row shapes, all flat within the screen with absolutely no readable text. Devices are unbranded and physically plausible. The tablet has a tasteful dark navy case. Include a pale blue notebook or paper and one simple pen as restrained stationery.\nScene/backdrop: matte pale cool-gray tabletop, uncluttered realistic premium desk scene. All items rest on the physical surface. No person or hands.\nStyle/medium: Apple-like calm premium editorial photography, natural materials, fine tactile paper, glass and aluminum detail, subtle believable screen reflections, not illustration or CGI.\nComposition/framing: landscape 3:2, camera directly above for a clean graphic overhead arrangement, devices at gentle opposing angles with balanced breathing room and pale blue stationery accents. Distinct from frontal equipment or side-view laptop photographs.\nLighting/mood: soft natural daylight, luminous white and cool pale blue with a restrained navy accent, subtle real shadows, calm and elegant.\nConstraints: A single photographic scene. No legible text or letters, text overlays, logos or watermark. No neon, glow, holograms or floating email symbols. Envelope and inbox shapes must appear only inside the actual device displays.",
+      "source": {
+        "path": "exec-bcfd2999-c487-4602-bcab-5e07f52162be.png",
+        "width": 1536,
+        "height": 1024,
+        "bytes": 2118126,
+        "format": "png"
+      },
+      "variants": [
+        {
+          "path": "public/images/remote-email-640.webp",
+          "url": "/images/remote-email-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 21558,
+          "format": "webp"
+        },
+        {
+          "path": "public/images/remote-email-1280.webp",
+          "url": "/images/remote-email-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 59954,
+          "format": "webp"
+        },
+        {
+          "path": "public/images/remote-email-1920.webp",
+          "url": "/images/remote-email-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 100986,
+          "format": "webp"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "generatedAt": "2026-09-05",
+  "method": "built-in image_gen",
+  "purpose": "Illustrative editorial service photography; scenes do not depict actual Schultes IT staff, clients or business records.",
+  "assets": [
+    {
+      "name": "email-service",
+      "alt": "Laptop und Smartphone mit E-Mail-Ansichten auf einem warmen Holzschreibtisch.",
+      "prompt": "Use case: photorealistic-natural. Asset type: editorial photograph for a premium German IT service website. Primary request: an overhead photograph of a smartphone and open laptop showing abstract unreadable email inbox interfaces, with pale stationery, on a warm oak desk. Scene: a quiet believable home office. Composition: true top-down flat-lay, laptop enters from upper left, phone lies neatly beside it, understated cream paper and a blue pen; generous natural desk texture around the objects. Landscape 3:2, 1536 by 1024. Natural soft morning window light, real tactile oak grain and matte glass, sophisticated calm white and warm neutral palette. Anonymous illustrative scene, no people. Photograph, not a render. Screens contain only tiny gray horizontal lines and muted blue accents without legible letters or words. Avoid logos, trademarks, text overlays, watermarks, neon, glowing effects, floating UI, sci-fi, excessive props, plastic AI look.",
+      "sourceFilename": "exec-f5ab165d-903b-435a-8d96-04b3cc46692e.png",
+      "sourceDimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "files": [
+        {
+          "path": "public/images/email-service-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 38118
+        },
+        {
+          "path": "public/images/email-service-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 133862
+        },
+        {
+          "path": "public/images/email-service-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 218968
+        }
+      ]
+    },
+    {
+      "name": "printer-service",
+      "alt": "Multifunktionsdrucker mit geöffnetem Scanner in einem hellen Büro.",
+      "prompt": "Use case: photorealistic-natural. Asset type: editorial photograph for a premium German IT service website. Primary request: a large charcoal multifunction laser printer with the flatbed scanner lid open on a pale office credenza. Scene: naturally lit contemporary office detail, off-white plaster wall and a little soft window shadow in the background. Composition: close three-quarter side view at credenza height, whole printer readable with believable paper tray and glass scanner, printer is the clear large subject. Landscape 3:2, 1536 by 1024. Natural afternoon light, precise tactile matte graphite plastic, subtle pale wood, neutral daylight colors. Calm premium editorial photograph, not a render. Anonymous illustrative office, no people. Avoid laptops, logos, trademarks, legible labels, text overlays, watermarks, neon, glowing effects, floating UI, sci-fi, excessive props, plastic AI look.",
+      "sourceFilename": "exec-a44a6b25-d5e1-4538-8e23-977c54ccfdad.png",
+      "sourceDimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "files": [
+        {
+          "path": "public/images/printer-service-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 19222
+        },
+        {
+          "path": "public/images/printer-service-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 53532
+        },
+        {
+          "path": "public/images/printer-service-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 88622
+        }
+      ]
+    },
+    {
+      "name": "software-service",
+      "alt": "Laptop mit mehreren Programmfenstern und einer angeschlossenen externen Festplatte.",
+      "prompt": "Use case: photorealistic-natural. Asset type: editorial photograph for a premium German IT service website. Primary request: side view of an open graphite laptop showing several neat generic application windows beside a small external drive on a pale stone desk. Scene: quiet modern workspace, softly out-of-focus light neutral background. Composition: low oblique side view along the desk, slim laptop at a believable 110 degree opening, small cabled drive in sharp foreground, a few overlapping abstract pale software windows with gray lines and muted blue shapes on the screen. Landscape 3:2, 1536 by 1024. Soft cool daylight from a tall window, real tactile anodized metal and limestone textures, restrained premium photography. Anonymous illustrative scene, no people. Photograph, not a render. Avoid legible screen text, text overlays, logos, trademarks, watermarks, neon, glow effects, floating UI, impossible cables, excessive props, plastic AI look.",
+      "sourceFilename": "exec-f77559a4-3aba-482a-b2c4-c907d8c76377.png",
+      "sourceDimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "files": [
+        {
+          "path": "public/images/software-service-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 20184
+        },
+        {
+          "path": "public/images/software-service-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 53508
+        },
+        {
+          "path": "public/images/software-service-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 85426
+        }
+      ]
+    },
+    {
+      "name": "office-service",
+      "alt": "Tabellen und Diagramme neben einem Taschenrechner und Laptop auf einem hellen Schreibtisch.",
+      "prompt": "Use case: photorealistic-natural. Asset type: editorial photograph for a premium German IT service website. Primary request: close overhead business desk study with printed spreadsheet paper, a simple physical calculator and the edge of a laptop showing an abstract chart. Scene: refined pale cream desktop, soft natural daylight. Composition: intimate top-down editorial crop, paper spreadsheet with neat pale gray grid cells and soft blue chart shapes is central, off-white calculator sits diagonally nearby, only a silver laptop edge and part of its screen enter one corner. Landscape 3:2, 1536 by 1024. Real uncoated paper texture, matte calculator keys, cream and blue accents. Calm professional photograph, not a render. Anonymous illustrative scene, no people, no actual business records. Tiny generic grid markings and chart shapes must be unreadable, with no legible words or meaningful data. Avoid text overlays, logos, trademarks, watermarks, neon, glowing effects, floating UI, sci-fi, excessive props, plastic AI look.",
+      "editPrompt": "Edit this editorial office photograph, keeping the exact composition, paper charts, cream desk, blue palette, light and laptop unchanged. Correct only the calculator: give it a realistic conventional calculator keypad, with the number keys in the standard arrangement 7 8 9 in the top numeric row, then 4 5 6, then 1 2 3, then 0 and decimal point, plus familiar arithmetic function keys. No duplicated or malformed digits, no fictitious words. Keep the calculator display empty. Preserve photographic realism, subtle shallow focus and tactile matte materials. Do not add any logo or text overlay.",
+      "sourceFilename": "exec-cd6a7f59-0239-40d8-bf52-9443543c08a2.png",
+      "sourceDimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "files": [
+        {
+          "path": "public/images/office-service-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 23572
+        },
+        {
+          "path": "public/images/office-service-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 61286
+        },
+        {
+          "path": "public/images/office-service-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 95286
+        }
+      ]
+    }
+  ]
+}

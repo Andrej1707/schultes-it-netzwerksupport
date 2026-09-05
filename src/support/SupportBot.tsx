@@ -267,7 +267,7 @@ export default function SupportBot({ contact }: { contact: ContactProfile }) {
         if (cancelled || !turnstileContainer.current || widgetId.current) return
         widgetId.current = turnstile.render(turnstileContainer.current, {
           sitekey: turnstileSiteKey,
-          theme: 'dark',
+        theme: 'light',
           size: 'flexible',
           language: 'de',
           action: 'support_session',

@@ -1,0 +1,119 @@
+{
+  "generatedAt": "2026-09-05",
+  "tool": "built-in image_gen",
+  "use": "Illustrative imagery; people are anonymous and do not represent Schultes IT staff or customers.",
+  "images": [
+    {
+      "name": "consulting-service",
+      "alt": "Zwei Personen besprechen am Tisch eine skizzierte Netzwerkplanung.",
+      "prompt": "Use case: photorealistic-natural. Asset type: image for a premium light German IT consulting service website. Create one editorial photographic scene, landscape 3:2. Overhead camera view of a real pale oak table in a bright modest office. Two anonymous adults' hands enter naturally from opposite edges, calmly reviewing a white paper with a simple hand-drawn network planning sketch of boxes and connecting lines, without any letters or readable text. A closed silver laptop sits to one side, a restrained pen and water glass nearby. Natural soft window daylight, subtle paper grain and wood texture, quiet professional mood, off-white and warm gray tones. Carefully framed human-scale consultation, believable hands and physically grounded objects. No identifiable faces, no logos, no watermark, no neon, no glowing effects, no floating UI, no robots, no futuristic AI aesthetic. No text embedded in the photograph.",
+      "sourceFile": "exec-b383215d-4d73-468c-85f2-51c79786beb4.png",
+      "sourceWidth": 1536,
+      "sourceHeight": 1024,
+      "variants": [
+        {
+          "path": "/images/consulting-service-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 24306
+        },
+        {
+          "path": "/images/consulting-service-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 73342
+        },
+        {
+          "path": "/images/consulting-service-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 117230
+        }
+      ]
+    },
+    {
+      "name": "seniors-service",
+      "alt": "Hände einer älteren Person halten ein Smartphone, während eine zweite Person eine Funktion erklärt.",
+      "prompt": "Use case: photorealistic-natural. Asset type: image for a premium light German patient technology help website. Create one editorial photographic scene, landscape 3:2. A warm naturally lit lived-in home, close detail of an older adult's hands holding a large simple smartphone vertically, while one younger adult's hand gently points toward its screen. Only hands and a little neutral knit sleeve are shown, nobody identifiable. The smartphone rests at a natural angle above a soft cream table, screen contains a few very simple neutral colored interface shapes with no letters or legible text. Shallow but believable depth of field with pale linen and a faint plant in the background. Natural daylight, authentic skin texture, calm warm off-white palette, premium but unpretentious documentary photography. Anatomically credible hands, physically sensible screen interaction. No logos, no watermark, no neon, no floating interface, no robots, no fake futuristic effects, no embedded text.",
+      "sourceFile": "exec-6c04e560-ebf3-4491-ae7f-a01021f7f257.png",
+      "sourceWidth": 1536,
+      "sourceHeight": 1024,
+      "variants": [
+        {
+          "path": "/images/seniors-service-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 26502
+        },
+        {
+          "path": "/images/seniors-service-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 67442
+        },
+        {
+          "path": "/images/seniors-service-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 103682
+        }
+      ]
+    },
+    {
+      "name": "overview-web",
+      "alt": "Heller Design-Arbeitsplatz mit einem großen Monitor und dezenten Farbmustern.",
+      "prompt": "Use case: photorealistic-natural. Asset type: editorial equipment photograph for a premium light German website design overview. Create one photographic scene in landscape 3:2, an oblique full workspace view of a designer's cream desk in a bright quiet studio. A large slim unbranded monitor on a physical stand shows a sophisticated monochrome website design composed only of generous black and white layout blocks, with no readable text. A few muted purple paper palette cards sit beside an unbranded keyboard and mouse, and a simple closed notebook. No person. Naturally grounded hardware and everyday scale. Generous balanced desk composition, soft morning window light, tactile paper and cream desk, subtle real reflections. Premium calm professional photography, not a CGI render. No logos, no watermarks, no neon or glow, no floating UI, no robots, no readable letters or numbers.",
+      "sourceFile": "exec-a708cf68-a97e-4f87-998f-c804d2eac979.png",
+      "sourceWidth": 1536,
+      "sourceHeight": 1024,
+      "variants": [
+        {
+          "path": "/images/overview-web-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 22396
+        },
+        {
+          "path": "/images/overview-web-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 58186
+        },
+        {
+          "path": "/images/overview-web-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 90332
+        }
+      ]
+    },
+    {
+      "name": "overview-automation",
+      "alt": "Geordneter Schreibtisch mit Belegstapel, Dokumentenscanner und Tablet für einen digitalen Arbeitsablauf.",
+      "prompt": "Use case: photorealistic-natural. Asset type: editorial photograph for a premium light German business automation overview. Create one landscape 3:2 photographic scene, carefully ordered true overhead composition on a pale warm-gray desk. A small neat stack of paper receipts sits on the left, a compact real white desktop document scanner in the middle with one paper sheet partly fed into its slot, and a tablet lying flat on the right displays a very simple generic table made from thin lines and gray cells with a few muted sage accents. The physical arrangement clearly suggests a paper-to-digital workflow, without arrows or diagrams floating outside objects. Receipts contain only faint abstract marks, no legible writing or numbers. No person. Natural daylight from one edge, believable soft contact shadows, subtle paper texture, practical grounded equipment. Calm premium editorial photography, not a 3D render. No text overlays, logos, watermarks, neon, robots, futuristic effects or floating UI.",
+      "sourceFile": "exec-4ef7d0b6-7eb2-44a8-8943-35a9c37debee.png",
+      "sourceWidth": 1536,
+      "sourceHeight": 1024,
+      "variants": [
+        {
+          "path": "/images/overview-automation-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 14104
+        },
+        {
+          "path": "/images/overview-automation-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 53368
+        },
+        {
+          "path": "/images/overview-automation-1920.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 94706
+        }
+      ]
+    }
+  ]
+}

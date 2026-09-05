@@ -1,0 +1,492 @@
+{
+  "description": "27 unique generated illustrative scenes. No depicted client installations, actual Schultes IT staff identities or premises. Prompts and provenance: docs/design.",
+  "generated": "2026-09-05",
+  "assets": [
+    {
+      "file": "public/images/about-workshop-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 90360
+    },
+    {
+      "file": "public/images/about-workshop-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 142092
+    },
+    {
+      "file": "public/images/about-workshop-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 27136
+    },
+    {
+      "file": "public/images/consulting-service-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 73342
+    },
+    {
+      "file": "public/images/consulting-service-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 117230
+    },
+    {
+      "file": "public/images/consulting-service-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 24306
+    },
+    {
+      "file": "public/images/email-service-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 133862
+    },
+    {
+      "file": "public/images/email-service-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 218968
+    },
+    {
+      "file": "public/images/email-service-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 38118
+    },
+    {
+      "file": "public/images/fritzbox-service-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 37584
+    },
+    {
+      "file": "public/images/fritzbox-service-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 60776
+    },
+    {
+      "file": "public/images/fritzbox-service-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 14212
+    },
+    {
+      "file": "public/images/installation-service-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 70900
+    },
+    {
+      "file": "public/images/installation-service-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 114962
+    },
+    {
+      "file": "public/images/installation-service-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 25582
+    },
+    {
+      "file": "public/images/ludwigsburg-service-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 87814
+    },
+    {
+      "file": "public/images/ludwigsburg-service-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 143232
+    },
+    {
+      "file": "public/images/ludwigsburg-service-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 30686
+    },
+    {
+      "file": "public/images/mesh-service-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 31278
+    },
+    {
+      "file": "public/images/mesh-service-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 51690
+    },
+    {
+      "file": "public/images/mesh-service-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 11912
+    },
+    {
+      "file": "public/images/network-service-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 69134
+    },
+    {
+      "file": "public/images/network-service-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 108776
+    },
+    {
+      "file": "public/images/network-service-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 26618
+    },
+    {
+      "file": "public/images/office-service-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 61286
+    },
+    {
+      "file": "public/images/office-service-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 95286
+    },
+    {
+      "file": "public/images/office-service-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 23572
+    },
+    {
+      "file": "public/images/overview-automation-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 53368
+    },
+    {
+      "file": "public/images/overview-automation-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 94706
+    },
+    {
+      "file": "public/images/overview-automation-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 14104
+    },
+    {
+      "file": "public/images/overview-network-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 91000
+    },
+    {
+      "file": "public/images/overview-network-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 146666
+    },
+    {
+      "file": "public/images/overview-network-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 30618
+    },
+    {
+      "file": "public/images/overview-pc-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 33148
+    },
+    {
+      "file": "public/images/overview-pc-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 54884
+    },
+    {
+      "file": "public/images/overview-pc-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 11944
+    },
+    {
+      "file": "public/images/overview-web-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 58186
+    },
+    {
+      "file": "public/images/overview-web-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 90332
+    },
+    {
+      "file": "public/images/overview-web-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 22396
+    },
+    {
+      "file": "public/images/pc-service-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 35818
+    },
+    {
+      "file": "public/images/pc-service-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 59370
+    },
+    {
+      "file": "public/images/pc-service-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 12824
+    },
+    {
+      "file": "public/images/printer-service-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 53532
+    },
+    {
+      "file": "public/images/printer-service-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 88622
+    },
+    {
+      "file": "public/images/printer-service-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 19222
+    },
+    {
+      "file": "public/images/remote-email-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 59954
+    },
+    {
+      "file": "public/images/remote-email-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 100986
+    },
+    {
+      "file": "public/images/remote-email-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 21558
+    },
+    {
+      "file": "public/images/remote-main-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 46250
+    },
+    {
+      "file": "public/images/remote-main-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 72830
+    },
+    {
+      "file": "public/images/remote-main-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 18888
+    },
+    {
+      "file": "public/images/remote-printer-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 40644
+    },
+    {
+      "file": "public/images/remote-printer-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 67192
+    },
+    {
+      "file": "public/images/remote-printer-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 15074
+    },
+    {
+      "file": "public/images/remote-windows-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 46200
+    },
+    {
+      "file": "public/images/remote-windows-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 71962
+    },
+    {
+      "file": "public/images/remote-windows-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 18678
+    },
+    {
+      "file": "public/images/router-service-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 37982
+    },
+    {
+      "file": "public/images/router-service-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 60506
+    },
+    {
+      "file": "public/images/router-service-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 15108
+    },
+    {
+      "file": "public/images/seniors-service-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 67442
+    },
+    {
+      "file": "public/images/seniors-service-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 103682
+    },
+    {
+      "file": "public/images/seniors-service-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 26502
+    },
+    {
+      "file": "public/images/slow-pc-service-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 98124
+    },
+    {
+      "file": "public/images/slow-pc-service-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 162050
+    },
+    {
+      "file": "public/images/slow-pc-service-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 31924
+    },
+    {
+      "file": "public/images/software-service-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 53508
+    },
+    {
+      "file": "public/images/software-service-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 85426
+    },
+    {
+      "file": "public/images/software-service-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 20184
+    },
+    {
+      "file": "public/images/support-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 51242
+    },
+    {
+      "file": "public/images/support-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 82106
+    },
+    {
+      "file": "public/images/support-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 19356
+    },
+    {
+      "file": "public/images/wifi-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 49330
+    },
+    {
+      "file": "public/images/wifi-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 78674
+    },
+    {
+      "file": "public/images/wifi-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 19174
+    },
+    {
+      "file": "public/images/windows-service-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 34664
+    },
+    {
+      "file": "public/images/windows-service-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 56566
+    },
+    {
+      "file": "public/images/windows-service-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 11884
+    },
+    {
+      "file": "public/images/workspace-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 20334
+    },
+    {
+      "file": "public/images/workspace-1920.webp",
+      "width": 1920,
+      "height": 1280,
+      "bytes": 33268
+    },
+    {
+      "file": "public/images/workspace-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 8404
+    }
+  ]
+}
