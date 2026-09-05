@@ -272,7 +272,7 @@ const nationalRemoteChildren: ServicePageData[] = [
       },
       {
         title: 'Programme wieder nutzbar machen',
-        text: 'Einstellungen, Reparaturmöglichkeiten und saubere Neuinstallation werden gemeinsam abgewogen.',
+        text: 'Einstellungen, Reparaturmöglichkeiten und eine saubere Neuinstallation werden gemeinsam abgewogen.',
       },
       {
         title: 'Alltag verständlich einrichten',
@@ -354,7 +354,7 @@ const nationalRemoteChildren: ServicePageData[] = [
         text: 'Vorhandene Scan-Funktionen testen und eine verständliche Nutzung einrichten.',
       },
     ],
-    confidenceTitle: 'Erst digital prüfen, dann unnötige Anfahrt vermeiden.',
+    confidenceTitle: 'Erst digital prüfen, dann eine unnötige Anfahrt vermeiden.',
     confidenceText:
       'Wenn Papierstau, Kabel, Defekt oder WLAN-Reichweite vor Ort geprüft werden müssen, wird das klar gesagt.',
     faqs: [
@@ -571,9 +571,9 @@ function createLocationService(
   const path = `${location.path}${locationRelativePath(template)}`
   const modeLabel =
     template.deliveryMode === 'remote'
-      ? `Fernwartung durch Standort ${location.city}`
+      ? `Fernwartung durch den Standort ${location.city}`
       : template.deliveryMode === 'project'
-        ? `Projektbetreuung durch Standort ${location.city}`
+        ? `Projektbetreuung durch den Standort ${location.city}`
         : `Bei dir vor Ort / ergänzend per Fernwartung`
   const seoTitle =
     template.deliveryMode === 'remote'

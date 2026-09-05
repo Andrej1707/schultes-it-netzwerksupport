@@ -72,3 +72,16 @@ Diese Werte sind eine lokale Labor-Stichprobe, keine Core-Web-Vitals-Felddaten o
 Lighthouse-Bewertung. Der spezielle DevTools-Trace-Dienst war nicht verfügbar; die Werte
 stammen aus den nativen Browser-Performance-Metriken. Die Live-Abnahme nach Veröffentlichung
 ergänzt den lokalen Prüfpfad.
+
+## Nachprüfung mit der RustDesk-Aktualisierung
+
+Der Controller startet weitere Einblendungen nun 24 px innerhalb des sichtbaren Bereichs.
+Eine Pause unmittelbar vor einer Karte verbraucht den Effekt dadurch nicht mehr. Versteckte
+Tabs pausieren aktive Animationen; noch ungesehene Ziele werden erst bei Sichtbarkeit aktiviert.
+`pagehide`/`pageshow` sowie `beforeprint`/`afterprint` erhalten ausstehende Einblendungen.
+Nach dem Ausschalten von reduzierter Bewegung werden noch ungesehene Ziele wieder beobachtet.
+Elemente ohne Breite oder Höhe werden nicht vorzeitig als gesehen markiert.
+
+Die gezielte Browsermessung des Karteneinstiegs benötigte rund 0,6 ms JavaScript und keine
+zusätzliche Layout-Zeit. Der native Browser-Trace zeigte dabei keine erfassten Skriptaufgaben
+über 50 ms. Dies ist eine lokale Stichprobe; sie garantiert keine feste Bildrate auf jedem Gerät.

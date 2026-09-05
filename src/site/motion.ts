@@ -37,6 +37,9 @@ export function installPageMotion(root: HTMLElement) {
   const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
   const targets = new Map<HTMLElement, { kind: MotionKind; delay: number }>()
   const seen = new WeakSet<HTMLElement>()
+  const active = new Set<HTMLElement>()
+  let pageSuspended = false
+  let printing = false
   let observer: IntersectionObserver | undefined
 
   for (const group of groups) {
@@ -64,6 +67,7 @@ export function installPageMotion(root: HTMLElement) {
 
   const settle = (element: HTMLElement) => {
     seen.add(element)
+    active.delete(element)
     observer?.unobserve(element)
     element.classList.remove('p-motion-enter')
     element.style.removeProperty('--p-motion-delay')
@@ -74,14 +78,18 @@ export function installPageMotion(root: HTMLElement) {
     observer?.disconnect()
     for (const element of targets.keys()) settle(element)
   }
+  const canRun = () =>
+    !preference.matches &&
+    !pageSuspended &&
+    !printing &&
+    document.visibilityState !== 'hidden'
+
   const reveal = (element: HTMLElement, initiallyVisible = false) => {
-    if (seen.has(element)) return
+    // Background tabs must not consume a reveal before anyone can see it.
+    if (seen.has(element) || !canRun()) return
     seen.add(element)
+    active.add(element)
     observer?.unobserve(element)
-    if (preference.matches || document.visibilityState === 'hidden') {
-      settle(element)
-      return
-    }
     const settings = targets.get(element)!
     const mobile = window.matchMedia('(max-width: 700px)').matches
     element.dataset.motion = settings.kind
@@ -128,43 +136,85 @@ export function installPageMotion(root: HTMLElement) {
       settle(event.target)
   }
 
-  if (!preference.matches) {
-    observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) reveal(entry.target as HTMLElement)
-        }
-      },
-      { rootMargin: '0px 0px 32px 0px', threshold: 0 },
-    )
+  observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (
+          entry.isIntersecting &&
+          entry.boundingClientRect.height > 0 &&
+          entry.boundingClientRect.width > 0
+        )
+          reveal(entry.target as HTMLElement)
+      }
+    },
+    // Start just inside the screen; an offscreen pause must not use up the effect.
+    { rootMargin: '0px 0px -24px 0px', threshold: 0 },
+  )
+
+  const syncVisibility = () => {
+    const running = canRun()
+    root.classList.toggle('p-motion-paused', !running)
+    observer?.disconnect()
+    if (!running) {
+      if (preference.matches || printing)
+        for (const element of active) settle(element)
+      return
+    }
     onHashChange()
     // Collect geometry before adding animation classes to avoid alternating layout writes/reads.
-    const bounds = [...targets].map(([element]) => ({
-      element,
-      rect: element.getBoundingClientRect(),
-    }))
+    const bounds = [...targets.keys()]
+      .filter((element) => !seen.has(element))
+      .map((element) => ({ element, rect: element.getBoundingClientRect() }))
     for (const { element, rect } of bounds) {
-      if (seen.has(element) || rect.height === 0) continue
-      if (rect.top < window.innerHeight && rect.bottom > 0)
+      // Observe zero-area responsive content too: it may gain a box after a resize.
+      if (rect.height === 0 || rect.width === 0) observer?.observe(element)
+      else if (rect.top < window.innerHeight && rect.bottom > 0)
         reveal(element, true)
       else if (rect.bottom <= 0) settle(element)
-      else observer.observe(element)
+      else observer?.observe(element)
     }
   }
+  const onPageHide = () => {
+    pageSuspended = true
+    syncVisibility()
+  }
+  const onPageShow = () => {
+    pageSuspended = false
+    syncVisibility()
+  }
+  const onBeforePrint = () => {
+    printing = true
+    syncVisibility()
+  }
+  const onAfterPrint = () => {
+    printing = false
+    syncVisibility()
+  }
+
+  syncVisibility()
 
   // Changes to accessibility preferences take effect immediately, including active reveals.
-  preference.addEventListener('change', settleAll)
+  preference.addEventListener('change', syncVisibility)
   root.addEventListener('focusin', onFocus)
   root.addEventListener('animationend', onAnimationEnd)
+  document.addEventListener('visibilitychange', syncVisibility)
   window.addEventListener('hashchange', onHashChange)
-  window.addEventListener('beforeprint', settleAll)
+  window.addEventListener('pagehide', onPageHide)
+  window.addEventListener('pageshow', onPageShow)
+  window.addEventListener('beforeprint', onBeforePrint)
+  window.addEventListener('afterprint', onAfterPrint)
   return () => {
     settleAll()
     for (const element of targets.keys()) delete element.dataset.motion
-    preference.removeEventListener('change', settleAll)
+    root.classList.remove('p-motion-paused')
+    preference.removeEventListener('change', syncVisibility)
     root.removeEventListener('focusin', onFocus)
     root.removeEventListener('animationend', onAnimationEnd)
+    document.removeEventListener('visibilitychange', syncVisibility)
     window.removeEventListener('hashchange', onHashChange)
-    window.removeEventListener('beforeprint', settleAll)
+    window.removeEventListener('pagehide', onPageHide)
+    window.removeEventListener('pageshow', onPageShow)
+    window.removeEventListener('beforeprint', onBeforePrint)
+    window.removeEventListener('afterprint', onAfterPrint)
   }
 }

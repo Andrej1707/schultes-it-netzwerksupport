@@ -1220,8 +1220,8 @@ function AboutPage({ page }: { page: SitePage }) {
           </p>
           <p>
             Computer, Netzwerk, Webseite oder ein kleines digitales Werkzeug:
-            Ausgangspunkt ist das konkrete Problem und eine Lösung, die im
-            Alltag funktioniert.
+            Ausgangspunkt ist das konkrete Problem. Ziel ist eine Lösung, die
+            im Alltag funktioniert.
           </p>
           {firstLocation ? (
             <a className="pn-text-link" href={firstLocation.path}>

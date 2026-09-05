@@ -52,10 +52,10 @@ function welcomeMessage(contact: ContactProfile): Message {
     role: 'assistant',
     content:
       contact.source === 'location'
-        ? `Hi, ich bin der digitale Assistent für ${contact.displayName}. Erzähl mir einfach, wobei du Hilfe brauchst. Ich frage bei Bedarf nach, probiere mit dir sichere Basics und hole ${contact.operatorName} erst dazu, wenn persönliche Hilfe wirklich sinnvoll ist.`
+        ? `Hi, ich bin der digitale Assistent für ${contact.displayName}. Erzähl mir einfach, wobei du Hilfe brauchst. Ich frage bei Bedarf nach, gehe mit dir sichere erste Schritte durch und hole ${contact.operatorName} erst dazu, wenn persönliche Hilfe wirklich sinnvoll ist.`
         : contact.source === 'central-remote'
-          ? `Hi, ich bin der digitale Assistent für die deutschlandweite Fernwartung von Schultes IT. Erzähl mir einfach, was an deinem Gerät nicht funktioniert. Ich probiere mit dir sichere Basics und hole ${contact.operatorName} dazu, wenn Fernwartung sinnvoll ist.`
-        : 'Hi, ich bin der digitale Assistent von Schultes IT. Erzähl mir einfach, wobei du Hilfe brauchst. Ich gebe sichere erste Orientierung und helfe dir anschließend, den passenden Standort zu finden.',
+          ? `Hi, ich bin der digitale Assistent für die deutschlandweite Fernwartung von Schultes IT. Erzähl mir einfach, was an deinem Gerät nicht funktioniert. Ich gehe mit dir sichere erste Schritte durch und hole ${contact.operatorName} dazu, wenn Fernwartung sinnvoll ist.`
+        : 'Hi, ich bin der digitale Assistent von Schultes IT. Erzähl mir einfach, wobei du Hilfe brauchst. Ich gebe dir eine sichere erste Orientierung und helfe dir anschließend, den passenden Standort zu finden.',
   }
 }
 
@@ -148,7 +148,7 @@ function getErrorMessage(code?: string) {
     case 'daily_limit_reached':
       return 'Das gemeinsame Tagesbudget des Assistenten ist heute aufgebraucht. Dein direkter Ansprechpartner bleibt weiterhin erreichbar.'
     case 'session_limit_reached':
-      return 'Diese Unterhaltung hat ihr Sicherheitslimit erreicht. Bestätige dich bitte kurz erneut, um einen frischen Chat zu starten.'
+      return 'Diese Unterhaltung hat ihr Sicherheitslimit erreicht. Bestätige bitte kurz erneut, dass du ein Mensch bist, um einen frischen Chat zu starten.'
     case 'assistant_unavailable':
     case 'service_unavailable':
       return 'Der Assistent ist gerade nicht erreichbar. Du kannst deinen Ansprechpartner direkt kontaktieren oder es später erneut versuchen.'
@@ -400,7 +400,7 @@ export default function SupportBot({ contact }: { contact: ContactProfile }) {
           ) : phase === 'needs-verification' || phase === 'verifying' ? (
             <div className="support-state support-verification">
               <ShieldCheck aria-hidden="true" />
-              <h2>Kurz Mensch bestätigen</h2>
+              <h2>Kurz bestätigen, dass du ein Mensch bist</h2>
               <p>Die Prüfung schützt den Assistenten vor Spam und startet eine sichere Sitzung.</p>
               <div ref={turnstileContainer} className="support-turnstile" />
               {phase === 'verifying' && <span className="support-loading"><LoaderCircle /> Sichere Sitzung wird erstellt</span>}

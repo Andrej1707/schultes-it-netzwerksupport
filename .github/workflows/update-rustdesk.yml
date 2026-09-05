@@ -1,0 +1,96 @@
+name: Update RustDesk download
+
+on:
+  schedule:
+    - cron: '23 4 * * *'
+  workflow_dispatch:
+    inputs:
+      record_verification:
+        description: 'Record and publish a full verification even if the version is unchanged'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: rustdesk-download-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Check latest stable RustDesk release
+        run: npm run rustdesk:update
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Record verification when the repository has been idle for 30 days
+        shell: bash
+        env:
+          RECORD_VERIFICATION: ${{ inputs.record_verification == true }}
+        run: |
+          last_commit=$(git log -1 --format=%ct)
+          if [[ "$RECORD_VERIFICATION" == 'true' ]] || (( $(date +%s) - last_commit >= 30 * 86400 )); then
+            node --input-type=module <<'NODE'
+          import { readFile, writeFile } from 'node:fs/promises'
+          const path = 'public/downloads/rustdesk.json'
+          const metadata = JSON.parse(await readFile(path, 'utf8'))
+          metadata.checkedAt = new Date().toISOString()
+          await writeFile(path, JSON.stringify(metadata, null, 2) + '\n')
+          NODE
+          fi
+
+      - name: Detect download changes
+        id: changes
+        shell: bash
+        run: |
+          if git diff --quiet -- public/downloads/rustdesk.exe public/downloads/rustdesk.json; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+            echo 'The stable download is already current and verified.' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install dependencies
+        if: steps.changes.outputs.changed == 'true'
+        run: npm ci
+
+      - name: Run complete release check
+        if: steps.changes.outputs.changed == 'true'
+        run: npm run check
+
+      - name: Commit verified download and metadata
+        if: steps.changes.outputs.changed == 'true'
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- public/downloads/rustdesk.exe public/downloads/rustdesk.json
+          git commit -m 'Update verified RustDesk download metadata'
+          git push origin HEAD:main
+
+      # A GITHUB_TOKEN push does not trigger the normal push workflow.
+      - name: Deploy the verified main branch
+        if: steps.changes.outputs.changed == 'true'
+        run: gh workflow run deploy.yml --ref main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Record publication request
+        if: steps.changes.outputs.changed == 'true'
+        run: echo 'RustDesk files committed to main; the full Pages deployment was requested.' >> "$GITHUB_STEP_SUMMARY"

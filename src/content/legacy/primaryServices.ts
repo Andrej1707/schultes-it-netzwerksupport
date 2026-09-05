@@ -138,7 +138,7 @@ export const primaryServicePages: ServicePageData[] = [
       {
         question: 'Was kann ich tun, wenn mein PC nicht mehr angeht?',
         answer:
-          'Trenne nicht wahllos Kabel und öffne das Gerät nicht auf Verdacht. Ruf kurz an und beschreibe, ob noch Lichter, Lüfter oder Töne zu hören sind. Danach klären wir, ob ein Termin bei dir sinnvoll ist.',
+          'Trenne nicht wahllos Kabel und öffne das Gerät nicht auf Verdacht. Ruf kurz an und beschreibe, ob noch Lichter leuchten, Lüfter laufen oder Töne zu hören sind. Danach klären wir, ob ein Termin bei dir sinnvoll ist.',
       },
       {
         question: 'Warum ist mein PC plötzlich so langsam?',
@@ -196,7 +196,7 @@ export const primaryServicePages: ServicePageData[] = [
       },
       {
         title: 'WLAN reicht nicht in alle Räume',
-        text: 'In Küche, Arbeitszimmer oder Obergeschoss wird das Signal langsam oder bricht regelmäßig weg.',
+        text: 'In Küche, Arbeitszimmer oder Obergeschoss wird die Verbindung langsam oder bricht regelmäßig ab.',
       },
       {
         title: 'PC, Drucker oder Fernseher verlieren WLAN',
@@ -240,7 +240,7 @@ export const primaryServicePages: ServicePageData[] = [
       },
       {
         title: 'Lösung umsetzen',
-        text: 'Erst konfigurieren und optimieren, neue Hardware nur wenn sie wirklich hilft.',
+        text: 'Erst konfigurieren und optimieren, neue Hardware nur, wenn sie wirklich hilft.',
       },
       {
         title: 'Verbindung testen',
@@ -387,7 +387,7 @@ export const primaryServicePages: ServicePageData[] = [
       },
       {
         title: 'Design & Build',
-        text: 'Die Oberfläche im Browser umsetzen und früh auf Desktop und Mobil prüfen.',
+        text: 'Die Oberfläche im Browser umsetzen und früh auf Desktop- und Mobilgeräten prüfen.',
       },
       {
         title: 'Launch kontrollieren',

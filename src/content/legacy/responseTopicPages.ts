@@ -11,17 +11,17 @@ export const responseTopicPages: ServicePageData[] = [
       description:
         'Sichere Fernhilfe mit RustDesk bei PC-, Windows-, E-Mail- und Programmproblemen, wenn kein Vor-Ort-Termin nötig ist.',
       tags: ['Remote', 'RustDesk', 'Schnellhilfe'],
-      seoTitle: 'Fernwartung Ludwigsburg | Remote IT-Hilfe',
+      seoTitle: 'Fernwartung Ludwigsburg | Remote-IT-Hilfe',
       seoDescription:
-        'Fernwartung und Remote IT-Hilfe in Ludwigsburg: PC-, Windows-, E-Mail- und Programmprobleme schnell prüfen, wenn Hilfe aus der Ferne ausreicht.',
+        'Fernwartung und Remote-IT-Hilfe in Ludwigsburg: PC-, Windows-, E-Mail- und Programmprobleme schnell prüfen, wenn Hilfe aus der Ferne ausreicht.',
       keywords:
         'Fernwartung Ludwigsburg, Remote IT Hilfe, PC Fernhilfe, Windows Fernwartung, Computerhilfe online, IT Support remote',
       heroLead: 'Hilfe aus der Ferne.',
-      heroAccent: 'Wenn Vor-Ort nicht nötig ist.',
+      heroAccent: 'Wenn ein Vor-Ort-Termin nicht nötig ist.',
       heroText:
         'Viele Software-, Windows- oder E-Mail-Probleme lassen sich per Fernwartung schneller klären. Dafür brauchst du RustDesk auf deinem Windows-PC. Du bleibst am Gerät und siehst, was passiert.',
       price: 'Fernhilfe ab 25 €',
-      audienceHint: 'Für schnelle Hilfe bei Problemen, die ohne Hardware-Anfassen lösbar sind.',
+      audienceHint: 'Für schnelle Hilfe bei Problemen, die ohne Arbeiten an der Hardware lösbar sind.',
       situations: [
         {
           title: 'Ein Programm macht Probleme',
@@ -77,13 +77,13 @@ export const responseTopicPages: ServicePageData[] = [
         'Nur mit deiner Zustimmung',
         'Ideal für Software und E-Mail',
         'Keine Passwörter per Nachricht',
-        'Vor-Ort, wenn remote nicht passt',
+        'Vor Ort, wenn remote nicht passt',
       ],
       faqs: [
         {
           question: 'Ist Fernwartung sicher?',
           answer:
-            'Ja, wenn sie bewusst gestartet wird und du die Kontrolle behältst. Lade RustDesk nur von dieser Website oder der offiziellen Quelle und nenne ID oder Code ausschließlich während eines vorher vereinbarten Supporttermins an deinen zuständigen Schultes-IT-Ansprechpartner.',
+            'Ja, wenn sie bewusst gestartet wird und du die Kontrolle behältst. Lade RustDesk nur von dieser Website oder der offiziellen Quelle und nenne ID oder Code ausschließlich während eines vorher vereinbarten Supporttermins deinem zuständigen Schultes-IT-Ansprechpartner.',
         },
         {
           question: 'Muss ich RustDesk installieren?',
@@ -98,7 +98,7 @@ export const responseTopicPages: ServicePageData[] = [
         {
           question: 'Wann reicht Fernwartung nicht?',
           answer:
-            'Bei Hardwaredefekten, WLAN-Reichweite, Verkabelung oder Routerstandort ist vor Ort meist sinnvoller.',
+            'Bei Hardwaredefekten, WLAN-Reichweite, Verkabelung oder Routerstandort ist Hilfe vor Ort meist sinnvoller.',
         },
       ],
       related: ['programme', 'email', 'windows-einrichten'],
@@ -122,7 +122,7 @@ export const responseTopicPages: ServicePageData[] = [
       heroText:
         'Nicht jedes Problem ist ein echter Notfall, aber manche Technik muss schnell wieder laufen. Ich priorisiere Ausfälle ehrlich und sage direkt, ob Fernhilfe oder Vor-Ort-Hilfe sinnvoll ist.',
       price: 'Schnellhilfe nach Verfügbarkeit · Kosten vorher klären',
-      audienceHint: 'Für dringende Fälle, bei denen PC, Internet, E-Mail oder Arbeitsplatz gerade blockieren.',
+      audienceHint: 'Für dringende Fälle, bei denen PC, Internet, E-Mail oder Arbeitsplatz gerade nicht funktionieren.',
       situations: [
         {
           title: 'PC oder Laptop fällt plötzlich aus',
@@ -138,7 +138,7 @@ export const responseTopicPages: ServicePageData[] = [
         },
         {
           title: 'Ein kleiner Betrieb steht',
-          text: 'Ein Arbeitsplatz, Drucker oder Netzwerkproblem blockiert den Ablauf.',
+          text: 'Ein Arbeitsplatz-, Drucker- oder Netzwerkproblem blockiert den Ablauf.',
         },
       ],
       solutions: [
@@ -164,7 +164,7 @@ export const responseTopicPages: ServicePageData[] = [
         },
         {
           title: 'Grenzen offen sagen',
-          text: 'Wenn Spezialreparatur oder Anbieter nötig ist, bekommst du das klar gesagt.',
+          text: 'Wenn eine Spezialreparatur oder Hilfe vom Anbieter nötig ist, bekommst du das klar gesagt.',
         },
       ],
       confidenceTitle: 'Dringend heißt: ehrlich priorisieren.',
@@ -212,7 +212,7 @@ export const responseTopicPages: ServicePageData[] = [
       heroLead: 'Wenn der PC nur noch kriecht.',
       heroAccent: 'Erst Ursache finden, dann aufräumen.',
       heroText:
-        'Ein langsamer PC muss nicht sofort ersetzt werden. Ich prüfe, ob Windows, Programme, Autostarts, Speicher, Updates oder Hardware die Ursache sind und erkläre dir verständlich, was wirklich sinnvoll ist.',
+        'Ein langsamer PC muss nicht sofort ersetzt werden. Ich prüfe, ob Windows, Programme, Autostarts, Speicher, Updates oder Hardware die Ursache sind, und erkläre dir verständlich, was wirklich sinnvoll ist.',
       price: 'Fernhilfe ab 25 € · Bei dir vor Ort ab 49 €',
       audienceHint: 'Für alle, deren PC oder Laptop im Alltag zu langsam geworden ist.',
       situations: [
@@ -252,11 +252,11 @@ export const responseTopicPages: ServicePageData[] = [
         },
         {
           title: 'Hardware realistisch einschätzen',
-          text: 'Wenn RAM, SSD oder Alter des Geräts eine Rolle spielen, bekommst du eine ehrliche Empfehlung.',
+          text: 'Wenn RAM, SSD oder das Alter des Geräts eine Rolle spielen, bekommst du eine ehrliche Empfehlung.',
         },
         {
           title: 'Alltagstest machen',
-          text: 'Am Ende zählt, ob Browser, E-Mail und deine wichtigen Programme wieder nutzbar laufen.',
+          text: 'Am Ende zählt, ob Browser, E-Mail und deine wichtigen Programme wieder nutzbar sind.',
         },
       ],
       confidenceTitle: 'Nicht jeder langsame PC ist kaputt.',
@@ -277,7 +277,7 @@ export const responseTopicPages: ServicePageData[] = [
         {
           question: 'Löschst du einfach Programme?',
           answer:
-            'Nein. Ich prüfe zuerst, was gebraucht wird und erkläre dir, was entfernt oder deaktiviert werden kann.',
+            'Nein. Ich prüfe zuerst, was gebraucht wird, und erkläre dir, was entfernt oder deaktiviert werden kann.',
         },
         {
           question: 'Geht die Prüfung per Fernwartung?',
@@ -311,11 +311,11 @@ export const responseTopicPages: ServicePageData[] = [
       heroText:
         'Wenn ein PC nicht startet, ist Panik selten hilfreich. Ich prüfe mit dir, ob Strom, Bildschirm, Windows, Datenträger oder Hardware betroffen sind und welche Schritte sicher sind.',
       price: 'Bei dir vor Ort ab 49 € · Fernhilfe nur wenn erreichbar',
-      audienceHint: 'Für alle, deren Computer, Laptop oder Windows gerade gar nicht mehr nutzbar startet.',
+      audienceHint: 'Für alle, deren Computer, Laptop oder Windows gerade gar nicht mehr startet.',
       situations: [
         {
           title: 'Der Bildschirm bleibt schwarz',
-          text: 'Das Gerät scheint an zu sein, aber es erscheint kein Bild oder nur kurz ein Logo.',
+          text: 'Das Gerät scheint eingeschaltet zu sein, aber es erscheint kein Bild oder nur kurz ein Logo.',
         },
         {
           title: 'Windows startet nicht',
@@ -353,7 +353,7 @@ export const responseTopicPages: ServicePageData[] = [
         },
         {
           title: 'Nächsten Schritt klären',
-          text: 'Vor Ort, Spezialreparatur oder Neuinstallation wird erst nach realistischer Prüfung empfohlen.',
+          text: 'Ein Vor-Ort-Termin, eine Spezialreparatur oder eine Neuinstallation wird erst nach realistischer Prüfung empfohlen.',
         },
       ],
       confidenceTitle: 'Keine Rettungsversuche auf Verdacht.',

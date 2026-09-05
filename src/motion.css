@@ -12,6 +12,9 @@
     animation-name: p-motion-hero;
     animation-duration: 720ms;
   }
+  .p-motion-paused .p-motion-enter {
+    animation-play-state: paused;
+  }
   .p-mobile-menu:not([hidden]) {
     animation: p-motion-menu 220ms cubic-bezier(0.22, 1, 0.36, 1);
   }

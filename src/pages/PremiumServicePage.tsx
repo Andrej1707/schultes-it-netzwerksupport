@@ -28,6 +28,7 @@ import { contactForService } from '../site/contacts'
 import { siteConfig } from '../site/config'
 import { activeLocationById } from '../site/locations'
 import { servicePhotos } from '../site/photos'
+import { rustdeskFileSize, rustdeskRelease } from '../site/rustdesk'
 
 type ServiceFamily =
   | 'pc'
@@ -80,7 +81,7 @@ const editorialCopy: Record<
 > = {
   pc: {
     label: 'Einfach wieder arbeiten.',
-    situations: 'Kommt dir bekannt vor?',
+    situations: 'Kommt dir das bekannt vor?',
     solutions: 'Alles, was dein Gerät weiterbringt.',
     process: 'Vom Problem zurück in deinen Alltag.',
   },
@@ -370,26 +371,28 @@ function RemoteDownload({ service }: { service: ServicePageData }) {
         <div className="ps-download-heading">
           <Monitor aria-hidden="true" />
           <span>
-            Für deinen Windows-PC<strong>RustDesk 1.4.5</strong>
+            Für deinen Windows-PC
+            <strong>RustDesk {rustdeskRelease.version}</strong>
           </span>
         </div>
         <a
           className="ps-button"
-          href={siteConfig.remoteSupport.downloadPath}
+          href={`${siteConfig.remoteSupport.downloadPath}?v=${rustdeskRelease.version}`}
           download="rustdesk.exe"
           type="application/vnd.microsoft.portable-executable"
         >
           <ArrowDownToLine aria-hidden="true" /> RustDesk herunterladen
         </a>
-        <p className="ps-file-meta">rustdesk.exe · 23,1 MB</p>
+        <p className="ps-file-meta">rustdesk.exe · {rustdeskFileSize}</p>
         <details className="ps-file-details">
           <summary>
             Datei prüfen <ChevronDown aria-hidden="true" />
           </summary>
           <p>SHA-256</p>
-          <code>
-            43A9B0CD46AFE1944D0010849CF3A90FC474D73B13359ACC984B766404FBEA37
-          </code>
+          <code>{rustdeskRelease.sha256.toUpperCase()}</code>
+          <a href={rustdeskRelease.releaseUrl} target="_blank" rel="noreferrer">
+            Offizielle RustDesk-Veröffentlichung
+          </a>
         </details>
         <p className="ps-download-note">
           <ShieldCheck aria-hidden="true" />

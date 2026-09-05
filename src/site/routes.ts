@@ -1,8 +1,12 @@
 import { activeLocations } from './locations'
 import { publicServicePages } from './publicServices'
+import { rustdeskRelease } from './rustdesk'
 import type { SitePage, ResolvedSiteRoute, SchemaKind } from './types'
 
 const lastModified = '2026-09-05'
+const remoteLastModified = [lastModified, rustdeskRelease.publishedAt.slice(0, 10)]
+  .sort()
+  .at(-1)!
 
 const structuralPages: SitePage[] = [
   {
@@ -183,7 +187,7 @@ const locationSitePages: SitePage[] = activeLocations.map((location) => ({
     accent: 'Direkt bei dir vor Ort.',
     intro:
       `${location.operator.name} betreibt den Standort ${location.city} als ` +
-      `${location.operator.role.toLowerCase()}.`,
+      `${location.operator.role}.`,
     indexable: true,
     lastModified,
     changeFrequency: 'weekly',
@@ -210,7 +214,7 @@ const serviceSitePages: SitePage[] = publicServicePages.map((service) => ({
   accent: service.heroAccent,
   intro: service.heroText,
   indexable: true,
-  lastModified,
+  lastModified: service.deliveryMode === 'remote' ? remoteLastModified : lastModified,
   changeFrequency: 'monthly',
   priority:
     service.serviceGroup === 'primary'

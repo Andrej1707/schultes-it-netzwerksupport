@@ -6,14 +6,14 @@ export const peopleSafetyTopicPages: ServicePageData[] = [
       slug: 'senioren-handy-hilfe',
       icon: 'laptop',
       code: 'TOP/SEN/16',
-      title: 'Senioren Handy Hilfe',
-      shortTitle: 'Senioren Handy',
+      title: 'Senioren-Handy-Hilfe',
+      shortTitle: 'Senioren-Handy',
       description:
         'Geduldige Handy- und Smartphone-Hilfe für Seniorinnen und Senioren in Ludwigsburg: WLAN, Apps, Fotos, WhatsApp, E-Mail und Einstellungen.',
       tags: ['Senioren', 'Handy', 'Smartphone'],
-      seoTitle: 'Senioren Handy Hilfe Ludwigsburg | Smartphone einfach erklärt',
+      seoTitle: 'Senioren-Handy-Hilfe Ludwigsburg | Smartphone einfach erklärt',
       seoDescription:
-        'Senioren Handy Hilfe in Ludwigsburg: Smartphone, WhatsApp, Fotos, WLAN, E-Mail und Einstellungen ruhig erklärt. Hilfe bei dir vor Ort.',
+        'Senioren-Handy-Hilfe in Ludwigsburg: Smartphone, WhatsApp, Fotos, WLAN, E-Mail und Einstellungen ruhig erklärt. Hilfe bei dir vor Ort.',
       keywords:
         'Senioren Handy Hilfe Ludwigsburg, Smartphone Hilfe Senioren, Handy einrichten Senioren, WhatsApp Hilfe, Handy Hilfe Ludwigsburg, Smartphone einrichten',
       heroLead: 'Handyhilfe ohne Stress.',
@@ -21,15 +21,15 @@ export const peopleSafetyTopicPages: ServicePageData[] = [
       heroText:
         'Smartphones können praktisch sein, aber auch schnell überfordern. Ich erkläre WLAN, Apps, Fotos, WhatsApp, E-Mail und wichtige Einstellungen in normaler Sprache und in deinem Tempo.',
       price: 'Bei dir vor Ort ab 49 € · Fernhilfe nur wenn sinnvoll',
-      audienceHint: 'Für Seniorinnen, Senioren und Angehörige, die Smartphone-Hilfe ruhig und verständlich brauchen.',
+      audienceHint: 'Für Seniorinnen, Senioren und Angehörige, die ruhige und verständliche Smartphone-Hilfe brauchen.',
       situations: [
         {
           title: 'WhatsApp, Fotos oder E-Mail sind unklar',
-          text: 'Nachrichten, Bilder, Anhänge oder Kontakte sollen sicherer bedient werden.',
+          text: 'Der Umgang mit Nachrichten, Bildern, Anhängen oder Kontakten soll sicherer werden.',
         },
         {
           title: 'Das Handy ist neu',
-          text: 'WLAN, Konto, Apps, Sicherheit und Grundbedienung sollen eingerichtet werden.',
+          text: 'WLAN, Konto, Apps und Sicherheit sollen eingerichtet und die Grundbedienung erklärt werden.',
         },
         {
           title: 'Ständig kommen Meldungen',
@@ -51,7 +51,7 @@ export const peopleSafetyTopicPages: ServicePageData[] = [
         },
         {
           title: 'Sicherheit besprechen',
-          text: 'PIN, Sperrbildschirm, Betrugsnachrichten und vorsichtiger Umgang mit Links verständlich machen.',
+          text: 'PIN, Sperrbildschirm, Betrugsnachrichten und vorsichtigen Umgang mit Links verständlich machen.',
         },
         {
           title: 'E-Mail und Kontakte prüfen',
@@ -108,7 +108,7 @@ export const peopleSafetyTopicPages: ServicePageData[] = [
       description:
         'Hilfe in Ludwigsburg bei verdächtigen E-Mails, Fake-SMS, Betrugsverdacht, Phishing-Links und Unsicherheit nach einem Klick.',
       tags: ['Betrug', 'Phishing', 'Sicherheit'],
-      seoTitle: 'Betrugsverdacht & Phishing Hilfe Ludwigsburg',
+      seoTitle: 'Betrugsverdacht & Phishing-Hilfe Ludwigsburg',
       seoDescription:
         'Betrugsverdacht oder Phishing in Ludwigsburg? Hilfe bei verdächtigen E-Mails, SMS, Links, Konto-Warnungen und sicheren nächsten Schritten.',
       keywords:
@@ -116,7 +116,7 @@ export const peopleSafetyTopicPages: ServicePageData[] = [
       heroLead: 'Komische Mail? Verdächtiger Link?',
       heroAccent: 'Erst stoppen, dann sauber prüfen.',
       heroText:
-        'Wenn eine Nachricht, ein Anruf oder ein Link komisch wirkt, ist schnelle Ruhe wichtiger als hektisches Klicken. Ich helfe dir, sichere nächste Schritte zu klären und typische Betrugsmaschen einzuordnen.',
+        'Wenn eine Nachricht, ein Anruf oder ein Link komisch wirkt, ist Ruhe wichtiger als hektisches Klicken. Ich helfe dir, sichere nächste Schritte zu klären und typische Betrugsmaschen einzuordnen.',
       price: 'Ersteinschätzung nach Anliegen · Vor Ort ab 49 €',
       audienceHint: 'Für Privatpersonen, Senioren, Angehörige und kleine Betriebe bei digitalem Betrugsverdacht.',
       situations: [
@@ -126,11 +126,11 @@ export const peopleSafetyTopicPages: ServicePageData[] = [
         },
         {
           title: 'Ein Konto meldet Warnungen',
-          text: 'Unbekannte Anmeldung, Passwortwarnung oder Sicherheitsmeldung taucht auf.',
+          text: 'Eine unbekannte Anmeldung, eine Passwortwarnung oder eine Sicherheitsmeldung taucht auf.',
         },
         {
           title: 'Jemand verlangt Geld oder Codes',
-          text: 'Anrufer, Nachricht oder angeblicher Support fordert Zahlung, Gutscheine oder Zugangsdaten.',
+          text: 'Ein Anrufer, eine Nachricht oder ein angeblicher Support fordert eine Zahlung, Gutscheine oder Zugangsdaten.',
         },
         {
           title: 'Du willst nichts falsch machen',
@@ -152,11 +152,11 @@ export const peopleSafetyTopicPages: ServicePageData[] = [
         },
         {
           title: 'Passwörter sinnvoll behandeln',
-          text: 'Keine Passwörter im Chat. Wenn nötig, wird direkt am Gerät sicher geändert.',
+          text: 'Keine Passwörter im Chat. Wenn nötig, werden sie direkt am Gerät sicher geändert.',
         },
         {
           title: 'Nächste Stellen benennen',
-          text: 'Bei Geld, Bank oder Identitätsdaten kann Bank, Anbieter oder Polizei wichtiger sein als IT-Hilfe.',
+          text: 'Bei Geld, Bank- oder Identitätsdaten kann die Bank, der Anbieter oder die Polizei wichtiger sein als IT-Hilfe.',
         },
         {
           title: 'Vorbeugung erklären',
@@ -174,7 +174,7 @@ export const peopleSafetyTopicPages: ServicePageData[] = [
       ],
       faqs: [
         {
-          question: 'Was soll ich sofort tun, wenn ich einen Phishing-Link geklickt habe?',
+          question: 'Was soll ich sofort tun, wenn ich auf einen Phishing-Link geklickt habe?',
           answer:
             'Gib keine weiteren Daten ein, schließe die Seite, mache wenn möglich einen Screenshot und notiere, was du eingegeben hast. Wenn Bankdaten betroffen sind, sofort die Bank kontaktieren.',
         },

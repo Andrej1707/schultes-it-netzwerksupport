@@ -6,14 +6,14 @@ export const networkTopicPages: ServicePageData[] = [
       slug: 'fritzbox-hilfe',
       icon: 'router',
       code: 'TOP/FB/14',
-      title: 'Fritzbox Hilfe',
+      title: 'Fritzbox-Hilfe',
       shortTitle: 'Fritzbox',
       description:
         'Fritzbox-Hilfe in Ludwigsburg bei WLAN, Mesh, Internet, Telefonie, Updates und unklaren Router-Meldungen.',
       tags: ['Fritzbox', 'Router', 'WLAN'],
-      seoTitle: 'Fritzbox Hilfe Ludwigsburg | WLAN, Internet & Mesh',
+      seoTitle: 'Fritzbox-Hilfe Ludwigsburg | WLAN, Internet & Mesh',
       seoDescription:
-        'Fritzbox Hilfe in Ludwigsburg: WLAN geht nicht, Internet fällt aus, Mesh oder Repeater einrichten, Router-Meldungen verstehen und stabilisieren.',
+        'Fritzbox-Hilfe in Ludwigsburg: WLAN geht nicht, Internet fällt aus, Mesh oder Repeater einrichten, Router-Meldungen verstehen und Verbindungen stabilisieren.',
       keywords:
         'Fritzbox Hilfe Ludwigsburg, Fritzbox einrichten, Fritzbox WLAN geht nicht, Fritzbox Mesh, Router Hilfe Ludwigsburg, Internet Hilfe',
       heroLead: 'Fritzbox verstehen.',
@@ -77,7 +77,7 @@ export const networkTopicPages: ServicePageData[] = [
       ],
       faqs: [
         {
-          question: 'Richtest du Fritzbox Mesh ein?',
+          question: 'Richtest du Fritzbox-Mesh ein?',
           answer:
             'Ja. Ich prüfe, wie die Mesh-Geräte verbunden sind, wo sie stehen sollten und ob sie wirklich die Reichweite verbessern.',
         },
@@ -103,20 +103,20 @@ export const networkTopicPages: ServicePageData[] = [
       slug: 'mesh-wlan-einrichten',
       icon: 'router',
       code: 'TOP/MESH/15',
-      title: 'Mesh WLAN einrichten',
-      shortTitle: 'Mesh WLAN',
+      title: 'Mesh-WLAN einrichten',
+      shortTitle: 'Mesh-WLAN',
       description:
-        'Mesh WLAN und Repeater in Ludwigsburg einrichten, wenn WLAN nicht alle Räume erreicht oder ständig abbricht.',
+        'Mesh-WLAN und Repeater in Ludwigsburg einrichten, wenn WLAN nicht alle Räume erreicht oder ständig abbricht.',
       tags: ['Mesh', 'Repeater', 'WLAN'],
-      seoTitle: 'Mesh WLAN einrichten Ludwigsburg | Repeater & Fritzbox',
+      seoTitle: 'Mesh-WLAN einrichten Ludwigsburg | Repeater & Fritzbox',
       seoDescription:
-        'Mesh WLAN einrichten in Ludwigsburg: Fritzbox Mesh, Repeater, WLAN-Reichweite, Funklöcher und stabile Verbindung für Wohnung, Haus oder kleines Büro.',
+        'Mesh-WLAN einrichten in Ludwigsburg: Fritzbox-Mesh, Repeater, WLAN-Reichweite, Funklöcher und stabile Verbindung für Wohnung, Haus oder kleines Büro.',
       keywords:
         'Mesh WLAN einrichten Ludwigsburg, WLAN Repeater einrichten, Fritzbox Mesh Hilfe, WLAN Reichweite verbessern, Funkloch Wohnung, WLAN Hilfe Ludwigsburg',
       heroLead: 'WLAN soll im ganzen Zuhause ankommen.',
       heroAccent: 'Mesh richtig platzieren statt blind kaufen.',
       heroText:
-        'Repeater und Mesh helfen nur, wenn sie richtig eingesetzt werden. Ich prüfe Räume, Routerstandort, vorhandene Geräte und richte das WLAN so ein, dass es dort stabiler wird, wo du es wirklich nutzt.',
+        'Repeater und Mesh helfen nur, wenn sie richtig eingesetzt werden. Ich prüfe Räume, Routerstandort und vorhandene Geräte und richte das WLAN so ein, dass es dort stabiler wird, wo du es wirklich nutzt.',
       price: 'Bei dir vor Ort ab 49 € · Hardware nur nach Absprache',
       audienceHint: 'Für Wohnungen, Häuser, Homeoffice und kleine Räume mit schlechter WLAN-Abdeckung.',
       situations: [
@@ -160,7 +160,7 @@ export const networkTopicPages: ServicePageData[] = [
         },
         {
           title: 'Grenzen offen sagen',
-          text: 'Wenn Verkabelung oder andere Hardware sinnvoller ist, bekommst du das ehrlich gesagt.',
+          text: 'Wenn Verkabelung oder andere Hardware sinnvoller ist, sage ich dir das ehrlich.',
         },
       ],
       confidenceTitle: 'Mesh ist kein Zauberwort.',

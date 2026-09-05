@@ -306,6 +306,10 @@
 .ps-situation-list p {
   margin-top: 11px;
 }
+.ps-situation-list h3 {
+  hyphens: auto;
+  overflow-wrap: anywhere;
+}
 .ps-solutions {
   background: var(--ps-soft);
 }

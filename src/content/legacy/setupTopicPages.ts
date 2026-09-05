@@ -13,7 +13,7 @@ export const setupTopicPages: ServicePageData[] = [
       tags: ['Geräte', 'Software', 'Treiber'],
       seoTitle: 'Installation Ludwigsburg | Geräte & Software einrichten',
       seoDescription:
-        'Hilfe bei Installation in Ludwigsburg: neue Geräte, Programme, Treiber und Zubehör einrichten. Verständlich, sauber getestet und bei dir vor Ort oder per Fernhilfe.',
+        'Hilfe bei der Installation in Ludwigsburg: neue Geräte, Programme, Treiber und Zubehör einrichten. Verständlich, sauber getestet und bei dir vor Ort oder per Fernhilfe.',
       keywords:
         'Installation Ludwigsburg, Software installieren, Gerät einrichten, Treiber installieren, PC Einrichtung, technische Hilfe Installation',
       heroLead: 'Installation ohne Rätselraten.',
@@ -87,7 +87,7 @@ export const setupTopicPages: ServicePageData[] = [
             'Ja. Dazu gehören je nach Bedarf Updates, Benutzerkonto, Programme, Drucker, WLAN und eine kurze Erklärung.',
         },
         {
-          question: 'Geht Installation auch per Fernwartung?',
+          question: 'Geht eine Installation auch per Fernwartung?',
           answer:
             'Viele Software-Installationen gehen per Fernhilfe. Bei Hardware, Druckern oder Netzwerkgeräten ist ein Vor-Ort-Termin oft sinnvoller.',
         },
@@ -163,7 +163,7 @@ export const setupTopicPages: ServicePageData[] = [
         'Gute IT-Beratung macht Entscheidungen leichter. Wenn etwas nicht nötig ist, sage ich das genauso klar wie eine Empfehlung.',
       confidencePoints: [
         'Neutral und verständlich',
-        'Privat und kleine Betriebe im Blick',
+        'Privatpersonen und kleine Betriebe im Blick',
         'Keine falschen Google-Versprechen',
         'Umsetzung nur nach Absprache',
       ],
@@ -203,7 +203,7 @@ export const setupTopicPages: ServicePageData[] = [
       heroLead: 'Windows sauber starten.',
       heroAccent: 'Ohne Konto- und Update-Chaos.',
       heroText:
-        'Ein neuer Windows-PC wirkt oft fertig, ist es aber selten. Ich richte Benutzer, Updates, Datenschutz, Standardprogramme und wichtige Alltagspunkte so ein, dass du das Gerät direkt nutzen kannst.',
+        'Ein neuer Windows-PC wirkt oft fertig, ist es aber selten. Ich richte Benutzer, Updates, Datenschutz, Standardprogramme und wichtige Einstellungen für den Alltag so ein, dass du das Gerät direkt nutzen kannst.',
       price: 'Fernhilfe ab 25 € · Einrichtung vor Ort ab 49 €',
       audienceHint: 'Für alle, die einen Windows-PC oder Laptop verständlich und ordentlich vorbereitet haben möchten.',
       situations: [
@@ -217,7 +217,7 @@ export const setupTopicPages: ServicePageData[] = [
         },
         {
           title: 'Daten sollen übernommen werden',
-          text: 'Dokumente, Bilder oder wichtige Dateien sollen nach Absprache sinnvoll auf das neue Gerät.',
+          text: 'Dokumente, Bilder oder wichtige Dateien sollen nach Absprache auf das neue Gerät übertragen werden.',
         },
         {
           title: 'Das Startmenü ist unübersichtlich',
@@ -263,7 +263,7 @@ export const setupTopicPages: ServicePageData[] = [
         {
           question: 'Richtest du Windows 11 ein?',
           answer:
-            'Ja. Ich helfe bei neuer Einrichtung, Updates, Benutzerkonto, Programmen und den wichtigsten Alltagseinstellungen.',
+            'Ja. Ich helfe bei der Einrichtung, bei Updates, beim Benutzerkonto, bei Programmen und den wichtigsten Alltagseinstellungen.',
         },
         {
           question: 'Kannst du Daten vom alten PC übernehmen?',
@@ -287,13 +287,13 @@ export const setupTopicPages: ServicePageData[] = [
       description:
         'Hilfe bei Windows-, Microsoft-, E-Mail- und Geräte-Konten: sortieren, einrichten, Zugänge verstehen und sicher nutzen.',
       tags: ['Konten', 'Login', 'Sicherheit'],
-      seoTitle: 'Benutzerkonten Hilfe Ludwigsburg | Microsoft & Windows',
+      seoTitle: 'Benutzerkonten-Hilfe Ludwigsburg | Microsoft & Windows',
       seoDescription:
         'Hilfe bei Benutzerkonten in Ludwigsburg: Windows-, Microsoft-, E-Mail- und Geräte-Konten verständlich einrichten, sortieren und sicher nutzen.',
       keywords:
         'Benutzerkonto Hilfe Ludwigsburg, Microsoft Konto Hilfe, Windows Konto einrichten, Login Probleme, Passwort Hilfe, Konto einrichten',
       heroLead: 'Konten ohne Panik.',
-      heroAccent: 'Damit Anmeldung wieder verständlich wird.',
+      heroAccent: 'Damit die Anmeldung wieder verständlich wird.',
       heroText:
         'Viele Technikprobleme sind eigentlich Konto-Probleme: Anmeldung, Passwort, E-Mail, Microsoft-Konto oder Gerätefreigabe. Ich helfe beim Sortieren, ohne sensible Daten unnötig offenzulegen.',
       price: 'Fernhilfe ab 25 € · vor Ort ab 49 €',
@@ -309,7 +309,7 @@ export const setupTopicPages: ServicePageData[] = [
         },
         {
           title: 'Ein Passwort funktioniert nicht',
-          text: 'Anmeldung schlägt fehl oder Wiederherstellungswege sind unklar.',
+          text: 'Die Anmeldung schlägt fehl oder Wiederherstellungswege sind unklar.',
         },
         {
           title: 'Ein Familiengerät braucht eigene Nutzer',
@@ -379,7 +379,7 @@ export const setupTopicPages: ServicePageData[] = [
       description:
         'E-Mail-Hilfe in Ludwigsburg: Konto einrichten, Mailprogramm verbinden, Smartphone/PC synchronisieren und Versandprobleme prüfen.',
       tags: ['E-Mail', 'Outlook', 'Smartphone'],
-      seoTitle: 'E-Mail Hilfe Ludwigsburg | Konto & Outlook einrichten',
+      seoTitle: 'E-Mail-Hilfe Ludwigsburg | Konto & Outlook einrichten',
       seoDescription:
         'E-Mail-Hilfe in Ludwigsburg: Mailkonto einrichten, Outlook oder Mail-App verbinden, Probleme mit Senden, Empfangen und Anmeldung verständlich lösen.',
       keywords:
@@ -387,13 +387,13 @@ export const setupTopicPages: ServicePageData[] = [
       heroLead: 'E-Mail soll einfach ankommen.',
       heroAccent: 'Auf PC, Laptop und Smartphone.',
       heroText:
-        'Wenn E-Mails nicht senden, nicht ankommen oder auf jedem Gerät anders aussehen, wird es schnell nervig. Ich richte E-Mail-Konten und Programme nachvollziehbar ein und prüfe typische Fehlerquellen.',
+        'Wenn sich E-Mails nicht senden lassen, nicht ankommen oder auf jedem Gerät anders aussehen, wird es schnell nervig. Ich richte E-Mail-Konten und Programme nachvollziehbar ein und prüfe typische Fehlerquellen.',
       price: 'Fernhilfe ab 25 € · vor Ort ab 49 €',
       audienceHint: 'Für Menschen, die E-Mail auf PC, Laptop oder Smartphone zuverlässig nutzen möchten.',
       situations: [
         {
           title: 'E-Mails kommen nicht an',
-          text: 'Posteingang bleibt leer, obwohl Internet funktioniert und andere Apps laden.',
+          text: 'Der Posteingang bleibt leer, obwohl das Internet funktioniert und andere Apps laden.',
         },
         {
           title: 'E-Mails lassen sich nicht senden',
@@ -411,7 +411,7 @@ export const setupTopicPages: ServicePageData[] = [
       solutions: [
         {
           title: 'Konto einrichten',
-          text: 'E-Mail-Adresse in Outlook, Windows Mail, Smartphone oder Browser sauber verbinden.',
+          text: 'E-Mail-Konto in Outlook, Windows Mail, auf dem Smartphone oder im Browser sauber einrichten.',
         },
         {
           title: 'Senden und Empfangen prüfen',
@@ -471,7 +471,7 @@ export const setupTopicPages: ServicePageData[] = [
       description:
         'Drucker einrichten und Druckerprobleme lösen: WLAN-Drucker, Treiber, Scanner, Warteschlange und Verbindung prüfen.',
       tags: ['Drucker', 'Scanner', 'WLAN'],
-      seoTitle: 'Drucker Hilfe Ludwigsburg | Drucker einrichten',
+      seoTitle: 'Drucker-Hilfe Ludwigsburg | Drucker einrichten',
       seoDescription:
         'Drucker-Hilfe in Ludwigsburg: WLAN-Drucker einrichten, Treiber installieren, Scanner verbinden und Druckprobleme verständlich lösen.',
       keywords:
@@ -488,7 +488,7 @@ export const setupTopicPages: ServicePageData[] = [
           text: 'PC oder Smartphone sehen den Drucker nicht, obwohl er eingeschaltet ist.',
         },
         {
-          title: 'WLAN-Drucker verbindet nicht',
+          title: 'WLAN-Drucker verbindet sich nicht',
           text: 'Der Drucker ist im Netzwerk, verschwindet aber immer wieder oder druckt nicht.',
         },
         {
@@ -544,12 +544,12 @@ export const setupTopicPages: ServicePageData[] = [
         {
           question: 'Kannst du auch Scanner einrichten?',
           answer:
-            'Ja. Scannen, Speicherort und passende App können mit eingerichtet werden.',
+            'Ja. Scannen, Speicherort und passende App können ebenfalls eingerichtet werden.',
         },
         {
           question: 'Geht Druckerhilfe per Fernwartung?',
           answer:
-            'Manches geht per Fernhilfe. Wenn der Drucker selbst oder WLAN beteiligt ist, ist vor Ort oft besser.',
+            'Manches geht per Fernhilfe. Wenn der Drucker selbst oder WLAN beteiligt ist, ist ein Termin vor Ort oft besser.',
         },
       ],
       related: ['router-entstoerung', 'installation', 'pc-system'],
@@ -650,14 +650,14 @@ export const setupTopicPages: ServicePageData[] = [
       slug: 'office-installation',
       icon: 'laptop',
       code: 'TOP/OFF/08',
-      title: 'Office Installation',
+      title: 'Office-Installation',
       shortTitle: 'Office',
       description:
         'Microsoft Office oder Alternativen installieren, aktivieren, einrichten und für Dokumente, Tabellen und E-Mail nutzbar machen.',
       tags: ['Office', 'Word', 'Excel'],
-      seoTitle: 'Office Installation Ludwigsburg | Word, Excel & Outlook',
+      seoTitle: 'Office-Installation Ludwigsburg | Word, Excel & Outlook',
       seoDescription:
-        'Office Installation in Ludwigsburg: Microsoft 365, Word, Excel, Outlook oder Alternativen installieren, aktivieren und verständlich einrichten.',
+        'Office-Installation in Ludwigsburg: Microsoft 365, Word, Excel, Outlook oder Alternativen installieren, aktivieren und verständlich einrichten.',
       keywords:
         'Office Installation Ludwigsburg, Microsoft Office einrichten, Word Excel installieren, Outlook Hilfe, Microsoft 365 Hilfe, Office aktivieren',
       heroLead: 'Office ohne Aktivierungsstress.',
@@ -669,7 +669,7 @@ export const setupTopicPages: ServicePageData[] = [
       situations: [
         {
           title: 'Office soll installiert werden',
-          text: 'Microsoft 365, Office-Lizenz oder eine Alternative soll auf dem Gerät laufen.',
+          text: 'Microsoft 365, eine lizenzierte Office-Version oder eine Alternative soll auf dem Gerät laufen.',
         },
         {
           title: 'Aktivierung klappt nicht',
@@ -680,7 +680,7 @@ export const setupTopicPages: ServicePageData[] = [
           text: 'E-Mail-Konto, Kalender oder Kontakte sollen in Outlook nutzbar sein.',
         },
         {
-          title: 'Dateien öffnen falsch',
+          title: 'Dateien öffnen sich im falschen Programm',
           text: 'Word-, Excel- oder PDF-Dateien landen im falschen Programm.',
         },
       ],
@@ -698,8 +698,8 @@ export const setupTopicPages: ServicePageData[] = [
           text: 'E-Mail, Kalender und Grundfunktionen nachvollziehbar vorbereiten.',
         },
         {
-          title: 'Standarddateien setzen',
-          text: 'Word, Excel und PDF sinnvoll mit passenden Programmen verknüpfen.',
+          title: 'Standardprogramme festlegen',
+          text: 'Word-, Excel- und PDF-Dateien sinnvoll mit passenden Programmen verknüpfen.',
         },
         {
           title: 'Grundbedienung erklären',
@@ -742,14 +742,14 @@ export const setupTopicPages: ServicePageData[] = [
       slug: 'router-entstoerung',
       icon: 'router',
       code: 'TOP/RTR/09',
-      title: 'Router Entstörung',
+      title: 'Router-Entstörung',
       shortTitle: 'Router',
       description:
         'Router- und Internetprobleme eingrenzen: Ausfälle, WLAN-Abbrüche, Neustarts, Anbietergerät, Fritzbox und Heimnetz prüfen.',
       tags: ['Router', 'Internet', 'Fritzbox'],
-      seoTitle: 'Router Entstörung Ludwigsburg | Internet & Fritzbox Hilfe',
+      seoTitle: 'Router-Entstörung Ludwigsburg | Internet & Fritzbox-Hilfe',
       seoDescription:
-        'Router Entstörung in Ludwigsburg: Internet fällt aus, Fritzbox oder Router macht Probleme, WLAN bricht ab. Ursache prüfen und verständlich lösen.',
+        'Router-Entstörung in Ludwigsburg: Internet fällt aus, Fritzbox oder Router macht Probleme, WLAN bricht ab. Ursache prüfen und verständlich lösen.',
       keywords:
         'Router Entstörung Ludwigsburg, Router Hilfe, Fritzbox Hilfe, Internet geht nicht, WLAN bricht ab, Router einrichten, Netzwerk Störung',
       heroLead: 'Wenn der Router wieder Theater macht.',

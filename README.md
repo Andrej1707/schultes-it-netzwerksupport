@@ -40,6 +40,8 @@ Ludwigsburg ist der erste inhabergeführte Standort. Weitere echte Standorte kö
 - Projektübersicht mit ausdrücklich benanntem Konzept- oder Prototypenstatus
 - Durchsuchbare Hilfethemen mit Filtern für Fernwartung und regionale Hilfe
 - Mobile Navigation, direkte Kontaktwege und Copy-Phone-Funktion
+- Täglich geprüfter RustDesk-Download mit automatischer Aktualisierung, Versionsanzeige
+  und abgeglichener SHA-256-Prüfsumme
 - Spamgeschützter KI-Assistent mit Cloudflare Turnstile, festen Limits und OpenAI-Moderation
 
 ## Seitenstruktur
@@ -129,6 +131,8 @@ SEO-Gate und der Offpage-Aufbau sind in
 [docs/seo-authority-roadmap.md](docs/seo-authority-roadmap.md) dokumentiert.
 Die Abnahme der Bewegungen und Zielgruppen-Texte steht in
 [docs/design/motion-and-content-polish.md](docs/design/motion-and-content-polish.md).
+Die Download-Automatik und ihre Prüfungen stehen in
+[docs/rustdesk-updates.md](docs/rustdesk-updates.md).
 
 ## Business-Assistent
 
