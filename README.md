@@ -24,8 +24,11 @@ Ludwigsburg ist der erste inhabergeführte Standort. Weitere echte Standorte kö
 ## Highlights
 
 - Marken-Startseite mit zwei klaren Einstiegen: Fernwartung und regionale Standorte
+- Klare Ansprache für Privatpersonen und kleine Unternehmen, auch bei digitalen Projekten
 - Helles Premium-Design mit großen Produktmotiven, klarer Typografie und eigenen
   Gestaltungsvarianten für die einzelnen Themen
+- Dezente einmalige Einblendungen und kleine Hover-Effekte; Inhalte bleiben ohne JavaScript,
+  bei reduzierter Bewegung und beim Drucken vollständig sichtbar
 - Verschachtelte, statisch erzeugte Routen mit vollständiger Pfadauflösung
 - Vollständiges React-HTML beim Build; dieselben Komponenten werden im Browser hydriert
 - Seitentypabhängige Metadaten und Schema.org-Daten
@@ -107,6 +110,7 @@ SEO-Validierung aller kanonischen Routen und Aliasse.
 - `src/pages/LegalContent.tsx`: vollständige Impressums- und Datenschutzinhalte
 - `src/premium.css`, `src/premium-service.css`, `src/premium-network.css`: gemeinsames Design
   und die Gestaltungsvarianten der Seiten
+- `src/site/motion.ts`, `src/motion.css`: progressive Bewegungen ohne zusätzliche Bibliothek
 - `src/site/`: Marken- und Standortdaten, Kontakte, Routing, Distanzlogik,
   Schema.org-Erzeugung und statisches Rendern
 - `src/content/`: normalisierte Leistungsdaten; `src/content/legacy/` enthält weiterhin
@@ -123,6 +127,8 @@ keine Geschäftsräume und keine identifizierten Personen.
 Weitere Details stehen in [docs/architecture.md](docs/architecture.md). Der messbare technische
 SEO-Gate und der Offpage-Aufbau sind in
 [docs/seo-authority-roadmap.md](docs/seo-authority-roadmap.md) dokumentiert.
+Die Abnahme der Bewegungen und Zielgruppen-Texte steht in
+[docs/design/motion-and-content-polish.md](docs/design/motion-and-content-polish.md).
 
 ## Business-Assistent
 

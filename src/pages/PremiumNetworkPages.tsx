@@ -217,7 +217,7 @@ function ServicesPage({ page }: { page: SitePage }) {
               <Photo name={serviceArt[index]} alt="" eager={index === 0} />
               {index === 2 ? (
                 <div className="pn-web-caption">
-                  <span>DEINE MARKE.</span>
+                  <span>DEINE IDEE.</span>
                   <strong>
                     Dein eigener
                     <br />

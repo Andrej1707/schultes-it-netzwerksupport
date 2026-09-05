@@ -33,7 +33,13 @@ export default function PremiumHomePage({ page }: { page: SitePage }) {
           </p>
           <h1>
             {page.heading}
-            <span>{page.accent}</span>
+            <span>
+              {page.accent.split(/(?<=\.)\s+/).map((audience) => (
+                <span className="p-home-audience" key={audience}>
+                  {audience}{' '}
+                </span>
+              ))}
+            </span>
           </h1>
           <p className="p-home-intro">
             Deutschlandweit per Fernwartung.

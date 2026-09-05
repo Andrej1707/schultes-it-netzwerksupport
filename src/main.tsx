@@ -6,6 +6,7 @@ import { contactForPage } from './site/contacts'
 import './premium.css'
 import './premium-service.css'
 import './premium-network.css'
+import './motion.css'
 
 const route = resolveSiteRoute(window.location.pathname)
 const page = route?.page ?? notFoundPage

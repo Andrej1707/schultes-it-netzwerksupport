@@ -356,6 +356,10 @@ a:hover {
   letter-spacing: 0.09em;
   text-transform: uppercase;
 }
+.p-home-audience {
+  display: inline-block;
+  max-width: 100%;
+}
 .p-home-intro {
   font-size: 19px;
   line-height: 1.5;

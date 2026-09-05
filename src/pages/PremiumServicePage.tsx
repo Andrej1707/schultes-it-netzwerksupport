@@ -244,7 +244,7 @@ function HeroVisual({
           Konzept. Design. Entwicklung.
         </span>
         <p>
-          Dein Unternehmen.
+          Deine Idee.
           <br />
           <span>Unverwechselbar.</span>
         </p>

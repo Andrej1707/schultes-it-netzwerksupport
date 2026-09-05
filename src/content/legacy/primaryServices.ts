@@ -302,17 +302,17 @@ export const primaryServicePages: ServicePageData[] = [
     title: 'Webseiten',
     shortTitle: 'Webdesign',
     description:
-      'Schnelle, moderne Webseiten für lokale Unternehmen. Klar positioniert, mobil stark und ohne austauschbaren Baukasten-Look.',
+      'Individuelle Webseiten für private Projekte und kleine Unternehmen. Klar gestaltet, schnell und auf jedem Gerät gut nutzbar.',
     tags: ['Konzept', 'Frontend', 'Launch'],
-    seoTitle: 'Webdesign Ludwigsburg | Webseiten für Betriebe',
+    seoTitle: 'Webdesign Ludwigsburg | Private Projekte & Unternehmen',
     seoDescription:
-      'Moderne Webseiten aus Ludwigsburg für Selbstständige, lokale Firmen und Vereine. Individuell, mobil, schnell und suchmaschinenfreundlich umgesetzt.',
+      'Individuelle Webseiten aus Ludwigsburg für private Projekte, Selbstständige, kleine Firmen und Vereine. Mobil, schnell und mit sauberer technischer SEO-Basis.',
     keywords:
       'Webdesign Ludwigsburg, Webseite erstellen lassen, Firmenwebseite, Website lokale Unternehmen, responsive Webdesign, SEO Ludwigsburg',
     heroLead: 'Eine Website, die nach dir aussieht.',
-    heroAccent: 'Und für Kunden sofort verständlich ist.',
+    heroAccent: 'Und deine Idee verständlich macht.',
     heroText:
-      'Eine gute Website muss nicht laut sein. Sie muss Vertrauen schaffen, dein Angebot klar erklären und auf jedem Gerät funktionieren. Von der Struktur bis zum Launch entsteht eine individuelle, schnelle Präsenz.',
+      'Für dein Hobby, dein Portfolio oder deinen Betrieb: ein eigener Auftritt mit klarer Gestaltung, verständlichen Inhalten und Technik, die auf jedem Gerät funktioniert.',
     price: 'Individuelles Angebot · Umfang vorher klar definiert',
     audiences: [
       {
@@ -328,14 +328,14 @@ export const primaryServicePages: ServicePageData[] = [
         text: 'Informationen übersichtlich bündeln und auch auf dem Smartphone gut zugänglich machen.',
       },
       {
-        label: 'Neugründungen',
-        text: 'Von Anfang an mit einer glaubwürdigen, technisch sauberen Online-Präsenz starten.',
+        label: 'Privatpersonen',
+        text: 'Dem eigenen Hobby, Portfolio oder persönlichen Projekt einen passenden Platz im Web geben.',
       },
     ],
     situations: [
       {
         title: 'Die alte Seite wirkt nicht mehr zeitgemäß',
-        text: 'Inhalte sind schwer zu finden, mobil zu klein oder optisch nicht mehr passend zum Betrieb.',
+        text: 'Inhalte sind schwer zu finden, mobil zu klein oder optisch nicht mehr passend zu deinem Projekt.',
       },
       {
         title: 'Es gibt noch gar keine Website',
@@ -357,7 +357,7 @@ export const primaryServicePages: ServicePageData[] = [
       },
       {
         title: 'Individuelles Interface',
-        text: 'Ein Erscheinungsbild entwickeln, das zum Betrieb passt und nicht nach Vorlage aussieht.',
+        text: 'Ein Erscheinungsbild entwickeln, das zu dir und deinem Vorhaben passt.',
       },
       {
         title: 'Mobile Umsetzung',
@@ -407,7 +407,7 @@ export const primaryServicePages: ServicePageData[] = [
       {
         question: 'Für wen erstellst du Webseiten?',
         answer:
-          'Der Schwerpunkt liegt auf Selbstständigen, kleinen Firmen, lokalen Betrieben, Vereinen und Projekten aus Ludwigsburg und Umgebung.',
+          'Für Privatpersonen mit einem Hobby, Portfolio oder eigenen Projekt ebenso wie für Selbstständige, kleine Unternehmen und Vereine aus Ludwigsburg und Umgebung.',
       },
       {
         question: 'Ist die Website auch für Smartphones optimiert?',
@@ -439,17 +439,17 @@ export const primaryServicePages: ServicePageData[] = [
     title: 'Tools & Automation',
     shortTitle: 'Automation',
     description:
-      'Kleine digitale Werkzeuge, Automationen und moderne KI-/Agenten-Projekte, die wiederkehrende Arbeit wirklich abnehmen.',
+      'Kleine digitale Werkzeuge und Automationen, die wiederkehrende Aufgaben im privaten Alltag oder im Betrieb einfacher machen.',
     tags: ['Workflows', 'KI', 'Prototypen'],
-    seoTitle: 'Automatisierung Ludwigsburg | Tools für Betriebe',
+    seoTitle: 'Automatisierung Ludwigsburg | Tools für Alltag & Betrieb',
     seoDescription:
-      'Individuelle Tools und Automatisierungen in Ludwigsburg für Selbstständige und kleine Firmen: Abläufe vereinfachen, Daten ordnen und Prototypen praxisnah entwickeln.',
+      'Individuelle Tools und Automatisierungen in Ludwigsburg für Privatpersonen und kleine Betriebe: Dateien ordnen, Abläufe vereinfachen und Prototypen entwickeln.',
     keywords:
       'Automatisierung Ludwigsburg, individuelle Software kleine Unternehmen, Workflow Automation, KI Tools, Prozessautomatisierung, Prototyp Entwicklung',
     heroLead: 'Wiederholungen raus. Klarheit rein.',
     heroAccent: 'Tools, die zu deinem Ablauf passen.',
     heroText:
-      'Wenn Informationen ständig kopiert, sortiert oder aus Dokumenten übertragen werden, lohnt sich ein genauer Blick. Ich entwickle kleine Werkzeuge und Prototypen, die konkrete Arbeit vereinfachen – nicht bloß Technik demonstrieren.',
+      'Dateien sortieren, Listen pflegen oder Informationen aus Dokumenten übertragen: Solche Aufgaben wiederholen sich zu Hause genauso wie im Büro. Ich entwickle kleine Werkzeuge und Prototypen, die dir diese Arbeit erleichtern.',
     price: 'Erstgespräch & Machbarkeit · Angebot nach Umfang',
     audiences: [
       {
@@ -461,8 +461,8 @@ export const primaryServicePages: ServicePageData[] = [
         text: 'Pragmatische Werkzeuge, ohne direkt ein schweres Softwaresystem einzuführen.',
       },
       {
-        label: 'Büro & Verwaltung',
-        text: 'Dokumente, Listen und wiederkehrende Übertragungen nachvollziehbarer bearbeiten.',
+        label: 'Privatpersonen',
+        text: 'Eigene Dateien, Listen und digitale Sammlungen mit einem passenden kleinen Werkzeug leichter organisieren.',
       },
       {
         label: 'Ideengeber',

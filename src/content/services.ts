@@ -30,9 +30,9 @@ const categoryConfig = {
     path: '/leistungen/webseiten/',
     locationPath: 'webseiten/',
     legacyPaths: ['/webseiten/'],
-    seoTitle: 'Webseiten für Selbstständige & Betriebe | Schultes IT',
+    seoTitle: 'Webseiten für private Projekte & Unternehmen | Schultes IT',
     seoDescription:
-      'Moderne, schnelle und verständlich betreute Webseiten von Schultes IT für Selbstständige, kleine Unternehmen, Vereine und regionale Betriebe.',
+      'Individuelle Webseiten für private Projekte, Selbstständige, kleine Unternehmen und Vereine. Mobil, schnell und verständlich betreut von Schultes IT.',
     keywords:
       'Webseite erstellen lassen, Webdesign Deutschland, Firmenwebseite, lokale Unternehmen, responsive Webdesign',
   },
@@ -40,9 +40,9 @@ const categoryConfig = {
     path: '/leistungen/automation/',
     locationPath: 'automation/',
     legacyPaths: ['/tools-automation/'],
-    seoTitle: 'Tools & Automation für kleine Betriebe | Schultes IT',
+    seoTitle: 'Tools & Automation für Alltag und Betrieb | Schultes IT',
     seoDescription:
-      'Praktische Tools, Automatisierungen und Prototypen von Schultes IT: wiederkehrende Abläufe vereinfachen und digitale Arbeit nachvollziehbar verbessern.',
+      'Individuelle Tools und Automatisierungen von Schultes IT: Dateien ordnen und wiederkehrende digitale Aufgaben im privaten Alltag oder Betrieb vereinfachen.',
     keywords:
       'Automation kleine Unternehmen, individuelle Tools, Prozessautomatisierung, KI Prototyp, Schultes IT',
   },

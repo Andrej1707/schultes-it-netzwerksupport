@@ -12,12 +12,12 @@ const structuralPages: SitePage[] = [
     path: '/',
     title: 'Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort',
     description:
-      'Schultes IT verbindet zentrale deutschlandweite Fernwartung mit persönlichem Vor-Ort-Service über regionale, selbstständige Ansprechpartner.',
+      'IT-Hilfe für Privatpersonen und kleine Unternehmen: deutschlandweit per Fernwartung und persönlich vor Ort über regionale Schultes-IT-Standorte.',
     keywords:
       'Schultes IT, Fernwartung, IT Hilfe, PC Hilfe, regionale IT Standorte, Computerhilfe',
     eyebrow: 'SCHULTES IT / DEUTSCHLAND',
     heading: 'Einfach gute Technik.',
-    accent: 'Für deinen Alltag. Für dein Unternehmen.',
+    accent: 'Für Privatpersonen. Für kleine Unternehmen.',
     intro:
       'Schultes IT verbindet sichere Fernwartung mit persönlicher Hilfe durch klar verantwortliche regionale Ansprechpartner.',
     indexable: true,
@@ -39,7 +39,7 @@ const structuralPages: SitePage[] = [
     heading: 'Technikbereiche klar geordnet.',
     accent: 'Der passende Einstieg ohne Umwege.',
     intro:
-      'Vier Leistungsbereiche werden über aktive Standorte persönlich betreut: vor Ort, per Fernwartung oder als klar abgestimmtes Projekt.',
+      'Ob zu Hause, im eigenen Betrieb oder für eine private Idee: Aktive Standorte helfen vor Ort, per Fernwartung oder im gemeinsam abgestimmten Projekt.',
     indexable: true,
     lastModified,
     changeFrequency: 'monthly',

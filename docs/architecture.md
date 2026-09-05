@@ -81,6 +81,18 @@ Responsive Layouts, sichtbarer Tastaturfokus, eine Sprungmarke zum Hauptinhalt u
 `prefers-reduced-motion` gehören zur Gestaltung. Mobile Navigation, Ratgeberfilter,
 Telefonnummer-Kopieren und Kartenfreigabe werden nach der Hydrierung interaktiv.
 
+`src/site/motion.ts` ergänzt die bereits sichtbare Seite aus einem Effekt in `App.tsx`.
+Ein `IntersectionObserver` startet kurze CSS-Animationen aus `src/motion.css` einmal pro
+Abschnitt. Bereits sichtbare Einstiege werden nicht ausgeblendet. Es gibt keine permanenten
+Scroll-Listener oder JavaScript-Animationsschleifen. Separate CSS-Eigenschaften `translate`
+und `scale` erhalten die vorhandenen Bildtransformationen.
+
+Tastaturfokus und Sprungmarken beenden betroffene Einblendungen unmittelbar. Reduzierte Bewegung
+und Drucken deaktivieren die Effekte; die Rechtstexte und dynamischen Suchergebnisse sind
+ausgenommen. Der Controller räumt Observer und Ereignisbehandler bei der React-Effektbereinigung
+auf. Auswahl der Elemente, Zeiten und Abnahme stehen in
+[design/motion-and-content-polish.md](design/motion-and-content-polish.md).
+
 ## Bildmaterial
 
 Jede fotografische Platzierung hat ein eigenes Motiv. `workspace`, `wifi` und `support`

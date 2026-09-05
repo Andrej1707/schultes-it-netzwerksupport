@@ -131,7 +131,7 @@ export const locations: ServiceLocation[] = [
       remoteSupportApproach:
         'Fernwartungsfälle werden vom Standort Ludwigsburg persönlich mit Andrej abgestimmt. Die Verbindung startest du selbst und behältst während der gesamten Sitzung die Kontrolle.',
       businessSupportApproach:
-        'Kleine Unternehmen aus dem Landkreis erhalten pragmatische Unterstützung für Arbeitsplätze, Netzwerke, Webseiten und wiederkehrende digitale Abläufe.',
+        'Privatpersonen und kleine Unternehmen aus dem Landkreis erhalten pragmatische Unterstützung für Computer, Netzwerke, Webseiten und wiederkehrende digitale Aufgaben.',
       operatorApproach:
         'Andrej grenzt die Ursache zuerst nachvollziehbar ein, erklärt die nächsten Schritte ohne Fachchinesisch und spricht Grenzen offen an.',
       localProof:
