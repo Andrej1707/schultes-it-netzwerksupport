@@ -92,7 +92,26 @@ export function contactForService(service: ServicePageData): DirectContactProfil
   return location ? contactForLocation(location) : centralRemoteContact
 }
 
+export function localInquiryHref(location: ServiceLocation) {
+  const contact = contactForLocation(location)
+  const subject = `IT-Hilfe in ${location.city} anfragen`
+  const body = [
+    `Hallo ${contact.operatorName},`,
+    '',
+    'ich brauche Hilfe mit:',
+    '',
+    'Mein Ort / meine PLZ:',
+    'So bin ich für Rückfragen erreichbar:',
+    'Für einen Termin passt mir:',
+    '',
+    'Bitte klären wir gemeinsam, ob Fernwartung oder ein Vor-Ort-Termin sinnvoll ist und welche Kosten anfallen.',
+  ].join('\r\n')
+  return `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+}
+
 export function contactForPage(page: SitePage) {
   if (page.locationId) return contactForLocationId(page.locationId)
-  return page.kind === 'service' ? centralRemoteContact : centralContact
+  return page.kind === 'service' || page.kind === 'home'
+    ? centralRemoteContact
+    : centralContact
 }

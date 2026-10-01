@@ -167,6 +167,14 @@ export function PremiumShell({
           </div>
           <div>
             <h2>Dein nächster Schritt.</h2>
+            {contact.phoneHref ? (
+              <a className="p-text-link" href={contact.phoneHref}>
+                <Phone size={17} aria-hidden="true" /> <span data-nosnippet>{contact.phoneDisplay}</span>
+              </a>
+            ) : null}
+            <a href={`mailto:${contact.email ?? siteConfig.remoteSupport.email}`}>
+              {contact.email ?? siteConfig.remoteSupport.email}
+            </a>
             <a className="p-text-link" href="/fernwartung/">
               Fernwartung anfragen <ArrowUpRight size={17} aria-hidden="true" />
             </a>
