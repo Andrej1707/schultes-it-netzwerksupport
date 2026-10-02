@@ -254,6 +254,28 @@ a:hover {
   flex-wrap: wrap;
   gap: 14px;
 }
+.p-direct-contact {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-top: 18px;
+  font-size: 15px;
+}
+.p-direct-contact a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 44px;
+  color: var(--accent);
+  overflow-wrap: anywhere;
+}
+.p-local-stage article > .p-text-link {
+  display: flex;
+  margin-top: 16px;
+}
 .p-button {
   display: inline-flex;
   align-items: center;

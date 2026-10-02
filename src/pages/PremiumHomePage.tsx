@@ -6,17 +6,21 @@ import {
   Globe2,
   Laptop,
   MapPin,
+  Mail,
+  Phone,
   Workflow,
   Wifi,
 } from 'lucide-react'
 import { PremiumImage } from '../components/PremiumShell'
 import { siteConfig } from '../site/config'
-import { activeLocations } from '../site/locations'
+import { activeLocationById, activeLocations } from '../site/locations'
+import { centralRemoteContact, localInquiryHref } from '../site/contacts'
 import { getServicePath, getLocationServicesByGroup } from '../content/services'
 import type { SitePage } from '../site/types'
 
 export default function PremiumHomePage({ page }: { page: SitePage }) {
   const location = activeLocations[0]
+  const ludwigsburg = activeLocationById.ludwigsburg
   const localServices = location
     ? getLocationServicesByGroup(location.id, 'primary')
     : []
@@ -44,14 +48,22 @@ export default function PremiumHomePage({ page }: { page: SitePage }) {
           <p className="p-home-intro">
             Deutschlandweit per Fernwartung.
             <br />
-            Persönlich vor Ort.
+            Persönlich vor Ort in Ludwigsburg und Umgebung.
           </p>
           <div className="p-actions">
             <a className="p-button" href="/fernwartung/">
-              IT-Hilfe finden <ArrowUpRight size={17} aria-hidden="true" />
+              Fernwartung ab {siteConfig.remoteSupport.priceFrom} <ArrowUpRight size={17} aria-hidden="true" />
             </a>
-            <a className="p-button p-button-outline" href="/leistungen/">
-              Leistungen entdecken
+            <a className="p-button p-button-outline" href={ludwigsburg?.path ?? '/standorte/'}>
+              Hilfe in Ludwigsburg
+            </a>
+          </div>
+          <div className="p-direct-contact" aria-label="Direkt Kontakt aufnehmen">
+            <a href={centralRemoteContact.phoneHref}>
+              <Phone size={17} aria-hidden="true" /> Anrufen: <span data-nosnippet>{centralRemoteContact.phoneDisplay}</span>
+            </a>
+            <a href={`mailto:${centralRemoteContact.email}`}>
+              <Mail size={17} aria-hidden="true" /> {centralRemoteContact.email}
             </a>
           </div>
         </div>
@@ -298,8 +310,13 @@ export default function PremiumHomePage({ page }: { page: SitePage }) {
             className="p-button p-button-outline"
             href={location?.path ?? '/standorte/'}
           >
-            Standort kennenlernen <ArrowUpRight size={17} aria-hidden="true" />
+            Hilfe in {location?.city ?? 'deiner Region'} anfragen <ArrowUpRight size={17} aria-hidden="true" />
           </a>
+          {location ? (
+            <a className="p-text-link" href={localInquiryHref(location)}>
+              Anliegen per E-Mail schildern <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
+          ) : null}
         </article>
       </section>
 
@@ -345,11 +362,11 @@ export default function PremiumHomePage({ page }: { page: SitePage }) {
           einfacher werden?
         </h2>
         <div className="p-actions">
-          <a className="p-button" href="/fernwartung/">
-            Hilfe anfragen <ArrowUpRight size={17} aria-hidden="true" />
+          <a className="p-button" href={centralRemoteContact.phoneHref}>
+            Direkt anrufen <Phone size={17} aria-hidden="true" />
           </a>
-          <a className="p-text-link" href="/standorte/">
-            Persönlich vor Ort <ArrowUpRight size={17} aria-hidden="true" />
+          <a className="p-text-link" href={ludwigsburg?.path ?? '/standorte/'}>
+            Hilfe in Ludwigsburg <ArrowUpRight size={17} aria-hidden="true" />
           </a>
         </div>
       </section>
