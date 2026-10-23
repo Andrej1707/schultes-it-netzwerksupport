@@ -72,8 +72,16 @@ Standort; deutschlandweite Fernwartung liegt unter `/fernwartung/`.
 Bestehende flache URLs und ältere Leistungspfade bleiben als Kompatibilitätsrouten erreichbar.
 Sie verwenden `index, follow`, einen Canonical auf die Zielroute und eine Weiterleitung per
 Meta-Refresh mit null Sekunden. Ein normaler Link zur Zielseite bleibt als Rückfallebene sichtbar.
+Ein kleines Skript vor dem Meta-Refresh erhält vorhandene Suchparameter und Sprungmarken;
+Alias-Dokumente laden dafür nicht die vollständige React-Anwendung. Direkte `index.html`-URLs
+werden zur jeweiligen Verzeichnis-URL aufgelöst, bevor React die Seite übernimmt.
 Aliasse erscheinen nicht in der Sitemap; die rechtlichen Seiten und die Fehlerseite bleiben
 `noindex, follow`.
+
+GitHub Pages liefert die Alias-Dateien mit HTTP 200 aus. Die sofortige Meta-Weiterleitung ist
+für Google ein permanentes Weiterleitungssignal, aber kein HTTP-301-Status. Eigene HTTP-301/308-
+Regeln für diese Pfade müssten am Hosting- oder vorgeschalteten Proxy-Dienst eingerichtet werden.
+Domain- und HTTPS-Weiterleitungen sind davon getrennt zu prüfen.
 
 ## Lokal starten
 

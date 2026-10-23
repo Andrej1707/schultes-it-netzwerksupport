@@ -114,10 +114,15 @@ function renderPageHtml(baseHtml: string, page: SitePage, isAlias = false) {
   html = replaceMeta(html, 'name', 'twitter:image:alt', page.title)
 
   if (isAlias) {
-    html = html.replace(
-      '</head>',
-      `  <meta http-equiv="refresh" content="0; url=${escapeAttribute(canonicalUrl)}" />\n</head>`,
-    )
+    html = html
+      // Redirect documents need neither React nor the support assistant. A small
+      // blocking script keeps search parameters/fragments before meta refresh.
+      .replace(/<script\b[^>]*type="module"[^>]*>[\s\S]*?<\/script>/gi, '')
+      .replace(/<link\b[^>]*rel="modulepreload"[^>]*>/gi, '')
+      .replace(
+        '</head>',
+        `  <script src="/site-redirect.js"></script>\n  <meta http-equiv="refresh" content="0; url=${escapeAttribute(canonicalUrl)}" />\n</head>`,
+      )
   }
 
   return html

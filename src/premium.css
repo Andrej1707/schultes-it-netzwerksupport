@@ -225,11 +225,15 @@ a:hover {
   height: 44px;
 }
 .p-mobile-menu {
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
   padding: 10px 24px 28px;
   background: #fff;
   box-shadow: 0 18px 24px #0000000c;
   max-height: calc(100dvh - 65px);
   overflow: auto;
+  overscroll-behavior: contain;
 }
 .p-mobile-menu > a {
   display: flex;

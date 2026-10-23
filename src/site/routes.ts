@@ -249,7 +249,9 @@ export function normalizePathname(pathname: string) {
   const withLeadingSlash = withoutQueryOrHash.startsWith('/')
     ? withoutQueryOrHash
     : `/${withoutQueryOrHash}`
-  const collapsed = withLeadingSlash.replace(/\/{2,}/g, '/')
+  // GitHub Pages serves these document URLs as the same HTML as their directory.
+  // Resolve them identically in the browser so hydration cannot turn a real page into a 404.
+  const collapsed = withLeadingSlash.replace(/\/{2,}/g, '/').replace(/\/index\.html$/, '/')
   return collapsed === '/' ? '/' : `${collapsed.replace(/\/+$/, '')}/`
 }
 
@@ -275,4 +277,14 @@ export function resolveSiteRoute(pathname: string): ResolvedSiteRoute | undefine
   if (aliasPage) return { page: aliasPage, requestedPath, isAlias: true }
 
   return undefined
+}
+
+export function canonicalRedirect(
+  pathname: string,
+  search = '',
+  hash = '',
+): string | undefined {
+  const route = resolveSiteRoute(pathname)
+  if (!route || pathname === route.page.path) return undefined
+  return `${route.page.path}${search}${hash}`
 }

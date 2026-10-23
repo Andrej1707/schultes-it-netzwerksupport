@@ -49,7 +49,7 @@ export function installPageMotion(root: HTMLElement) {
       siblings.set(element.parentElement, index + 1)
       targets.set(element, {
         kind: group.kind,
-        delay: group.stagger ? Math.min(index, 3) * 65 : 0,
+        delay: group.stagger ? Math.min(index, 3) * 45 : 0,
       })
     }
   }
@@ -69,9 +69,8 @@ export function installPageMotion(root: HTMLElement) {
     seen.add(element)
     active.delete(element)
     observer?.unobserve(element)
-    element.classList.remove('p-motion-enter')
+    element.classList.remove('p-motion-pending', 'p-motion-enter')
     element.style.removeProperty('--p-motion-delay')
-    element.style.removeProperty('--p-motion-opacity')
     element.dataset.motion = 'done'
   }
   const settleAll = () => {
@@ -84,9 +83,15 @@ export function installPageMotion(root: HTMLElement) {
     !printing &&
     document.visibilityState !== 'hidden'
 
-  const reveal = (element: HTMLElement, initiallyVisible = false) => {
+  const reveal = (element: HTMLElement) => {
     // Background tabs must not consume a reveal before anyone can see it.
     if (seen.has(element) || !canRun()) return
+    // Responsive content that had no box at setup was never hidden. Do not
+    // suddenly fade it out when it gains a visible box after a resize.
+    if (!element.classList.contains('p-motion-pending')) {
+      settle(element)
+      return
+    }
     seen.add(element)
     active.add(element)
     observer?.unobserve(element)
@@ -97,11 +102,7 @@ export function installPageMotion(root: HTMLElement) {
       '--p-motion-delay',
       `${mobile ? 0 : settings.delay}ms`,
     )
-    // Never fade out already painted introductory content or the main product image.
-    element.style.setProperty(
-      '--p-motion-opacity',
-      initiallyVisible || settings.kind === 'hero' ? '1' : '0',
-    )
+    element.classList.remove('p-motion-pending')
     element.classList.add('p-motion-enter')
   }
   const settleTarget = (target: Element) => {
@@ -147,8 +148,8 @@ export function installPageMotion(root: HTMLElement) {
           reveal(entry.target as HTMLElement)
       }
     },
-    // Start just inside the screen; an offscreen pause must not use up the effect.
-    { rootMargin: '0px 0px -24px 0px', threshold: 0 },
+    // A small lead-in avoids starting the fade after the block is already visible.
+    { rootMargin: '0px 0px 64px 0px', threshold: 0 },
   )
 
   const syncVisibility = () => {
@@ -156,8 +157,8 @@ export function installPageMotion(root: HTMLElement) {
     root.classList.toggle('p-motion-paused', !running)
     observer?.disconnect()
     if (!running) {
-      if (preference.matches || printing)
-        for (const element of active) settle(element)
+      if (preference.matches || printing) settleAll()
+      else for (const element of active) settle(element)
       return
     }
     onHashChange()
@@ -168,10 +169,17 @@ export function installPageMotion(root: HTMLElement) {
     for (const { element, rect } of bounds) {
       // Observe zero-area responsive content too: it may gain a box after a resize.
       if (rect.height === 0 || rect.width === 0) observer?.observe(element)
+      // SSR content may have been visible long before hydration. Never move it
+      // backwards or hide it when the controller starts or the tab is restored.
       else if (rect.top < window.innerHeight && rect.bottom > 0)
-        reveal(element, true)
+        settle(element)
       else if (rect.bottom <= 0) settle(element)
-      else observer?.observe(element)
+      else {
+        // Only offscreen content is prepared for a fade. Without JavaScript,
+        // reduced motion, or during printing, everything remains visible.
+        element.classList.add('p-motion-pending')
+        observer?.observe(element)
+      }
     }
   }
   const onPageHide = () => {
@@ -197,6 +205,7 @@ export function installPageMotion(root: HTMLElement) {
   preference.addEventListener('change', syncVisibility)
   root.addEventListener('focusin', onFocus)
   root.addEventListener('animationend', onAnimationEnd)
+  root.addEventListener('animationcancel', onAnimationEnd)
   document.addEventListener('visibilitychange', syncVisibility)
   window.addEventListener('hashchange', onHashChange)
   window.addEventListener('pagehide', onPageHide)
@@ -210,6 +219,7 @@ export function installPageMotion(root: HTMLElement) {
     preference.removeEventListener('change', syncVisibility)
     root.removeEventListener('focusin', onFocus)
     root.removeEventListener('animationend', onAnimationEnd)
+    root.removeEventListener('animationcancel', onAnimationEnd)
     document.removeEventListener('visibilitychange', syncVisibility)
     window.removeEventListener('hashchange', onHashChange)
     window.removeEventListener('pagehide', onPageHide)

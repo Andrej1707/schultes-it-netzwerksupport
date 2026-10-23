@@ -1,16 +1,19 @@
-/* No initial hidden state: animation is added only when a block enters the viewport. */
+/* Only the controller prepares offscreen blocks; server-rendered content is visible. */
 @media (prefers-reduced-motion: no-preference) {
+  .p-motion-pending {
+    opacity: 0;
+  }
   .p-motion-enter {
-    animation: p-motion-rise 680ms cubic-bezier(0.22, 1, 0.36, 1)
+    animation: p-motion-rise 520ms cubic-bezier(0.22, 1, 0.36, 1)
       var(--p-motion-delay, 0ms) backwards;
   }
   .p-motion-enter[data-motion='image'] {
     animation-name: p-motion-image;
-    animation-duration: 820ms;
+    animation-duration: 600ms;
   }
   .p-motion-enter[data-motion='hero'] {
     animation-name: p-motion-hero;
-    animation-duration: 720ms;
+    animation-duration: 520ms;
   }
   .p-motion-paused .p-motion-enter {
     animation-play-state: paused;
@@ -21,8 +24,8 @@
 }
 @keyframes p-motion-rise {
   from {
-    opacity: var(--p-motion-opacity, 0);
-    translate: 0 20px;
+    opacity: 0;
+    translate: 0 12px;
   }
   to {
     opacity: 1;
@@ -31,21 +34,21 @@
 }
 @keyframes p-motion-image {
   from {
-    opacity: var(--p-motion-opacity, 0);
-    translate: 0 16px;
-    scale: 0.985;
+    opacity: 0;
+    translate: 0 12px;
   }
   to {
     opacity: 1;
     translate: 0 0;
-    scale: 1;
   }
 }
 @keyframes p-motion-hero {
   from {
-    translate: 0 10px;
+    opacity: 0;
+    translate: 0 8px;
   }
   to {
+    opacity: 1;
     translate: 0 0;
   }
 }
@@ -97,6 +100,7 @@
   }
 }
 @media (prefers-reduced-motion: reduce), print {
+  .p-motion-pending,
   .p-motion-enter {
     animation: none !important;
     opacity: 1 !important;
