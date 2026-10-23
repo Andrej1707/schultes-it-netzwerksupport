@@ -1115,6 +1115,23 @@ a:hover {
     padding-bottom: 0;
   }
 }
+@media (max-width: 360px) {
+  .p-header-inner {
+    padding-inline: 12px;
+    gap: 6px;
+  }
+  .p-header .p-logo {
+    flex-shrink: 0;
+    font-size: 18px;
+    gap: 6px;
+  }
+  .p-header-actions {
+    flex-shrink: 0;
+  }
+  .p-header-contact {
+    padding-inline: 10px;
+  }
+}
 @media print {
   .p-header,
   .p-footer,
