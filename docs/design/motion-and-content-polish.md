@@ -85,3 +85,31 @@ Elemente ohne Breite oder Höhe werden nicht vorzeitig als gesehen markiert.
 Die gezielte Browsermessung des Karteneinstiegs benötigte rund 0,6 ms JavaScript und keine
 zusätzliche Layout-Zeit. Der native Browser-Trace zeigte dabei keine erfassten Skriptaufgaben
 über 50 ms. Dies ist eine lokale Stichprobe; sie garantiert keine feste Bildrate auf jedem Gerät.
+
+## Korrektur der Animationen vom 23. Oktober 2026
+
+Die vorherige Abnahme beschreibt den damaligen Stand. Der Einstieg wird jetzt bei der
+Hydrierung nicht erneut bewegt: Überschriften und Bilder, die bereits im sichtbaren Bereich
+stehen, behalten sofort ihre endgültige Position. Das verhindert ein nachträgliches Springen
+bei langsam ladendem JavaScript.
+
+Nur noch außerhalb des Bildschirms liegende Blöcke erhalten durch JavaScript einen
+vorbereiteten Ausgangszustand. Der Observer startet die Einblendung bereits 64 px vor dem
+unteren Bildschirmrand, statt bereits sichtbare Inhalte nachträglich auszublenden.
+Server-HTML und die Darstellung ohne JavaScript bleiben vollständig sichtbar. Bei reduzierter
+Bewegung, Tastaturfokus, Sprungmarken und beim Drucken wird der Ausgangszustand sofort
+aufgehoben. Nach einer Tab-Unterbrechung werden laufende Effekte abgeschlossen und bereits
+sichtbare Inhalte nicht erneut animiert. Auch abgebrochene Animationen räumen ihren Zustand auf.
+
+- Texte und Karten: 12 px Bewegung über 520 ms.
+- Bildbühnen: 12 px über 600 ms, ohne gleichzeitige Skalierung.
+- Staffelung: 45 ms pro Karte, höchstens 135 ms; mobil weiterhin ohne Verzögerung.
+- Mobiles Menü: unveränderte Gestaltung und kurze Einblendung; das Dropdown liegt nun
+  unter dem Header, ohne den Seiteninhalt beim Öffnen zu verschieben. Escape, Fokuswechsel
+  aus dem Header, Klick außerhalb und der Wechsel zur Desktopbreite schließen es.
+
+Acht automatisierte Controller-Regressionstests decken sichtbaren Einstiegsinhalt,
+Einmaligkeit und Abbruch, reduzierte Bewegung, Tastaturfokus, Tab-Rückkehr, Druck/Cleanup und
+responsive Inhalte ohne anfängliche Fläche ab. Die Tests sowie der Frontend-Typecheck
+wurden für diese Korrektur erfolgreich ausgeführt; die vollständige Releaseprüfung erfolgt
+zusammen mit den übrigen Änderungen.

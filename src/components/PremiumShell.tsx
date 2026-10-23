@@ -63,6 +63,7 @@ export function PremiumShell({
 }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const menuButton = useRef<HTMLButtonElement>(null)
+  const header = useRef<HTMLElement>(null)
   const contact = contactForPage(page)
   useEffect(() => {
     document.body.dataset.menuOpen = String(menuOpen)
@@ -78,6 +79,24 @@ export function PremiumShell({
       window.removeEventListener('keydown', escape)
     }
   }, [menuOpen])
+  useEffect(() => {
+    if (!menuOpen) return
+    const desktop = window.matchMedia('(min-width: 861px)')
+    const closeOnDesktop = () => {
+      if (desktop.matches) setMenuOpen(false)
+    }
+    const closeOutside = (event: PointerEvent) => {
+      if (event.target instanceof Node && !header.current?.contains(event.target))
+        setMenuOpen(false)
+    }
+    closeOnDesktop()
+    desktop.addEventListener('change', closeOnDesktop)
+    document.addEventListener('pointerdown', closeOutside)
+    return () => {
+      desktop.removeEventListener('change', closeOnDesktop)
+      document.removeEventListener('pointerdown', closeOutside)
+    }
+  }, [menuOpen])
   return (
     <div
       id="top"
@@ -87,7 +106,14 @@ export function PremiumShell({
       <a className="p-skip" href="#main-content">
         Zum Inhalt springen
       </a>
-      <header className="p-header">
+      <header
+        className="p-header"
+        ref={header}
+        onBlur={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget))
+            setMenuOpen(false)
+        }}
+      >
         <div className="p-header-inner">
           <PremiumLogo />
           <nav aria-label="Hauptnavigation" className="p-navigation">
@@ -140,12 +166,17 @@ export function PremiumShell({
           hidden={!menuOpen}
         >
           {navigation.map(([label, href]) => (
-            <a key={href} href={href} onClick={() => setMenuOpen(false)}>
+            <a
+              key={href}
+              href={href}
+              aria-current={page.path === href ? 'page' : undefined}
+              onClick={() => setMenuOpen(false)}
+            >
               {label}
               <ArrowUpRight size={18} aria-hidden="true" />
             </a>
           ))}
-          <a href="/standortinhaber-werden/">
+          <a href="/standortinhaber-werden/" onClick={() => setMenuOpen(false)}>
             Standortinhaber werden
             <ArrowUpRight size={18} aria-hidden="true" />
           </a>

@@ -225,11 +225,15 @@ a:hover {
   height: 44px;
 }
 .p-mobile-menu {
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
   padding: 10px 24px 28px;
   background: #fff;
   box-shadow: 0 18px 24px #0000000c;
   max-height: calc(100dvh - 65px);
   overflow: auto;
+  overscroll-behavior: contain;
 }
 .p-mobile-menu > a {
   display: flex;
@@ -1109,6 +1113,23 @@ a:hover {
   }
   .p-home-heading {
     padding-bottom: 0;
+  }
+}
+@media (max-width: 360px) {
+  .p-header-inner {
+    padding-inline: 12px;
+    gap: 6px;
+  }
+  .p-header .p-logo {
+    flex-shrink: 0;
+    font-size: 18px;
+    gap: 6px;
+  }
+  .p-header-actions {
+    flex-shrink: 0;
+  }
+  .p-header-contact {
+    padding-inline: 10px;
   }
 }
 @media print {

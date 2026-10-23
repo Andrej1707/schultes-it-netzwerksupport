@@ -263,6 +263,16 @@ function validateSharedHtml(html, page, path, canonicalUrl, indexable) {
 
 function validateRedirectAlias(html, page, path, canonicalUrl) {
   assert(
+    html.includes('<script src="/site-redirect.js"></script>') &&
+      html.indexOf('<script src="/site-redirect.js"></script>') <
+        html.indexOf('<meta http-equiv="refresh"'),
+    `Redirect alias ${path} must preserve query parameters and anchors before meta refresh.`,
+  )
+  assert(
+    !/<script\b[^>]*type="module"/i.test(html),
+    `Redirect alias ${path} must not load the application before leaving.`,
+  )
+  assert(
     html.includes(`<link rel="canonical" href="${canonicalUrl}" />`),
     `Invalid canonical URL in redirect alias ${path}.`,
   )
@@ -539,6 +549,7 @@ for (const page of manifest.pages) {
     const aliasHtml = await read(aliasOutput)
     validateRedirectAlias(aliasHtml, page, aliasOutput, canonicalUrl)
     structuredData(aliasHtml, aliasOutput)
+    await validateAssets(aliasHtml, `${siteUrl}${alias}`, aliasOutput)
     assert(
       !sitemapLines.includes(`${siteUrl}${alias}`),
       `Legacy alias ${alias} must not be included in the sitemap.`,

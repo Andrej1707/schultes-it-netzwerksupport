@@ -14,24 +14,9 @@ import {
   X,
 } from 'lucide-react'
 import type { ContactProfile } from '../site/contacts'
+import { readSession, removeSession, saveSession, type SupportSession as Session } from './session'
+import { loadTurnstile } from './turnstile'
 import './support.css'
-
-type TurnstileApi = {
-  render: (container: HTMLElement, options: Record<string, unknown>) => string
-  reset: (widgetId?: string) => void
-  remove: (widgetId: string) => void
-}
-
-declare global {
-  interface Window {
-    turnstile?: TurnstileApi
-  }
-}
-
-type Session = {
-  token: string
-  expiresAt: number
-}
 
 type Message = {
   id: string
@@ -73,50 +58,6 @@ const quickPrompts = [
   'Welche Leistungen gibt es?',
   'Wie erreiche ich meinen Standort?',
 ]
-
-function readSession(storageKey: string): Session | null {
-  try {
-    const value = sessionStorage.getItem(storageKey)
-    if (!value) return null
-    const parsed = JSON.parse(value) as Session
-    if (!parsed.token || parsed.expiresAt <= Date.now() + 30_000) {
-      sessionStorage.removeItem(storageKey)
-      return null
-    }
-    return parsed
-  } catch {
-    sessionStorage.removeItem(storageKey)
-    return null
-  }
-}
-
-async function loadTurnstile() {
-  if (window.turnstile) return window.turnstile
-
-  const existing = document.querySelector<HTMLScriptElement>('script[data-schultes-turnstile]')
-  const script = existing ?? document.createElement('script')
-  if (!existing) {
-    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'
-    script.async = true
-    script.defer = true
-    script.dataset.schultesTurnstile = 'true'
-    document.head.appendChild(script)
-  }
-
-  await new Promise<void>((resolve, reject) => {
-    if (window.turnstile) {
-      resolve()
-      return
-    }
-    const onLoad = () => resolve()
-    const onError = () => reject(new Error('turnstile_unavailable'))
-    script.addEventListener('load', onLoad, { once: true })
-    script.addEventListener('error', onError, { once: true })
-  })
-
-  if (!window.turnstile) throw new Error('turnstile_unavailable')
-  return window.turnstile
-}
 
 async function requestJson<T>(path: string, init: RequestInit): Promise<T> {
   const controller = new AbortController()
@@ -160,14 +101,14 @@ function getErrorMessage(code?: string) {
 export default function SupportBot({ contact }: { contact: ContactProfile }) {
   const sessionStorageKey =
     `${SESSION_STORAGE_KEY_PREFIX}-${contact.supportContextId}`
-  const existingSession = useRef<Session | null>(readSession(sessionStorageKey))
+  const [existingSession] = useState(() => readSession(sessionStorageKey))
   const [open, setOpen] = useState(false)
   const [phase, setPhase] = useState<Phase>(
-    !isConfigured ? 'unavailable' : existingSession.current ? 'ready' : 'needs-verification',
+    !isConfigured ? 'unavailable' : existingSession ? 'ready' : 'needs-verification',
   )
-  const [session, setSession] = useState<Session | null>(existingSession.current)
+  const [session, setSession] = useState<Session | null>(existingSession)
   const [messages, setMessages] = useState<Message[]>(
-    existingSession.current ? [welcomeMessage(contact)] : [],
+    existingSession ? [welcomeMessage(contact)] : [],
   )
   const [draft, setDraft] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
@@ -176,11 +117,11 @@ export default function SupportBot({ contact }: { contact: ContactProfile }) {
   const widgetId = useRef<string | null>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const launcherRef = useRef<HTMLButtonElement>(null)
-  const messageEndRef = useRef<HTMLDivElement>(null)
+  const messagesRef = useRef<HTMLDivElement>(null)
   const suggestionsRef = useRef<HTMLDivElement>(null)
 
   const clearSession = useCallback((message?: string) => {
-    sessionStorage.removeItem(sessionStorageKey)
+    removeSession(sessionStorageKey)
     setSession(null)
     setMessages([])
     setShowDirectContact(false)
@@ -199,12 +140,12 @@ export default function SupportBot({ contact }: { contact: ContactProfile }) {
         body: JSON.stringify({ turnstileToken }),
       })
       const nextSession = { token: result.sessionToken, expiresAt: result.expiresAt }
-      sessionStorage.setItem(sessionStorageKey, JSON.stringify(nextSession))
+      saveSession(sessionStorageKey, nextSession)
       setSession(nextSession)
       setMessages([welcomeMessage(contact)])
       setShowDirectContact(false)
       setPhase('ready')
-      window.setTimeout(() => textareaRef.current?.focus(), 80)
+      window.setTimeout(() => textareaRef.current?.focus({ preventScroll: true }), 80)
     } catch (error) {
       const apiError = error as ApiError
       setPhase('needs-verification')
@@ -252,7 +193,7 @@ export default function SupportBot({ contact }: { contact: ContactProfile }) {
       bodyStyle.overflow = previous.overflow
       bodyStyle.paddingRight = previous.paddingRight
       htmlStyle.overscrollBehavior = previous.overscrollBehavior
-      window.scrollTo(0, scrollPosition)
+      window.scrollTo({ top: scrollPosition, behavior: 'instant' })
     }
   }, [open])
 
@@ -267,7 +208,7 @@ export default function SupportBot({ contact }: { contact: ContactProfile }) {
         if (cancelled || !turnstileContainer.current || widgetId.current) return
         widgetId.current = turnstile.render(turnstileContainer.current, {
           sitekey: turnstileSiteKey,
-        theme: 'light',
+          theme: 'light',
           size: 'flexible',
           language: 'de',
           action: 'support_session',
@@ -298,15 +239,40 @@ export default function SupportBot({ contact }: { contact: ContactProfile }) {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return
       setOpen(false)
-      window.setTimeout(() => launcherRef.current?.focus(), 0)
+      window.setTimeout(() => launcherRef.current?.focus({ preventScroll: true }), 0)
     }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [open])
 
   useEffect(() => {
-    if (open) messageEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    const container = messagesRef.current
+    if (!open || !container) return
+    container.scrollTo({
+      top: container.scrollHeight,
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+    })
   }, [messages, open])
+
+  useEffect(() => {
+    const container = suggestionsRef.current
+    if (!open || !container) return
+    const onWheel = (event: WheelEvent) => {
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return
+      const maxScroll = container.scrollWidth - container.clientWidth
+      if (
+        maxScroll <= 0 ||
+        (event.deltaY < 0 && container.scrollLeft <= 0) ||
+        (event.deltaY > 0 && container.scrollLeft >= maxScroll - 1)
+      ) return
+      event.preventDefault()
+      container.scrollBy({ left: event.deltaY, behavior: 'instant' })
+    }
+    // React's delegated wheel handler is passive. Register locally so the
+    // horizontal gesture does not also scroll the surrounding chat panel.
+    container.addEventListener('wheel', onWheel, { passive: false })
+    return () => container.removeEventListener('wheel', onWheel)
+  }, [messages.length, open, phase])
 
   const sendMessage = async (suggestion?: string) => {
     const content = (suggestion ?? draft).trim()
@@ -337,7 +303,7 @@ export default function SupportBot({ contact }: { contact: ContactProfile }) {
       ])
       setShowDirectContact(Boolean(result.escalated))
       setPhase('ready')
-      window.setTimeout(() => textareaRef.current?.focus(), 50)
+      window.setTimeout(() => textareaRef.current?.focus({ preventScroll: true }), 50)
     } catch (error) {
       const apiError = error as ApiError
       if (apiError.status === 401 || apiError.code === 'session_expired') {
@@ -355,13 +321,13 @@ export default function SupportBot({ contact }: { contact: ContactProfile }) {
 
   const close = () => {
     setOpen(false)
-    window.setTimeout(() => launcherRef.current?.focus(), 0)
+    window.setTimeout(() => launcherRef.current?.focus({ preventScroll: true }), 0)
   }
 
   const scrollSuggestions = (direction: -1 | 1) => {
     suggestionsRef.current?.scrollBy({
       left: direction * Math.max(220, suggestionsRef.current.clientWidth * 0.72),
-      behavior: 'smooth',
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
     })
   }
 
@@ -408,7 +374,7 @@ export default function SupportBot({ contact }: { contact: ContactProfile }) {
             </div>
           ) : (
             <>
-              <div className="support-messages" aria-live="polite" aria-relevant="additions">
+              <div ref={messagesRef} className="support-messages" aria-live="polite" aria-relevant="additions">
                 {messages.map((message) => (
                   <div className={`support-message is-${message.role}`} key={message.id}>
                     {message.role === 'assistant' && <Bot aria-hidden="true" />}
@@ -420,7 +386,6 @@ export default function SupportBot({ contact }: { contact: ContactProfile }) {
                     <Bot aria-hidden="true" /><p><i /><i /><i /></p>
                   </div>
                 )}
-                <div ref={messageEndRef} />
               </div>
 
               {messages.length <= 1 && (
@@ -440,11 +405,6 @@ export default function SupportBot({ contact }: { contact: ContactProfile }) {
                     ref={suggestionsRef}
                     className="support-suggestions"
                     aria-label="Häufige Fragen"
-                    onWheel={(event) => {
-                      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return
-                      event.preventDefault()
-                      event.currentTarget.scrollBy({ left: event.deltaY, behavior: 'auto' })
-                    }}
                   >
                     {quickPrompts.map((prompt, index) => (
                       <button type="button" key={prompt} onClick={() => void sendMessage(prompt)}>

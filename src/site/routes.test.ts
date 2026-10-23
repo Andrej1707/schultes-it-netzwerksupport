@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  canonicalRedirect,
   indexableSitePages,
   normalizePathname,
   resolveSiteRoute,
@@ -23,6 +24,28 @@ describe('site routing', () => {
     expect(route?.page.serviceSlug).toBe('fernwartung-windows-hilfe')
     expect(route?.page.locationId).toBeUndefined()
     expect(route?.isAlias).toBe(false)
+  })
+
+  it('resolves explicit index documents to the HTML page GitHub Pages serves', () => {
+    expect(resolveSiteRoute('/index.html')?.page.path).toBe('/')
+    expect(resolveSiteRoute('/fernwartung/index.html')?.page.path).toBe('/fernwartung/')
+    expect(resolveSiteRoute('/pc-system/index.html')?.page.path).toBe(
+      '/standorte/ludwigsburg/pc-laptop/',
+    )
+    expect(resolveSiteRoute('/unbekannt/index.html')).toBeUndefined()
+    expect(resolveSiteRoute('/fernwartung/index.html/')).toBeUndefined()
+  })
+
+  it('redirects document URLs and aliases directly, preserving query and anchor', () => {
+    expect(canonicalRedirect('/index.html', '?utm_source=google', '#kontakt')).toBe(
+      '/?utm_source=google#kontakt',
+    )
+    expect(canonicalRedirect('/pc-system/index.html', '?ref=alt', '#faq')).toBe(
+      '/standorte/ludwigsburg/pc-laptop/?ref=alt#faq',
+    )
+    expect(canonicalRedirect('/fernwartung')).toBe('/fernwartung/')
+    expect(canonicalRedirect('/fernwartung/', '?utm_source=google', '#kontakt')).toBeUndefined()
+    expect(canonicalRedirect('/unbekannt/')).toBeUndefined()
   })
 
   it('keeps old service URLs as non-canonical compatibility aliases', () => {
