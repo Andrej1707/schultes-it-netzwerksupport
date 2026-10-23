@@ -25,7 +25,7 @@ import {
   primaryServiceTemplates,
   remoteServiceTemplates,
 } from '../content/services'
-import { contactForLocation } from '../site/contacts'
+import { contactForLocation, localInquiryHref } from '../site/contacts'
 import { findNearestLocation } from '../site/locationFinder'
 import {
   activeLocationById,
@@ -630,6 +630,7 @@ function LocationPage({
   location: ServiceLocation
 }) {
   const contact = contactForLocation(location)
+  const inquiryHref = localInquiryHref(location)
   const services = getLocationServicesByGroup(location.id, 'primary')
   const topics = getLocationServicesByGroup(location.id, 'topic')
   return (
@@ -642,13 +643,24 @@ function LocationPage({
             </p>
             <div className="pn-actions">
               <LinkButton href={contact.phoneHref}>
-                Termin besprechen
+                Anrufen & Termin besprechen
               </LinkButton>
-              <a className="pn-text-link" href="#leistungen">
-                Leistungen entdecken
-                <ArrowDown aria-hidden="true" />
-              </a>
+              <LinkButton href={inquiryHref} secondary>
+                Hilfe per E-Mail anfragen
+              </LinkButton>
             </div>
+            <p className="pn-small pn-inquiry-note">
+              Vor Ort ab {location.pricing.onSiteFrom}
+              {location.remoteSupport.available && location.pricing.remoteFrom
+                ? ` · Fernwartung ab ${location.pricing.remoteFrom}`
+                : ''}. Umfang und Kosten klären wir vorab.
+              {' '}Termine bitte vorher vereinbaren – ich komme zu deiner Technik.
+            </p>
+            {location.remoteSupport.available ? (
+              <a className="pn-text-link" href="/fernwartung/">
+                Fernwartung ohne Anfahrt kennenlernen <ArrowUpRight aria-hidden="true" />
+              </a>
+            ) : null}
           </PageTitle>
         </div>
         <div className="pn-local-hero-visual">
@@ -667,7 +679,7 @@ function LocationPage({
               <Phone aria-hidden="true" />
               <span data-nosnippet>{contact.phoneDisplay}</span>
             </a>
-            <a className="pn-text-link" href={`mailto:${contact.email}`}>
+            <a className="pn-text-link" href={inquiryHref}>
               <Mail aria-hidden="true" />
               {contact.email}
             </a>
@@ -808,6 +820,9 @@ function LocationPage({
           <p className="pn-small">
             Geschäftsanschrift. Termine nach persönlicher Vereinbarung.
           </p>
+          <a className="pn-button" href={inquiryHref}>
+            Vor-Ort-Hilfe anfragen <ArrowUpRight aria-hidden="true" />
+          </a>
           <a
             className="pn-text-link"
             href={location.mapsUrl}
@@ -878,17 +893,22 @@ function LocationPage({
           was nicht klappt.
         </h2>
         <p>
-          {contact.remoteSupportNote} Termine für Vor-Ort-Hilfe vereinbaren wir
-          persönlich.
+          Nenne kurz dein Problem, deinen Ort oder deine PLZ und wie ich dich
+          erreichen kann. Gemeinsam klären wir den passenden Termin und die
+          Kosten. {contact.remoteSupportNote}
         </p>
         <div className="pn-actions">
           <LinkButton href={contact.phoneHref}>
             <span data-nosnippet>{contact.phoneDisplay}</span>
           </LinkButton>
-          <LinkButton href={`mailto:${contact.email}`} secondary>
-            E-Mail schreiben
+          <LinkButton href={inquiryHref} secondary>
+            Hilfe per E-Mail anfragen
           </LinkButton>
         </div>
+        <p className="pn-small">
+          Kein E-Mail-Programm eingerichtet? Kopiere die Adresse und schreibe an{' '}
+          <a href={inquiryHref}>{contact.email}</a>. Bitte keine Passwörter senden.
+        </p>
         <CopyNumber number={contact.phoneDisplay} />
       </section>
     </div>
