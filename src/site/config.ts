@@ -6,6 +6,7 @@ export const siteConfig = {
   language: 'de-DE',
   country: 'DE',
   countryName: 'Deutschland',
+  featuredLocationId: 'ludwigsburg',
   logoPath: '/logo-512.svg',
   previewImagePath: '/og-cover.png',
   founder: {

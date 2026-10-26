@@ -13,6 +13,22 @@ function graphFor(path: string) {
 }
 
 describe('structured data', () => {
+  it('connects the visible homepage location without making remote support local-only', () => {
+    const business = graphFor('/').find((node) => node['@type'] === 'ProfessionalService')
+    expect(business?.['@id']).toBe('https://schultes-it.de/standorte/ludwigsburg/#location')
+    expect(business?.address).toMatchObject({ addressLocality: 'Ludwigsburg' })
+    expect(business?.aggregateRating).toBeUndefined()
+    const remote = graphFor('/fernwartung/').find((node) => node['@type'] === 'Service')
+    expect(remote?.provider).toEqual({ '@id': 'https://schultes-it.de/#organization' })
+  })
+
+  it('describes the actual service as each service page main entity', () => {
+    for (const page of sitePages.filter((page) => page.serviceSlug)) {
+      const webPage = graphFor(page.path).find((node) => node['@type'] === 'WebPage')
+      expect(webPage?.mainEntity).toEqual({ '@id': `https://schultes-it.de${page.path}#service` })
+      expect(webPage?.about).toEqual(webPage?.mainEntity)
+    }
+  })
   it('publishes the professional email as the central contact point', () => {
     const organization = graphFor('/').find(
       (node) => node['@type'] === 'Organization',

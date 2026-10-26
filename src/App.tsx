@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { SiteView } from './SiteView'
 import type { SitePage } from './site/types'
 import { installPageMotion } from './site/motion'
+import { legacyFragmentRedirect } from './site/legacyFragments'
 
 export default function App({ initialPage }: { initialPage: SitePage }) {
   useEffect(() => {
@@ -10,17 +11,16 @@ export default function App({ initialPage }: { initialPage: SitePage }) {
   }, [initialPage.path])
   useEffect(() => {
     const resolveLegacyHash = () => {
-      const legacyPath =
-        window.location.hash === '#/impressum'
-          ? '/impressum/'
-          : window.location.hash === '#/datenschutz'
-            ? '/datenschutz/'
-            : null
+      const legacyPath = legacyFragmentRedirect(
+        initialPage,
+        window.location.hash,
+        window.location.search,
+      )
       if (legacyPath) window.location.replace(legacyPath)
     }
     resolveLegacyHash()
     window.addEventListener('hashchange', resolveLegacyHash)
     return () => window.removeEventListener('hashchange', resolveLegacyHash)
-  }, [])
+  }, [initialPage])
   return <SiteView page={initialPage} />
 }

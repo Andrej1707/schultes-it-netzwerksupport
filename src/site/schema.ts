@@ -207,12 +207,23 @@ export function structuredDataForPage(page: SitePage) {
   const pageUrl = `${siteConfig.url}${page.path}`
   const graph: SchemaNode[] = [organizationSchema(), websiteSchema()]
 
+  // Match the real location shown on the homepage, without turning the brand
+  // or national remote support into a local-only business.
+  if (page.kind === 'home') {
+    const featured = locationSchema(siteConfig.featuredLocationId)
+    if (featured) graph.push(featured)
+  }
+
   if (page.locationId) {
     const localBusiness = locationSchema(page.locationId)
     if (localBusiness) graph.push(localBusiness)
   }
 
   if (page.kind === 'locations') {
+    for (const location of activeLocations) {
+      const business = locationSchema(location.id)
+      if (business) graph.push(business)
+    }
     graph.push({
       '@type': 'ItemList',
       itemListElement: activeLocations.map((location, index) => ({
@@ -235,10 +246,19 @@ export function structuredDataForPage(page: SitePage) {
     name: page.title,
     description: page.description,
     isPartOf: { '@id': websiteId },
-    about:
-      page.kind === 'location' && page.locationId
+    about: page.serviceSlug
+      ? { '@id': `${pageUrl}#service` }
+      : page.kind === 'location' && page.locationId
         ? { '@id': `${pageUrl}#location` }
         : { '@id': organizationId },
+    mainEntity: page.serviceSlug
+      ? { '@id': `${pageUrl}#service` }
+      : page.kind === 'location' && page.locationId
+        ? { '@id': `${pageUrl}#location` }
+        : undefined,
+    mentions: page.kind === 'home' && activeLocationById[siteConfig.featuredLocationId]
+      ? { '@id': `${siteConfig.url}${activeLocationById[siteConfig.featuredLocationId].path}#location` }
+      : undefined,
     publisher: { '@id': organizationId },
     inLanguage: siteConfig.language,
   })

@@ -1,0 +1,1414 @@
+{
+  "schema_version": 1,
+  "measured_at_utc": "2026-10-26T09:59:34.099228+00:00",
+  "kind": "live_pre_change_lab_baseline",
+  "origin": "https://schultes-it.de",
+  "methodology": {
+    "tool": "Python Playwright + isolated headless Chromium + Chrome DevTools Protocol",
+    "viewport": {
+      "width": 390,
+      "height": 844,
+      "device_scale_factor": 2,
+      "is_mobile": true,
+      "has_touch": true
+    },
+    "cpu_throttle_rate": 4,
+    "network": {
+      "offline": false,
+      "latency_ms": 150,
+      "download_bytes_per_second": 200000,
+      "upload_bytes_per_second": 93750,
+      "connection_type": "cellular4g"
+    },
+    "runs_per_route": 3,
+    "cache": "Fresh browser context for each run; CDP browser cache disabled. CDN/proxy caches are not controlled.",
+    "observation_window": "Navigation through 5000 ms after the load event, without scroll, clicks, typing, or support requests.",
+    "lcp": "Latest largest-contentful-paint entry observed in the window; lab candidate, not a CrUX 75th percentile.",
+    "cls": "Maximum layout-shift session window: gaps <= 1000 ms, duration <= 5000 ms; hadRecentInput shifts excluded.",
+    "additional_metrics": "FCP, TTFB and load event from browser Performance API; long_task_blocking_ms is sum(max(duration-50,0)) in the observation window and is not Lighthouse TBT.",
+    "transport": "Configured HTTPS proxy and normal TLS validation retained. No application or third-party response mocks.",
+    "reproduction": [
+      "Launch headless /usr/bin/chromium through HTTPS_PROXY with Playwright.",
+      "For every route, create 3 independent contexts using the recorded viewport/mobile settings and locale de-DE.",
+      "Enable CDP Network, Network.setCacheDisabled(cacheDisabled=true), Network.emulateNetworkConditions with the recorded byte rates and latency, and Emulation.setCPUThrottlingRate(rate=4).",
+      "Before navigation inject buffered PerformanceObservers for largest-contentful-paint, layout-shift (excluding hadRecentInput) and longtask. Navigate with wait_until=load, then observe another 5000 ms without interaction.",
+      "Read navigation/paint entries, calculate maximum CLS session window and median of three LCP/CLS values.",
+      "Separately navigate each route with java_script_enabled=false and collect visible H1, main text, canonical URL and contact links; compare the server response markup and hydrated H1."
+    ],
+    "limitations": [
+      "Simulated lab results depend on cloud CPU scheduling, proxy/CDN latency, browser version and test window. They do not represent all real visitors.",
+      "No interaction latency test was performed; INP is not inferred from load-only testing.",
+      "No Lighthouse score, CrUX field dataset, Google Search Console Core Web Vitals report or ranking guarantee is provided."
+    ],
+    "browser_version": "154.0.8037.57"
+  },
+  "field_data": {
+    "CrUX": {
+      "status": "not_collected",
+      "lcp_p75_ms": null,
+      "cls_p75": null,
+      "inp_p75_ms": null,
+      "reason": "No CrUX/Search Console field dataset was available in this task; lab measurements must not be labelled field Core Web Vitals."
+    }
+  },
+  "pages": [
+    {
+      "path": "/",
+      "url": "https://schultes-it.de/",
+      "lab_runs": [
+        {
+          "run": 1,
+          "started_at_utc": "2026-10-26T09:59:35.287237+00:00",
+          "http_status": 200,
+          "final_url": "https://schultes-it.de/",
+          "lcp_ms": 1012,
+          "lcp_element": {
+            "ms": 1012,
+            "size": 101400,
+            "tag": "IMG",
+            "selector": "",
+            "url": "https://schultes-it.de/images/workspace-1280.webp"
+          },
+          "cls": 0,
+          "layout_shifts": [],
+          "fcp_ms": 948,
+          "ttfb_ms": 216.4,
+          "load_event_ms": 1812.4,
+          "observed_through_ms": 6827.9,
+          "long_task_count": 2,
+          "long_task_blocking_ms": 140,
+          "page_errors": [],
+          "console_errors": [],
+          "horizontal_overflow": false
+        },
+        {
+          "run": 2,
+          "started_at_utc": "2026-10-26T09:59:42.309082+00:00",
+          "http_status": 200,
+          "final_url": "https://schultes-it.de/",
+          "lcp_ms": 884,
+          "lcp_element": {
+            "ms": 884,
+            "size": 101400,
+            "tag": "IMG",
+            "selector": "",
+            "url": "https://schultes-it.de/images/workspace-1280.webp"
+          },
+          "cls": 0,
+          "layout_shifts": [],
+          "fcp_ms": 872,
+          "ttfb_ms": 49.7,
+          "load_event_ms": 1695.5,
+          "observed_through_ms": 6712.5,
+          "long_task_count": 1,
+          "long_task_blocking_ms": 106,
+          "page_errors": [],
+          "console_errors": [],
+          "horizontal_overflow": false
+        },
+        {
+          "run": 3,
+          "started_at_utc": "2026-10-26T09:59:49.252226+00:00",
+          "http_status": 200,
+          "final_url": "https://schultes-it.de/",
+          "lcp_ms": 972,
+          "lcp_element": {
+            "ms": 972,
+            "size": 101400,
+            "tag": "IMG",
+            "selector": "",
+            "url": "https://schultes-it.de/images/workspace-1280.webp"
+          },
+          "cls": 0,
+          "layout_shifts": [],
+          "fcp_ms": 960,
+          "ttfb_ms": 157.2,
+          "load_event_ms": 1837.5,
+          "observed_through_ms": 6851.1,
+          "long_task_count": 3,
+          "long_task_blocking_ms": 244,
+          "page_errors": [],
+          "console_errors": [],
+          "horizontal_overflow": false
+        }
+      ],
+      "server_html": {
+        "h1": [
+          "Einfach gute Technik.Für Privatpersonen. Für kleine Unternehmen."
+        ],
+        "canonical": [
+          "https://schultes-it.de/"
+        ],
+        "main_text_character_count": 2738,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de"
+        ],
+        "prerendered_marker": true
+      },
+      "hydrated": {
+        "h1": [
+          "Einfach gute Technik.\nFür Privatpersonen.\nFür kleine Unternehmen."
+        ],
+        "canonical": "https://schultes-it.de/",
+        "main_text_character_count": 2885,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de"
+        ],
+        "assets": [
+          "https://schultes-it.de/assets/index-CXMQcVO5.js",
+          "https://schultes-it.de/assets/index-BN5c8VMg.css",
+          "https://schultes-it.de/assets/SupportBot-CcUXf5M2.css",
+          "https://static.cloudflareinsights.com/beacon.min.js"
+        ]
+      },
+      "javascript_disabled": {
+        "h1": [
+          "Einfach gute Technik.\nFür Privatpersonen.\nFür kleine Unternehmen."
+        ],
+        "canonical": "https://schultes-it.de/",
+        "main_text_character_count": 2885,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de"
+        ],
+        "h1_visible": true,
+        "http_status": 200
+      },
+      "summary": {
+        "median_lcp_ms": 972,
+        "median_cls": 0,
+        "lcp_range_ms": [
+          884,
+          1012
+        ],
+        "same_h1_without_javascript": true,
+        "same_canonical_without_javascript": true,
+        "same_contacts_without_javascript": true,
+        "hydration_or_page_errors": 0
+      }
+    },
+    {
+      "path": "/standorte/ludwigsburg/",
+      "url": "https://schultes-it.de/standorte/ludwigsburg/",
+      "lab_runs": [
+        {
+          "run": 1,
+          "started_at_utc": "2026-10-26T09:59:56.898415+00:00",
+          "http_status": 200,
+          "final_url": "https://schultes-it.de/standorte/ludwigsburg/",
+          "lcp_ms": 828,
+          "lcp_element": {
+            "ms": 828,
+            "size": 45440,
+            "tag": "P",
+            "selector": "pn-local-lead",
+            "url": null
+          },
+          "cls": 0,
+          "layout_shifts": [],
+          "fcp_ms": 828,
+          "ttfb_ms": 153.2,
+          "load_event_ms": 1849,
+          "observed_through_ms": 6866.7,
+          "long_task_count": 2,
+          "long_task_blocking_ms": 106,
+          "page_errors": [],
+          "console_errors": [],
+          "horizontal_overflow": false
+        },
+        {
+          "run": 2,
+          "started_at_utc": "2026-10-26T10:00:03.923200+00:00",
+          "http_status": 200,
+          "final_url": "https://schultes-it.de/standorte/ludwigsburg/",
+          "lcp_ms": 868,
+          "lcp_element": {
+            "ms": 868,
+            "size": 45440,
+            "tag": "P",
+            "selector": "pn-local-lead",
+            "url": null
+          },
+          "cls": 0,
+          "layout_shifts": [],
+          "fcp_ms": 868,
+          "ttfb_ms": 52.2,
+          "load_event_ms": 1739,
+          "observed_through_ms": 6758.2,
+          "long_task_count": 2,
+          "long_task_blocking_ms": 104,
+          "page_errors": [],
+          "console_errors": [],
+          "horizontal_overflow": false
+        },
+        {
+          "run": 3,
+          "started_at_utc": "2026-10-26T10:00:10.867514+00:00",
+          "http_status": 200,
+          "final_url": "https://schultes-it.de/standorte/ludwigsburg/",
+          "lcp_ms": 912,
+          "lcp_element": {
+            "ms": 912,
+            "size": 45440,
+            "tag": "P",
+            "selector": "pn-local-lead",
+            "url": null
+          },
+          "cls": 0,
+          "layout_shifts": [],
+          "fcp_ms": 912,
+          "ttfb_ms": 48,
+          "load_event_ms": 1782.4,
+          "observed_through_ms": 6796.7,
+          "long_task_count": 2,
+          "long_task_blocking_ms": 142,
+          "page_errors": [],
+          "console_errors": [],
+          "horizontal_overflow": false
+        }
+      ],
+      "server_html": {
+        "h1": [
+          "Dein Ansprechpartner in Ludwigsburg. Direkt bei dir vor Ort."
+        ],
+        "canonical": [
+          "https://schultes-it.de/standorte/ludwigsburg/"
+        ],
+        "main_text_character_count": 4711,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "prerendered_marker": true
+      },
+      "hydrated": {
+        "h1": [
+          "Dein Ansprechpartner in Ludwigsburg.\nDirekt bei dir vor Ort."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/",
+        "main_text_character_count": 4946,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "assets": [
+          "https://schultes-it.de/assets/index-CXMQcVO5.js",
+          "https://schultes-it.de/assets/index-BN5c8VMg.css",
+          "https://schultes-it.de/assets/SupportBot-CcUXf5M2.css",
+          "https://static.cloudflareinsights.com/beacon.min.js"
+        ]
+      },
+      "javascript_disabled": {
+        "h1": [
+          "Dein Ansprechpartner in Ludwigsburg.\nDirekt bei dir vor Ort."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/",
+        "main_text_character_count": 4946,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "h1_visible": true,
+        "http_status": 200
+      },
+      "summary": {
+        "median_lcp_ms": 868,
+        "median_cls": 0,
+        "lcp_range_ms": [
+          828,
+          912
+        ],
+        "same_h1_without_javascript": true,
+        "same_canonical_without_javascript": true,
+        "same_contacts_without_javascript": true,
+        "hydration_or_page_errors": 0
+      }
+    },
+    {
+      "path": "/standorte/ludwigsburg/pc-laptop/",
+      "url": "https://schultes-it.de/standorte/ludwigsburg/pc-laptop/",
+      "lab_runs": [
+        {
+          "run": 1,
+          "started_at_utc": "2026-10-26T10:00:18.251396+00:00",
+          "http_status": 200,
+          "final_url": "https://schultes-it.de/standorte/ludwigsburg/pc-laptop/",
+          "lcp_ms": 884,
+          "lcp_element": {
+            "ms": 884,
+            "size": 93012,
+            "tag": "P",
+            "selector": "ps-hero-text",
+            "url": null
+          },
+          "cls": 0,
+          "layout_shifts": [],
+          "fcp_ms": 884,
+          "ttfb_ms": 120.9,
+          "load_event_ms": 1507.7,
+          "observed_through_ms": 6519.1,
+          "long_task_count": 2,
+          "long_task_blocking_ms": 123,
+          "page_errors": [],
+          "console_errors": [],
+          "horizontal_overflow": false
+        },
+        {
+          "run": 2,
+          "started_at_utc": "2026-10-26T10:00:24.920317+00:00",
+          "http_status": 200,
+          "final_url": "https://schultes-it.de/standorte/ludwigsburg/pc-laptop/",
+          "lcp_ms": 936,
+          "lcp_element": {
+            "ms": 936,
+            "size": 93012,
+            "tag": "P",
+            "selector": "ps-hero-text",
+            "url": null
+          },
+          "cls": 0,
+          "layout_shifts": [],
+          "fcp_ms": 936,
+          "ttfb_ms": 137.8,
+          "load_event_ms": 1477.3,
+          "observed_through_ms": 6489,
+          "long_task_count": 2,
+          "long_task_blocking_ms": 105,
+          "page_errors": [],
+          "console_errors": [],
+          "horizontal_overflow": false
+        },
+        {
+          "run": 3,
+          "started_at_utc": "2026-10-26T10:00:31.554744+00:00",
+          "http_status": 200,
+          "final_url": "https://schultes-it.de/standorte/ludwigsburg/pc-laptop/",
+          "lcp_ms": 860,
+          "lcp_element": {
+            "ms": 860,
+            "size": 93012,
+            "tag": "P",
+            "selector": "ps-hero-text",
+            "url": null
+          },
+          "cls": 0,
+          "layout_shifts": [],
+          "fcp_ms": 860,
+          "ttfb_ms": 44.8,
+          "load_event_ms": 1469.3,
+          "observed_through_ms": 6485.3,
+          "long_task_count": 2,
+          "long_task_blocking_ms": 98,
+          "page_errors": [],
+          "console_errors": [],
+          "horizontal_overflow": false
+        }
+      ],
+      "server_html": {
+        "h1": [
+          "PC-Hilfe ohne Fachchinesisch. Damit Technik wieder Alltag wird."
+        ],
+        "canonical": [
+          "https://schultes-it.de/standorte/ludwigsburg/pc-laptop/"
+        ],
+        "main_text_character_count": 6828,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "prerendered_marker": true
+      },
+      "hydrated": {
+        "h1": [
+          "PC-Hilfe ohne Fachchinesisch.\nDamit Technik wieder Alltag wird."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/pc-laptop/",
+        "main_text_character_count": 5674,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "assets": [
+          "https://schultes-it.de/assets/index-CXMQcVO5.js",
+          "https://schultes-it.de/assets/index-BN5c8VMg.css",
+          "https://schultes-it.de/assets/SupportBot-CcUXf5M2.css",
+          "https://static.cloudflareinsights.com/beacon.min.js"
+        ]
+      },
+      "javascript_disabled": {
+        "h1": [
+          "PC-Hilfe ohne Fachchinesisch.\nDamit Technik wieder Alltag wird."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/pc-laptop/",
+        "main_text_character_count": 5674,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "h1_visible": true,
+        "http_status": 200
+      },
+      "summary": {
+        "median_lcp_ms": 884,
+        "median_cls": 0,
+        "lcp_range_ms": [
+          860,
+          936
+        ],
+        "same_h1_without_javascript": true,
+        "same_canonical_without_javascript": true,
+        "same_contacts_without_javascript": true,
+        "hydration_or_page_errors": 0
+      }
+    },
+    {
+      "path": "/standorte/ludwigsburg/netzwerk-wlan/",
+      "url": "https://schultes-it.de/standorte/ludwigsburg/netzwerk-wlan/",
+      "lab_runs": [
+        {
+          "run": 1,
+          "started_at_utc": "2026-10-26T10:00:38.533856+00:00",
+          "http_status": 200,
+          "final_url": "https://schultes-it.de/standorte/ludwigsburg/netzwerk-wlan/",
+          "lcp_ms": 932,
+          "lcp_element": {
+            "ms": 932,
+            "size": 97350,
+            "tag": "P",
+            "selector": "ps-hero-text",
+            "url": null
+          },
+          "cls": 0,
+          "layout_shifts": [],
+          "fcp_ms": 932,
+          "ttfb_ms": 227.5,
+          "load_event_ms": 1751.3,
+          "observed_through_ms": 6768,
+          "long_task_count": 2,
+          "long_task_blocking_ms": 152,
+          "page_errors": [],
+          "console_errors": [],
+          "horizontal_overflow": false
+        },
+        {
+          "run": 2,
+          "started_at_utc": "2026-10-26T10:00:45.464200+00:00",
+          "http_status": 200,
+          "final_url": "https://schultes-it.de/standorte/ludwigsburg/netzwerk-wlan/",
+          "lcp_ms": 892,
+          "lcp_element": {
+            "ms": 892,
+            "size": 97350,
+            "tag": "P",
+            "selector": "ps-hero-text",
+            "url": null
+          },
+          "cls": 0,
+          "layout_shifts": [],
+          "fcp_ms": 892,
+          "ttfb_ms": 52,
+          "load_event_ms": 1657.3,
+          "observed_through_ms": 6670,
+          "long_task_count": 2,
+          "long_task_blocking_ms": 93,
+          "page_errors": [],
+          "console_errors": [],
+          "horizontal_overflow": false
+        },
+        {
+          "run": 3,
+          "started_at_utc": "2026-10-26T10:00:52.295858+00:00",
+          "http_status": 200,
+          "final_url": "https://schultes-it.de/standorte/ludwigsburg/netzwerk-wlan/",
+          "lcp_ms": 908,
+          "lcp_element": {
+            "ms": 908,
+            "size": 97350,
+            "tag": "P",
+            "selector": "ps-hero-text",
+            "url": null
+          },
+          "cls": 0,
+          "layout_shifts": [],
+          "fcp_ms": 908,
+          "ttfb_ms": 80.8,
+          "load_event_ms": 1717,
+          "observed_through_ms": 6730.4,
+          "long_task_count": 3,
+          "long_task_blocking_ms": 155,
+          "page_errors": [],
+          "console_errors": [],
+          "horizontal_overflow": false
+        }
+      ],
+      "server_html": {
+        "h1": [
+          "Stabiles WLAN. Saubere Verbindungen. Genau dort, wo du sie brauchst."
+        ],
+        "canonical": [
+          "https://schultes-it.de/standorte/ludwigsburg/netzwerk-wlan/"
+        ],
+        "main_text_character_count": 6740,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "prerendered_marker": true
+      },
+      "hydrated": {
+        "h1": [
+          "Stabiles WLAN. Saubere Verbindungen.\nGenau dort, wo du sie brauchst."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/netzwerk-wlan/",
+        "main_text_character_count": 5643,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "assets": [
+          "https://schultes-it.de/assets/index-CXMQcVO5.js",
+          "https://schultes-it.de/assets/index-BN5c8VMg.css",
+          "https://schultes-it.de/assets/SupportBot-CcUXf5M2.css",
+          "https://static.cloudflareinsights.com/beacon.min.js"
+        ]
+      },
+      "javascript_disabled": {
+        "h1": [
+          "Stabiles WLAN. Saubere Verbindungen.\nGenau dort, wo du sie brauchst."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/netzwerk-wlan/",
+        "main_text_character_count": 5643,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "h1_visible": true,
+        "http_status": 200
+      },
+      "summary": {
+        "median_lcp_ms": 908,
+        "median_cls": 0,
+        "lcp_range_ms": [
+          892,
+          932
+        ],
+        "same_h1_without_javascript": true,
+        "same_canonical_without_javascript": true,
+        "same_contacts_without_javascript": true,
+        "hydration_or_page_errors": 0
+      }
+    }
+  ],
+  "completed_at_utc": "2026-10-26T10:00:59.786852+00:00",
+  "afterChange": {
+    "tested_at_utc": "2026-10-26T10:07:55.453363+00:00",
+    "source": "Local production dist build, before deployment",
+    "method": "Isolated Chromium serving exact local dist bytes under https://schultes-it.de via Playwright routing. Only external Cloudflare Analytics is replaced with empty JavaScript; application modules, HTML, CSS, images and JSON-LD are real build output.",
+    "performance_comparison": "Functional/SSR/layout smoke checks only; local timings are not compared with the live baseline.",
+    "viewport_widths": [
+      320,
+      390,
+      1440
+    ],
+    "pages": [
+      {
+        "title": "IT-Hilfe Ludwigsburg & Fernwartung | Schultes IT",
+        "h1": [
+          "Persönliche IT-Hilfe.\nFür Privatpersonen.\nFür kleine Unternehmen."
+        ],
+        "canonical": "https://schultes-it.de/",
+        "overflow": false,
+        "broken_images": [],
+        "main_text_characters": 3058,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de"
+        ],
+        "ctas": [
+          {
+            "text": "Hilfe vor Ort finden",
+            "href": "/standorte/ludwigsburg/"
+          },
+          {
+            "text": "Fernwartung entdecken",
+            "href": "/fernwartung/"
+          },
+          {
+            "text": "So funktioniert Fernwartung",
+            "href": "/fernwartung/"
+          },
+          {
+            "text": "IT-Hilfe Ludwigsburg",
+            "href": "/standorte/ludwigsburg/"
+          },
+          {
+            "text": "Hilfe anfragen",
+            "href": "/fernwartung/"
+          }
+        ],
+        "assets": [
+          "https://schultes-it.de/assets/index-BQiEuR7e.js",
+          "https://schultes-it.de/assets/index-BN5c8VMg.css",
+          "https://schultes-it.de/assets/SupportBot-CcUXf5M2.css",
+          "https://static.cloudflareinsights.com/beacon.min.js"
+        ],
+        "schema": {
+          "valid_json": true,
+          "types": [
+            "Organization",
+            "WebSite",
+            "ProfessionalService",
+            "WebPage",
+            "BreadcrumbList"
+          ],
+          "unique_ids": true,
+          "webpage_ids": [
+            "https://schultes-it.de/#webpage"
+          ]
+        },
+        "path": "/",
+        "width": 320,
+        "http_status": 200,
+        "page_errors": [],
+        "console_errors": [],
+        "menu": {
+          "visible": true,
+          "no_layout_shift": true,
+          "escape_closes": true
+        }
+      },
+      {
+        "title": "IT-Service Ludwigsburg | PC- & WLAN-Hilfe | Schultes IT",
+        "h1": [
+          "Computerhilfe in Ludwigsburg.\nDirekt bei dir vor Ort."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/",
+        "overflow": false,
+        "broken_images": [],
+        "main_text_characters": 4938,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "ctas": [
+          {
+            "text": "Termin besprechen",
+            "href": "tel:+491791707411"
+          },
+          {
+            "text": "+49 179 1707411",
+            "href": "tel:+491791707411"
+          },
+          {
+            "text": "E-Mail schreiben",
+            "href": "mailto:kontakt@schultes-it.de"
+          }
+        ],
+        "assets": [
+          "https://schultes-it.de/assets/index-BQiEuR7e.js",
+          "https://schultes-it.de/assets/index-BN5c8VMg.css",
+          "https://schultes-it.de/assets/SupportBot-CcUXf5M2.css",
+          "https://static.cloudflareinsights.com/beacon.min.js"
+        ],
+        "schema": {
+          "valid_json": true,
+          "types": [
+            "Organization",
+            "WebSite",
+            "ProfessionalService",
+            "WebPage",
+            "BreadcrumbList"
+          ],
+          "unique_ids": true,
+          "webpage_ids": [
+            "https://schultes-it.de/standorte/ludwigsburg/#webpage"
+          ]
+        },
+        "path": "/standorte/ludwigsburg/",
+        "width": 320,
+        "http_status": 200,
+        "page_errors": [],
+        "console_errors": []
+      },
+      {
+        "title": "PC-Hilfe Ludwigsburg | Computer- & Laptop-Hilfe",
+        "h1": [
+          "PC-Hilfe ohne Fachchinesisch.\nDamit Technik wieder Alltag wird."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/pc-laptop/",
+        "overflow": false,
+        "broken_images": [],
+        "main_text_characters": 5729,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "ctas": [
+          {
+            "text": "Hilfe anfragen",
+            "href": "#service-contact"
+          }
+        ],
+        "assets": [
+          "https://schultes-it.de/assets/index-BQiEuR7e.js",
+          "https://schultes-it.de/assets/index-BN5c8VMg.css",
+          "https://schultes-it.de/assets/SupportBot-CcUXf5M2.css",
+          "https://static.cloudflareinsights.com/beacon.min.js"
+        ],
+        "schema": {
+          "valid_json": true,
+          "types": [
+            "Organization",
+            "WebSite",
+            "ProfessionalService",
+            "WebPage",
+            "Service",
+            "FAQPage",
+            "BreadcrumbList"
+          ],
+          "unique_ids": true,
+          "webpage_ids": [
+            "https://schultes-it.de/standorte/ludwigsburg/pc-laptop/#webpage"
+          ]
+        },
+        "path": "/standorte/ludwigsburg/pc-laptop/",
+        "width": 320,
+        "http_status": 200,
+        "page_errors": [],
+        "console_errors": []
+      },
+      {
+        "title": "WLAN-Hilfe Ludwigsburg | Router & Internet-Probleme",
+        "h1": [
+          "Stabiles WLAN. Saubere Verbindungen.\nGenau dort, wo du sie brauchst."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/netzwerk-wlan/",
+        "overflow": false,
+        "broken_images": [],
+        "main_text_characters": 5643,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "ctas": [
+          {
+            "text": "Hilfe anfragen",
+            "href": "#service-contact"
+          }
+        ],
+        "assets": [
+          "https://schultes-it.de/assets/index-BQiEuR7e.js",
+          "https://schultes-it.de/assets/index-BN5c8VMg.css",
+          "https://schultes-it.de/assets/SupportBot-CcUXf5M2.css",
+          "https://static.cloudflareinsights.com/beacon.min.js"
+        ],
+        "schema": {
+          "valid_json": true,
+          "types": [
+            "Organization",
+            "WebSite",
+            "ProfessionalService",
+            "WebPage",
+            "Service",
+            "FAQPage",
+            "BreadcrumbList"
+          ],
+          "unique_ids": true,
+          "webpage_ids": [
+            "https://schultes-it.de/standorte/ludwigsburg/netzwerk-wlan/#webpage"
+          ]
+        },
+        "path": "/standorte/ludwigsburg/netzwerk-wlan/",
+        "width": 320,
+        "http_status": 200,
+        "page_errors": [],
+        "console_errors": []
+      },
+      {
+        "title": "IT-Hilfe Ludwigsburg & Fernwartung | Schultes IT",
+        "h1": [
+          "Persönliche IT-Hilfe.\nFür Privatpersonen.\nFür kleine Unternehmen."
+        ],
+        "canonical": "https://schultes-it.de/",
+        "overflow": false,
+        "broken_images": [],
+        "main_text_characters": 3058,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de"
+        ],
+        "ctas": [
+          {
+            "text": "Hilfe vor Ort finden",
+            "href": "/standorte/ludwigsburg/"
+          },
+          {
+            "text": "Fernwartung entdecken",
+            "href": "/fernwartung/"
+          },
+          {
+            "text": "So funktioniert Fernwartung",
+            "href": "/fernwartung/"
+          },
+          {
+            "text": "IT-Hilfe Ludwigsburg",
+            "href": "/standorte/ludwigsburg/"
+          },
+          {
+            "text": "Hilfe anfragen",
+            "href": "/fernwartung/"
+          }
+        ],
+        "assets": [
+          "https://schultes-it.de/assets/index-BQiEuR7e.js",
+          "https://schultes-it.de/assets/index-BN5c8VMg.css",
+          "https://schultes-it.de/assets/SupportBot-CcUXf5M2.css",
+          "https://static.cloudflareinsights.com/beacon.min.js"
+        ],
+        "schema": {
+          "valid_json": true,
+          "types": [
+            "Organization",
+            "WebSite",
+            "ProfessionalService",
+            "WebPage",
+            "BreadcrumbList"
+          ],
+          "unique_ids": true,
+          "webpage_ids": [
+            "https://schultes-it.de/#webpage"
+          ]
+        },
+        "path": "/",
+        "width": 390,
+        "http_status": 200,
+        "page_errors": [],
+        "console_errors": [],
+        "menu": {
+          "visible": true,
+          "no_layout_shift": true,
+          "escape_closes": true
+        }
+      },
+      {
+        "title": "IT-Service Ludwigsburg | PC- & WLAN-Hilfe | Schultes IT",
+        "h1": [
+          "Computerhilfe in Ludwigsburg.\nDirekt bei dir vor Ort."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/",
+        "overflow": false,
+        "broken_images": [],
+        "main_text_characters": 4938,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "ctas": [
+          {
+            "text": "Termin besprechen",
+            "href": "tel:+491791707411"
+          },
+          {
+            "text": "+49 179 1707411",
+            "href": "tel:+491791707411"
+          },
+          {
+            "text": "E-Mail schreiben",
+            "href": "mailto:kontakt@schultes-it.de"
+          }
+        ],
+        "assets": [
+          "https://schultes-it.de/assets/index-BQiEuR7e.js",
+          "https://schultes-it.de/assets/index-BN5c8VMg.css",
+          "https://schultes-it.de/assets/SupportBot-CcUXf5M2.css",
+          "https://static.cloudflareinsights.com/beacon.min.js"
+        ],
+        "schema": {
+          "valid_json": true,
+          "types": [
+            "Organization",
+            "WebSite",
+            "ProfessionalService",
+            "WebPage",
+            "BreadcrumbList"
+          ],
+          "unique_ids": true,
+          "webpage_ids": [
+            "https://schultes-it.de/standorte/ludwigsburg/#webpage"
+          ]
+        },
+        "path": "/standorte/ludwigsburg/",
+        "width": 390,
+        "http_status": 200,
+        "page_errors": [],
+        "console_errors": []
+      },
+      {
+        "title": "PC-Hilfe Ludwigsburg | Computer- & Laptop-Hilfe",
+        "h1": [
+          "PC-Hilfe ohne Fachchinesisch.\nDamit Technik wieder Alltag wird."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/pc-laptop/",
+        "overflow": false,
+        "broken_images": [],
+        "main_text_characters": 5729,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "ctas": [
+          {
+            "text": "Hilfe anfragen",
+            "href": "#service-contact"
+          }
+        ],
+        "assets": [
+          "https://schultes-it.de/assets/index-BQiEuR7e.js",
+          "https://schultes-it.de/assets/index-BN5c8VMg.css",
+          "https://schultes-it.de/assets/SupportBot-CcUXf5M2.css",
+          "https://static.cloudflareinsights.com/beacon.min.js"
+        ],
+        "schema": {
+          "valid_json": true,
+          "types": [
+            "Organization",
+            "WebSite",
+            "ProfessionalService",
+            "WebPage",
+            "Service",
+            "FAQPage",
+            "BreadcrumbList"
+          ],
+          "unique_ids": true,
+          "webpage_ids": [
+            "https://schultes-it.de/standorte/ludwigsburg/pc-laptop/#webpage"
+          ]
+        },
+        "path": "/standorte/ludwigsburg/pc-laptop/",
+        "width": 390,
+        "http_status": 200,
+        "page_errors": [],
+        "console_errors": []
+      },
+      {
+        "title": "WLAN-Hilfe Ludwigsburg | Router & Internet-Probleme",
+        "h1": [
+          "Stabiles WLAN. Saubere Verbindungen.\nGenau dort, wo du sie brauchst."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/netzwerk-wlan/",
+        "overflow": false,
+        "broken_images": [],
+        "main_text_characters": 5643,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "ctas": [
+          {
+            "text": "Hilfe anfragen",
+            "href": "#service-contact"
+          }
+        ],
+        "assets": [
+          "https://schultes-it.de/assets/index-BQiEuR7e.js",
+          "https://schultes-it.de/assets/index-BN5c8VMg.css",
+          "https://schultes-it.de/assets/SupportBot-CcUXf5M2.css",
+          "https://static.cloudflareinsights.com/beacon.min.js"
+        ],
+        "schema": {
+          "valid_json": true,
+          "types": [
+            "Organization",
+            "WebSite",
+            "ProfessionalService",
+            "WebPage",
+            "Service",
+            "FAQPage",
+            "BreadcrumbList"
+          ],
+          "unique_ids": true,
+          "webpage_ids": [
+            "https://schultes-it.de/standorte/ludwigsburg/netzwerk-wlan/#webpage"
+          ]
+        },
+        "path": "/standorte/ludwigsburg/netzwerk-wlan/",
+        "width": 390,
+        "http_status": 200,
+        "page_errors": [],
+        "console_errors": []
+      },
+      {
+        "title": "IT-Hilfe Ludwigsburg & Fernwartung | Schultes IT",
+        "h1": [
+          "Persönliche IT-Hilfe.\nFür Privatpersonen.\nFür kleine Unternehmen."
+        ],
+        "canonical": "https://schultes-it.de/",
+        "overflow": false,
+        "broken_images": [],
+        "main_text_characters": 3058,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de"
+        ],
+        "ctas": [
+          {
+            "text": "Hilfe vor Ort finden",
+            "href": "/standorte/ludwigsburg/"
+          },
+          {
+            "text": "Fernwartung entdecken",
+            "href": "/fernwartung/"
+          },
+          {
+            "text": "So funktioniert Fernwartung",
+            "href": "/fernwartung/"
+          },
+          {
+            "text": "IT-Hilfe Ludwigsburg",
+            "href": "/standorte/ludwigsburg/"
+          },
+          {
+            "text": "Hilfe anfragen",
+            "href": "/fernwartung/"
+          }
+        ],
+        "assets": [
+          "https://schultes-it.de/assets/index-BQiEuR7e.js",
+          "https://schultes-it.de/assets/index-BN5c8VMg.css",
+          "https://schultes-it.de/assets/SupportBot-CcUXf5M2.css",
+          "https://static.cloudflareinsights.com/beacon.min.js"
+        ],
+        "schema": {
+          "valid_json": true,
+          "types": [
+            "Organization",
+            "WebSite",
+            "ProfessionalService",
+            "WebPage",
+            "BreadcrumbList"
+          ],
+          "unique_ids": true,
+          "webpage_ids": [
+            "https://schultes-it.de/#webpage"
+          ]
+        },
+        "path": "/",
+        "width": 1440,
+        "http_status": 200,
+        "page_errors": [],
+        "console_errors": []
+      },
+      {
+        "title": "IT-Service Ludwigsburg | PC- & WLAN-Hilfe | Schultes IT",
+        "h1": [
+          "Computerhilfe in Ludwigsburg.\nDirekt bei dir vor Ort."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/",
+        "overflow": false,
+        "broken_images": [],
+        "main_text_characters": 4938,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "ctas": [
+          {
+            "text": "Termin besprechen",
+            "href": "tel:+491791707411"
+          },
+          {
+            "text": "+49 179 1707411",
+            "href": "tel:+491791707411"
+          },
+          {
+            "text": "E-Mail schreiben",
+            "href": "mailto:kontakt@schultes-it.de"
+          }
+        ],
+        "assets": [
+          "https://schultes-it.de/assets/index-BQiEuR7e.js",
+          "https://schultes-it.de/assets/index-BN5c8VMg.css",
+          "https://schultes-it.de/assets/SupportBot-CcUXf5M2.css",
+          "https://static.cloudflareinsights.com/beacon.min.js"
+        ],
+        "schema": {
+          "valid_json": true,
+          "types": [
+            "Organization",
+            "WebSite",
+            "ProfessionalService",
+            "WebPage",
+            "BreadcrumbList"
+          ],
+          "unique_ids": true,
+          "webpage_ids": [
+            "https://schultes-it.de/standorte/ludwigsburg/#webpage"
+          ]
+        },
+        "path": "/standorte/ludwigsburg/",
+        "width": 1440,
+        "http_status": 200,
+        "page_errors": [],
+        "console_errors": []
+      },
+      {
+        "title": "PC-Hilfe Ludwigsburg | Computer- & Laptop-Hilfe",
+        "h1": [
+          "PC-Hilfe ohne Fachchinesisch.\nDamit Technik wieder Alltag wird."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/pc-laptop/",
+        "overflow": false,
+        "broken_images": [],
+        "main_text_characters": 5729,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "ctas": [
+          {
+            "text": "Hilfe anfragen",
+            "href": "#service-contact"
+          }
+        ],
+        "assets": [
+          "https://schultes-it.de/assets/index-BQiEuR7e.js",
+          "https://schultes-it.de/assets/index-BN5c8VMg.css",
+          "https://schultes-it.de/assets/SupportBot-CcUXf5M2.css",
+          "https://static.cloudflareinsights.com/beacon.min.js"
+        ],
+        "schema": {
+          "valid_json": true,
+          "types": [
+            "Organization",
+            "WebSite",
+            "ProfessionalService",
+            "WebPage",
+            "Service",
+            "FAQPage",
+            "BreadcrumbList"
+          ],
+          "unique_ids": true,
+          "webpage_ids": [
+            "https://schultes-it.de/standorte/ludwigsburg/pc-laptop/#webpage"
+          ]
+        },
+        "path": "/standorte/ludwigsburg/pc-laptop/",
+        "width": 1440,
+        "http_status": 200,
+        "page_errors": [],
+        "console_errors": []
+      },
+      {
+        "title": "WLAN-Hilfe Ludwigsburg | Router & Internet-Probleme",
+        "h1": [
+          "Stabiles WLAN. Saubere Verbindungen.\nGenau dort, wo du sie brauchst."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/netzwerk-wlan/",
+        "overflow": false,
+        "broken_images": [],
+        "main_text_characters": 5643,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "ctas": [
+          {
+            "text": "Hilfe anfragen",
+            "href": "#service-contact"
+          }
+        ],
+        "assets": [
+          "https://schultes-it.de/assets/index-BQiEuR7e.js",
+          "https://schultes-it.de/assets/index-BN5c8VMg.css",
+          "https://schultes-it.de/assets/SupportBot-CcUXf5M2.css",
+          "https://static.cloudflareinsights.com/beacon.min.js"
+        ],
+        "schema": {
+          "valid_json": true,
+          "types": [
+            "Organization",
+            "WebSite",
+            "ProfessionalService",
+            "WebPage",
+            "Service",
+            "FAQPage",
+            "BreadcrumbList"
+          ],
+          "unique_ids": true,
+          "webpage_ids": [
+            "https://schultes-it.de/standorte/ludwigsburg/netzwerk-wlan/#webpage"
+          ]
+        },
+        "path": "/standorte/ludwigsburg/netzwerk-wlan/",
+        "width": 1440,
+        "http_status": 200,
+        "page_errors": [],
+        "console_errors": []
+      }
+    ],
+    "javascript_disabled": [
+      {
+        "title": "IT-Hilfe Ludwigsburg & Fernwartung | Schultes IT",
+        "h1": [
+          "Persönliche IT-Hilfe.\nFür Privatpersonen.\nFür kleine Unternehmen."
+        ],
+        "canonical": "https://schultes-it.de/",
+        "main_text_characters": 3058,
+        "h1_visible": true,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de"
+        ],
+        "path": "/",
+        "http_status": 200,
+        "same_h1": true,
+        "same_canonical": true,
+        "same_contacts": true
+      },
+      {
+        "title": "IT-Service Ludwigsburg | PC- & WLAN-Hilfe | Schultes IT",
+        "h1": [
+          "Computerhilfe in Ludwigsburg.\nDirekt bei dir vor Ort."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/",
+        "main_text_characters": 4938,
+        "h1_visible": true,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "path": "/standorte/ludwigsburg/",
+        "http_status": 200,
+        "same_h1": true,
+        "same_canonical": true,
+        "same_contacts": true
+      },
+      {
+        "title": "PC-Hilfe Ludwigsburg | Computer- & Laptop-Hilfe",
+        "h1": [
+          "PC-Hilfe ohne Fachchinesisch.\nDamit Technik wieder Alltag wird."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/pc-laptop/",
+        "main_text_characters": 5729,
+        "h1_visible": true,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "path": "/standorte/ludwigsburg/pc-laptop/",
+        "http_status": 200,
+        "same_h1": true,
+        "same_canonical": true,
+        "same_contacts": true
+      },
+      {
+        "title": "WLAN-Hilfe Ludwigsburg | Router & Internet-Probleme",
+        "h1": [
+          "Stabiles WLAN. Saubere Verbindungen.\nGenau dort, wo du sie brauchst."
+        ],
+        "canonical": "https://schultes-it.de/standorte/ludwigsburg/netzwerk-wlan/",
+        "main_text_characters": 5643,
+        "h1_visible": true,
+        "contact_links": [
+          "/fernwartung/",
+          "/standorte/",
+          "mailto:kontakt@schultes-it.de",
+          "tel:+491791707411"
+        ],
+        "path": "/standorte/ludwigsburg/netzwerk-wlan/",
+        "http_status": 200,
+        "same_h1": true,
+        "same_canonical": true,
+        "same_contacts": true
+      }
+    ],
+    "legacy_fragments": [
+      {
+        "final_url": "https://schultes-it.de/standorte/ludwigsburg/?utm_source=qa#preise",
+        "anchor_exists": true,
+        "anchor_top": 369.828125,
+        "scroll_y": 2609,
+        "requested": "/?utm_source=qa#preise",
+        "expected": "https://schultes-it.de/standorte/ludwigsburg/?utm_source=qa#preise",
+        "passed": true,
+        "page_errors": []
+      },
+      {
+        "final_url": "https://schultes-it.de/standorte/ludwigsburg/pc-laptop/?utm_source=qa#service-solutions",
+        "anchor_exists": true,
+        "anchor_top": 312.8125,
+        "scroll_y": 2157,
+        "requested": "/pc-system/?utm_source=qa#was-ich-loese",
+        "expected": "https://schultes-it.de/standorte/ludwigsburg/pc-laptop/?utm_source=qa#service-solutions",
+        "passed": true,
+        "page_errors": []
+      }
+    ],
+    "browser_version": "154.0.8037.57",
+    "home_primary_cta": {
+      "final_url": "https://schultes-it.de/standorte/ludwigsburg/",
+      "passed": true
+    },
+    "summary": {
+      "page_cases": 12,
+      "all_http_200": true,
+      "no_overflow": true,
+      "no_broken_images": true,
+      "no_page_errors": true,
+      "no_console_errors": true,
+      "all_canonicals_correct": true,
+      "all_jsonld_parse_and_ids_unique": true,
+      "all_js_disabled_content_equivalent": true,
+      "both_legacy_fragments_pass": true
+    }
+  }
+}

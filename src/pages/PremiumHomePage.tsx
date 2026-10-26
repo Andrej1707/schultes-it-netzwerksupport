@@ -11,12 +11,12 @@ import {
 } from 'lucide-react'
 import { PremiumImage } from '../components/PremiumShell'
 import { siteConfig } from '../site/config'
-import { activeLocations } from '../site/locations'
+import { activeLocationById } from '../site/locations'
 import { getServicePath, getLocationServicesByGroup } from '../content/services'
 import type { SitePage } from '../site/types'
 
 export default function PremiumHomePage({ page }: { page: SitePage }) {
-  const location = activeLocations[0]
+  const location = activeLocationById[siteConfig.featuredLocationId]
   const localServices = location
     ? getLocationServicesByGroup(location.id, 'primary')
     : []
@@ -44,14 +44,14 @@ export default function PremiumHomePage({ page }: { page: SitePage }) {
           <p className="p-home-intro">
             Deutschlandweit per Fernwartung.
             <br />
-            Persönlich vor Ort.
+            {location ? `Vor Ort in ${location.city}.` : 'Persönlich vor Ort.'}
           </p>
           <div className="p-actions">
-            <a className="p-button" href="/fernwartung/">
-              IT-Hilfe finden <ArrowUpRight size={17} aria-hidden="true" />
+            <a className="p-button" href={location?.path ?? '/standorte/'}>
+              Hilfe vor Ort finden <ArrowUpRight size={17} aria-hidden="true" />
             </a>
-            <a className="p-button p-button-outline" href="/leistungen/">
-              Leistungen entdecken
+            <a className="p-button p-button-outline" href="/fernwartung/">
+              Fernwartung entdecken
             </a>
           </div>
         </div>
@@ -271,15 +271,16 @@ export default function PremiumHomePage({ page }: { page: SitePage }) {
 
       <section className="p-local-stage p-section">
         <div>
-          <p className="p-eyebrow">Hilfe vor Ort</p>
+          <p className="p-eyebrow">IT-Service vor Ort</p>
           <h2>
-            Digital verbunden.
+            PC, Laptop und WLAN.
             <br />
-            Regional persönlich.
+            Persönlich unterstützt.
           </h2>
           <p>
-            Wenn sich ein Problem besser direkt am Gerät lösen lässt, ist der
-            passende Ansprechpartner in deiner Region gefragt.
+            {location
+              ? `Du suchst Computerhilfe in ${location.city}? ${location.operator.name} unterstützt dich bei Windows-Problemen, beim Einrichten deines Laptops und bei WLAN-Störungen. Leistungen, Preise und Termine findest du auf der Standortseite.`
+              : 'Finde persönliche Computerhilfe bei einem aktiven Standort in deiner Region.'}
           </p>
           <a className="p-text-link" href="/standorte/">
             Standort finden <ArrowUpRight size={17} aria-hidden="true" />
@@ -290,6 +291,12 @@ export default function PremiumHomePage({ page }: { page: SitePage }) {
           <span>Der erste Schultes-IT-Standort</span>
           <h3>{location?.city ?? 'Unsere Standorte'}</h3>
           <p>{location?.content.serviceAreaSummary}</p>
+          {location ? (
+            <p>
+              {location.operator.name}<br />
+              {location.streetAddress}, {location.postalCode} {location.city}
+            </p>
+          ) : null}
           <p className="p-price">
             Ab {location?.pricing.onSiteFrom}
             <small>{location?.pricing.note}</small>
@@ -298,7 +305,7 @@ export default function PremiumHomePage({ page }: { page: SitePage }) {
             className="p-button p-button-outline"
             href={location?.path ?? '/standorte/'}
           >
-            Standort kennenlernen <ArrowUpRight size={17} aria-hidden="true" />
+            {location ? `IT-Hilfe ${location.city}` : 'Standort kennenlernen'} <ArrowUpRight size={17} aria-hidden="true" />
           </a>
         </article>
       </section>

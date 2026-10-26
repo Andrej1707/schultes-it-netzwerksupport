@@ -69,6 +69,7 @@ function Photo({
       height="1024"
       alt={alt}
       loading={eager ? 'eager' : 'lazy'}
+      fetchPriority={eager ? 'high' : undefined}
       decoding="async"
     />
   )
@@ -691,7 +692,7 @@ function LocationPage({
       <section className="pn-container pn-local-services" id="leistungen">
         <SectionTitle
           label={`PERSÖNLICH IN ${location.city.toUpperCase()}`}
-          title="Ein Ansprechpartner. Vieles wieder im Griff."
+          title={`PC-, Laptop- und WLAN-Hilfe in ${location.city}.`}
         >
           {location.content.businessSupportApproach}
         </SectionTitle>

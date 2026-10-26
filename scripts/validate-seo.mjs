@@ -510,10 +510,20 @@ for (const page of manifest.pages) {
   }
 
   if (page.schemaKind === 'brand') {
+    const webPage = graph.find((node) => node['@id'] === `${canonicalUrl}#webpage`)
     assert(
-      !graph.some((node) => node['@type'] === 'ProfessionalService'),
-      'The brand home page must not pretend to be a single local business.',
+      webPage?.about?.['@id'] === organization['@id'],
+      'The brand homepage must retain its separate Organization identity.',
     )
+    if (webPage?.mentions) {
+      const business = graph.find((node) => node['@id'] === webPage.mentions['@id'])
+      const visible = plainText(html.split('<body')[1]?.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '') ?? '')
+      assert(business?.['@type'] === 'ProfessionalService' &&
+        visible.includes(business.address.addressLocality) &&
+        visible.includes(business.address.streetAddress) &&
+        html.includes(`href="${new URL(business.url).pathname}"`),
+      'The featured local business must be real, visible and linked from the initial homepage HTML.')
+    }
   }
 
   const bodyText = plainText(

@@ -493,6 +493,12 @@ const serviceTemplateBySlug = Object.fromEntries(
   serviceTemplates.map((service) => [service.slug, service]),
 ) as Record<string, ServicePageData>
 
+// The network templates have their own metadata. Keep the original, specific
+// local search copy available before it is generalized for the network overview.
+const localServiceCopyBySlug = new Map(
+  [...legacyPrimaryServicePages, ...legacyTopicPages].map((service) => [service.slug, service]),
+)
+
 function locationServiceSlug(location: ServiceLocation, templateSlug: string) {
   return `${location.slug}--${templateSlug}`
 }
@@ -559,13 +565,14 @@ function locationContextText(template: ServicePageData, location: ServiceLocatio
   return location.content.localSupportApproach
 }
 
-function createLocationService(
+export function createLocationService(
   template: ServicePageData,
   location: ServiceLocation,
 ): ServicePageData {
   const transform = localCopyTransform(location, template.deliveryMode)
   const localized = mapServiceCopy(template, transform)
   const templateSlug = template.slug
+  const localCopy = localServiceCopyBySlug.get(templateSlug) ?? template
   const operatorName = location.operator.responsiblePerson ?? location.operator.name
   const contextText = locationContextText(template, location)
   const path = `${location.path}${locationRelativePath(template)}`
@@ -580,7 +587,7 @@ function createLocationService(
       ? templateSlug === 'fernwartung'
         ? `Fernwartung deutschlandweit | Standort ${location.city}`
         : `${localized.shortTitle} per Fernwartung | Standort ${location.city}`
-      : `${localized.shortTitle} ${location.city} | Schultes IT Standort`
+      : transform(localCopy.seoTitle)
 
   return {
     ...localized,
@@ -596,9 +603,12 @@ function createLocationService(
         : `${location.city} & ${location.region}`,
     modeLabel,
     seoTitle,
-    seoDescription: conciseSeoDescription(
-      `${localized.description} Persönlich betreut durch ${operatorName} vom Standort ${location.city}.`,
-    ),
+    seoDescription:
+      template.deliveryMode === 'remote'
+        ? conciseSeoDescription(
+            `${localized.description} Persönlich betreut durch ${operatorName} vom Standort ${location.city}.`,
+          )
+        : transform(localCopy.seoDescription),
     keywords:
       `${transform(template.keywords)}, ${localized.shortTitle} ${location.city}, ` +
       `Schultes IT ${location.city}, IT Hilfe ${location.region}`,
@@ -611,6 +621,15 @@ function createLocationService(
           : `Service bei dir ab ${location.pricing.onSiteFrom}`,
     faqs: [
       ...localized.faqs,
+      ...(templateSlug === 'pc-system'
+        ? [{
+            question: `Was ist bei einer PC-Reparatur in ${location.city} möglich?`,
+            answer:
+              'Zuerst wird geprüft, ob ein Software-, Einrichtungs- oder Hardwareproblem vorliegt. ' +
+              'Sinnvolle sichere Schritte und mögliche Kosten werden vorab mit dir abgestimmt. ' +
+              'Wenn eine Spezialreparatur nötig ist, wird das offen benannt; nicht jeder Hardwaredefekt kann vor Ort behoben werden.',
+          }]
+        : []),
       {
         question: `Wer betreut diese Leistung in ${location.city}?`,
         answer:
