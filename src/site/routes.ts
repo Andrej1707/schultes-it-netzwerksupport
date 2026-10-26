@@ -1,9 +1,12 @@
-import { activeLocations } from './locations'
+import { activeLocations, activeLocationById } from './locations'
+import { siteConfig } from './config'
 import { publicServicePages } from './publicServices'
 import { rustdeskRelease } from './rustdesk'
 import type { SitePage, ResolvedSiteRoute, SchemaKind } from './types'
 
 const lastModified = '2026-09-05'
+const localSeoUpdated = '2026-10-26'
+const homeLocation = activeLocationById[siteConfig.featuredLocationId]
 const remoteLastModified = [lastModified, rustdeskRelease.publishedAt.slice(0, 10)]
   .sort()
   .at(-1)!
@@ -14,18 +17,20 @@ const structuralPages: SitePage[] = [
     kind: 'home',
     schemaKind: 'brand',
     path: '/',
-    title: 'Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort',
+    title: homeLocation
+      ? `IT-Hilfe ${homeLocation.city} & Fernwartung | Schultes IT`
+      : 'Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort',
     description:
-      'IT-Hilfe für Privatpersonen und kleine Unternehmen: deutschlandweit per Fernwartung und persönlich vor Ort über regionale Schultes-IT-Standorte.',
+      `Persönliche IT-Hilfe${homeLocation ? ` in ${homeLocation.city}` : ' vor Ort'} für Privatpersonen und kleine Unternehmen. PC, Laptop und WLAN vor Ort; sichere Fernwartung deutschlandweit.`,
     keywords:
       'Schultes IT, Fernwartung, IT Hilfe, PC Hilfe, regionale IT Standorte, Computerhilfe',
     eyebrow: 'SCHULTES IT / DEUTSCHLAND',
-    heading: 'Einfach gute Technik.',
+    heading: 'Persönliche IT-Hilfe.',
     accent: 'Für Privatpersonen. Für kleine Unternehmen.',
     intro:
       'Schultes IT verbindet sichere Fernwartung mit persönlicher Hilfe durch klar verantwortliche regionale Ansprechpartner.',
     indexable: true,
-    lastModified,
+    lastModified: localSeoUpdated,
     changeFrequency: 'weekly',
     priority: 1,
   },
@@ -175,7 +180,7 @@ const locationSitePages: SitePage[] = activeLocations.map((location) => ({
     schemaKind: 'location',
     path: location.path,
     aliases: location.aliases,
-    title: `IT-Hilfe ${location.city} | Schultes IT Standort`,
+    title: `IT-Service ${location.city} | PC- & WLAN-Hilfe | Schultes IT`,
     description:
       `Schultes IT ${location.city}: persönliche PC-, Laptop-, WLAN-, Router- und ` +
       'Technik-Hilfe bei dir vor Ort, ergänzt durch sichere Fernwartung.',
@@ -183,13 +188,13 @@ const locationSitePages: SitePage[] = activeLocations.map((location) => ({
       `IT Hilfe ${location.city}, PC Hilfe ${location.city}, WLAN Hilfe ${location.city}, ` +
       `Computerhilfe ${location.city}, Schultes IT ${location.city}`,
     eyebrow: `STANDORT / ${location.city.toUpperCase()}`,
-    heading: `Dein Ansprechpartner in ${location.city}.`,
+    heading: `Computerhilfe in ${location.city}.`,
     accent: 'Direkt bei dir vor Ort.',
     intro:
       `${location.operator.name} betreibt den Standort ${location.city} als ` +
       `${location.operator.role}.`,
     indexable: true,
-    lastModified,
+    lastModified: localSeoUpdated,
     changeFrequency: 'weekly',
     priority: 0.95,
     locationId: location.id,
@@ -214,7 +219,7 @@ const serviceSitePages: SitePage[] = publicServicePages.map((service) => ({
   accent: service.heroAccent,
   intro: service.heroText,
   indexable: true,
-  lastModified: service.deliveryMode === 'remote' ? remoteLastModified : lastModified,
+  lastModified: service.locationId ? localSeoUpdated : remoteLastModified,
   changeFrequency: 'monthly',
   priority:
     service.serviceGroup === 'primary'

@@ -1,0 +1,296 @@
+[
+  {
+    "commit": "0c688a2",
+    "date_subject": "2026-06-28 Strengthen local SEO association",
+    "base_title": [
+      "IT-Hilfe & PC-Hilfe Ludwigsburg | Schultes IT"
+    ],
+    "home_registry": "        about: { '@id': `${url}#service` },\n        mainEntity: { '@id': `${url}#service` },\n        mainEntity: service.faqs.map((faq) => ({",
+    "schema_types": [
+      "Answer",
+      "Audience",
+      "BreadcrumbList",
+      "City",
+      "FAQPage",
+      "ListItem",
+      "Offer",
+      "OfferCatalog",
+      "OpeningHoursSpecification",
+      "PostalAddress",
+      "ProfessionalService",
+      "Question",
+      "Service",
+      "WebPage",
+      "WebSite"
+    ],
+    "full_react_ssr_marker": false,
+    "static_html_injection_marker": false,
+    "app_h1_source_samples": [
+      "<motion.h1 variants={serviceHeroSequence}>\n              <motion.span className=\"service-hero-primary\" variants={serviceTitleLine}>\n                {service.heroLead}\n              </motion.span>\n              <motion.span variants={serviceTitleLine}>{service.heroAccent}</motion.span>\n            </motion.h1>",
+      "<motion.h1 variants={serviceHeroSequence}>\n              <motion.span className=\"hero-title-line\" variants={serviceTitleLine}>\n                Technik,\n              </motion.span>\n              <motion.span className=\"hero-title-line\" variants={serviceTitleLine}>\n                die <em>funktioniert.</em>\n              </motion.span>\n            </motion.h1>"
+    ]
+  },
+  {
+    "commit": "5eb3336",
+    "date_subject": "2026-07-01 Add targeted local SEO service pages",
+    "base_title": [
+      "IT-Hilfe & PC-Hilfe Ludwigsburg | Schultes IT"
+    ],
+    "home_registry": "        about: { '@id': `${url}#service` },\n        mainEntity: { '@id': `${url}#service` },\n        mainEntity: service.faqs.map((faq) => ({",
+    "schema_types": [
+      "Answer",
+      "Audience",
+      "BreadcrumbList",
+      "City",
+      "FAQPage",
+      "ListItem",
+      "Offer",
+      "OfferCatalog",
+      "OpeningHoursSpecification",
+      "PostalAddress",
+      "ProfessionalService",
+      "Question",
+      "Service",
+      "WebPage",
+      "WebSite"
+    ],
+    "full_react_ssr_marker": false,
+    "static_html_injection_marker": false,
+    "app_h1_source_samples": [
+      "<motion.h1 variants={serviceHeroSequence}>\n              <motion.span className=\"service-hero-primary\" variants={serviceTitleLine}>\n                {service.heroLead}\n              </motion.span>\n              <motion.span variants={serviceTitleLine}>{service.heroAccent}</motion.span>\n            </motion.h1>",
+      "<motion.h1 variants={serviceHeroSequence}>\n              <motion.span className=\"hero-title-line\" variants={serviceTitleLine}>\n                Technik,\n              </motion.span>\n              <motion.span className=\"hero-title-line\" variants={serviceTitleLine}>\n                die <em>funktioniert.</em>\n              </motion.span>\n            </motion.h1>"
+    ]
+  },
+  {
+    "commit": "aac65af",
+    "date_subject": "2026-07-15 Update business phone number",
+    "base_title": [
+      "IT-Hilfe & PC-Hilfe Ludwigsburg | Schultes IT"
+    ],
+    "home_registry": "        about: { '@id': `${url}#service` },\n        mainEntity: { '@id': `${url}#service` },\n        mainEntity: service.faqs.map((faq) => ({",
+    "schema_types": [
+      "Answer",
+      "Audience",
+      "BreadcrumbList",
+      "City",
+      "FAQPage",
+      "ListItem",
+      "Offer",
+      "OfferCatalog",
+      "PostalAddress",
+      "ProfessionalService",
+      "Question",
+      "Service",
+      "WebPage",
+      "WebSite"
+    ],
+    "full_react_ssr_marker": false,
+    "static_html_injection_marker": false,
+    "app_h1_source_samples": [
+      "<motion.h1 variants={serviceHeroSequence}>\n              <motion.span className=\"service-hero-primary\" variants={serviceTitleLine}>\n                {service.heroLead}\n              </motion.span>\n              <motion.span variants={serviceTitleLine}>{service.heroAccent}</motion.span>\n            </motion.h1>",
+      "<motion.h1 variants={serviceHeroSequence}>\n              <motion.span className=\"hero-title-line\" variants={serviceTitleLine}>\n                Technik,\n              </motion.span>\n              <motion.span className=\"hero-title-line\" variants={serviceTitleLine}>\n                die <em>funktioniert.</em>\n              </motion.span>\n            </motion.h1>"
+    ]
+  },
+  {
+    "commit": "762df12",
+    "date_subject": "2026-07-28 Scale site for nationwide support network",
+    "base_title": [
+      "Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort"
+    ],
+    "home_registry": "import { servicePages } from '../content/services'\nimport { locations } from './locations'\nimport type { SitePage, ResolvedSiteRoute, SchemaKind } from './types'\n\nconst lastModified = '2026-07-28'\n\nconst structuralPages: SitePage[] = [\n  {\n    id: 'home',\n    kind: 'home',\n    schemaKind: 'brand',\n    path: '/',\n    title: 'Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort',\n    description:\n      'Schultes IT verbindet deutschlandweite IT-Hilfe per Fernwartung mit persönlichem Vor-Ort-Service über regionale Standorte.',\n    keywords:\n      'Schultes IT, Fernwartung Deutschland, IT Hilfe, PC Hilfe, regionale IT Standorte, Computerhilfe',\n    eyebrow: 'SCHULTES IT / DEUTSCHLAND',\n    heading: 'IT-Hilfe ohne Entfernung.',\n    accent: 'Persönlich, wo Nähe zählt.',\n    intro:\n      'Deutschlandweite Fernwartung und regionale Vor-Ort-Hilfe unter einer gemeinsamen Marke.',\n    indexable: true,\n    lastModified,\n    changeFrequency: 'weekly',\n    priority: 1,\n  },\n  {\n    ",
+    "schema_types": [
+      "Answer",
+      "Audience",
+      "BreadcrumbList",
+      "City",
+      "Country",
+      "FAQPage",
+      "GeoCoordinates",
+      "ItemList",
+      "ListItem",
+      "Offer",
+      "OfferCatalog",
+      "Organization",
+      "Person",
+      "PostalAddress",
+      "ProfessionalService",
+      "Question",
+      "Service",
+      "ServiceChannel",
+      "WebSite"
+    ],
+    "full_react_ssr_marker": false,
+    "static_html_injection_marker": false,
+    "app_h1_source_samples": []
+  },
+  {
+    "commit": "55b65e8",
+    "date_subject": "2026-07-28 Make all services location-owned",
+    "base_title": [
+      "Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort"
+    ],
+    "home_registry": "import { activeLocations } from './locations'\nimport { publicServicePages } from './publicServices'\nimport type { SitePage, ResolvedSiteRoute, SchemaKind } from './types'\n\nconst lastModified = '2026-07-28'\n\nconst structuralPages: SitePage[] = [\n  {\n    id: 'home',\n    kind: 'home',\n    schemaKind: 'brand',\n    path: '/',\n    title: 'Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort',\n    description:\n      'Schultes IT verbindet standortbetreute Fernwartung mit persönlichem Vor-Ort-Service über regionale, selbstständige Ansprechpartner.',\n    keywords:\n      'Schultes IT, Fernwartung, IT Hilfe, PC Hilfe, regionale IT Standorte, Computerhilfe',\n    eyebrow: 'SCHULTES IT / DEUTSCHLAND',\n    heading: 'Technik-Hilfe,',\n    accent: 'die dich erreicht.',\n    intro:\n      'Schultes IT verbindet sichere Fernwartung mit persönlicher Hilfe durch klar verantwortliche regionale Ansprechpartner.',\n    indexable: true,\n    lastModified,\n    changeFrequency: 'weekly',\n    priority: 1,\n  },\n  {\n    ",
+    "schema_types": [
+      "Answer",
+      "Audience",
+      "BreadcrumbList",
+      "City",
+      "ContactPoint",
+      "Country",
+      "FAQPage",
+      "GeoCoordinates",
+      "ImageObject",
+      "ItemList",
+      "ListItem",
+      "Offer",
+      "OfferCatalog",
+      "Organization",
+      "Person",
+      "PostalAddress",
+      "ProfessionalService",
+      "Question",
+      "Service",
+      "ServiceChannel",
+      "WebSite"
+    ],
+    "full_react_ssr_marker": true,
+    "static_html_injection_marker": true,
+    "app_h1_source_samples": []
+  },
+  {
+    "commit": "5935db4",
+    "date_subject": "2026-08-08 Harden legacy URL redirects for Google",
+    "base_title": [
+      "Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort"
+    ],
+    "home_registry": "import { activeLocations } from './locations'\nimport { publicServicePages } from './publicServices'\nimport type { SitePage, ResolvedSiteRoute, SchemaKind } from './types'\n\nconst lastModified = '2026-07-28'\n\nconst structuralPages: SitePage[] = [\n  {\n    id: 'home',\n    kind: 'home',\n    schemaKind: 'brand',\n    path: '/',\n    title: 'Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort',\n    description:\n      'Schultes IT verbindet zentrale deutschlandweite Fernwartung mit persönlichem Vor-Ort-Service über regionale, selbstständige Ansprechpartner.',\n    keywords:\n      'Schultes IT, Fernwartung, IT Hilfe, PC Hilfe, regionale IT Standorte, Computerhilfe',\n    eyebrow: 'SCHULTES IT / DEUTSCHLAND',\n    heading: 'Technik-Hilfe,',\n    accent: 'die dich erreicht.',\n    intro:\n      'Schultes IT verbindet sichere Fernwartung mit persönlicher Hilfe durch klar verantwortliche regionale Ansprechpartner.',\n    indexable: true,\n    lastModified,\n    changeFrequency: 'weekly',\n    priority: 1,\n  },\n  {\n    ",
+    "schema_types": [
+      "Answer",
+      "Audience",
+      "BreadcrumbList",
+      "City",
+      "ContactPoint",
+      "Country",
+      "FAQPage",
+      "GeoCoordinates",
+      "ImageObject",
+      "ItemList",
+      "ListItem",
+      "Offer",
+      "OfferCatalog",
+      "Organization",
+      "Person",
+      "PostalAddress",
+      "ProfessionalService",
+      "Question",
+      "Service",
+      "ServiceChannel",
+      "WebSite"
+    ],
+    "full_react_ssr_marker": true,
+    "static_html_injection_marker": true,
+    "app_h1_source_samples": []
+  },
+  {
+    "commit": "70a226b",
+    "date_subject": "2026-09-05 Redesign all Schultes IT pages with distinct premium layouts",
+    "base_title": [
+      "Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort"
+    ],
+    "home_registry": "import { activeLocations } from './locations'\nimport { publicServicePages } from './publicServices'\nimport type { SitePage, ResolvedSiteRoute, SchemaKind } from './types'\n\nconst lastModified = '2026-09-05'\n\nconst structuralPages: SitePage[] = [\n  {\n    id: 'home',\n    kind: 'home',\n    schemaKind: 'brand',\n    path: '/',\n    title: 'Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort',\n    description:\n      'Schultes IT verbindet zentrale deutschlandweite Fernwartung mit persönlichem Vor-Ort-Service über regionale, selbstständige Ansprechpartner.',\n    keywords:\n      'Schultes IT, Fernwartung, IT Hilfe, PC Hilfe, regionale IT Standorte, Computerhilfe',\n    eyebrow: 'SCHULTES IT / DEUTSCHLAND',\n    heading: 'Einfach gute Technik.',\n    accent: 'Für deinen Alltag. Für dein Unternehmen.',\n    intro:\n      'Schultes IT verbindet sichere Fernwartung mit persönlicher Hilfe durch klar verantwortliche regionale Ansprechpartner.',\n    indexable: true,\n    lastModified,\n    changeFrequency: 'weekly',\n    priority: 1,\n  },\n  {\n    ",
+    "schema_types": [
+      "Answer",
+      "Audience",
+      "BreadcrumbList",
+      "City",
+      "ContactPoint",
+      "Country",
+      "FAQPage",
+      "GeoCoordinates",
+      "ImageObject",
+      "ItemList",
+      "ListItem",
+      "Offer",
+      "OfferCatalog",
+      "Organization",
+      "Person",
+      "PostalAddress",
+      "ProfessionalService",
+      "Question",
+      "Service",
+      "ServiceChannel",
+      "WebSite"
+    ],
+    "full_react_ssr_marker": true,
+    "static_html_injection_marker": true,
+    "app_h1_source_samples": []
+  },
+  {
+    "commit": "d5cd455",
+    "date_subject": "2026-09-05 Keep RustDesk downloads current and refine motion and copy",
+    "base_title": [
+      "Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort"
+    ],
+    "home_registry": "import { activeLocations } from './locations'\nimport { publicServicePages } from './publicServices'\nimport { rustdeskRelease } from './rustdesk'\nimport type { SitePage, ResolvedSiteRoute, SchemaKind } from './types'\n\nconst lastModified = '2026-09-05'\nconst remoteLastModified = [lastModified, rustdeskRelease.publishedAt.slice(0, 10)]\n  .sort()\n  .at(-1)!\n\nconst structuralPages: SitePage[] = [\n  {\n    id: 'home',\n    kind: 'home',\n    schemaKind: 'brand',\n    path: '/',\n    title: 'Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort',\n    description:\n      'IT-Hilfe für Privatpersonen und kleine Unternehmen: deutschlandweit per Fernwartung und persönlich vor Ort über regionale Schultes-IT-Standorte.',\n    keywords:\n      'Schultes IT, Fernwartung, IT Hilfe, PC Hilfe, regionale IT Standorte, Computerhilfe',\n    eyebrow: 'SCHULTES IT / DEUTSCHLAND',\n    heading: 'Einfach gute Technik.',\n    accent: 'Für Privatpersonen. Für kleine Unternehmen.',\n    intro:\n      'Schultes IT verbindet sichere Fernwartung mit persönlicher Hilfe durch klar verantwortliche regionale Ansprechpartner.',\n    indexable: true,\n    lastModified,\n    changeFrequency: 'weekly',\n    priority: 1,\n  },\n  {\n    ",
+    "schema_types": [
+      "Answer",
+      "Audience",
+      "BreadcrumbList",
+      "City",
+      "ContactPoint",
+      "Country",
+      "FAQPage",
+      "GeoCoordinates",
+      "ImageObject",
+      "ItemList",
+      "ListItem",
+      "Offer",
+      "OfferCatalog",
+      "Organization",
+      "Person",
+      "PostalAddress",
+      "ProfessionalService",
+      "Question",
+      "Service",
+      "ServiceChannel",
+      "WebSite"
+    ],
+    "full_react_ssr_marker": true,
+    "static_html_injection_marker": true,
+    "app_h1_source_samples": []
+  },
+  {
+    "commit": "239d80e",
+    "date_subject": "2026-10-23 Fix smooth motion, navigation and canonical redirects (#2)",
+    "base_title": [
+      "Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort"
+    ],
+    "home_registry": "import { activeLocations } from './locations'\nimport { publicServicePages } from './publicServices'\nimport { rustdeskRelease } from './rustdesk'\nimport type { SitePage, ResolvedSiteRoute, SchemaKind } from './types'\n\nconst lastModified = '2026-09-05'\nconst remoteLastModified = [lastModified, rustdeskRelease.publishedAt.slice(0, 10)]\n  .sort()\n  .at(-1)!\n\nconst structuralPages: SitePage[] = [\n  {\n    id: 'home',\n    kind: 'home',\n    schemaKind: 'brand',\n    path: '/',\n    title: 'Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort',\n    description:\n      'IT-Hilfe für Privatpersonen und kleine Unternehmen: deutschlandweit per Fernwartung und persönlich vor Ort über regionale Schultes-IT-Standorte.',\n    keywords:\n      'Schultes IT, Fernwartung, IT Hilfe, PC Hilfe, regionale IT Standorte, Computerhilfe',\n    eyebrow: 'SCHULTES IT / DEUTSCHLAND',\n    heading: 'Einfach gute Technik.',\n    accent: 'Für Privatpersonen. Für kleine Unternehmen.',\n    intro:\n      'Schultes IT verbindet sichere Fernwartung mit persönlicher Hilfe durch klar verantwortliche regionale Ansprechpartner.',\n    indexable: true,\n    lastModified,\n    changeFrequency: 'weekly',\n    priority: 1,\n  },\n  {\n    ",
+    "schema_types": [
+      "Answer",
+      "Audience",
+      "BreadcrumbList",
+      "City",
+      "ContactPoint",
+      "Country",
+      "FAQPage",
+      "GeoCoordinates",
+      "ImageObject",
+      "ItemList",
+      "ListItem",
+      "Offer",
+      "OfferCatalog",
+      "Organization",
+      "Person",
+      "PostalAddress",
+      "ProfessionalService",
+      "Question",
+      "Service",
+      "ServiceChannel",
+      "WebSite"
+    ],
+    "full_react_ssr_marker": true,
+    "static_html_injection_marker": true,
+    "app_h1_source_samples": []
+  }
+]

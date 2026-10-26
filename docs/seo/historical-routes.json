@@ -1,0 +1,3064 @@
+{
+  "schemaVersion": 1,
+  "auditedAt": "2026-10-26",
+  "currentRouteReference": "239d80e; canonical/alias paths unchanged in the 2026-10-26 working tree",
+  "methodology": {
+    "historyScope": "51 reachable Git revisions through 2026-07-31 (50 main ancestors plus backup revision 09cd410); seven selected snapshots enriched with exact title and description from their Git objects.",
+    "extraction": "Historical TypeScript registry exports evaluated from git show without checking out or modifying the working tree; pre-registry homepage metadata read from index.html. Existing historical sitemap inventory cross-checked. No new network or live checks.",
+    "limitations": "Git state establishes code and URL history, not proof of a deployed intermediate release, Google indexing or rankings. Historical metadata is recorded verbatim, including outdated business details; do not treat it as current copy."
+  },
+  "summary": {
+    "historicalSnapshotsAudited": 51,
+    "selectedSnapshots": 7,
+    "distinctHistoricalPaths": 62,
+    "missingCurrentDestinations": 0
+  },
+  "routeInventory": [
+    {
+      "path": "/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/"
+      ],
+      "firstEvidence": {
+        "sha": "2a5576b558e424d929957375fa53eb373a9dd812",
+        "date": "2026-06-14",
+        "onMain": true
+      },
+      "currentCanonical": "/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/benutzerkonten/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/benutzerkonten/",
+        "/standorte/ludwigsburg/benutzerkonten/"
+      ],
+      "firstEvidence": {
+        "sha": "564496826780b29ba230159ccd54c83b7f907d84",
+        "date": "2026-06-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/benutzerkonten/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/betrugsverdacht-phishing-hilfe/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/betrugsverdacht-phishing-hilfe/",
+        "/standorte/ludwigsburg/betrugsverdacht-phishing-hilfe/"
+      ],
+      "firstEvidence": {
+        "sha": "5eb33365235408d767f858a063475da99cc29f7d",
+        "date": "2026-07-01",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/betrugsverdacht-phishing-hilfe/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/datenschutz/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/datenschutz/"
+      ],
+      "firstEvidence": {
+        "sha": "90fd9294eed111a293a011ac4c22795703665c21",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/datenschutz/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/drucker/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/drucker/",
+        "/standorte/ludwigsburg/drucker/"
+      ],
+      "firstEvidence": {
+        "sha": "564496826780b29ba230159ccd54c83b7f907d84",
+        "date": "2026-06-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/drucker/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/email/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/email/",
+        "/standorte/ludwigsburg/email/"
+      ],
+      "firstEvidence": {
+        "sha": "564496826780b29ba230159ccd54c83b7f907d84",
+        "date": "2026-06-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/email/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/fernwartung/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/fernwartung/",
+        "/standorte/ludwigsburg/fernwartung/"
+      ],
+      "firstEvidence": {
+        "sha": "564496826780b29ba230159ccd54c83b7f907d84",
+        "date": "2026-06-28",
+        "onMain": true
+      },
+      "currentCanonical": "/fernwartung/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/fernwartung/drucker-hilfe/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/fernwartung/drucker-hilfe/",
+        "/standorte/ludwigsburg/fernwartung/drucker-hilfe/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/fernwartung/drucker-hilfe/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/fernwartung/email-outlook/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/fernwartung/email-outlook/",
+        "/standorte/ludwigsburg/fernwartung/email-outlook/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/fernwartung/email-outlook/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/fernwartung/windows-hilfe/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/fernwartung/windows-hilfe/",
+        "/standorte/ludwigsburg/fernwartung/windows-hilfe/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/fernwartung/windows-hilfe/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/fritzbox-hilfe/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/fritzbox-hilfe/",
+        "/standorte/ludwigsburg/fritzbox-hilfe/"
+      ],
+      "firstEvidence": {
+        "sha": "5eb33365235408d767f858a063475da99cc29f7d",
+        "date": "2026-07-01",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/fritzbox-hilfe/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/impressum/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/impressum/"
+      ],
+      "firstEvidence": {
+        "sha": "90fd9294eed111a293a011ac4c22795703665c21",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/impressum/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/installation/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/installation/",
+        "/standorte/ludwigsburg/installation/"
+      ],
+      "firstEvidence": {
+        "sha": "564496826780b29ba230159ccd54c83b7f907d84",
+        "date": "2026-06-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/installation/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/it-consulting/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/it-consulting/",
+        "/standorte/ludwigsburg/it-consulting/"
+      ],
+      "firstEvidence": {
+        "sha": "564496826780b29ba230159ccd54c83b7f907d84",
+        "date": "2026-06-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/it-consulting/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/it-notdienst/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/it-notdienst/",
+        "/standorte/ludwigsburg/it-notdienst/"
+      ],
+      "firstEvidence": {
+        "sha": "564496826780b29ba230159ccd54c83b7f907d84",
+        "date": "2026-06-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/it-notdienst/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/leistungen/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/leistungen/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/leistungen/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/leistungen/automation/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/leistungen/automation/",
+        "/standorte/ludwigsburg/automation/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/automation/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/leistungen/netzwerk-wlan/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/leistungen/netzwerk-wlan/",
+        "/standorte/ludwigsburg/netzwerk-wlan/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/netzwerk-wlan/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/leistungen/pc-laptop/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/leistungen/pc-laptop/",
+        "/standorte/ludwigsburg/pc-laptop/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/pc-laptop/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/leistungen/webseiten/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/leistungen/webseiten/",
+        "/standorte/ludwigsburg/webseiten/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/webseiten/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/ludwigsburg/",
+      "historicalRoles": [
+        "alias"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/mesh-wlan-einrichten/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/mesh-wlan-einrichten/",
+        "/standorte/ludwigsburg/mesh-wlan-einrichten/"
+      ],
+      "firstEvidence": {
+        "sha": "5eb33365235408d767f858a063475da99cc29f7d",
+        "date": "2026-07-01",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/mesh-wlan-einrichten/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/netzwerk-wlan/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/leistungen/netzwerk-wlan/",
+        "/netzwerk-wlan/",
+        "/standorte/ludwigsburg/netzwerk-wlan/"
+      ],
+      "firstEvidence": {
+        "sha": "871de005541455d5f8284872aefd7c004782a724",
+        "date": "2026-06-19",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/netzwerk-wlan/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/office-installation/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/office-installation/",
+        "/standorte/ludwigsburg/office-installation/"
+      ],
+      "firstEvidence": {
+        "sha": "564496826780b29ba230159ccd54c83b7f907d84",
+        "date": "2026-06-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/office-installation/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/pc-langsam/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/pc-langsam/",
+        "/standorte/ludwigsburg/pc-langsam/"
+      ],
+      "firstEvidence": {
+        "sha": "5eb33365235408d767f858a063475da99cc29f7d",
+        "date": "2026-07-01",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/pc-langsam/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/pc-startet-nicht/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/pc-startet-nicht/",
+        "/standorte/ludwigsburg/pc-startet-nicht/"
+      ],
+      "firstEvidence": {
+        "sha": "5eb33365235408d767f858a063475da99cc29f7d",
+        "date": "2026-07-01",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/pc-startet-nicht/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/pc-system/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/leistungen/pc-laptop/",
+        "/pc-system/",
+        "/standorte/ludwigsburg/pc-laptop/"
+      ],
+      "firstEvidence": {
+        "sha": "871de005541455d5f8284872aefd7c004782a724",
+        "date": "2026-06-19",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/pc-laptop/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/programme/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/programme/",
+        "/standorte/ludwigsburg/programme/"
+      ],
+      "firstEvidence": {
+        "sha": "564496826780b29ba230159ccd54c83b7f907d84",
+        "date": "2026-06-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/programme/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/ratgeber/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/ratgeber/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/ratgeber/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/router-entstoerung/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/router-entstoerung/",
+        "/standorte/ludwigsburg/router-entstoerung/"
+      ],
+      "firstEvidence": {
+        "sha": "564496826780b29ba230159ccd54c83b7f907d84",
+        "date": "2026-06-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/router-entstoerung/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/senioren-handy-hilfe/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/senioren-handy-hilfe/",
+        "/standorte/ludwigsburg/senioren-handy-hilfe/"
+      ],
+      "firstEvidence": {
+        "sha": "5eb33365235408d767f858a063475da99cc29f7d",
+        "date": "2026-07-01",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/senioren-handy-hilfe/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/standorte/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/automation/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/automation/"
+      ],
+      "firstEvidence": {
+        "sha": "55b65e8ee1a4afb606e6d13fe380fa05d129d8a5",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/automation/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/benutzerkonten/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/benutzerkonten/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/benutzerkonten/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/betrugsverdacht-phishing-hilfe/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/betrugsverdacht-phishing-hilfe/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/betrugsverdacht-phishing-hilfe/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/drucker/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/drucker/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/drucker/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/email/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/email/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/email/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/fernwartung/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/fernwartung/",
+        "/standorte/ludwigsburg/fernwartung/"
+      ],
+      "firstEvidence": {
+        "sha": "55b65e8ee1a4afb606e6d13fe380fa05d129d8a5",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/fernwartung/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/standorte/ludwigsburg/fernwartung/drucker-hilfe/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/fernwartung/drucker-hilfe/",
+        "/standorte/ludwigsburg/fernwartung/drucker-hilfe/"
+      ],
+      "firstEvidence": {
+        "sha": "55b65e8ee1a4afb606e6d13fe380fa05d129d8a5",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/fernwartung/drucker-hilfe/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/standorte/ludwigsburg/fernwartung/email-outlook/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/fernwartung/email-outlook/",
+        "/standorte/ludwigsburg/fernwartung/email-outlook/"
+      ],
+      "firstEvidence": {
+        "sha": "55b65e8ee1a4afb606e6d13fe380fa05d129d8a5",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/fernwartung/email-outlook/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/standorte/ludwigsburg/fernwartung/windows-hilfe/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/fernwartung/windows-hilfe/",
+        "/standorte/ludwigsburg/fernwartung/windows-hilfe/"
+      ],
+      "firstEvidence": {
+        "sha": "55b65e8ee1a4afb606e6d13fe380fa05d129d8a5",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/fernwartung/windows-hilfe/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/standorte/ludwigsburg/fritzbox-hilfe/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/fritzbox-hilfe/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/fritzbox-hilfe/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/installation/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/installation/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/installation/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/it-consulting/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/it-consulting/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/it-consulting/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/it-notdienst/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/it-notdienst/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/it-notdienst/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/mesh-wlan-einrichten/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/mesh-wlan-einrichten/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/mesh-wlan-einrichten/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/netzwerk-wlan/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/netzwerk-wlan/"
+      ],
+      "firstEvidence": {
+        "sha": "55b65e8ee1a4afb606e6d13fe380fa05d129d8a5",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/netzwerk-wlan/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/office-installation/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/office-installation/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/office-installation/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/pc-langsam/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/pc-langsam/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/pc-langsam/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/pc-laptop/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/pc-laptop/"
+      ],
+      "firstEvidence": {
+        "sha": "55b65e8ee1a4afb606e6d13fe380fa05d129d8a5",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/pc-laptop/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/pc-startet-nicht/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/pc-startet-nicht/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/pc-startet-nicht/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/programme/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/programme/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/programme/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/router-entstoerung/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/router-entstoerung/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/router-entstoerung/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/senioren-handy-hilfe/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/senioren-handy-hilfe/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/senioren-handy-hilfe/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/webseiten/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/webseiten/"
+      ],
+      "firstEvidence": {
+        "sha": "55b65e8ee1a4afb606e6d13fe380fa05d129d8a5",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/webseiten/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standorte/ludwigsburg/windows-einrichten/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/windows-einrichten/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/windows-einrichten/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/standortinhaber-werden/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standortinhaber-werden/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standortinhaber-werden/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/tools-automation/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/leistungen/automation/",
+        "/standorte/ludwigsburg/automation/",
+        "/tools-automation/"
+      ],
+      "firstEvidence": {
+        "sha": "871de005541455d5f8284872aefd7c004782a724",
+        "date": "2026-06-19",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/automation/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/ueber-schultes-it/",
+      "historicalRoles": [
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/ueber-schultes-it/"
+      ],
+      "firstEvidence": {
+        "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+        "date": "2026-07-28",
+        "onMain": true
+      },
+      "currentCanonical": "/ueber-schultes-it/",
+      "currentStatus": "canonical"
+    },
+    {
+      "path": "/webseiten/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/leistungen/webseiten/",
+        "/standorte/ludwigsburg/webseiten/",
+        "/webseiten/"
+      ],
+      "firstEvidence": {
+        "sha": "871de005541455d5f8284872aefd7c004782a724",
+        "date": "2026-06-19",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/webseiten/",
+      "currentStatus": "legacy-alias"
+    },
+    {
+      "path": "/windows-einrichten/",
+      "historicalRoles": [
+        "alias",
+        "canonical"
+      ],
+      "historicalCanonicalTargets": [
+        "/standorte/ludwigsburg/windows-einrichten/",
+        "/windows-einrichten/"
+      ],
+      "firstEvidence": {
+        "sha": "564496826780b29ba230159ccd54c83b7f907d84",
+        "date": "2026-06-28",
+        "onMain": true
+      },
+      "currentCanonical": "/standorte/ludwigsburg/windows-einrichten/",
+      "currentStatus": "legacy-alias"
+    }
+  ],
+  "snapshots": [
+    {
+      "revision": "0c688a2",
+      "sha": "0c688a2de9c44f2aa4d99dcd2fda18efc237f7f9",
+      "date": "2026-06-28",
+      "subject": "Strengthen local SEO association",
+      "sourceRegistry": "src/serviceCatalog.ts + index.html",
+      "pageCount": 16,
+      "pages": [
+        {
+          "path": "/",
+          "title": "IT-Hilfe & PC-Hilfe Ludwigsburg | Schultes IT",
+          "description": "Schultes IT & Netzwerksupport in Ludwigsburg: IT-Hilfe, PC-Hilfe, WLAN-Hilfe, Router-Service, Windows-Einrichtung und Fernhilfe verständlich vor Ort.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/pc-system/",
+          "title": "PC-Hilfe Ludwigsburg | Computer- & Laptop-Hilfe",
+          "description": "PC-Hilfe in Ludwigsburg, wenn Computer oder Laptop langsam sind, nicht starten oder Windows Probleme macht. Bei dir vor Ort oder per Fernhilfe.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-laptop/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/netzwerk-wlan/",
+          "title": "WLAN-Hilfe Ludwigsburg | Router & Internet-Probleme",
+          "description": "WLAN-Hilfe in Ludwigsburg, wenn Internet ausfällt, WLAN trotz Verbindung nicht geht oder der Router Probleme macht. Hilfe bei dir vor Ort.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/netzwerk-wlan/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/webseiten/",
+          "title": "Webdesign Ludwigsburg | Webseiten für Betriebe",
+          "description": "Moderne Webseiten aus Ludwigsburg für Selbstständige, lokale Firmen und Vereine. Individuell, mobil, schnell und suchmaschinenfreundlich umgesetzt.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/webseiten/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/tools-automation/",
+          "title": "Automatisierung Ludwigsburg | Tools für Betriebe",
+          "description": "Individuelle Tools und Automatisierungen in Ludwigsburg für Selbstständige und kleine Firmen: Abläufe vereinfachen, Daten ordnen und Prototypen praxisnah entwickeln.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/automation/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/installation/",
+          "title": "Installation Ludwigsburg | Geräte & Software einrichten",
+          "description": "Hilfe bei Installation in Ludwigsburg: neue Geräte, Programme, Treiber und Zubehör einrichten. Verständlich, sauber getestet und bei dir vor Ort oder per Fernhilfe.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/installation/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/it-consulting/",
+          "title": "IT Consulting Ludwigsburg | IT-Beratung verständlich",
+          "description": "IT Consulting in Ludwigsburg für Privatpersonen und kleine Betriebe: Kaufberatung, Technikplanung, Netzwerk, Arbeitsplatz und digitale Abläufe verständlich einordnen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/it-consulting/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/windows-einrichten/",
+          "title": "Windows einrichten Ludwigsburg | PC startklar machen",
+          "description": "Windows einrichten in Ludwigsburg: neuer PC oder Laptop mit Updates, Benutzerkonto, Datenschutz, Programmen und Drucker verständlich startklar machen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/windows-einrichten/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/benutzerkonten/",
+          "title": "Benutzerkonten Hilfe Ludwigsburg | Microsoft & Windows",
+          "description": "Hilfe bei Benutzerkonten in Ludwigsburg: Windows-, Microsoft-, E-Mail- und Geräte-Konten verständlich einrichten, sortieren und sicher nutzen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/benutzerkonten/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/email/",
+          "title": "E-Mail Hilfe Ludwigsburg | Konto & Outlook einrichten",
+          "description": "E-Mail-Hilfe in Ludwigsburg: Mailkonto einrichten, Outlook oder Mail-App verbinden, Probleme mit Senden, Empfangen und Anmeldung verständlich lösen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/email/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/drucker/",
+          "title": "Drucker Hilfe Ludwigsburg | Drucker einrichten",
+          "description": "Drucker-Hilfe in Ludwigsburg: WLAN-Drucker einrichten, Treiber installieren, Scanner verbinden und Druckprobleme verständlich lösen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/drucker/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/programme/",
+          "title": "Programme installieren Ludwigsburg | Software-Hilfe",
+          "description": "Software-Hilfe in Ludwigsburg: Programme installieren, aktualisieren, einrichten, Autostarts prüfen und Alltagssoftware verständlich nutzbar machen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/programme/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/office-installation/",
+          "title": "Office Installation Ludwigsburg | Word, Excel & Outlook",
+          "description": "Office Installation in Ludwigsburg: Microsoft 365, Word, Excel, Outlook oder Alternativen installieren, aktivieren und verständlich einrichten.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/office-installation/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/router-entstoerung/",
+          "title": "Router Entstörung Ludwigsburg | Internet & Fritzbox Hilfe",
+          "description": "Router Entstörung in Ludwigsburg: Internet fällt aus, Fritzbox oder Router macht Probleme, WLAN bricht ab. Ursache prüfen und verständlich lösen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/router-entstoerung/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/fernwartung/",
+          "title": "Fernwartung Ludwigsburg | Remote IT-Hilfe",
+          "description": "Fernwartung und Remote IT-Hilfe in Ludwigsburg: PC-, Windows-, E-Mail- und Programmprobleme schnell prüfen, wenn Hilfe aus der Ferne ausreicht.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/it-notdienst/",
+          "title": "IT-Notdienst Ludwigsburg | Schnelle PC- & WLAN-Hilfe",
+          "description": "IT-Notdienst in Ludwigsburg: schnelle Hilfe bei PC-Ausfall, Internetproblem, E-Mail-Störung oder dringendem Technikproblem. Vor Ort oder per Fernhilfe.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/it-notdienst/",
+          "currentStatus": "legacy-alias"
+        }
+      ]
+    },
+    {
+      "revision": "5eb3336",
+      "sha": "5eb33365235408d767f858a063475da99cc29f7d",
+      "date": "2026-07-01",
+      "subject": "Add targeted local SEO service pages",
+      "sourceRegistry": "src/serviceCatalog.ts + index.html",
+      "pageCount": 22,
+      "pages": [
+        {
+          "path": "/",
+          "title": "IT-Hilfe & PC-Hilfe Ludwigsburg | Schultes IT",
+          "description": "Schultes IT & Netzwerksupport in Ludwigsburg: IT-Hilfe, PC-Hilfe, WLAN-Hilfe, Router-Service, Windows-Einrichtung und Fernhilfe verständlich vor Ort.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/pc-system/",
+          "title": "PC-Hilfe Ludwigsburg | Computer- & Laptop-Hilfe",
+          "description": "PC-Hilfe in Ludwigsburg, wenn Computer oder Laptop langsam sind, nicht starten oder Windows Probleme macht. Bei dir vor Ort oder per Fernhilfe.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-laptop/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/netzwerk-wlan/",
+          "title": "WLAN-Hilfe Ludwigsburg | Router & Internet-Probleme",
+          "description": "WLAN-Hilfe in Ludwigsburg, wenn Internet ausfällt, WLAN trotz Verbindung nicht geht oder der Router Probleme macht. Hilfe bei dir vor Ort.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/netzwerk-wlan/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/webseiten/",
+          "title": "Webdesign Ludwigsburg | Webseiten für Betriebe",
+          "description": "Moderne Webseiten aus Ludwigsburg für Selbstständige, lokale Firmen und Vereine. Individuell, mobil, schnell und suchmaschinenfreundlich umgesetzt.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/webseiten/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/tools-automation/",
+          "title": "Automatisierung Ludwigsburg | Tools für Betriebe",
+          "description": "Individuelle Tools und Automatisierungen in Ludwigsburg für Selbstständige und kleine Firmen: Abläufe vereinfachen, Daten ordnen und Prototypen praxisnah entwickeln.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/automation/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/installation/",
+          "title": "Installation Ludwigsburg | Geräte & Software einrichten",
+          "description": "Hilfe bei Installation in Ludwigsburg: neue Geräte, Programme, Treiber und Zubehör einrichten. Verständlich, sauber getestet und bei dir vor Ort oder per Fernhilfe.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/installation/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/it-consulting/",
+          "title": "IT Consulting Ludwigsburg | IT-Beratung verständlich",
+          "description": "IT Consulting in Ludwigsburg für Privatpersonen und kleine Betriebe: Kaufberatung, Technikplanung, Netzwerk, Arbeitsplatz und digitale Abläufe verständlich einordnen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/it-consulting/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/windows-einrichten/",
+          "title": "Windows einrichten Ludwigsburg | PC startklar machen",
+          "description": "Windows einrichten in Ludwigsburg: neuer PC oder Laptop mit Updates, Benutzerkonto, Datenschutz, Programmen und Drucker verständlich startklar machen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/windows-einrichten/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/benutzerkonten/",
+          "title": "Benutzerkonten Hilfe Ludwigsburg | Microsoft & Windows",
+          "description": "Hilfe bei Benutzerkonten in Ludwigsburg: Windows-, Microsoft-, E-Mail- und Geräte-Konten verständlich einrichten, sortieren und sicher nutzen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/benutzerkonten/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/email/",
+          "title": "E-Mail Hilfe Ludwigsburg | Konto & Outlook einrichten",
+          "description": "E-Mail-Hilfe in Ludwigsburg: Mailkonto einrichten, Outlook oder Mail-App verbinden, Probleme mit Senden, Empfangen und Anmeldung verständlich lösen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/email/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/drucker/",
+          "title": "Drucker Hilfe Ludwigsburg | Drucker einrichten",
+          "description": "Drucker-Hilfe in Ludwigsburg: WLAN-Drucker einrichten, Treiber installieren, Scanner verbinden und Druckprobleme verständlich lösen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/drucker/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/programme/",
+          "title": "Programme installieren Ludwigsburg | Software-Hilfe",
+          "description": "Software-Hilfe in Ludwigsburg: Programme installieren, aktualisieren, einrichten, Autostarts prüfen und Alltagssoftware verständlich nutzbar machen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/programme/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/office-installation/",
+          "title": "Office Installation Ludwigsburg | Word, Excel & Outlook",
+          "description": "Office Installation in Ludwigsburg: Microsoft 365, Word, Excel, Outlook oder Alternativen installieren, aktivieren und verständlich einrichten.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/office-installation/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/router-entstoerung/",
+          "title": "Router Entstörung Ludwigsburg | Internet & Fritzbox Hilfe",
+          "description": "Router Entstörung in Ludwigsburg: Internet fällt aus, Fritzbox oder Router macht Probleme, WLAN bricht ab. Ursache prüfen und verständlich lösen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/router-entstoerung/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/fernwartung/",
+          "title": "Fernwartung Ludwigsburg | Remote IT-Hilfe",
+          "description": "Fernwartung und Remote IT-Hilfe in Ludwigsburg: PC-, Windows-, E-Mail- und Programmprobleme schnell prüfen, wenn Hilfe aus der Ferne ausreicht.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/it-notdienst/",
+          "title": "IT-Notdienst Ludwigsburg | Schnelle PC- & WLAN-Hilfe",
+          "description": "IT-Notdienst in Ludwigsburg: schnelle Hilfe bei PC-Ausfall, Internetproblem, E-Mail-Störung oder dringendem Technikproblem. Vor Ort oder per Fernhilfe.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/it-notdienst/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/pc-langsam/",
+          "title": "PC langsam Ludwigsburg | Laptop schneller machen",
+          "description": "PC langsam in Ludwigsburg? Hilfe, wenn Laptop oder Computer traege reagieren, Programme lange laden oder Windows haengt. Ursache pruefen, sauber erklaeren, sinnvoll loesen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-langsam/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/pc-startet-nicht/",
+          "title": "PC startet nicht Ludwigsburg | Laptop geht nicht an",
+          "description": "PC startet nicht in Ludwigsburg? Hilfe bei schwarzem Bildschirm, Laptop geht nicht an, Windows bootet nicht oder Rechner startet nur kurz.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-startet-nicht/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/fritzbox-hilfe/",
+          "title": "Fritzbox Hilfe Ludwigsburg | WLAN, Internet & Mesh",
+          "description": "Fritzbox Hilfe in Ludwigsburg: WLAN geht nicht, Internet faellt aus, Mesh oder Repeater einrichten, Router-Meldungen verstehen und stabilisieren.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/fritzbox-hilfe/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/mesh-wlan-einrichten/",
+          "title": "Mesh WLAN einrichten Ludwigsburg | Repeater & Fritzbox",
+          "description": "Mesh WLAN einrichten in Ludwigsburg: Fritzbox Mesh, Repeater, WLAN-Reichweite, Funkloecher und stabile Verbindung fuer Wohnung, Haus oder kleines Buero.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/mesh-wlan-einrichten/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/senioren-handy-hilfe/",
+          "title": "Senioren Handy Hilfe Ludwigsburg | Smartphone einfach erklaert",
+          "description": "Senioren Handy Hilfe in Ludwigsburg: Smartphone, WhatsApp, Fotos, WLAN, E-Mail und Einstellungen ruhig erklaert. Hilfe bei dir vor Ort.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/senioren-handy-hilfe/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/betrugsverdacht-phishing-hilfe/",
+          "title": "Betrugsverdacht & Phishing Hilfe Ludwigsburg",
+          "description": "Betrugsverdacht oder Phishing in Ludwigsburg? Hilfe bei verdächtigen E-Mails, SMS, Links, Konto-Warnungen und sicheren nächsten Schritten.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/betrugsverdacht-phishing-hilfe/",
+          "currentStatus": "legacy-alias"
+        }
+      ]
+    },
+    {
+      "revision": "aac65af",
+      "sha": "aac65aff76781263950b32d7067dc7e479f48ed4",
+      "date": "2026-07-15",
+      "subject": "Update business phone number",
+      "sourceRegistry": "src/serviceCatalog.ts + index.html",
+      "pageCount": 22,
+      "pages": [
+        {
+          "path": "/",
+          "title": "IT-Hilfe & PC-Hilfe Ludwigsburg | Schultes IT",
+          "description": "Schultes IT & Netzwerksupport in Ludwigsburg: IT-Hilfe, PC-Hilfe, WLAN-Hilfe, Router-Service, Windows-Einrichtung und Fernhilfe verständlich vor Ort.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/pc-system/",
+          "title": "PC-Hilfe Ludwigsburg | Computer- & Laptop-Hilfe",
+          "description": "PC-Hilfe in Ludwigsburg, wenn Computer oder Laptop langsam sind, nicht starten oder Windows Probleme macht. Bei dir vor Ort oder per Fernhilfe.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-laptop/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/netzwerk-wlan/",
+          "title": "WLAN-Hilfe Ludwigsburg | Router & Internet-Probleme",
+          "description": "WLAN-Hilfe in Ludwigsburg, wenn Internet ausfällt, WLAN trotz Verbindung nicht geht oder der Router Probleme macht. Hilfe bei dir vor Ort.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/netzwerk-wlan/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/webseiten/",
+          "title": "Webdesign Ludwigsburg | Webseiten für Betriebe",
+          "description": "Moderne Webseiten aus Ludwigsburg für Selbstständige, lokale Firmen und Vereine. Individuell, mobil, schnell und suchmaschinenfreundlich umgesetzt.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/webseiten/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/tools-automation/",
+          "title": "Automatisierung Ludwigsburg | Tools für Betriebe",
+          "description": "Individuelle Tools und Automatisierungen in Ludwigsburg für Selbstständige und kleine Firmen: Abläufe vereinfachen, Daten ordnen und Prototypen praxisnah entwickeln.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/automation/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/installation/",
+          "title": "Installation Ludwigsburg | Geräte & Software einrichten",
+          "description": "Hilfe bei Installation in Ludwigsburg: neue Geräte, Programme, Treiber und Zubehör einrichten. Verständlich, sauber getestet und bei dir vor Ort oder per Fernhilfe.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/installation/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/it-consulting/",
+          "title": "IT Consulting Ludwigsburg | IT-Beratung verständlich",
+          "description": "IT Consulting in Ludwigsburg für Privatpersonen und kleine Betriebe: Kaufberatung, Technikplanung, Netzwerk, Arbeitsplatz und digitale Abläufe verständlich einordnen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/it-consulting/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/windows-einrichten/",
+          "title": "Windows einrichten Ludwigsburg | PC startklar machen",
+          "description": "Windows einrichten in Ludwigsburg: neuer PC oder Laptop mit Updates, Benutzerkonto, Datenschutz, Programmen und Drucker verständlich startklar machen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/windows-einrichten/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/benutzerkonten/",
+          "title": "Benutzerkonten Hilfe Ludwigsburg | Microsoft & Windows",
+          "description": "Hilfe bei Benutzerkonten in Ludwigsburg: Windows-, Microsoft-, E-Mail- und Geräte-Konten verständlich einrichten, sortieren und sicher nutzen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/benutzerkonten/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/email/",
+          "title": "E-Mail Hilfe Ludwigsburg | Konto & Outlook einrichten",
+          "description": "E-Mail-Hilfe in Ludwigsburg: Mailkonto einrichten, Outlook oder Mail-App verbinden, Probleme mit Senden, Empfangen und Anmeldung verständlich lösen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/email/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/drucker/",
+          "title": "Drucker Hilfe Ludwigsburg | Drucker einrichten",
+          "description": "Drucker-Hilfe in Ludwigsburg: WLAN-Drucker einrichten, Treiber installieren, Scanner verbinden und Druckprobleme verständlich lösen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/drucker/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/programme/",
+          "title": "Programme installieren Ludwigsburg | Software-Hilfe",
+          "description": "Software-Hilfe in Ludwigsburg: Programme installieren, aktualisieren, einrichten, Autostarts prüfen und Alltagssoftware verständlich nutzbar machen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/programme/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/office-installation/",
+          "title": "Office Installation Ludwigsburg | Word, Excel & Outlook",
+          "description": "Office Installation in Ludwigsburg: Microsoft 365, Word, Excel, Outlook oder Alternativen installieren, aktivieren und verständlich einrichten.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/office-installation/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/router-entstoerung/",
+          "title": "Router Entstörung Ludwigsburg | Internet & Fritzbox Hilfe",
+          "description": "Router Entstörung in Ludwigsburg: Internet fällt aus, Fritzbox oder Router macht Probleme, WLAN bricht ab. Ursache prüfen und verständlich lösen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/router-entstoerung/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/fernwartung/",
+          "title": "Fernwartung Ludwigsburg | Remote IT-Hilfe",
+          "description": "Fernwartung und Remote IT-Hilfe in Ludwigsburg: PC-, Windows-, E-Mail- und Programmprobleme schnell prüfen, wenn Hilfe aus der Ferne ausreicht.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/it-notdienst/",
+          "title": "IT-Notdienst Ludwigsburg | Schnelle PC- & WLAN-Hilfe",
+          "description": "IT-Notdienst in Ludwigsburg: schnelle Hilfe bei PC-Ausfall, Internetproblem, E-Mail-Störung oder dringendem Technikproblem. Vor Ort oder per Fernhilfe.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/it-notdienst/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/pc-langsam/",
+          "title": "PC langsam Ludwigsburg | Laptop schneller machen",
+          "description": "PC langsam in Ludwigsburg? Hilfe, wenn Laptop oder Computer träge reagieren, Programme lange laden oder Windows hängt. Ursache prüfen, sauber erklären, sinnvoll lösen.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-langsam/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/pc-startet-nicht/",
+          "title": "PC startet nicht Ludwigsburg | Laptop geht nicht an",
+          "description": "PC startet nicht in Ludwigsburg? Hilfe bei schwarzem Bildschirm, Laptop geht nicht an, Windows bootet nicht oder Rechner startet nur kurz.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-startet-nicht/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/fritzbox-hilfe/",
+          "title": "Fritzbox Hilfe Ludwigsburg | WLAN, Internet & Mesh",
+          "description": "Fritzbox Hilfe in Ludwigsburg: WLAN geht nicht, Internet fällt aus, Mesh oder Repeater einrichten, Router-Meldungen verstehen und stabilisieren.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/fritzbox-hilfe/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/mesh-wlan-einrichten/",
+          "title": "Mesh WLAN einrichten Ludwigsburg | Repeater & Fritzbox",
+          "description": "Mesh WLAN einrichten in Ludwigsburg: Fritzbox Mesh, Repeater, WLAN-Reichweite, Funklöcher und stabile Verbindung für Wohnung, Haus oder kleines Büro.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/mesh-wlan-einrichten/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/senioren-handy-hilfe/",
+          "title": "Senioren Handy Hilfe Ludwigsburg | Smartphone einfach erklärt",
+          "description": "Senioren Handy Hilfe in Ludwigsburg: Smartphone, WhatsApp, Fotos, WLAN, E-Mail und Einstellungen ruhig erklärt. Hilfe bei dir vor Ort.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/senioren-handy-hilfe/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/betrugsverdacht-phishing-hilfe/",
+          "title": "Betrugsverdacht & Phishing Hilfe Ludwigsburg",
+          "description": "Betrugsverdacht oder Phishing in Ludwigsburg? Hilfe bei verdächtigen E-Mails, SMS, Links, Konto-Warnungen und sicheren nächsten Schritten.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/betrugsverdacht-phishing-hilfe/",
+          "currentStatus": "legacy-alias"
+        }
+      ]
+    },
+    {
+      "revision": "762df12",
+      "sha": "762df12017ee9a34c5150799e76ad2f03f87b7f7",
+      "date": "2026-07-28",
+      "subject": "Scale site for nationwide support network",
+      "sourceRegistry": "src/site/routes.ts",
+      "pageCount": 31,
+      "pages": [
+        {
+          "path": "/",
+          "title": "Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort",
+          "description": "Schultes IT verbindet deutschlandweite IT-Hilfe per Fernwartung mit persönlichem Vor-Ort-Service über regionale Standorte.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/leistungen/",
+          "title": "IT-Leistungen | Schultes IT",
+          "description": "PC- und Laptop-Hilfe, Netzwerk und WLAN, Webseiten sowie Automation: zentrale Leistungen von Schultes IT im Überblick.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/leistungen/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/",
+          "title": "Schultes-IT-Standorte | Persönliche Hilfe in deiner Region",
+          "description": "Finde einen regionalen Schultes-IT-Standort für persönliche PC-, WLAN- und Technik-Hilfe bei dir vor Ort.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standortinhaber-werden/",
+          "title": "Schultes-IT-Standort aufbauen | Standortinhaber werden",
+          "description": "Perspektive für selbstständige IT-Dienstleister: einen regionalen Schultes-IT-Standort eigenverantwortlich aufbauen und Teil des Netzwerks werden.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standortinhaber-werden/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/ratgeber/",
+          "title": "IT-Ratgeber | Verständliche Hilfe von Schultes IT",
+          "description": "Verständliche Orientierung bei typischen PC-, Windows-, WLAN-, E-Mail- und Sicherheitsproblemen – ohne unnötiges Fachchinesisch.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/ratgeber/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/ueber-schultes-it/",
+          "title": "Über Schultes IT | Marke, Anspruch & Netzwerk",
+          "description": "Was Schultes IT ausmacht: verständliche Technik-Hilfe, sichere Fernwartung und ein wachsendes Netzwerk regionaler, selbstständiger Standorte.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/ueber-schultes-it/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/",
+          "title": "IT-Hilfe Ludwigsburg | Schultes IT Standort",
+          "description": "Schultes IT Ludwigsburg: persönliche PC-, Laptop-, WLAN-, Router- und Technik-Hilfe bei dir vor Ort, ergänzt durch sichere Fernwartung.",
+          "aliases": [
+            "/ludwigsburg/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/leistungen/pc-laptop/",
+          "title": "PC- & Laptop-Hilfe | Schultes IT Deutschland",
+          "description": "PC- und Laptop-Hilfe von Schultes IT: deutschlandweit per Fernwartung und persönlich über regionale Standorte. Verständlich, sicher und ohne Fachchinesisch.",
+          "aliases": [
+            "/pc-system/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-laptop/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/leistungen/netzwerk-wlan/",
+          "title": "Netzwerk- & WLAN-Hilfe | Schultes IT",
+          "description": "Hilfe bei WLAN, Router, Mesh und kleinen Netzwerken: per Fernwartung, wenn möglich, oder persönlich über einen regionalen Schultes-IT-Standort.",
+          "aliases": [
+            "/netzwerk-wlan/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/netzwerk-wlan/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/leistungen/webseiten/",
+          "title": "Webseiten für Selbstständige & Betriebe | Schultes IT",
+          "description": "Moderne, schnelle und verständlich betreute Webseiten von Schultes IT für Selbstständige, kleine Unternehmen, Vereine und regionale Betriebe.",
+          "aliases": [
+            "/webseiten/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/webseiten/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/leistungen/automation/",
+          "title": "Tools & Automation für kleine Betriebe | Schultes IT",
+          "description": "Praktische Tools, Automatisierungen und Prototypen von Schultes IT: wiederkehrende Abläufe vereinfachen und digitale Arbeit nachvollziehbar verbessern.",
+          "aliases": [
+            "/tools-automation/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/automation/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/fernwartung/",
+          "title": "Fernwartung deutschlandweit | Schultes IT Remote-Hilfe",
+          "description": "Deutschlandweite IT-Hilfe per Fernwartung für Windows, Drucker, E-Mail, Outlook und Programme. Persönlich erklärt, sicher begleitet und ohne Anfahrt.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/fernwartung/windows-hilfe/",
+          "title": "Windows-Hilfe per Fernwartung | Deutschlandweit",
+          "description": "Windows-Hilfe deutschlandweit per Fernwartung: Fehler, Updates, Programme und Einstellungen gemeinsam prüfen. Sicher, verständlich und ohne Anfahrt.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/windows-hilfe/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/fernwartung/drucker-hilfe/",
+          "title": "Drucker-Hilfe per Fernwartung | Deutschlandweit",
+          "description": "Drucker druckt nicht? Deutschlandweite Hilfe per Fernwartung bei Treibern, Warteschlange, WLAN-Verbindung und Scan-Software.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/drucker-hilfe/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/fernwartung/email-outlook/",
+          "title": "Outlook- & E-Mail-Hilfe per Fernwartung",
+          "description": "E-Mail oder Outlook funktioniert nicht? Deutschlandweite Fernhilfe bei Einrichtung, Anmeldung, Versand, Empfang und Synchronisierung.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/email-outlook/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/installation/",
+          "title": "Installation Ludwigsburg | Geräte & Software einrichten",
+          "description": "Hilfe bei Installation in Ludwigsburg: neue Geräte, Programme, Treiber und Zubehör einrichten. Verständlich, sauber getestet und bei dir vor Ort oder per Fernhilfe.",
+          "aliases": [
+            "/installation/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/installation/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/it-consulting/",
+          "title": "IT Consulting Ludwigsburg | IT-Beratung verständlich",
+          "description": "IT Consulting in Ludwigsburg für Privatpersonen und kleine Betriebe: Kaufberatung, Technikplanung, Netzwerk, Arbeitsplatz und digitale Abläufe verständlich einordnen.",
+          "aliases": [
+            "/it-consulting/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/it-consulting/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/windows-einrichten/",
+          "title": "Windows einrichten Ludwigsburg | PC startklar machen",
+          "description": "Windows einrichten in Ludwigsburg: neuer PC oder Laptop mit Updates, Benutzerkonto, Datenschutz, Programmen und Drucker verständlich startklar machen.",
+          "aliases": [
+            "/windows-einrichten/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/windows-einrichten/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/benutzerkonten/",
+          "title": "Benutzerkonten Hilfe Ludwigsburg | Microsoft & Windows",
+          "description": "Hilfe bei Benutzerkonten in Ludwigsburg: Windows-, Microsoft-, E-Mail- und Geräte-Konten verständlich einrichten, sortieren und sicher nutzen.",
+          "aliases": [
+            "/benutzerkonten/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/benutzerkonten/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/email/",
+          "title": "E-Mail Hilfe Ludwigsburg | Konto & Outlook einrichten",
+          "description": "E-Mail-Hilfe in Ludwigsburg: Mailkonto einrichten, Outlook oder Mail-App verbinden, Probleme mit Senden, Empfangen und Anmeldung verständlich lösen.",
+          "aliases": [
+            "/email/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/email/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/drucker/",
+          "title": "Drucker Hilfe Ludwigsburg | Drucker einrichten",
+          "description": "Drucker-Hilfe in Ludwigsburg: WLAN-Drucker einrichten, Treiber installieren, Scanner verbinden und Druckprobleme verständlich lösen.",
+          "aliases": [
+            "/drucker/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/drucker/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/programme/",
+          "title": "Programme installieren Ludwigsburg | Software-Hilfe",
+          "description": "Software-Hilfe in Ludwigsburg: Programme installieren, aktualisieren, einrichten, Autostarts prüfen und Alltagssoftware verständlich nutzbar machen.",
+          "aliases": [
+            "/programme/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/programme/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/office-installation/",
+          "title": "Office Installation Ludwigsburg | Word, Excel & Outlook",
+          "description": "Office Installation in Ludwigsburg: Microsoft 365, Word, Excel, Outlook oder Alternativen installieren, aktivieren und verständlich einrichten.",
+          "aliases": [
+            "/office-installation/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/office-installation/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/router-entstoerung/",
+          "title": "Router Entstörung Ludwigsburg | Internet & Fritzbox Hilfe",
+          "description": "Router Entstörung in Ludwigsburg: Internet fällt aus, Fritzbox oder Router macht Probleme, WLAN bricht ab. Ursache prüfen und verständlich lösen.",
+          "aliases": [
+            "/router-entstoerung/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/router-entstoerung/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/it-notdienst/",
+          "title": "IT-Notdienst Ludwigsburg | Schnelle PC- & WLAN-Hilfe",
+          "description": "IT-Notdienst in Ludwigsburg: schnelle Hilfe bei PC-Ausfall, Internetproblem, E-Mail-Störung oder dringendem Technikproblem. Vor Ort oder per Fernhilfe.",
+          "aliases": [
+            "/it-notdienst/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/it-notdienst/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/pc-langsam/",
+          "title": "PC langsam Ludwigsburg | Laptop schneller machen",
+          "description": "PC langsam in Ludwigsburg? Hilfe, wenn Laptop oder Computer träge reagieren, Programme lange laden oder Windows hängt. Ursache prüfen, sauber erklären, sinnvoll lösen.",
+          "aliases": [
+            "/pc-langsam/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-langsam/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/pc-startet-nicht/",
+          "title": "PC startet nicht Ludwigsburg | Laptop geht nicht an",
+          "description": "PC startet nicht in Ludwigsburg? Hilfe bei schwarzem Bildschirm, Laptop geht nicht an, Windows bootet nicht oder Rechner startet nur kurz.",
+          "aliases": [
+            "/pc-startet-nicht/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-startet-nicht/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/fritzbox-hilfe/",
+          "title": "Fritzbox Hilfe Ludwigsburg | WLAN, Internet & Mesh",
+          "description": "Fritzbox Hilfe in Ludwigsburg: WLAN geht nicht, Internet fällt aus, Mesh oder Repeater einrichten, Router-Meldungen verstehen und stabilisieren.",
+          "aliases": [
+            "/fritzbox-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/fritzbox-hilfe/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/mesh-wlan-einrichten/",
+          "title": "Mesh WLAN einrichten Ludwigsburg | Repeater & Fritzbox",
+          "description": "Mesh WLAN einrichten in Ludwigsburg: Fritzbox Mesh, Repeater, WLAN-Reichweite, Funklöcher und stabile Verbindung für Wohnung, Haus oder kleines Büro.",
+          "aliases": [
+            "/mesh-wlan-einrichten/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/mesh-wlan-einrichten/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/senioren-handy-hilfe/",
+          "title": "Senioren Handy Hilfe Ludwigsburg | Smartphone einfach erklärt",
+          "description": "Senioren Handy Hilfe in Ludwigsburg: Smartphone, WhatsApp, Fotos, WLAN, E-Mail und Einstellungen ruhig erklärt. Hilfe bei dir vor Ort.",
+          "aliases": [
+            "/senioren-handy-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/senioren-handy-hilfe/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/betrugsverdacht-phishing-hilfe/",
+          "title": "Betrugsverdacht & Phishing Hilfe Ludwigsburg",
+          "description": "Betrugsverdacht oder Phishing in Ludwigsburg? Hilfe bei verdächtigen E-Mails, SMS, Links, Konto-Warnungen und sicheren nächsten Schritten.",
+          "aliases": [
+            "/betrugsverdacht-phishing-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/betrugsverdacht-phishing-hilfe/",
+          "currentStatus": "canonical"
+        }
+      ]
+    },
+    {
+      "revision": "55b65e8",
+      "sha": "55b65e8ee1a4afb606e6d13fe380fa05d129d8a5",
+      "date": "2026-07-28",
+      "subject": "Make all services location-owned",
+      "sourceRegistry": "src/site/routes.ts",
+      "pageCount": 33,
+      "pages": [
+        {
+          "path": "/",
+          "title": "Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort",
+          "description": "Schultes IT verbindet standortbetreute Fernwartung mit persönlichem Vor-Ort-Service über regionale, selbstständige Ansprechpartner.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/leistungen/",
+          "title": "IT-Leistungen | Schultes IT",
+          "description": "PC- und Laptop-Hilfe, Netzwerk und WLAN, Webseiten sowie Automation: zentrale Leistungen von Schultes IT im Überblick.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/leistungen/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/",
+          "title": "Schultes-IT-Standorte | Persönliche Hilfe in deiner Region",
+          "description": "Finde einen regionalen Schultes-IT-Standort für persönliche PC-, WLAN- und Technik-Hilfe bei dir vor Ort.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standortinhaber-werden/",
+          "title": "Schultes-IT-Standort aufbauen | Standortinhaber werden",
+          "description": "Perspektive für selbstständige IT-Dienstleister: einen regionalen Schultes-IT-Standort eigenverantwortlich aufbauen und Teil des Netzwerks werden.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standortinhaber-werden/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/ratgeber/",
+          "title": "IT-Ratgeber | Verständliche Hilfe von Schultes IT",
+          "description": "Verständliche Orientierung bei typischen PC-, Windows-, WLAN-, E-Mail- und Sicherheitsproblemen – ohne unnötiges Fachchinesisch.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/ratgeber/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/ueber-schultes-it/",
+          "title": "Über Schultes IT | Marke, Anspruch & Netzwerk",
+          "description": "Was Schultes IT ausmacht: verständliche Technik-Hilfe, sichere Fernwartung und ein wachsendes Netzwerk regionaler, selbstständiger Standorte.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/ueber-schultes-it/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/impressum/",
+          "title": "Impressum | Schultes IT & Netzwerksupport",
+          "description": "Impressum und Anbieterkennzeichnung von Schultes IT & Netzwerksupport.",
+          "aliases": [],
+          "indexable": false,
+          "currentCanonical": "/impressum/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/datenschutz/",
+          "title": "Datenschutz | Schultes IT & Netzwerksupport",
+          "description": "Datenschutzerklärung von Schultes IT für Website, Standortsuche, Analytics und Support-Assistent.",
+          "aliases": [],
+          "indexable": false,
+          "currentCanonical": "/datenschutz/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/",
+          "title": "IT-Hilfe Ludwigsburg | Schultes IT Standort",
+          "description": "Schultes IT Ludwigsburg: persönliche PC-, Laptop-, WLAN-, Router- und Technik-Hilfe bei dir vor Ort, ergänzt durch sichere Fernwartung.",
+          "aliases": [
+            "/ludwigsburg/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/pc-laptop/",
+          "title": "PC-Hilfe Ludwigsburg | Schultes IT Standort",
+          "description": "Wenn Windows streikt, Software nervt oder ein Gerät sauber eingerichtet werden soll: Problem eingrenzen, verständlich erklären, lösen. Persönlich betreut…",
+          "aliases": [
+            "/leistungen/pc-laptop/",
+            "/pc-system/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-laptop/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/netzwerk-wlan/",
+          "title": "WLAN-Hilfe Ludwigsburg | Schultes IT Standort",
+          "description": "Stabiles WLAN, Router-Konfiguration und ein Heim- oder Firmennetz, das nicht genau dann aussteigt, wenn es gebraucht wird. Persönlich betreut durch Andrej…",
+          "aliases": [
+            "/leistungen/netzwerk-wlan/",
+            "/netzwerk-wlan/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/netzwerk-wlan/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/webseiten/",
+          "title": "Webdesign Ludwigsburg | Schultes IT Standort",
+          "description": "Schnelle, moderne Webseiten für lokale Unternehmen. Klar positioniert, mobil stark und ohne austauschbaren Baukasten-Look. Persönlich betreut durch Andrej…",
+          "aliases": [
+            "/leistungen/webseiten/",
+            "/webseiten/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/webseiten/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/automation/",
+          "title": "Automation Ludwigsburg | Schultes IT Standort",
+          "description": "Kleine digitale Werkzeuge, Automationen und moderne KI-/Agenten-Projekte, die wiederkehrende Arbeit wirklich abnehmen. Persönlich betreut durch Andrej…",
+          "aliases": [
+            "/leistungen/automation/",
+            "/tools-automation/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/automation/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/fernwartung/",
+          "title": "Fernwartung deutschlandweit | Standort Ludwigsburg",
+          "description": "Sichere Fernhilfe mit RustDesk bei PC-, Windows-, E-Mail- und Programmproblemen, wenn kein Vor-Ort-Termin nötig ist. Persönlich betreut durch Andrej…",
+          "aliases": [
+            "/fernwartung/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/standorte/ludwigsburg/fernwartung/windows-hilfe/",
+          "title": "Windows-Hilfe per Fernwartung | Standort Ludwigsburg",
+          "description": "Deutschlandweite Hilfe bei Windows-Fehlern, Updates, Einstellungen und langsamen Computern per sicherer Fernwartung. Persönlich betreut durch Andrej…",
+          "aliases": [
+            "/fernwartung/windows-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/windows-hilfe/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/standorte/ludwigsburg/fernwartung/drucker-hilfe/",
+          "title": "Drucker-Hilfe per Fernwartung | Standort Ludwigsburg",
+          "description": "Deutschlandweite Fernhilfe bei Druckerwarteschlangen, Treibern, WLAN-Druckern und Scan-Software. Persönlich betreut durch Andrej Schultes vom Standort…",
+          "aliases": [
+            "/fernwartung/drucker-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/drucker-hilfe/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/standorte/ludwigsburg/fernwartung/email-outlook/",
+          "title": "E-Mail & Outlook per Fernwartung | Standort Ludwigsburg",
+          "description": "Deutschlandweite Fernhilfe bei Outlook, E-Mail-Konten, Versand, Empfang und verständlicher Einrichtung. Persönlich betreut durch Andrej Schultes vom…",
+          "aliases": [
+            "/fernwartung/email-outlook/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/email-outlook/",
+          "currentStatus": "legacy-alias"
+        },
+        {
+          "path": "/standorte/ludwigsburg/installation/",
+          "title": "Installation Ludwigsburg | Schultes IT Standort",
+          "description": "Installation von Geräten, Programmen, Treibern und Zubehör beim Schultes-IT-Standort Ludwigsburg, verständlich eingerichtet und sauber getestet. Persönlich…",
+          "aliases": [
+            "/installation/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/installation/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/it-consulting/",
+          "title": "IT Consulting Ludwigsburg | Schultes IT Standort",
+          "description": "Verständliche IT-Beratung für Privatpersonen und kleine Betriebe, wenn Entscheidungen, Anschaffungen oder Abläufe klarer werden sollen. Persönlich betreut…",
+          "aliases": [
+            "/it-consulting/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/it-consulting/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/windows-einrichten/",
+          "title": "Windows Ludwigsburg | Schultes IT Standort",
+          "description": "Windows einrichten, aktualisieren und verständlich vorbereiten: Benutzer, Datenschutz, Updates, Programme und Alltagseinstellungen. Persönlich betreut durch…",
+          "aliases": [
+            "/windows-einrichten/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/windows-einrichten/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/benutzerkonten/",
+          "title": "Konten Ludwigsburg | Schultes IT Standort",
+          "description": "Hilfe bei Windows-, Microsoft-, E-Mail- und Geräte-Konten: sortieren, einrichten, Zugänge verstehen und sicher nutzen. Persönlich betreut durch Andrej…",
+          "aliases": [
+            "/benutzerkonten/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/benutzerkonten/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/email/",
+          "title": "E-Mail Ludwigsburg | Schultes IT Standort",
+          "description": "E-Mail-Hilfe beim Schultes-IT-Standort Ludwigsburg: Konto einrichten, Mailprogramm verbinden, Smartphone/PC synchronisieren und Versandprobleme prüfen.…",
+          "aliases": [
+            "/email/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/email/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/drucker/",
+          "title": "Drucker Ludwigsburg | Schultes IT Standort",
+          "description": "Drucker einrichten und Druckerprobleme lösen: WLAN-Drucker, Treiber, Scanner, Warteschlange und Verbindung prüfen. Persönlich betreut durch Andrej Schultes…",
+          "aliases": [
+            "/drucker/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/drucker/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/programme/",
+          "title": "Programme Ludwigsburg | Schultes IT Standort",
+          "description": "Programme installieren, aktualisieren, aufräumen und verständlich erklären: Browser, PDF, Sicherheit, Tools und Alltagssoftware. Persönlich betreut durch…",
+          "aliases": [
+            "/programme/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/programme/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/office-installation/",
+          "title": "Office Ludwigsburg | Schultes IT Standort",
+          "description": "Microsoft Office oder Alternativen installieren, aktivieren, einrichten und für Dokumente, Tabellen und E-Mail nutzbar machen. Persönlich betreut durch…",
+          "aliases": [
+            "/office-installation/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/office-installation/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/router-entstoerung/",
+          "title": "Router Ludwigsburg | Schultes IT Standort",
+          "description": "Router- und Internetprobleme eingrenzen: Ausfälle, WLAN-Abbrüche, Neustarts, Anbietergerät, Fritzbox und Heimnetz prüfen. Persönlich betreut durch Andrej…",
+          "aliases": [
+            "/router-entstoerung/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/router-entstoerung/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/it-notdienst/",
+          "title": "IT-Notdienst Ludwigsburg | Schultes IT Standort",
+          "description": "Schnelle IT-Hilfe, wenn PC, Internet, E-Mail oder ein wichtiger Arbeitsplatz plötzlich ausfällt. Persönlich betreut durch Andrej Schultes vom Standort…",
+          "aliases": [
+            "/it-notdienst/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/it-notdienst/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/pc-langsam/",
+          "title": "PC langsam Ludwigsburg | Schultes IT Standort",
+          "description": "Hilfe beim Schultes-IT-Standort Ludwigsburg, wenn PC oder Laptop langsam geworden sind, Programme ewig laden oder Windows nur noch träge reagiert.…",
+          "aliases": [
+            "/pc-langsam/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-langsam/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/pc-startet-nicht/",
+          "title": "Startproblem Ludwigsburg | Schultes IT Standort",
+          "description": "Hilfe beim Schultes-IT-Standort Ludwigsburg, wenn PC oder Laptop nicht mehr starten, der Bildschirm schwarz bleibt oder Windows nicht hochfährt. Persönlich…",
+          "aliases": [
+            "/pc-startet-nicht/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-startet-nicht/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/fritzbox-hilfe/",
+          "title": "Fritzbox Ludwigsburg | Schultes IT Standort",
+          "description": "Fritzbox-Hilfe beim Schultes-IT-Standort Ludwigsburg bei WLAN, Mesh, Internet, Telefonie, Updates und unklaren Router-Meldungen. Persönlich betreut durch…",
+          "aliases": [
+            "/fritzbox-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/fritzbox-hilfe/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/mesh-wlan-einrichten/",
+          "title": "Mesh WLAN Ludwigsburg | Schultes IT Standort",
+          "description": "Mesh WLAN und Repeater beim Schultes-IT-Standort Ludwigsburg einrichten, wenn WLAN nicht alle Räume erreicht oder ständig abbricht. Persönlich betreut durch…",
+          "aliases": [
+            "/mesh-wlan-einrichten/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/mesh-wlan-einrichten/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/senioren-handy-hilfe/",
+          "title": "Senioren Handy Ludwigsburg | Schultes IT Standort",
+          "description": "Geduldige Handy- und Smartphone-Hilfe für Seniorinnen und Senioren beim Schultes-IT-Standort Ludwigsburg: WLAN, Apps, Fotos, WhatsApp, E-Mail und…",
+          "aliases": [
+            "/senioren-handy-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/senioren-handy-hilfe/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/betrugsverdacht-phishing-hilfe/",
+          "title": "Betrug/Phishing Ludwigsburg | Schultes IT Standort",
+          "description": "Hilfe beim Schultes-IT-Standort Ludwigsburg bei verdächtigen E-Mails, Fake-SMS, Betrugsverdacht, Phishing-Links und Unsicherheit nach einem Klick.…",
+          "aliases": [
+            "/betrugsverdacht-phishing-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/betrugsverdacht-phishing-hilfe/",
+          "currentStatus": "canonical"
+        }
+      ]
+    },
+    {
+      "revision": "70a226b",
+      "sha": "70a226b8b7a3508e9a05229baff438a97fd7b752",
+      "date": "2026-09-05",
+      "subject": "Redesign all Schultes IT pages with distinct premium layouts",
+      "sourceRegistry": "src/site/routes.ts",
+      "pageCount": 33,
+      "pages": [
+        {
+          "path": "/",
+          "title": "Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort",
+          "description": "Schultes IT verbindet zentrale deutschlandweite Fernwartung mit persönlichem Vor-Ort-Service über regionale, selbstständige Ansprechpartner.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/leistungen/",
+          "title": "IT-Leistungen | Schultes IT",
+          "description": "PC- und Laptop-Hilfe, Netzwerk und WLAN, Webseiten sowie Automation: zentrale Leistungen von Schultes IT im Überblick.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/leistungen/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/",
+          "title": "Schultes-IT-Standorte | Persönliche Hilfe in deiner Region",
+          "description": "Finde einen regionalen Schultes-IT-Standort für persönliche PC-, WLAN- und Technik-Hilfe bei dir vor Ort.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standortinhaber-werden/",
+          "title": "Schultes-IT-Standort aufbauen | Standortinhaber werden",
+          "description": "Perspektive für selbstständige IT-Dienstleister: einen regionalen Schultes-IT-Standort eigenverantwortlich aufbauen und Teil des Netzwerks werden.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standortinhaber-werden/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/ratgeber/",
+          "title": "IT-Ratgeber | Verständliche Hilfe von Schultes IT",
+          "description": "Verständliche Orientierung bei typischen PC-, Windows-, WLAN-, E-Mail- und Sicherheitsproblemen – ohne unnötiges Fachchinesisch.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/ratgeber/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/ueber-schultes-it/",
+          "title": "Über Schultes IT | Marke, Anspruch & Netzwerk",
+          "description": "Was Schultes IT ausmacht: verständliche Technik-Hilfe, sichere Fernwartung und ein wachsendes Netzwerk regionaler, selbstständiger Standorte.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/ueber-schultes-it/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/impressum/",
+          "title": "Impressum | Schultes IT & Netzwerksupport",
+          "description": "Impressum und Anbieterkennzeichnung von Schultes IT & Netzwerksupport.",
+          "aliases": [],
+          "indexable": false,
+          "currentCanonical": "/impressum/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/datenschutz/",
+          "title": "Datenschutz | Schultes IT & Netzwerksupport",
+          "description": "Datenschutzerklärung von Schultes IT für Website, Standortsuche, Analytics und Support-Assistent.",
+          "aliases": [],
+          "indexable": false,
+          "currentCanonical": "/datenschutz/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/",
+          "title": "IT-Hilfe Ludwigsburg | Schultes IT Standort",
+          "description": "Schultes IT Ludwigsburg: persönliche PC-, Laptop-, WLAN-, Router- und Technik-Hilfe bei dir vor Ort, ergänzt durch sichere Fernwartung.",
+          "aliases": [
+            "/ludwigsburg/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/fernwartung/",
+          "title": "Fernwartung deutschlandweit | Schultes IT Remote-Hilfe",
+          "description": "Deutschlandweite IT-Hilfe per Fernwartung für Windows, Drucker, E-Mail, Outlook und Programme. Persönlich erklärt, sicher begleitet und ohne Anfahrt.",
+          "aliases": [
+            "/standorte/ludwigsburg/fernwartung/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/fernwartung/windows-hilfe/",
+          "title": "Windows-Hilfe per Fernwartung | Deutschlandweit",
+          "description": "Windows-Hilfe deutschlandweit per Fernwartung: Fehler, Updates, Programme und Einstellungen gemeinsam prüfen. Sicher, verständlich und ohne Anfahrt.",
+          "aliases": [
+            "/standorte/ludwigsburg/fernwartung/windows-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/windows-hilfe/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/fernwartung/drucker-hilfe/",
+          "title": "Drucker-Hilfe per Fernwartung | Deutschlandweit",
+          "description": "Drucker druckt nicht? Deutschlandweite Hilfe per Fernwartung bei Treibern, Warteschlange, WLAN-Verbindung und Scan-Software.",
+          "aliases": [
+            "/standorte/ludwigsburg/fernwartung/drucker-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/drucker-hilfe/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/fernwartung/email-outlook/",
+          "title": "Outlook- & E-Mail-Hilfe per Fernwartung",
+          "description": "E-Mail oder Outlook funktioniert nicht? Deutschlandweite Fernhilfe bei Einrichtung, Anmeldung, Versand, Empfang und Synchronisierung.",
+          "aliases": [
+            "/standorte/ludwigsburg/fernwartung/email-outlook/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/email-outlook/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/pc-laptop/",
+          "title": "PC-Hilfe Ludwigsburg | Schultes IT Standort",
+          "description": "Wenn Windows streikt, Software nervt oder ein Gerät sauber eingerichtet werden soll: Problem eingrenzen, verständlich erklären, lösen. Persönlich betreut…",
+          "aliases": [
+            "/leistungen/pc-laptop/",
+            "/pc-system/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-laptop/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/netzwerk-wlan/",
+          "title": "WLAN-Hilfe Ludwigsburg | Schultes IT Standort",
+          "description": "Stabiles WLAN, Router-Konfiguration und ein Heim- oder Firmennetz, das nicht genau dann aussteigt, wenn es gebraucht wird. Persönlich betreut durch Andrej…",
+          "aliases": [
+            "/leistungen/netzwerk-wlan/",
+            "/netzwerk-wlan/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/netzwerk-wlan/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/webseiten/",
+          "title": "Webdesign Ludwigsburg | Schultes IT Standort",
+          "description": "Schnelle, moderne Webseiten für lokale Unternehmen. Klar positioniert, mobil stark und ohne austauschbaren Baukasten-Look. Persönlich betreut durch Andrej…",
+          "aliases": [
+            "/leistungen/webseiten/",
+            "/webseiten/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/webseiten/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/automation/",
+          "title": "Automation Ludwigsburg | Schultes IT Standort",
+          "description": "Kleine digitale Werkzeuge, Automationen und moderne KI-/Agenten-Projekte, die wiederkehrende Arbeit wirklich abnehmen. Persönlich betreut durch Andrej…",
+          "aliases": [
+            "/leistungen/automation/",
+            "/tools-automation/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/automation/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/installation/",
+          "title": "Installation Ludwigsburg | Schultes IT Standort",
+          "description": "Installation von Geräten, Programmen, Treibern und Zubehör beim Schultes-IT-Standort Ludwigsburg, verständlich eingerichtet und sauber getestet. Persönlich…",
+          "aliases": [
+            "/installation/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/installation/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/it-consulting/",
+          "title": "IT Consulting Ludwigsburg | Schultes IT Standort",
+          "description": "Verständliche IT-Beratung für Privatpersonen und kleine Betriebe, wenn Entscheidungen, Anschaffungen oder Abläufe klarer werden sollen. Persönlich betreut…",
+          "aliases": [
+            "/it-consulting/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/it-consulting/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/windows-einrichten/",
+          "title": "Windows Ludwigsburg | Schultes IT Standort",
+          "description": "Windows einrichten, aktualisieren und verständlich vorbereiten: Benutzer, Datenschutz, Updates, Programme und Alltagseinstellungen. Persönlich betreut durch…",
+          "aliases": [
+            "/windows-einrichten/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/windows-einrichten/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/benutzerkonten/",
+          "title": "Konten Ludwigsburg | Schultes IT Standort",
+          "description": "Hilfe bei Windows-, Microsoft-, E-Mail- und Geräte-Konten: sortieren, einrichten, Zugänge verstehen und sicher nutzen. Persönlich betreut durch Andrej…",
+          "aliases": [
+            "/benutzerkonten/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/benutzerkonten/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/email/",
+          "title": "E-Mail Ludwigsburg | Schultes IT Standort",
+          "description": "E-Mail-Hilfe beim Schultes-IT-Standort Ludwigsburg: Konto einrichten, Mailprogramm verbinden, Smartphone/PC synchronisieren und Versandprobleme prüfen.…",
+          "aliases": [
+            "/email/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/email/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/drucker/",
+          "title": "Drucker Ludwigsburg | Schultes IT Standort",
+          "description": "Drucker einrichten und Druckerprobleme lösen: WLAN-Drucker, Treiber, Scanner, Warteschlange und Verbindung prüfen. Persönlich betreut durch Andrej Schultes…",
+          "aliases": [
+            "/drucker/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/drucker/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/programme/",
+          "title": "Programme Ludwigsburg | Schultes IT Standort",
+          "description": "Programme installieren, aktualisieren, aufräumen und verständlich erklären: Browser, PDF, Sicherheit, Tools und Alltagssoftware. Persönlich betreut durch…",
+          "aliases": [
+            "/programme/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/programme/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/office-installation/",
+          "title": "Office Ludwigsburg | Schultes IT Standort",
+          "description": "Microsoft Office oder Alternativen installieren, aktivieren, einrichten und für Dokumente, Tabellen und E-Mail nutzbar machen. Persönlich betreut durch…",
+          "aliases": [
+            "/office-installation/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/office-installation/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/router-entstoerung/",
+          "title": "Router Ludwigsburg | Schultes IT Standort",
+          "description": "Router- und Internetprobleme eingrenzen: Ausfälle, WLAN-Abbrüche, Neustarts, Anbietergerät, Fritzbox und Heimnetz prüfen. Persönlich betreut durch Andrej…",
+          "aliases": [
+            "/router-entstoerung/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/router-entstoerung/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/it-notdienst/",
+          "title": "IT-Notdienst Ludwigsburg | Schultes IT Standort",
+          "description": "Schnelle IT-Hilfe, wenn PC, Internet, E-Mail oder ein wichtiger Arbeitsplatz plötzlich ausfällt. Persönlich betreut durch Andrej Schultes vom Standort…",
+          "aliases": [
+            "/it-notdienst/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/it-notdienst/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/pc-langsam/",
+          "title": "PC langsam Ludwigsburg | Schultes IT Standort",
+          "description": "Hilfe beim Schultes-IT-Standort Ludwigsburg, wenn PC oder Laptop langsam geworden sind, Programme ewig laden oder Windows nur noch träge reagiert.…",
+          "aliases": [
+            "/pc-langsam/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-langsam/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/pc-startet-nicht/",
+          "title": "Startproblem Ludwigsburg | Schultes IT Standort",
+          "description": "Hilfe beim Schultes-IT-Standort Ludwigsburg, wenn PC oder Laptop nicht mehr starten, der Bildschirm schwarz bleibt oder Windows nicht hochfährt. Persönlich…",
+          "aliases": [
+            "/pc-startet-nicht/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-startet-nicht/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/fritzbox-hilfe/",
+          "title": "Fritzbox Ludwigsburg | Schultes IT Standort",
+          "description": "Fritzbox-Hilfe beim Schultes-IT-Standort Ludwigsburg bei WLAN, Mesh, Internet, Telefonie, Updates und unklaren Router-Meldungen. Persönlich betreut durch…",
+          "aliases": [
+            "/fritzbox-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/fritzbox-hilfe/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/mesh-wlan-einrichten/",
+          "title": "Mesh WLAN Ludwigsburg | Schultes IT Standort",
+          "description": "Mesh WLAN und Repeater beim Schultes-IT-Standort Ludwigsburg einrichten, wenn WLAN nicht alle Räume erreicht oder ständig abbricht. Persönlich betreut durch…",
+          "aliases": [
+            "/mesh-wlan-einrichten/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/mesh-wlan-einrichten/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/senioren-handy-hilfe/",
+          "title": "Senioren Handy Ludwigsburg | Schultes IT Standort",
+          "description": "Geduldige Handy- und Smartphone-Hilfe für Seniorinnen und Senioren beim Schultes-IT-Standort Ludwigsburg: WLAN, Apps, Fotos, WhatsApp, E-Mail und…",
+          "aliases": [
+            "/senioren-handy-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/senioren-handy-hilfe/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/betrugsverdacht-phishing-hilfe/",
+          "title": "Betrug/Phishing Ludwigsburg | Schultes IT Standort",
+          "description": "Hilfe beim Schultes-IT-Standort Ludwigsburg bei verdächtigen E-Mails, Fake-SMS, Betrugsverdacht, Phishing-Links und Unsicherheit nach einem Klick.…",
+          "aliases": [
+            "/betrugsverdacht-phishing-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/betrugsverdacht-phishing-hilfe/",
+          "currentStatus": "canonical"
+        }
+      ]
+    },
+    {
+      "revision": "239d80e",
+      "sha": "239d80e50ed34059bc5427f634c1062a2e802e75",
+      "date": "2026-10-23",
+      "subject": "Fix smooth motion, navigation and canonical redirects (#2)",
+      "sourceRegistry": "src/site/routes.ts",
+      "pageCount": 33,
+      "pages": [
+        {
+          "path": "/",
+          "title": "Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort",
+          "description": "IT-Hilfe für Privatpersonen und kleine Unternehmen: deutschlandweit per Fernwartung und persönlich vor Ort über regionale Schultes-IT-Standorte.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/leistungen/",
+          "title": "IT-Leistungen | Schultes IT",
+          "description": "PC- und Laptop-Hilfe, Netzwerk und WLAN, Webseiten sowie Automation: zentrale Leistungen von Schultes IT im Überblick.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/leistungen/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/",
+          "title": "Schultes-IT-Standorte | Persönliche Hilfe in deiner Region",
+          "description": "Finde einen regionalen Schultes-IT-Standort für persönliche PC-, WLAN- und Technik-Hilfe bei dir vor Ort.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standorte/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standortinhaber-werden/",
+          "title": "Schultes-IT-Standort aufbauen | Standortinhaber werden",
+          "description": "Perspektive für selbstständige IT-Dienstleister: einen regionalen Schultes-IT-Standort eigenverantwortlich aufbauen und Teil des Netzwerks werden.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/standortinhaber-werden/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/ratgeber/",
+          "title": "IT-Ratgeber | Verständliche Hilfe von Schultes IT",
+          "description": "Verständliche Orientierung bei typischen PC-, Windows-, WLAN-, E-Mail- und Sicherheitsproblemen – ohne unnötiges Fachchinesisch.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/ratgeber/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/ueber-schultes-it/",
+          "title": "Über Schultes IT | Marke, Anspruch & Netzwerk",
+          "description": "Was Schultes IT ausmacht: verständliche Technik-Hilfe, sichere Fernwartung und ein wachsendes Netzwerk regionaler, selbstständiger Standorte.",
+          "aliases": [],
+          "indexable": true,
+          "currentCanonical": "/ueber-schultes-it/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/impressum/",
+          "title": "Impressum | Schultes IT & Netzwerksupport",
+          "description": "Impressum und Anbieterkennzeichnung von Schultes IT & Netzwerksupport.",
+          "aliases": [],
+          "indexable": false,
+          "currentCanonical": "/impressum/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/datenschutz/",
+          "title": "Datenschutz | Schultes IT & Netzwerksupport",
+          "description": "Datenschutzerklärung von Schultes IT für Website, Standortsuche, Analytics und Support-Assistent.",
+          "aliases": [],
+          "indexable": false,
+          "currentCanonical": "/datenschutz/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/",
+          "title": "IT-Hilfe Ludwigsburg | Schultes IT Standort",
+          "description": "Schultes IT Ludwigsburg: persönliche PC-, Laptop-, WLAN-, Router- und Technik-Hilfe bei dir vor Ort, ergänzt durch sichere Fernwartung.",
+          "aliases": [
+            "/ludwigsburg/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/fernwartung/",
+          "title": "Fernwartung deutschlandweit | Schultes IT Remote-Hilfe",
+          "description": "Deutschlandweite IT-Hilfe per Fernwartung für Windows, Drucker, E-Mail, Outlook und Programme. Persönlich erklärt, sicher begleitet und ohne Anfahrt.",
+          "aliases": [
+            "/standorte/ludwigsburg/fernwartung/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/fernwartung/windows-hilfe/",
+          "title": "Windows-Hilfe per Fernwartung | Deutschlandweit",
+          "description": "Windows-Hilfe deutschlandweit per Fernwartung: Fehler, Updates, Programme und Einstellungen gemeinsam prüfen. Sicher, verständlich und ohne Anfahrt.",
+          "aliases": [
+            "/standorte/ludwigsburg/fernwartung/windows-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/windows-hilfe/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/fernwartung/drucker-hilfe/",
+          "title": "Drucker-Hilfe per Fernwartung | Deutschlandweit",
+          "description": "Drucker druckt nicht? Deutschlandweite Hilfe per Fernwartung bei Treibern, Warteschlange, WLAN-Verbindung und Scan-Software.",
+          "aliases": [
+            "/standorte/ludwigsburg/fernwartung/drucker-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/drucker-hilfe/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/fernwartung/email-outlook/",
+          "title": "Outlook- & E-Mail-Hilfe per Fernwartung",
+          "description": "E-Mail oder Outlook funktioniert nicht? Deutschlandweite Fernhilfe bei Einrichtung, Anmeldung, Versand, Empfang und Synchronisierung.",
+          "aliases": [
+            "/standorte/ludwigsburg/fernwartung/email-outlook/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/fernwartung/email-outlook/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/pc-laptop/",
+          "title": "PC-Hilfe Ludwigsburg | Schultes IT Standort",
+          "description": "Wenn Windows streikt, Software nervt oder ein Gerät sauber eingerichtet werden soll: Problem eingrenzen, verständlich erklären, lösen. Persönlich betreut…",
+          "aliases": [
+            "/leistungen/pc-laptop/",
+            "/pc-system/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-laptop/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/netzwerk-wlan/",
+          "title": "WLAN-Hilfe Ludwigsburg | Schultes IT Standort",
+          "description": "Stabiles WLAN, Router-Konfiguration und ein Heim- oder Firmennetz, das nicht genau dann aussteigt, wenn es gebraucht wird. Persönlich betreut durch Andrej…",
+          "aliases": [
+            "/leistungen/netzwerk-wlan/",
+            "/netzwerk-wlan/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/netzwerk-wlan/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/webseiten/",
+          "title": "Webdesign Ludwigsburg | Schultes IT Standort",
+          "description": "Individuelle Webseiten für private Projekte und kleine Unternehmen. Klar gestaltet, schnell und auf jedem Gerät gut nutzbar. Persönlich betreut durch Andrej…",
+          "aliases": [
+            "/leistungen/webseiten/",
+            "/webseiten/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/webseiten/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/automation/",
+          "title": "Automation Ludwigsburg | Schultes IT Standort",
+          "description": "Kleine digitale Werkzeuge und Automationen, die wiederkehrende Aufgaben im privaten Alltag oder im Betrieb einfacher machen. Persönlich betreut durch Andrej…",
+          "aliases": [
+            "/leistungen/automation/",
+            "/tools-automation/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/automation/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/installation/",
+          "title": "Installation Ludwigsburg | Schultes IT Standort",
+          "description": "Installation von Geräten, Programmen, Treibern und Zubehör beim Schultes-IT-Standort Ludwigsburg, verständlich eingerichtet und sauber getestet. Persönlich…",
+          "aliases": [
+            "/installation/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/installation/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/it-consulting/",
+          "title": "IT Consulting Ludwigsburg | Schultes IT Standort",
+          "description": "Verständliche IT-Beratung für Privatpersonen und kleine Betriebe, wenn Entscheidungen, Anschaffungen oder Abläufe klarer werden sollen. Persönlich betreut…",
+          "aliases": [
+            "/it-consulting/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/it-consulting/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/windows-einrichten/",
+          "title": "Windows Ludwigsburg | Schultes IT Standort",
+          "description": "Windows einrichten, aktualisieren und verständlich vorbereiten: Benutzer, Datenschutz, Updates, Programme und Alltagseinstellungen. Persönlich betreut durch…",
+          "aliases": [
+            "/windows-einrichten/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/windows-einrichten/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/benutzerkonten/",
+          "title": "Konten Ludwigsburg | Schultes IT Standort",
+          "description": "Hilfe bei Windows-, Microsoft-, E-Mail- und Geräte-Konten: sortieren, einrichten, Zugänge verstehen und sicher nutzen. Persönlich betreut durch Andrej…",
+          "aliases": [
+            "/benutzerkonten/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/benutzerkonten/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/email/",
+          "title": "E-Mail Ludwigsburg | Schultes IT Standort",
+          "description": "E-Mail-Hilfe beim Schultes-IT-Standort Ludwigsburg: Konto einrichten, Mailprogramm verbinden, Smartphone/PC synchronisieren und Versandprobleme prüfen.…",
+          "aliases": [
+            "/email/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/email/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/drucker/",
+          "title": "Drucker Ludwigsburg | Schultes IT Standort",
+          "description": "Drucker einrichten und Druckerprobleme lösen: WLAN-Drucker, Treiber, Scanner, Warteschlange und Verbindung prüfen. Persönlich betreut durch Andrej Schultes…",
+          "aliases": [
+            "/drucker/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/drucker/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/programme/",
+          "title": "Programme Ludwigsburg | Schultes IT Standort",
+          "description": "Programme installieren, aktualisieren, aufräumen und verständlich erklären: Browser, PDF, Sicherheit, Tools und Alltagssoftware. Persönlich betreut durch…",
+          "aliases": [
+            "/programme/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/programme/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/office-installation/",
+          "title": "Office Ludwigsburg | Schultes IT Standort",
+          "description": "Microsoft Office oder Alternativen installieren, aktivieren, einrichten und für Dokumente, Tabellen und E-Mail nutzbar machen. Persönlich betreut durch…",
+          "aliases": [
+            "/office-installation/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/office-installation/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/router-entstoerung/",
+          "title": "Router Ludwigsburg | Schultes IT Standort",
+          "description": "Router- und Internetprobleme eingrenzen: Ausfälle, WLAN-Abbrüche, Neustarts, Anbietergerät, Fritzbox und Heimnetz prüfen. Persönlich betreut durch Andrej…",
+          "aliases": [
+            "/router-entstoerung/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/router-entstoerung/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/it-notdienst/",
+          "title": "IT-Notdienst Ludwigsburg | Schultes IT Standort",
+          "description": "Schnelle IT-Hilfe, wenn PC, Internet, E-Mail oder ein wichtiger Arbeitsplatz plötzlich ausfällt. Persönlich betreut durch Andrej Schultes vom Standort…",
+          "aliases": [
+            "/it-notdienst/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/it-notdienst/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/pc-langsam/",
+          "title": "PC langsam Ludwigsburg | Schultes IT Standort",
+          "description": "Hilfe beim Schultes-IT-Standort Ludwigsburg, wenn PC oder Laptop langsam geworden sind, Programme ewig laden oder Windows nur noch träge reagiert.…",
+          "aliases": [
+            "/pc-langsam/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-langsam/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/pc-startet-nicht/",
+          "title": "Startproblem Ludwigsburg | Schultes IT Standort",
+          "description": "Hilfe beim Schultes-IT-Standort Ludwigsburg, wenn PC oder Laptop nicht mehr starten, der Bildschirm schwarz bleibt oder Windows nicht hochfährt. Persönlich…",
+          "aliases": [
+            "/pc-startet-nicht/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/pc-startet-nicht/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/fritzbox-hilfe/",
+          "title": "Fritzbox Ludwigsburg | Schultes IT Standort",
+          "description": "Fritzbox-Hilfe beim Schultes-IT-Standort Ludwigsburg bei WLAN, Mesh, Internet, Telefonie, Updates und unklaren Router-Meldungen. Persönlich betreut durch…",
+          "aliases": [
+            "/fritzbox-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/fritzbox-hilfe/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/mesh-wlan-einrichten/",
+          "title": "Mesh-WLAN Ludwigsburg | Schultes IT Standort",
+          "description": "Mesh-WLAN und Repeater beim Schultes-IT-Standort Ludwigsburg einrichten, wenn WLAN nicht alle Räume erreicht oder ständig abbricht. Persönlich betreut durch…",
+          "aliases": [
+            "/mesh-wlan-einrichten/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/mesh-wlan-einrichten/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/senioren-handy-hilfe/",
+          "title": "Senioren-Handy Ludwigsburg | Schultes IT Standort",
+          "description": "Geduldige Handy- und Smartphone-Hilfe für Seniorinnen und Senioren beim Schultes-IT-Standort Ludwigsburg: WLAN, Apps, Fotos, WhatsApp, E-Mail und…",
+          "aliases": [
+            "/senioren-handy-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/senioren-handy-hilfe/",
+          "currentStatus": "canonical"
+        },
+        {
+          "path": "/standorte/ludwigsburg/betrugsverdacht-phishing-hilfe/",
+          "title": "Betrug/Phishing Ludwigsburg | Schultes IT Standort",
+          "description": "Hilfe beim Schultes-IT-Standort Ludwigsburg bei verdächtigen E-Mails, Fake-SMS, Betrugsverdacht, Phishing-Links und Unsicherheit nach einem Klick.…",
+          "aliases": [
+            "/betrugsverdacht-phishing-hilfe/"
+          ],
+          "indexable": true,
+          "currentCanonical": "/standorte/ludwigsburg/betrugsverdacht-phishing-hilfe/",
+          "currentStatus": "canonical"
+        }
+      ]
+    }
+  ]
+}
