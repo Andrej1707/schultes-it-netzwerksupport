@@ -2,28 +2,41 @@
 
 ## Ziel
 
-Die Website bildet eine übergeordnete deutsche Marke mit zwei Servicewegen ab:
+Die Website gehört zum inhabergeführten Betrieb Schultes IT & Netzwerksupport von Andrej
+Schultes in Ludwigsburg. Sie bietet zwei Wege zu demselben Ansprechpartner:
 
-1. zentrale, deutschlandweite Fernwartung;
-2. persönliche Vor-Ort-Hilfe über aktive regionale Standorte.
+1. deutschlandweite Fernwartung;
+2. persönliche Vor-Ort-Hilfe in Ludwigsburg und Umgebung.
 
-Ein Standort ist nicht automatisch eine Filiale oder ein Angestelltenverhältnis. Das Datenmodell
-unterscheidet inhabergeführte Standorte und künftig rechtlich selbstständige Lizenznehmer.
+Die Startseite `/` ist die Betriebsseite mit Leistungen, Preisen, Einsatzgebiet und direktem
+Kontakt. Standortverzeichnis, Besucher-Standortbestimmung und Partner- oder Franchiseauswahl
+sind nicht Teil der Website. Alte Standort- und Betreiberpfade bleiben nur als Aliasse erhalten.
+
+Dieses Dokument beschreibt den Quellstand. Es bestätigt weder eine Veröffentlichung noch eine
+abgeschlossene Browser- oder Live-Abnahme. Historische Prüfberichte behalten ihren damaligen
+Geltungsbereich.
 
 ## Quellen der Wahrheit
 
-- `src/site/config.ts`: Marke, Domain und zentrale Fernwartung
-- `src/site/locations.ts`: Standorte, Betreiber, Kontaktangaben, Preise, Gebiete und Koordinaten
-- `src/site/contacts.ts`: Auflösung des zentralen oder regionalen Ansprechpartners
+- `src/site/config.ts`: Betriebsname, Domain und deutschlandweite Fernwartung
+- `src/site/locations.ts`: der Ludwigsburger Betrieb, Ansprechpartner, Kontaktangaben,
+  bestehende Preise, Einsatzgebiet und Koordinaten der Geschäftsanschrift
+- `src/site/contacts.ts`: Kontaktauflösung für denselben Betrieb auf allen Seiten
 - `src/content/services.ts`: normalisierte Leistungsseiten und ihre Reichweite
 - `src/content/legacy/`: bestehende redaktionelle Leistungs- und Hilfetexte als Datenbasis
-- `src/site/publicServices.ts`: öffentlich freigegebene Leistungen aktiver Standorte
+- `src/site/publicServices.ts`: veröffentlichte Leistungen für Menü, Ratgeber und Routen
+- `src/site/navigation.ts`: gemeinsame Gruppierung der Leistungen für Menü und Footer
 - `src/site/routes.ts`: kanonische Seiten, Seitentypen, Metadaten und alte Alias-URLs
 - `src/site/schema.ts`: strukturierte Daten passend zum Seitentyp
 
 Die Sitemap, statischen HTML-Dateien und das Build-Manifest entstehen aus `routes.ts`. Neue Seiten
 werden nicht zusätzlich in einer separaten Sitemap-Liste gepflegt. Die bisherigen Inhaltsmodule
 bleiben Datenquellen; die aktuelle Oberfläche verwendet die Premium-Komponenten.
+
+Interne Namen wie `location`, `network-service` und `PremiumNetworkPages` stammen aus der
+bisherigen Implementierung. Sie begründen keine weiteren öffentlichen Standorte oder
+Betreiberangebote. Die Koordinaten des Betriebs dienen Karte und strukturierten Daten;
+sie sind keine vom Besucher erhobene Position.
 
 ## Gemeinsames Rendern für Build und Browser
 
@@ -41,14 +54,15 @@ Bereits ohne JavaScript enthält eine kanonische Seite:
 
 - die vollständige gestaltete Navigation, den Seiteninhalt und den Footer;
 - genau einen seitenspezifischen H1 und die jeweiligen Texte;
-- normale interne Links mit `href`;
+- normale interne Links mit `href` und native aufklappbare Navigation;
 - vollständige Impressums- beziehungsweise Datenschutztexte auf den rechtlichen Seiten;
 - die zum Seitentyp passenden Metadaten und strukturierten Daten.
 
 `src/main.tsx` löst die Route auf und hydriert vorhandenes kanonisches HTML mit `hydrateRoot`.
 Build und Browser verwenden den identischen `identifierPrefix` `schultes-`. `App.tsx` bindet
 `SiteView` ein und behandelt frühere Hash-Aufrufe der rechtlichen Seiten. Falls kein passender
-Prerender vorhanden ist oder ein Alias aufgerufen wird, wird `createRoot` verwendet.
+Prerender vorhanden ist, wird `createRoot` verwendet. Alias-Aufrufe werden zur kanonischen URL
+weitergeleitet, bevor die Anwendung und der Assistent eingebunden werden.
 
 Damit gibt es keine getrennte, verkürzte SEO-Ansicht, die nachträglich gegen ein anderes Design
 ausgetauscht wird. Für neue Komponenten müssen der erste Browser-Render und der Server-Render
@@ -56,30 +70,38 @@ ausgetauscht wird. Für neue Komponenten müssen der erste Browser-Render und de
 CSS wird über `main.tsx` eingebunden und nicht über den serverseitig importierten Seitenbaum.
 
 Der Support-Assistent ist davon getrennt: `main.tsx` lädt `src/support/SupportBot.tsx` asynchron
-und rendert ihn in `#support-root`. Ein verzögerter Assistent blockiert deshalb weder die Seite
-noch ihren statischen Inhalt. Die API läuft weiterhin separat als Cloudflare Worker mit
-Durable Objects.
+und rendert ihn in `#support-root`. Das Einbinden beim Seitenaufruf bleibt erhalten; es wird
+nicht durch ein erstmaliges Nachladen nach einem Klick ersetzt. Sein separater Code blockiert
+den statischen Seiteninhalt nicht. Die API läuft weiterhin als Cloudflare Worker mit Durable
+Objects. Details zur Sitzungslaufzeit und zum automatischen Öffnen liegen bei der
+Assistentenimplementierung.
 
 ## Oberfläche und Gestaltung
 
 Das gemeinsame Design verwendet helle Flächen, große Typografie, blaue Aktionen und lokale
 Produktmotive. Themen unterscheiden sich durch Bildwahl, Flächenfarben und Anordnung:
 
-- `src/components/PremiumShell.tsx`: gemeinsamer Header, mobile Navigation, Logo und Footer
-- `src/pages/PremiumHomePage.tsx`: Produktbühnen und die Einstiege Fernwartung/Vor-Ort-Hilfe
+- `src/components/PremiumShell.tsx`: Header, vollständiges Leistungs- und Hilfethemenmenü,
+  mobile Navigation, Logo und Footer
 - `src/pages/PremiumServicePage.tsx`: Varianten für PC, Netzwerk, Web, Automation, Fernwartung,
   Alltagshilfe, Sicherheit, dringende Probleme und Beratung
-- `src/pages/PremiumNetworkPages.tsx`: unterschiedliche Kompositionen für Leistungsübersicht,
-  Standortverzeichnis, lokale Seite, Ratgeber, Standortinhaber-Modell, Über-uns-Seite und 404
+- `src/pages/PremiumNetworkPages.tsx`: Betriebs-Startseite auf `/`, Leistungsübersicht,
+  Ratgeber, Über-uns-Seite und 404
 - `src/pages/LegalContent.tsx`: rechtliche Inhalte innerhalb desselben Seitenrahmens
 - `src/premium.css`: Grundgestaltung und gemeinsame Komponenten
 - `src/premium-service.css`: Leistungsseiten und ihre Themenvarianten
-- `src/premium-network.css`: Übersichts-, Standort- und redaktionelle Seiten
+- `src/premium-network.css`: Betriebs-, Übersichts- und redaktionelle Seiten
 
-Die CSS-Klassen verwenden die Präfixe `p-`, `ps-` und `pn-` für die jeweiligen Bereiche.
+Die CSS-Klassen verwenden `p-`, `ps-` und `pn-` sowie `sn-` für Navigation und Footer.
 Responsive Layouts, sichtbarer Tastaturfokus, eine Sprungmarke zum Hauptinhalt und
-`prefers-reduced-motion` gehören zur Gestaltung. Mobile Navigation, Ratgeberfilter,
-Telefonnummer-Kopieren und Kartenfreigabe werden nach der Hydrierung interaktiv.
+`prefers-reduced-motion` gehören zur Gestaltung. Alle veröffentlichten Leistungen und
+Hilfethemen sind im Menü auf Desktop und Mobilgeräten erreichbar. Native `details`/`summary`-
+Elemente und normale Links erhalten die Navigation ohne JavaScript. JavaScript ergänzt das
+Schließen des Menüs und weitere Komfortfunktionen. Kontaktlinks führen zum Telefon oder
+zu `/#kontakt`, ohne Zwischenschritt über eine Standortauswahl.
+
+Ratgeberfilter, Telefonnummer-Kopieren und Kartenfreigabe werden nach der Hydrierung interaktiv.
+Die vollständige ungefilterte Themenliste und Kontaktlinks bleiben vorher verfügbar.
 
 `src/site/motion.ts` ergänzt die bereits sichtbare Seite aus einem Effekt in `App.tsx`.
 Ein `IntersectionObserver` startet kurze CSS-Animationen aus `src/motion.css` einmal pro
@@ -95,10 +117,8 @@ auf. Auswahl der Elemente, Zeiten und Abnahme stehen in
 
 ## Bildmaterial
 
-Jede fotografische Platzierung hat ein eigenes Motiv. `workspace`, `wifi` und `support`
-gehören ausschließlich zur Startseite; Leistungsübersicht, lokale Seite, Über-uns-Seite
-und fotografische Leistungsdetails verwenden jeweils andere Szenen. Die Zuordnung der
-Leistungsbilder steht in `src/site/photos.ts`. Alle Bilder liegen in `public/images/` als
+Fotografische Platzierungen verwenden unterschiedliche illustrative Motive. Die Zuordnung der
+Leistungsbilder steht in `src/site/photos.ts`. Die Bilder liegen in `public/images/` als
 WebP-Dateien in 640, 1280 und 1920 Pixel Breite. Die Komponenten verwenden `srcset`, `sizes` und feste
 Breiten-/Höhenangaben. Bilder unterhalb des Einstiegs werden verzögert geladen.
 
@@ -112,73 +132,58 @@ Konzept- oder Prototypenstatus getrennt vom Bildmaterial.
 
 ## Seitentypen und Reichweite
 
-### Marke
+### Betriebsseite
 
-Die Startseite beschreibt Schultes IT als `Organization`. Sie trägt keine lokale Adresse
-und kein `ProfessionalService`, damit Marke und Standort Ludwigsburg getrennt bleiben.
+`/` ist die lokale Betriebsseite für Ludwigsburg und Umgebung. Sie enthält direkte Kontaktwege,
+Preise, vorhandene Google-Profilangaben, Einsatzgebiete und Zugang zur Fernwartung. Ihre lokalen
+`ProfessionalService`-Daten stammen aus demselben Betriebsdatensatz wie Ansprechpartner und
+Adresse. Google Maps wird erst nach einem Klick als iframe eingebunden und kann wieder
+deaktiviert werden.
 
 ### Deutschlandweite Fernwartung
 
 Fernwartungsseiten erzeugen ein `Service`-Schema mit `areaServed: Country/Deutschland`.
 Die kanonischen Pfade liegen unter `/fernwartung/`, etwa `/fernwartung/windows-hilfe/`.
-Kontakt und Verantwortung stammen aus der zentralen Fernwartungskonfiguration.
+Kontakt und Verantwortung stammen aus der Fernwartungskonfiguration desselben Betriebs.
+Verantwortlich ist Andrej Schultes; die nationale Reichweite bedeutet keinen zusätzlichen
+Betrieb. Die Vorbereitung beschreibt zuerst die telefonische Abstimmung und anschließend
+das gemeinsame Öffnen von RustDesk. Download, Versionsanzeige und Datei-Prüfsumme bleiben erhalten.
 
 ### Leistungsübersicht
 
-`/leistungen/` zeigt die gemeinsamen Leistungsbereiche. Regionale Details liegen unter dem
-zuständigen Standort, etwa `/standorte/ludwigsburg/pc-laptop/`. Frühere allgemeine Detailpfade
-werden als Aliasse aufgelöst. Links in der aktuellen Oberfläche führen direkt auf kanonische
-Ziele oder zur Standortauswahl.
+`/leistungen/` bündelt das Angebot. Lokale Details liegen direkt unter `/leistungen/`, etwa
+`/leistungen/pc-laptop/`, `/leistungen/netzwerk-wlan/` und `/leistungen/drucker/`. Breadcrumbs
+führen über die Leistungsübersicht statt über eine regionale Auswahl. Aktuelle interne Links
+verwenden direkt die kanonischen Ziele.
 
-### Standorte
+Die Umstellung ändert keine Preise: Fernhilfe beginnt weiterhin bei 25 €, Vor-Ort-Service bei
+49 €; individuelle Projekte werden nach Absprache angeboten. Es werden keine neuen Zeitpakete,
+Anfahrtskonditionen oder Zahlungsfunktionen eingeführt.
 
-Nur aktive Standortdaten erzeugen lokale `ProfessionalService`-Daten. Betreiber, Adresse,
-Koordinaten und Einsatzgebiete stammen aus einem einzelnen Standortdatensatz.
-
-`activeLocations` ist die zentrale öffentliche Standortliste. Standortübersicht, Standortfinder,
-Routen, Sitemap, Schema.org, Menüs und Ratgeber verwenden aktive Standorte oder daraus abgeleitete
-öffentliche Leistungsdaten. `preparing` bleibt intern vorbereitbar, ohne als aktiver Standort
-gezählt oder verlinkt zu werden.
-
-Das optionale Betreibermodell kann Geschäftsbezeichnung, Rechtsform, Geschäftsanschrift,
-geschäftliche Telefonnummer und E-Mail, verantwortliche Person, Umsatzsteuer-ID,
-Impressumsangaben sowie den Hinweis zur Tätigkeit im eigenen Namen und auf eigene Rechnung
-aufnehmen. Lokale Seiten lösen Kontakt und Fernwartungshinweis aus diesen Standortdaten auf.
-
-Die lokale Seite enthält direkte Kontaktwege, Kopieren der Telefonnummer, Preise, vorhandene
-Google-Profilangaben, Einsatzgebiete und einen Zugang zur Fernwartung samt Download. Google Maps
-wird erst nach dem Klick auf „Google Maps laden“ als iframe eingebunden und kann wieder
-deaktiviert werden. Die schematische Darstellung im Standortverzeichnis ist eine lokal
-gerenderte Illustration des Einsatzgebiets und keine geladene externe Karte.
-
-### Ratgeber, Betreibermodell und rechtliche Seiten
+### Ratgeber, Über uns und rechtliche Seiten
 
 Der Ratgeber bündelt veröffentlichte Hilfeseiten. Suchbegriff und Filter für regionale Hilfe
 beziehungsweise Fernwartung wirken auf bereits lokal vorhandene Daten. Alle Hilfelinks sind
 im ungefilterten Anfangszustand enthalten.
 
-Die Seite für Standortinhaber beschreibt das vorbereitete Modell und führt zum persönlichen
-Kontakt. Sie stellt weder ein Bewerberportal noch eine sofortige Gebietszusage dar.
-Impressum und Datenschutz werden vollständig auf ihren eigenen Pfaden gerendert und bleiben
-`noindex, follow`.
-
-## Standortfinder
-
-Der Browser fragt erst nach einem ausdrücklichen Klick auf „Meinen Standort prüfen“ nach der
-Position. Auch eine bereits erteilte Berechtigung löst keine automatische Standortabfrage aus.
-Die Distanz wird mit der Haversine-Formel auf dem Gerät berechnet. Koordinaten werden dabei weder
-an Schultes IT noch an einen Geocoding-Dienst übertragen oder in der Website gespeichert.
-
-- Ein Treffer zeigt die ungefähre Luftlinienentfernung und einen Link zum aktiven Standort.
-- Der hinterlegte Einsatzradius dient zur Einordnung; ein Termin wird persönlich abgestimmt.
-- Außerhalb des Radius wird auf deutschlandweite Fernwartung verwiesen.
-- Es gibt keine automatische Weiterleitung nach der Standortberechnung.
-- Bei verweigertem Zugriff oder einem Fehler bleibt die manuelle Standortauswahl verfügbar.
-
-Die Suche im Standortverzeichnis filtert Ortsnamen, die hinterlegte Standort-Postleitzahl,
-Regionsnamen und Einsatzgebiete. Sie ist keine deutschlandweite PLZ-Geocodierung.
+`/ueber-schultes-it/` beschreibt Andrej und seine Arbeitsweise. Impressum und Datenschutz
+werden vollständig auf ihren eigenen Pfaden gerendert und bleiben `noindex, follow`.
+Der Datenschutzabschnitt für die entfernte Browser-Standortbestimmung entfällt; der
+Google-Maps-Abschnitt bleibt bestehen.
 
 ## Kompatibilität und Fehlerseiten
+
+Die bisherigen Standort- und Betreiber-URLs führen auf `/`:
+
+- `/standorte/`
+- `/standorte/ludwigsburg/`
+- `/ludwigsburg/`
+- `/standortinhaber-werden/`
+
+Frühere lokale Leistungsdetails unter `/standorte/ludwigsburg/` werden auf den entsprechenden
+Pfad unter `/leistungen/` aufgelöst. Frühere regionale Fernwartungspfade führen auf die passende
+nationale Route unter `/fernwartung/`. Weitere historische flache Leistungspfade bleiben
+ebenfalls in der Alias-Registry erhalten.
 
 Alte Pfade werden weiterhin als eigene statische HTML-Dateien ausgeliefert. Aliasse indexierbarer
 Seiten:
@@ -186,13 +191,15 @@ Seiten:
 - verwenden `index, follow, max-image-preview:large`;
 - setzen den Canonical auf die neue Zielroute;
 - enthalten einen Meta-Refresh mit null Sekunden zur kanonischen URL;
+- erhalten Suchparameter und Sprungmarken über ein kleines vorgeschaltetes Skript;
 - zeigen einen normalen Link zur Zielseite als Rückfallebene;
 - erscheinen nicht in der Sitemap und werden intern nicht als Ziel verlinkt.
 
 Die Alias-Dateien sind Weiterleitungsseiten und keine zweite vollständige Inhaltsfassung.
 Sie werden nicht mit `noindex` kombiniert, damit Suchmaschinen die Weiterleitung verarbeiten
 können. GitHub Pages erhält hier statische Weiterleitungsdateien; die Anwendung setzt dadurch
-keinen eigenen HTTP-301-Status.
+keinen eigenen HTTP-301-Status. Dokument-URLs mit `index.html` werden wie ihre Verzeichnis-URL
+aufgelöst.
 
 Die früheren Hash-Aufrufe `#/impressum` und `#/datenschutz` werden im Browser durch `App.tsx`
 auf `/impressum/` beziehungsweise `/datenschutz/` umgeleitet. Sie sind keine eigenständigen
@@ -201,7 +208,7 @@ Fehlermeldung, Navigation und `noindex, follow`.
 
 ## Prüfpfad und Veröffentlichung
 
-`npm run check` führt Frontend- und Worker-Typechecks, die Tests, den Produktions-Build und
+`npm run check` führt Frontend- und Worker-Typechecks, Tests, RustDesk-Dateiprüfungen, den Produktions-Build und
 `scripts/validate-seo.mjs` aus. Die SEO-Prüfung arbeitet gegen `dist/site-manifest.json` und
 kontrolliert unter anderem:
 
@@ -212,22 +219,13 @@ kontrolliert unter anderem:
 - vollständige rechtliche Inhalte, die Fehlerseite und die Alias-Weiterleitungen;
 - zurückgebliebene Suspense-Platzhalter im statisch gerenderten Inhalt.
 
-`.github/workflows/deploy.yml` verwendet Node.js 22 und `npm ci`, führt `npm run check` aus und
-veröffentlicht erst anschließend `dist` auf GitHub Pages. Der Worker wird separat bereitgestellt.
-Browserprüfungen von Desktop-/Mobilansichten, Hydrierung, Navigation und Interaktionen ergänzen
-diese automatisierten Prüfungen; ein erfolgreicher Build allein belegt keine Live-Abnahme.
+`.github/workflows/deploy.yml` verwendet Node.js 22 und `npm ci`. Pull Requests gegen `main`
+durchlaufen denselben vollständigen Prüfpfad, ohne ein Pages-Artefakt zu veröffentlichen oder
+ein Deployment zu starten. Nur Pushes auf `main` oder ein manueller Workflow-Start auf `main`
+dürfen nach erfolgreichem Build `dist` auf GitHub Pages veröffentlichen. Der Worker wird separat
+bereitgestellt.
 
-## Neuen Standort ergänzen
-
-1. Standort mit eindeutiger ID, Pfad, Betreiber, Koordinaten und Einsatzgebiet in
-   `src/site/locations.ts` anlegen.
-2. Nur tatsächlich betriebsbereite Standorte auf `status: "active"` setzen. Kanonische
-   Standortseite, Sitemap und lokale strukturierte Daten entstehen daraus automatisch.
-3. Kontakt-, Preis-, Leistungs- und Betreiberdaten sowie lokale Inhalte prüfen und ergänzen.
-4. `npm run check` ausführen und die neue Seite, Verlinkung, Schema-Ausgabe und den
-   Standortfinder im Browser prüfen.
-
-Ein Bewerberportal, Gebietsvertrag, Ticketing und Abrechnung sind nicht Teil dieses
-Website-Bausteins. Eine automatisch erzeugte separate Impressumsseite pro selbstständigem
-Betreiber ist ebenfalls nicht implementiert; eine geprüfte URL oder ein strukturierter
-Impressumshinweis kann am Standort hinterlegt werden.
+Browserprüfungen von Desktop-/Mobilansichten, Tastaturbedienung, Navigation ohne JavaScript,
+Hydrierung, Sprungmarken und Interaktionen ergänzen diese automatisierten Prüfungen. Erfolgreiche
+Quellprüfungen oder ein Build allein belegen weder die Browser-Abnahme noch den veröffentlichten
+Produktionsstand.

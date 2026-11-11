@@ -7,6 +7,7 @@ import './premium.css'
 import './premium-service.css'
 import './premium-network.css'
 import './motion.css'
+import './navigation.css'
 
 const redirectTo = canonicalRedirect(
   window.location.pathname,

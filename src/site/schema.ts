@@ -39,7 +39,7 @@ function organizationSchema(): SchemaNode {
       email: siteConfig.remoteSupport.email,
       areaServed: siteConfig.country,
       availableLanguage: ['de'],
-      url: `${siteConfig.url}/standorte/`,
+      url: `${siteConfig.url}/#kontakt`,
     },
   }
 }
@@ -263,7 +263,8 @@ export function structuredDataForPage(page: SitePage) {
     inLanguage: siteConfig.language,
   })
 
-  graph.push(...serviceSchema(page), breadcrumbSchema(page))
+  graph.push(...serviceSchema(page))
+  if (page.kind !== 'not-found') graph.push(breadcrumbSchema(page))
 
   return {
     '@context': 'https://schema.org',

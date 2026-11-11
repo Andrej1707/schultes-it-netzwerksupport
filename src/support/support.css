@@ -308,9 +308,15 @@ body[data-menu-open='true'] .support-bot {
 .support-message.is-typing p {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 12px;
   min-height: 44px;
   padding: 16px;
+  font-size: 14px;
+}
+.support-typing-dots {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 5px;
 }
 .support-message.is-typing p i {
   width: 5px;
@@ -519,6 +525,25 @@ body[data-menu-open='true'] .support-bot {
 .support-inline-error svg {
   width: 16px;
   height: 16px;
+}
+.support-inline-error button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 9px 14px;
+  border: 1px solid #b5c9df;
+  border-radius: 22px;
+  color: #075bb8;
+  background: #fff;
+  cursor: pointer;
+}
+.support-inline-error button:hover:not(:disabled) {
+  background: #edf5fe;
+}
+.support-inline-error button:disabled {
+  opacity: 0.6;
+  cursor: wait;
 }
 
 .support-compose {

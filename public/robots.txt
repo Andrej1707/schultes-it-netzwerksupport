@@ -1,4 +1,7 @@
-# Keep ordinary search discovery available for customers across Germany.
+# Keep search discovery available for local IT help and nationwide remote support.
+# Legal pages and 404 use noindex in HTML, not a crawl block here.
+# Legacy URLs stay crawlable so search engines can see their permanent redirects.
+# Sitemap lists only canonical, indexable pages; there is no Google index.txt protocol.
 User-agent: Googlebot
 Allow: /
 

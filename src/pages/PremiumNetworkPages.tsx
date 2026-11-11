@@ -8,7 +8,6 @@ import {
   Copy,
   Globe2,
   Laptop,
-  LocateFixed,
   Mail,
   MapPin,
   Network,
@@ -22,11 +21,9 @@ import {
 import {
   getLocationServicesByGroup,
   getServicePath,
-  primaryServiceTemplates,
   remoteServiceTemplates,
 } from '../content/services'
 import { contactForLocation } from '../site/contacts'
-import { findNearestLocation } from '../site/locationFinder'
 import {
   activeLocationById,
   activeLocations,
@@ -76,16 +73,11 @@ function Photo({
 }
 
 function Breadcrumb({ page }: { page: SitePage }) {
+  if (page.path === '/') return null
   return (
     <nav className="pn-breadcrumb" aria-label="Brotkrümelnavigation">
       <a href="/">Startseite</a>
       <ChevronRight aria-hidden="true" />
-      {page.kind === 'location' ? (
-        <>
-          <a href="/standorte/">Standorte</a>
-          <ChevronRight aria-hidden="true" />
-        </>
-      ) : null}
       <span aria-current="page">
         {page.locationId
           ? (activeLocationById[page.locationId]?.city ?? page.heading)
@@ -175,12 +167,13 @@ function RemoteBanner() {
 }
 
 function ServicesPage({ page }: { page: SitePage }) {
+  const services = getLocationServicesByGroup(activeLocations[0].id, 'primary')
   return (
     <div className="pn-page pn-services">
       <div className="pn-container">
         <PageTitle page={page} className="pn-centered">
           <nav className="pn-topic-nav" aria-label="Leistungsbereiche">
-            {primaryServiceTemplates.map((service, index) => (
+            {services.map((service, index) => (
               <a href={`#bereich-${service.slug}`} key={service.slug}>
                 <span>0{index + 1}</span>
                 {service.shortTitle}
@@ -191,7 +184,7 @@ function ServicesPage({ page }: { page: SitePage }) {
         </PageTitle>
       </div>
       <div className="pn-product-stages pn-container">
-        {primaryServiceTemplates.map((service, index) => (
+        {services.map((service, index) => (
           <section
             className={`pn-product-stage pn-product-${serviceAccents[index]}`}
             id={`bereich-${service.slug}`}
@@ -211,8 +204,8 @@ function ServicesPage({ page }: { page: SitePage }) {
                   </li>
                 ))}
               </ul>
-              <LinkButton href="/standorte/">Ansprechpartner finden</LinkButton>
-              <small>Persönlich über einen aktiven Standort betreut.</small>
+              <LinkButton href={getServicePath(service)}>Leistung ansehen</LinkButton>
+              <small>Persönlich mit Andrej Schultes abstimmen.</small>
             </div>
             <div className="pn-product-visual">
               <Photo name={serviceArt[index]} alt="" eager={index === 0} />
@@ -243,235 +236,6 @@ function ServicesPage({ page }: { page: SitePage }) {
           </section>
         ))}
       </div>
-      <RemoteBanner />
-    </div>
-  )
-}
-
-type FinderState = {
-  status: 'idle' | 'locating' | 'result'
-  message?: string
-  href?: string
-  linkLabel?: string
-}
-
-function LocationFinder() {
-  const [state, setState] = useState<FinderState>({ status: 'idle' })
-  function locate() {
-    if (!navigator.geolocation) {
-      setState({
-        status: 'result',
-        message:
-          'Dein Browser unterstützt keine Standortsuche. Wähle deinen Standort einfach aus der Liste.',
-      })
-      return
-    }
-    setState({ status: 'locating' })
-    navigator.geolocation.getCurrentPosition(
-      ({ coords }) => {
-        const match = findNearestLocation(
-          { latitude: coords.latitude, longitude: coords.longitude },
-          activeLocations,
-        )
-        if (!match) {
-          setState({
-            status: 'result',
-            message:
-              'Zurzeit ist kein aktiver Vor-Ort-Standort hinterlegt. Deutschlandweite Fernwartung findest du hier.',
-            href: '/fernwartung/',
-            linkLabel: 'Fernwartung ansehen',
-          })
-          return
-        }
-        const distance = Math.round(match.distanceKm)
-        setState({
-          status: 'result',
-          message: match.inServiceArea
-            ? `${match.location.city} liegt ungefähr ${distance} km Luftlinie entfernt. Dein Standort liegt im hinterlegten Einsatzradius. Einen Termin stimmst du direkt ab.`
-            : `Der nächste Standort ist ${match.location.city}, ungefähr ${distance} km Luftlinie entfernt. Dein Standort liegt außerhalb des hinterlegten Einsatzradius. Fernwartung ist deutschlandweit möglich.`,
-          href: match.inServiceArea ? match.location.path : '/fernwartung/',
-          linkLabel: match.inServiceArea
-            ? `Standort ${match.location.city} ansehen`
-            : 'Fernwartung ansehen',
-        })
-      },
-      (error) => {
-        setState({
-          status: 'result',
-          message:
-            error.code === error.PERMISSION_DENIED
-              ? 'Du hast den Standortzugriff nicht freigegeben. Die Auswahl in der Liste funktioniert trotzdem.'
-              : 'Dein Standort konnte gerade nicht ermittelt werden. Bitte wähle einen Standort aus der Liste.',
-        })
-      },
-      { enableHighAccuracy: false, timeout: 8000, maximumAge: 600_000 },
-    )
-  }
-  return (
-    <div className="pn-location-finder">
-      <LocateFixed aria-hidden="true" />
-      <div>
-        <h2>Welcher Standort ist in deiner Nähe?</h2>
-        <p>
-          Erst mit deinem Klick wird der Browser nach deinem Standort gefragt.
-          Die Entfernung wird auf deinem Gerät berechnet; Koordinaten werden
-          nicht an Schultes IT übertragen oder gespeichert.
-        </p>
-        <button
-          className="pn-button"
-          type="button"
-          onClick={locate}
-          disabled={state.status === 'locating'}
-        >
-          {state.status === 'locating'
-            ? 'Standort wird ermittelt …'
-            : 'Meinen Standort prüfen'}
-          <ArrowUpRight aria-hidden="true" />
-        </button>
-        <div className="pn-finder-result" aria-live="polite" aria-atomic="true">
-          {state.message ? <p>{state.message}</p> : null}
-          {state.href ? (
-            <a className="pn-text-link" href={state.href}>
-              {state.linkLabel}
-              <ArrowRight aria-hidden="true" />
-            </a>
-          ) : null}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function RegionDiagram({ location }: { location: ServiceLocation }) {
-  return (
-    <div
-      className="pn-region-diagram"
-      aria-label={`Einsatzgebiet ${location.city} und Umgebung, schematische Darstellung`}
-    >
-      <div className="pn-region-rings" aria-hidden="true">
-        <i />
-        <i />
-        <i />
-      </div>
-      <span className="pn-region-caption">REGIONAL VERBUNDEN</span>
-      <div className="pn-region-center">
-        <MapPin aria-hidden="true" />
-        <strong>{location.city}</strong>
-        <span>{location.postalCode}</span>
-      </div>
-      <div className="pn-region-satellites">
-        {location.serviceAreas
-          .filter((area) => area !== location.city)
-          .slice(0, 5)
-          .map((area, index) => (
-            <span
-              className={`pn-region-city pn-region-city-${index}`}
-              key={area}
-            >
-              <i aria-hidden="true" />
-              {area}
-            </span>
-          ))}
-      </div>
-      <p className="pn-region-footnote">
-        Einsatzgebiet · schematische Darstellung
-      </p>
-    </div>
-  )
-}
-
-function LocationsPage({ page }: { page: SitePage }) {
-  const [search, setSearch] = useState('')
-  const query = search.trim().toLocaleLowerCase('de-DE')
-  const filteredLocations = activeLocations.filter((location) =>
-    `${location.city} ${location.postalCode} ${location.region} ${location.serviceAreas.join(' ')}`
-      .toLocaleLowerCase('de-DE')
-      .includes(query),
-  )
-  return (
-    <div className="pn-page pn-locations">
-      <div className="pn-container pn-directory-hero">
-        <PageTitle page={page}>
-          <div className="pn-directory-stat">
-            <strong>{String(activeLocations.length).padStart(2, '0')}</strong>
-            <span>
-              {activeLocations.length === 1
-                ? 'aktiver Standort'
-                : 'aktive Standorte'}
-              <br />
-              mit persönlichem Ansprechpartner
-            </span>
-          </div>
-        </PageTitle>
-        {activeLocations[0] ? (
-          <RegionDiagram location={activeLocations[0]} />
-        ) : null}
-      </div>
-      <section
-        className="pn-container pn-directory"
-        aria-label="Standortverzeichnis"
-      >
-        <div className="pn-directory-heading">
-          <h2>Finde deine Region.</h2>
-          <label className="pn-search">
-            <Search aria-hidden="true" />
-            <span className="pn-visually-hidden">
-              Standorte nach Ort oder Postleitzahl filtern
-            </span>
-            <input
-              type="search"
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-              placeholder="Ort oder Postleitzahl"
-            />
-          </label>
-        </div>
-        <p className="pn-result-count" role="status">
-          {filteredLocations.length}{' '}
-          {filteredLocations.length === 1 ? 'Standort' : 'Standorte'} gefunden
-        </p>
-        {filteredLocations.map((location) => (
-          <article className="pn-location-row" key={location.id}>
-            <div className="pn-location-postcode">
-              <MapPin aria-hidden="true" />
-              <span>{location.postalCode}</span>
-            </div>
-            <div className="pn-location-row-copy">
-              <span className="pn-active-label">Aktiver Standort</span>
-              <h3>
-                <a href={location.path}>{location.city}</a>
-              </h3>
-              <p>
-                {location.operator.name} · {location.operator.role}
-              </p>
-              <div className="pn-area-tags">
-                {location.serviceAreas.map((area) => (
-                  <span key={area}>{area}</span>
-                ))}
-              </div>
-            </div>
-            <LinkButton href={location.path}>Standort ansehen</LinkButton>
-          </article>
-        ))}
-        {filteredLocations.length === 0 ? (
-          <div className="pn-empty-state">
-            <p>Für diese Suche ist noch kein regionaler Standort hinterlegt.</p>
-            <button
-              className="pn-text-link"
-              type="button"
-              onClick={() => setSearch('')}
-            >
-              Alle Standorte zeigen
-              <ArrowRight aria-hidden="true" />
-            </button>
-            <a className="pn-text-link" href="/fernwartung/">
-              Deutschlandweite Fernwartung
-              <ArrowRight aria-hidden="true" />
-            </a>
-          </div>
-        ) : null}
-        <LocationFinder />
-      </section>
       <RemoteBanner />
     </div>
   )
@@ -643,10 +407,10 @@ function LocationPage({
             </p>
             <div className="pn-actions">
               <LinkButton href={contact.phoneHref}>
-                Termin besprechen
+                Andrej anrufen
               </LinkButton>
-              <a className="pn-text-link" href="#leistungen">
-                Leistungen entdecken
+              <a className="pn-text-link" href="#alltagshilfe">
+                Passende Hilfe finden
                 <ArrowDown aria-hidden="true" />
               </a>
             </div>
@@ -678,9 +442,10 @@ function LocationPage({
       </section>
       <nav
         className="pn-local-subnav pn-container"
-        aria-label="Auf dieser Standortseite"
+        aria-label="Auf dieser Seite"
       >
         <a href="#leistungen">Leistungen</a>
+        <a href="#alltagshilfe">Alle Hilfethemen</a>
         <a href="#preise">Preise</a>
         <a href="#ludwigsburg">Einsatzgebiet</a>
         <a href="#arbeitsweise">Arbeitsweise</a>
@@ -710,6 +475,22 @@ function LocationPage({
                 Leistung ansehen
                 <ArrowUpRight aria-hidden="true" />
               </strong>
+            </a>
+          ))}
+        </div>
+      </section>
+      <section className="pn-container pn-local-topics" id="alltagshilfe">
+        <SectionTitle
+          label="DEIN PROBLEM IN DEINEN WORTEN"
+          title="Was funktioniert gerade nicht?"
+        >
+          Vom Drucker bis zum Handy: Wähle dein Thema und finde direkt die passende Hilfe.
+        </SectionTitle>
+        <div className="pn-topic-links">
+          {topics.map((service) => (
+            <a href={getServicePath(service)} key={service.slug}>
+              <span>{service.shortTitle}</span>
+              <ArrowUpRight aria-hidden="true" />
             </a>
           ))}
         </div>
@@ -855,20 +636,6 @@ function LocationPage({
         </ol>
       </section>
       {location.id === 'ludwigsburg' ? <LocalProjects /> : null}
-      <section className="pn-container pn-local-topics" id="alltagshilfe">
-        <SectionTitle
-          label="DEIN PROBLEM IN DEINEN WORTEN"
-          title="Was funktioniert gerade nicht?"
-        />
-        <div className="pn-topic-links">
-          {topics.map((service) => (
-            <a href={getServicePath(service)} key={service.slug}>
-              <span>{service.shortTitle}</span>
-              <ArrowUpRight aria-hidden="true" />
-            </a>
-          ))}
-        </div>
-      </section>
       <section className="pn-container pn-contact-end" id="kontakt">
         <p className="pn-eyebrow">
           DIREKT MIT {contact.operatorName.toUpperCase()}
@@ -1032,138 +799,11 @@ function GuidesPage({ page }: { page: SitePage }) {
             beschreibe die Situation bei der Anfrage. Gemeinsam klären wir den
             nächsten sinnvollen Schritt.
           </p>
-          <a className="pn-text-link" href="/standorte/">
-            Regionalen Ansprechpartner finden
+          <a className="pn-text-link" href="/#kontakt">
+            Andrej direkt kontaktieren
             <ArrowRight aria-hidden="true" />
           </a>
         </div>
-      </section>
-    </div>
-  )
-}
-
-const centralResponsibilities = [
-  'Aufbau und Bewerbung der Gesamtmarke',
-  'Zentrale Website, Systeme und deutschlandweite SEO-Struktur',
-  'Fernwartungsangebote, Vorlagen und gemeinsame Prozesse',
-  'Weiterentwicklung der technischen und organisatorischen Grundlage',
-]
-const regionalResponsibilities = [
-  'Selbstständiger Aufbau des regionalen Kundenstamms',
-  'Vor-Ort-Service im vereinbarten Einsatzgebiet',
-  'Eigene Kundenbearbeitung, Abrechnung und wirtschaftliche Verantwortung',
-  'Einhaltung gemeinsamer Qualitäts- und Markenstandards',
-]
-
-function OwnerPage({ page }: { page: SitePage }) {
-  return (
-    <div className="pn-page pn-owner">
-      <div className="pn-container pn-owner-hero">
-        <PageTitle page={page}>
-          <div className="pn-owner-status">
-            <span aria-hidden="true" />
-            <strong>Struktur im Aufbau</strong>
-            <p>Interessierte können sich persönlich melden.</p>
-          </div>
-          <LinkButton href="#interesse">Modell kennenlernen</LinkButton>
-        </PageTitle>
-        <div
-          className="pn-owner-composition"
-          aria-label="Gemeinsame Marke und selbstständige regionale Verantwortung"
-        >
-          <div className="pn-owner-core">
-            <span>GEMEINSAME GRUNDLAGE</span>
-            <strong>Schultes IT</strong>
-            <small>Marke · Systeme · Standards</small>
-          </div>
-          <div className="pn-owner-connector" aria-hidden="true" />
-          <div className="pn-owner-region">
-            <MapPin aria-hidden="true" />
-            <span>DEINE REGION</span>
-            <strong>
-              Persönlich.
-              <br />
-              Eigenverantwortlich.
-            </strong>
-            <small>Ein Modell für selbstständige Betreiber.</small>
-          </div>
-        </div>
-      </div>
-      <section className="pn-container pn-owner-model" id="interesse">
-        <SectionTitle
-          label="DAS GEPLANTE MODELL"
-          title="Regional selbstständig. Zentral unterstützt."
-        >
-          Künftige Standortinhaber arbeiten rechtlich selbstständig, auf eigene
-          Rechnung und auf eigenes wirtschaftliches Risiko. Sie nutzen Marke,
-          Systeme und Unterstützung von Schultes IT gegen eine umsatzabhängige
-          System- beziehungsweise Lizenzgebühr.
-        </SectionTitle>
-        <div className="pn-responsibilities">
-          {[
-            ['Schultes IT zentral', centralResponsibilities],
-            ['Standortinhaber regional', regionalResponsibilities],
-          ].map(([title, items], index) => (
-            <article key={title as string}>
-              <span className="pn-eyebrow">0{index + 1} / VERANTWORTUNG</span>
-              <h3>{title as string}</h3>
-              <ul>
-                {(items as string[]).map((item) => (
-                  <li key={item}>
-                    <Check aria-hidden="true" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </section>
-      <section className="pn-container pn-owner-next">
-        <div>
-          <p className="pn-eyebrow">DER ERSTE AUSTAUSCH</p>
-          <h2>
-            Eine Nachricht.
-            <br />
-            Drei gute Anhaltspunkte.
-          </h2>
-          <p>
-            Beschreibe deine Region, deine Erfahrung und wie du dir einen
-            eigenen IT-Standort vorstellst. Damit beginnt ein unverbindlicher
-            Austausch.
-          </p>
-          <LinkButton href={activeLocations[0]?.path ?? '/standorte/'}>
-            Aktiven Ansprechpartner finden
-          </LinkButton>
-        </div>
-        <ol className="pn-owner-steps">
-          <li>
-            <span>01</span>
-            <div>
-              <h3>Deine Region</h3>
-              <p>Wo möchtest du Privatkunden und kleine Betriebe betreuen?</p>
-            </div>
-          </li>
-          <li>
-            <span>02</span>
-            <div>
-              <h3>Deine Erfahrung</h3>
-              <p>Welche IT-Aufgaben übernimmst du heute schon eigenständig?</p>
-            </div>
-          </li>
-          <li>
-            <span>03</span>
-            <div>
-              <h3>Deine Vorstellung</h3>
-              <p>Wie willst du deinen regionalen Service aufbauen?</p>
-            </div>
-          </li>
-        </ol>
-        <p className="pn-owner-notice">
-          Das Modell ist in Vorbereitung. Es gibt noch kein automatisiertes
-          Bewerberportal und keine sofortige Gebietszusage. Konkrete Bedingungen
-          werden im persönlichen Austausch geklärt.
-        </p>
       </section>
     </div>
   )
@@ -1216,8 +856,8 @@ function AboutPage({ page }: { page: SitePage }) {
           </h2>
           <p>
             Andrej Schultes hat Schultes IT als direkten, verständlichen
-            IT-Service aufgebaut. Der inhabergeführte Standort ist die Grundlage
-            für ein Netzwerk, in dem persönliche Verantwortung sichtbar bleibt.
+            IT-Service in Ludwigsburg aufgebaut. Von der ersten Frage bis zur
+            fertigen Lösung bleibt er dein persönlicher Ansprechpartner.
           </p>
           <p>
             Computer, Netzwerk, Webseite oder ein kleines digitales Werkzeug:
@@ -1225,8 +865,8 @@ function AboutPage({ page }: { page: SitePage }) {
             im Alltag funktioniert.
           </p>
           {firstLocation ? (
-            <a className="pn-text-link" href={firstLocation.path}>
-              Den ersten Standort kennenlernen
+            <a className="pn-text-link" href="/#kontakt">
+              Andrej direkt kontaktieren
               <ArrowUpRight aria-hidden="true" />
             </a>
           ) : null}
@@ -1266,24 +906,23 @@ function AboutPage({ page }: { page: SitePage }) {
         <div>
           <p className="pn-eyebrow">DIE NÄCHSTEN SCHRITTE</p>
           <h2>
-            Zentral gedacht.
+            In Ludwigsburg.
             <br />
-            Regional persönlich.
+            Für deinen Alltag.
           </h2>
           <p>
-            Deutschlandweite Fernwartung wird zentral betreut. Für Vor-Ort-Hilfe
-            sollen selbstständige regionale Standorte wachsen, die gemeinsame
-            Systeme und Qualitätsstandards nutzen.
+            Schultes IT hilft Privatpersonen und kleinen Unternehmen in
+            Ludwigsburg und Umgebung. Für geeignete Probleme ist Fernwartung
+            auch deutschlandweit möglich.
           </p>
           <p>
-            Der erste Standort in {firstLocation?.city ?? 'der Region'} ist
-            aktiv. Das Modell für weitere Standortinhaber befindet sich im
-            Aufbau.
+            Du beschreibst dein Anliegen direkt Andrej. Gemeinsam klärt ihr,
+            was sinnvoll ist, welche Kosten entstehen und wie es weitergeht.
           </p>
           <div className="pn-actions">
-            <LinkButton href="/standorte/">Aktive Standorte</LinkButton>
-            <a className="pn-text-link" href="/standortinhaber-werden/">
-              Das Netzwerkmodell
+            <LinkButton href="/#kontakt">Kontakt aufnehmen</LinkButton>
+            <a className="pn-text-link" href="/leistungen/">
+              Leistungen entdecken
               <ArrowUpRight aria-hidden="true" />
             </a>
           </div>
@@ -1313,8 +952,8 @@ function NotFoundPage({ page }: { page: SitePage }) {
       <PageTitle page={page}>
         <div className="pn-actions">
           <LinkButton href="/">Zur Startseite</LinkButton>
-          <LinkButton href="/standorte/" secondary>
-            Standort finden
+          <LinkButton href="/#kontakt" secondary>
+            Persönliche Hilfe
           </LinkButton>
         </div>
       </PageTitle>
@@ -1324,7 +963,6 @@ function NotFoundPage({ page }: { page: SitePage }) {
 
 export default function PremiumNetworkPages({ page }: { page: SitePage }) {
   if (page.kind === 'services') return <ServicesPage page={page} />
-  if (page.kind === 'locations') return <LocationsPage page={page} />
   if (
     page.kind === 'location' &&
     page.locationId &&
@@ -1337,7 +975,6 @@ export default function PremiumNetworkPages({ page }: { page: SitePage }) {
       />
     )
   if (page.kind === 'guides') return <GuidesPage page={page} />
-  if (page.kind === 'owner') return <OwnerPage page={page} />
   if (page.kind === 'about') return <AboutPage page={page} />
   return <NotFoundPage page={page} />
 }

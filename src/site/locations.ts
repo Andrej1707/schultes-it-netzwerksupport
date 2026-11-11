@@ -84,9 +84,9 @@ export const locations: ServiceLocation[] = [
   {
     id: 'ludwigsburg',
     slug: 'ludwigsburg',
-    path: '/standorte/ludwigsburg/',
-    aliases: ['/ludwigsburg/'],
-    name: 'Schultes IT Ludwigsburg',
+    path: '/',
+    aliases: ['/standorte/', '/standorte/ludwigsburg/', '/ludwigsburg/', '/standortinhaber-werden/'],
+    name: 'Schultes IT & Netzwerksupport',
     status: 'active',
     ownsLegacyServiceAliases: true,
     city: 'Ludwigsburg',
@@ -119,23 +119,23 @@ export const locations: ServiceLocation[] = [
     remoteSupport: {
       available: true,
       note:
-        'Fernwartung wird persönlich durch den Standort Ludwigsburg betreut und vorab direkt abgestimmt.',
+        'Fernwartung wird persönlich durch Andrej Schultes betreut und vorab direkt abgestimmt.',
     },
     content: {
       brandLine:
-        'Der erste Schultes-IT-Standort verbindet persönliche Hilfe im Landkreis Ludwigsburg mit sicherer Fernwartung.',
+        'Andrej Schultes verbindet persönliche Hilfe in Ludwigsburg und Umgebung mit sicherer Fernwartung.',
       serviceAreaSummary:
-        'Der Standort betreut Ludwigsburg sowie unter anderem Kornwestheim, Asperg, Remseck, Tamm und Bietigheim-Bissingen.',
+        'Andrej betreut Ludwigsburg sowie unter anderem Kornwestheim, Asperg, Remseck, Tamm und Bietigheim-Bissingen.',
       localSupportApproach:
         'Andrej kommt für geeignete Vor-Ort-Termine direkt zu Privatpersonen und kleinen Betrieben in der Region. Geräte müssen nicht erst zu einer anonymen Annahmestelle gebracht werden.',
       remoteSupportApproach:
-        'Fernwartungsfälle werden vom Standort Ludwigsburg persönlich mit Andrej abgestimmt. Die Verbindung startest du selbst und behältst während der gesamten Sitzung die Kontrolle.',
+        'Fernwartung wird persönlich mit Andrej abgestimmt. Die Verbindung startest du selbst und behältst während der gesamten Sitzung die Kontrolle.',
       businessSupportApproach:
         'Privatpersonen und kleine Unternehmen aus dem Landkreis erhalten pragmatische Unterstützung für Computer, Netzwerke, Webseiten und wiederkehrende digitale Aufgaben.',
       operatorApproach:
         'Andrej grenzt die Ursache zuerst nachvollziehbar ein, erklärt die nächsten Schritte ohne Fachchinesisch und spricht Grenzen offen an.',
       localProof:
-        'Der Standort ist mit einem eigenen Google-Unternehmensprofil, realer Geschäftsanschrift und direkten regionalen Kontaktdaten nachweisbar.',
+        'Schultes IT hat ein eigenes Google-Unternehmensprofil, eine reale Geschäftsanschrift und direkte Kontaktdaten in Ludwigsburg.',
     },
     trust: {
       source: 'Google',
@@ -164,7 +164,7 @@ export const locations: ServiceLocation[] = [
       },
       operatesInOwnNameAndAccount: true,
       ownAccountNotice:
-        'Der inhabergeführte Standort Ludwigsburg arbeitet im eigenen Namen und auf eigene Rechnung.',
+        'Andrej Schultes führt Schultes IT im eigenen Namen und auf eigene Rechnung.',
     },
   },
 ]

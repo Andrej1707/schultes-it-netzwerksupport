@@ -250,7 +250,7 @@ function validateSharedHtml(html, page, path, canonicalUrl, indexable) {
     `Static H1 does not match the route content in ${path}.`,
   )
   assert(
-    /<nav\b[^>]*aria-label="Hauptnavigation"[^>]*>(?:(?!<\/nav>)[\s\S])*href="\/standorte\/"/i.test(
+    /<nav\b[^>]*aria-label="Hauptnavigation"[^>]*>(?:(?!<\/nav>)[\s\S])*href="\/leistungen\/"/i.test(
       html,
     ),
     `Static crawlable navigation is missing in ${path}.`,
@@ -318,6 +318,48 @@ const aliasPaths = new Set(
     ),
   ),
 )
+
+const canonicalPaths = new Set(manifest.pages.map((page) => page.path))
+const redirectTargets = new Map(manifest.redirects.map((redirect) => [redirect.path, redirect.target]))
+const expectedSitemapUrls = manifest.pages
+  .filter((page) => page.indexable)
+  .map((page) => `${siteUrl}${page.path}`)
+  .sort()
+const xmlSitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
+  .map((match) => decodeHtml(match[1]))
+  .sort()
+assert(
+  JSON.stringify([...sitemapLines].sort()) === JSON.stringify(expectedSitemapUrls) &&
+    JSON.stringify(xmlSitemapUrls) === JSON.stringify(expectedSitemapUrls),
+  'XML and text sitemaps must contain exactly the indexable canonical routes.',
+)
+assert(
+  manifest.pages.filter((page) => page.kind === 'location').length === 1 &&
+    manifest.pages.some((page) => page.path === '/' && page.kind === 'location') &&
+    !manifest.pages.some((page) => ['locations', 'owner'].includes(page.kind)),
+  'The public site must present one local business on the homepage, without branch-selection pages.',
+)
+assert(
+  redirectTargets.size === aliasPaths.size,
+  'The redirect manifest must describe every compatibility alias exactly once.',
+)
+for (const redirect of manifest.redirects) {
+  assert(
+    aliasPaths.has(redirect.path) && canonicalPaths.has(redirect.target) &&
+      !redirectTargets.has(redirect.target) && redirect.path !== redirect.target &&
+      redirect.robots === 'index, follow, max-image-preview:large',
+    `Redirect ${redirect.path} must be crawlable and point directly to a canonical destination.`,
+  )
+}
+const historicalRoutes = JSON.parse(await readFile(
+  join(process.cwd(), 'docs/seo/historical-routes.json'), 'utf8',
+))
+for (const { path } of historicalRoutes.routeInventory) {
+  assert(
+    canonicalPaths.has(path) || redirectTargets.has(path),
+    `Audited historical URL ${path} is missing its canonical page or direct redirect.`,
+  )
+}
 
 assert(
   robots.includes(`Sitemap: ${siteUrl}/sitemap.xml`),
@@ -463,8 +505,8 @@ for (const page of manifest.pages) {
       `Service provider does not reference its owning location in ${canonicalOutput}.`,
     )
     assert(
-      page.path.startsWith('/standorte/'),
-      `Location-owned service is outside the canonical location tree: ${page.path}.`,
+      page.path.startsWith('/leistungen/'),
+      `Local service is outside the canonical service tree: ${page.path}.`,
     )
   }
 

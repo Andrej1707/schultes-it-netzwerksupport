@@ -12,7 +12,7 @@ const categoryConfig = {
     legacyPaths: ['/pc-system/'],
     seoTitle: 'PC- & Laptop-Hilfe | Schultes IT Deutschland',
     seoDescription:
-      'PC- und Laptop-Hilfe von Schultes IT: deutschlandweit per Fernwartung und persönlich über regionale Standorte. Verständlich, sicher und ohne Fachchinesisch.',
+      'PC- und Laptop-Hilfe von Schultes IT: persönlich in Ludwigsburg und Umgebung oder deutschlandweit per Fernwartung. Verständlich und direkt mit Andrej.',
     keywords:
       'PC Hilfe, Laptop Hilfe, Computerhilfe, Windows Hilfe, PC Support Deutschland, regionale IT Hilfe',
   },
@@ -22,7 +22,7 @@ const categoryConfig = {
     legacyPaths: ['/netzwerk-wlan/'],
     seoTitle: 'Netzwerk- & WLAN-Hilfe | Schultes IT',
     seoDescription:
-      'Hilfe bei WLAN, Router, Mesh und kleinen Netzwerken: per Fernwartung, wenn möglich, oder persönlich über einen regionalen Schultes-IT-Standort.',
+      'Hilfe bei WLAN, Router, Mesh und kleinen Netzwerken: per Fernwartung, wenn möglich, oder persönlich mit Andrej in Ludwigsburg und Umgebung.',
     keywords:
       'WLAN Hilfe, Netzwerk Hilfe, Router Hilfe, Mesh einrichten, Internet Probleme, Schultes IT',
   },
@@ -291,7 +291,7 @@ const nationalRemoteChildren: ServicePageData[] = [
       {
         question: 'Kann Fernwartung einen defekten PC reparieren?',
         answer:
-          'Hardwaredefekte oder ein PC, der gar nicht mehr startet, brauchen meist Hilfe vor Ort. Dann wird ehrlich auf einen regionalen Standort oder einen passenden nächsten Schritt verwiesen.',
+          'Hardwaredefekte oder ein PC, der gar nicht mehr startet, brauchen meist Hilfe vor Ort. Dann besprichst du mit Andrej, ob Hilfe vor Ort in Ludwigsburg und Umgebung oder ein anderer passender nächster Schritt sinnvoll ist.',
       },
       {
         question: 'Muss ich technische Begriffe kennen?',
@@ -468,7 +468,7 @@ export const centralServicePages: ServicePageData[] = remoteServiceTemplates.map
     ...template,
     templateSlug: template.slug,
     legacyPaths: activeLocations.map(
-      (location) => `${location.path}${remoteLocationRelativePath(template)}`,
+      (location) => `/standorte/${location.slug}/${remoteLocationRelativePath(template)}`,
     ),
   }),
 )
@@ -516,12 +516,15 @@ function locationRelativePath(template: ServicePageData) {
   return `${template.slug}/`
 }
 
-function legacyAliasesForLocation(template: ServicePageData, location: ServiceLocation) {
+function legacyAliasesForLocation(template: ServicePageData, location: ServiceLocation, canonicalPath: string) {
   if (!location.ownsLegacyServiceAliases) return []
 
-  const aliases = [...(template.legacyPaths ?? [])]
+  const aliases = [
+    ...(template.legacyPaths ?? []),
+    `/standorte/${location.slug}/${locationRelativePath(template)}`,
+  ]
   if (template.path) aliases.unshift(template.path)
-  return [...new Set(aliases)]
+  return [...new Set(aliases)].filter((alias) => alias !== canonicalPath)
 }
 
 function localCopyTransform(location: ServiceLocation, deliveryMode: ServicePageData['deliveryMode']) {
@@ -529,27 +532,27 @@ function localCopyTransform(location: ServiceLocation, deliveryMode: ServicePage
 
   return (value: string) => {
     const localized = value
-      .replaceAll('über regionale Schultes-IT-Standorte', `beim Schultes-IT-Standort ${location.city}`)
-      .replaceAll('über einen aktiven Schultes-IT-Standort', `beim Schultes-IT-Standort ${location.city}`)
-      .replaceAll('über einen regionalen Schultes-IT-Standort', `beim Schultes-IT-Standort ${location.city}`)
-      .replaceAll('aus dem Schultes-IT-Netzwerk', `vom Standort ${location.city}`)
+      .replaceAll('über regionale Schultes-IT-Standorte', `bei Andrej in ${location.city}`)
+      .replaceAll('über einen aktiven Schultes-IT-Standort', `bei Andrej in ${location.city}`)
+      .replaceAll('über einen regionalen Schultes-IT-Standort', `bei Andrej in ${location.city}`)
+      .replaceAll('aus dem Schultes-IT-Netzwerk', `aus ${location.city}`)
       .replaceAll('regionale Einsatzgebiete', area)
       .replaceAll('das regionale Einsatzgebiet', area)
       .replaceAll('Deutschland / regionale Standorte', area)
       .replaceAll('deiner Region', location.city)
       .replaceAll('in Ludwigsburg und Umgebung', `in ${area}`)
       .replaceAll('Ludwigsburg und Umgebung', area)
-      .replaceAll('aus Ludwigsburg', `vom Standort ${location.city}`)
+      .replaceAll('aus Ludwigsburg', `aus ${location.city}`)
       .replaceAll('in Ludwigsburg', `in ${location.city}`)
       .replaceAll('Ludwigsburg', location.city)
 
     if (deliveryMode === 'remote') return localized
 
     return localized
-      .replaceAll('deutschlandweite', `vom Standort ${location.city} betreute`)
-      .replaceAll('Deutschlandweite', `Vom Standort ${location.city} betreute`)
-      .replaceAll('deutschlandweit', `über den Standort ${location.city}`)
-      .replaceAll('Deutschlandweit', `Standort ${location.city}`)
+      .replaceAll('deutschlandweite', `aus ${location.city} betreute`)
+      .replaceAll('Deutschlandweite', `Persönlich betreute`)
+      .replaceAll('deutschlandweit', `in ${location.city} und Umgebung`)
+      .replaceAll('Deutschlandweit', `Schultes IT ${location.city}`)
   }
 }
 
@@ -575,12 +578,12 @@ export function createLocationService(
   const localCopy = localServiceCopyBySlug.get(templateSlug) ?? template
   const operatorName = location.operator.responsiblePerson ?? location.operator.name
   const contextText = locationContextText(template, location)
-  const path = `${location.path}${locationRelativePath(template)}`
+  const path = `${location.path === '/' ? '/leistungen/' : location.path}${locationRelativePath(template)}`
   const modeLabel =
     template.deliveryMode === 'remote'
-      ? `Fernwartung durch den Standort ${location.city}`
+      ? `Fernwartung durch ${operatorName}`
       : template.deliveryMode === 'project'
-        ? `Projektbetreuung durch den Standort ${location.city}`
+        ? `Projektbetreuung durch ${operatorName}`
         : `Bei dir vor Ort / ergänzend per Fernwartung`
   const seoTitle =
     template.deliveryMode === 'remote'
@@ -594,7 +597,7 @@ export function createLocationService(
     slug: locationServiceSlug(location, templateSlug),
     templateSlug,
     path,
-    legacyPaths: legacyAliasesForLocation(template, location),
+    legacyPaths: legacyAliasesForLocation(template, location, path),
     scope: 'location',
     locationId: location.id,
     areaLabel:
@@ -606,7 +609,7 @@ export function createLocationService(
     seoDescription:
       template.deliveryMode === 'remote'
         ? conciseSeoDescription(
-            `${localized.description} Persönlich betreut durch ${operatorName} vom Standort ${location.city}.`,
+            `${localized.description} Persönlich betreut durch ${operatorName} aus ${location.city}.`,
           )
         : transform(localCopy.seoDescription),
     keywords:
@@ -633,7 +636,7 @@ export function createLocationService(
       {
         question: `Wer betreut diese Leistung in ${location.city}?`,
         answer:
-          `${operatorName} ist der verantwortliche Ansprechpartner des Standorts ${location.city}. ` +
+          `${operatorName} ist dein direkter Ansprechpartner in ${location.city}. ` +
           `${location.content.operatorApproach}`,
       },
     ],
@@ -645,7 +648,7 @@ export function createLocationService(
           : locationServiceSlug(location, relatedSlug),
       ),
     locationContext: {
-      eyebrow: `STANDORT / ${location.city.toUpperCase()}`,
+      eyebrow: `PERSÖNLICHE HILFE / ${location.city.toUpperCase()}`,
       heading: `${localized.shortTitle} mit echter regionaler Verantwortung.`,
       text: contextText,
       points: [

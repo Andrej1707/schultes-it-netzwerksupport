@@ -27,10 +27,10 @@ const supportLocations: Record<string, SupportLocationContext> = {
   ludwigsburg: {
     id: 'ludwigsburg',
     kind: 'location',
-    displayName: 'Schultes IT & Netzwerksupport, Standort Ludwigsburg',
+    displayName: 'Schultes IT & Netzwerksupport',
     operatorName: 'Andrej Schultes',
     city: 'Ludwigsburg',
-    serviceAreas: ['Ludwigsburg', 'Kornwestheim', 'Asperg', 'Tamm', 'Remseck am Neckar'],
+    serviceAreas: ['Ludwigsburg', 'Kornwestheim', 'Asperg', 'Tamm', 'Remseck am Neckar', 'Bietigheim-Bissingen'],
     phoneDisplay: '+49 179 1707411',
     email: 'kontakt@schultes-it.de',
     remoteFrom: '25 Euro',
@@ -39,47 +39,44 @@ const supportLocations: Record<string, SupportLocationContext> = {
 }
 
 export function resolveSupportLocation(value: unknown) {
-  return typeof value === 'string' ? supportLocations[value] : undefined
+  if (value === 'central') return supportLocations.ludwigsburg
+  return typeof value === 'string' && Object.hasOwn(supportLocations, value)
+    ? supportLocations[value]
+    : undefined
 }
 
-export function supportContextInstructions(location?: SupportLocationContext) {
-  if (!location) {
-    return `AKTUELLER SEITENKONTEXT
-- Der Besucher befindet sich auf einer zentralen Markenseite und hat noch keinen Standort gewählt.
-- Nenne keine Telefonnummer, E-Mail-Adresse, standortbezogenen Preise oder einen bestimmten Betreiber.
-- Erkläre bei Kontakt-, Preis-, Termin- oder Fernwartungsfragen, dass diese Angaben zum jeweiligen Standort gehören.
-- Verweise auf die Standortauswahl unter https://schultes-it.de/standorte/.`
-  }
-
+export function supportContextInstructions(
+  location: SupportLocationContext = supportLocations.ludwigsburg,
+) {
   if (location.kind === 'central-remote') {
     return `AKTUELLER SEITENKONTEXT
-- Der Besucher befindet sich auf einer zentralen deutschlandweiten Fernwartungsseite von Schultes IT.
-- Betreiber und verantwortlicher Ansprechpartner: ${location.operatorName}
+- Der Besucher befindet sich auf einer deutschlandweiten Fernwartungsseite von Schultes IT.
+- Inhaber und direkter Ansprechpartner: ${location.operatorName}
 - Einsatzgebiet der Fernwartung: Deutschland
 - Telefon: ${location.phoneDisplay}
 - E-Mail: ${location.email}
 - Fernwartung ab ${location.remoteFrom}
-- Du darfst ausschließlich diese zentralen Fernwartungs-Kontaktdaten und den Fernwartungspreis nennen.
-- Stelle die Fernwartung als zentralen Service von Schultes IT dar, nicht als Leistung eines regionalen Standorts.
-- Für Hilfe vor Ort verweist du auf https://schultes-it.de/standorte/.`
+- Du darfst ausschließlich diese Kontaktdaten und den bekannten Fernwartungspreis nennen.
+- Fernwartung wird persönlich mit Andrej Schultes abgestimmt.
+- Für Hilfe vor Ort in Ludwigsburg und Umgebung verweist du auf https://schultes-it.de/#kontakt. Eine Standortwahl ist nicht nötig.`
   }
 
   return `AKTUELLER SEITENKONTEXT
-- Gewählter Standort: ${location.displayName}
-- Verantwortlicher Ansprechpartner: ${location.operatorName}
-- Einsatzgebiet: ${location.serviceAreas.join(', ')}
+- Betrieb: ${location.displayName}
+- Inhaber und direkter Ansprechpartner: ${location.operatorName}
+- Einsatzgebiet vor Ort: ${location.serviceAreas.join(', ')}
+- Fernwartung ist deutschlandweit möglich.
 - Telefon: ${location.phoneDisplay}
 - E-Mail: ${location.email}
 - Fernwartung ab ${location.remoteFrom}; Vor-Ort-Service ab ${location.onSiteFrom}
 - Du darfst ausschließlich diese Kontaktdaten und Preise nennen.
-- Formuliere klar, dass Fernwartung und Leistungen durch diesen Standort betreut und abgerechnet werden.`
+- Andrej Schultes betreut und berechnet die Leistungen persönlich. Es gibt keine Standort- oder Partnerauswahl.`
 }
 
-export function directContactSentence(location?: SupportLocationContext) {
-  if (!location) {
-    return 'Wähle unter https://schultes-it.de/standorte/ einen aktiven Standort für direkten Kontakt.'
-  }
+export function directContactSentence(
+  location: SupportLocationContext = supportLocations.ludwigsburg,
+) {
   return location.kind === 'central-remote'
-    ? `Du erreichst ${location.operatorName} für die zentrale Fernwartung unter ${location.phoneDisplay} oder per E-Mail an ${location.email}.`
-    : `Du erreichst ${location.operatorName} vom Standort ${location.city} unter ${location.phoneDisplay} oder per E-Mail an ${location.email}.`
+    ? `Du erreichst ${location.operatorName} für deutschlandweite Fernwartung unter ${location.phoneDisplay} oder per E-Mail an ${location.email}.`
+    : `Du erreichst ${location.operatorName} in Ludwigsburg direkt unter ${location.phoneDisplay} oder per E-Mail an ${location.email}.`
 }

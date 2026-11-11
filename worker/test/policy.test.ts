@@ -54,7 +54,7 @@ describe('support intent policy', () => {
     const reply = getBasicSupportReply('Mein WLAN geht nicht')
     expect(reply).toContain('WLAN am Gerät einmal aus und wieder an')
     expect(reply).toContain('30 Sekunden vom Strom trennen')
-    expect(reply).toContain('zuständigen Standort')
+    expect(reply).toContain('kontaktiere Andrej direkt')
     expect(reply).not.toContain('+49 179 1707411')
     expect(reply).not.toMatch(/BIOS|PowerShell|Download/i)
   })
@@ -99,12 +99,12 @@ describe('support intent policy', () => {
         intro: 'Danke fürs Ausprobieren.',
         step_ids: [],
         question: '',
-        closing: 'Der Standort sollte sich die Verbindung jetzt persönlich ansehen.',
+        closing: 'Andrej sollte sich die Verbindung jetzt persönlich ansehen.',
       },
-      'Du erreichst den zuständigen Standort direkt.',
+      'Du erreichst Andrej direkt.',
     )
-    expect(result?.reply).toContain('Der Standort sollte sich die Verbindung jetzt persönlich ansehen.')
-    expect(result?.reply).toContain('Du erreichst den zuständigen Standort direkt.')
+    expect(result?.reply).toContain('Andrej sollte sich die Verbindung jetzt persönlich ansehen.')
+    expect(result?.reply).toContain('Du erreichst Andrej direkt.')
     expect(result?.escalated).toBe(true)
   })
 

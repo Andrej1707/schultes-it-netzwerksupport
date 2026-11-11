@@ -34,17 +34,10 @@ export type DirectContactProfile = ContactProfile & {
   email: string
 }
 
-export const centralContact: ContactProfile = {
-  source: 'central',
-  supportContextId: 'central',
-  displayName: siteConfig.name,
-  operatorName: 'Schultes-IT-Netzwerk',
-  actionHref: '/standorte/',
-  actionLabel: 'Standort auswählen',
-  remoteSupportAvailable: false,
-  remoteSupportNote: siteConfig.remoteSupport.contactNote,
-  imprintUrl: '/impressum/',
-}
+// Every page belongs to Andrej's business; visitors never have to choose a branch.
+export const centralContact: DirectContactProfile = contactForLocation(
+  activeLocationById[siteConfig.featuredLocationId],
+)
 
 export const centralRemoteContact: DirectContactProfile = {
   source: 'central-remote',

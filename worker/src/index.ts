@@ -31,6 +31,11 @@ import {
   supportContextInstructions,
   type SupportLocationContext,
 } from './supportContext'
+import {
+  SUPPORT_CHAT_PROCESSING_TIMEOUT_MS,
+  SUPPORT_MODEL_TIMEOUT_MS,
+  SUPPORT_MODERATION_TIMEOUT_MS,
+} from '../../src/support/timing'
 
 type ChatMessage = {
   role: 'user' | 'assistant'
@@ -171,7 +176,7 @@ async function verifyTurnstile(token: string, ip: string, env: Env) {
   return usesTestingKey || hostnames.length === 0 || (result.hostname ? hostnames.includes(result.hostname) : false)
 }
 
-async function moderate(text: string, env: Env) {
+async function moderate(text: string, env: Env, deadline: AbortSignal) {
   const response = await fetch(`${env.OPENAI_BASE_URL ?? 'https://api.openai.com/v1'}/moderations`, {
     method: 'POST',
     headers: {
@@ -179,7 +184,7 @@ async function moderate(text: string, env: Env) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ model: 'omni-moderation-latest', input: text }),
-    signal: AbortSignal.timeout(15_000),
+    signal: AbortSignal.any([deadline, AbortSignal.timeout(SUPPORT_MODERATION_TIMEOUT_MS)]),
   })
   if (!response.ok) throw new Error(`moderation_${response.status}`)
   const payload = (await response.json()) as { results?: Array<{ flagged?: boolean }> }
@@ -214,6 +219,7 @@ async function createModelResponse(
   sessionId: string,
   location: SupportLocationContext | undefined,
   env: Env,
+  deadline: AbortSignal,
 ) {
   const input = [...session.history, { role: 'user' as const, content: message }]
   const safetyId = await hmac(sessionId, env.HASH_SALT)
@@ -232,7 +238,7 @@ async function createModelResponse(
       store: false,
       safety_identifier: `support_${safetyId}`,
     }),
-    signal: AbortSignal.timeout(30_000),
+    signal: AbortSignal.any([deadline, AbortSignal.timeout(SUPPORT_MODEL_TIMEOUT_MS)]),
   })
 
   if (!response.ok) throw new Error(`responses_${response.status}`)
@@ -253,6 +259,7 @@ async function createBasicSupportResponse(
   sessionId: string,
   location: SupportLocationContext | undefined,
   env: Env,
+  deadline: AbortSignal,
 ) {
   const safetyId = await hmac(sessionId, env.HASH_SALT)
   const response = await fetch(`${env.OPENAI_BASE_URL ?? 'https://api.openai.com/v1'}/responses`, {
@@ -295,7 +302,7 @@ async function createBasicSupportResponse(
       store: false,
       safety_identifier: `support_${safetyId}`,
     }),
-    signal: AbortSignal.timeout(30_000),
+    signal: AbortSignal.any([deadline, AbortSignal.timeout(SUPPORT_MODEL_TIMEOUT_MS)]),
   })
 
   if (!response.ok) throw new Error(`basic_responses_${response.status}`)
@@ -378,6 +385,7 @@ export class SupportGuard {
   }
 
   private async chat(body: Record<string, unknown>) {
+    const deadline = AbortSignal.timeout(SUPPORT_CHAT_PROCESSING_TIMEOUT_MS)
     const sessionId = typeof body.sessionId === 'string' ? body.sessionId : ''
     const message = normalizeMessage(body.message)
     const location = resolveSupportLocation(body.contextId ?? body.locationId)
@@ -397,7 +405,7 @@ export class SupportGuard {
         return json({ reply: OUT_OF_SCOPE_REPLY, blocked: true, escalated: true })
       }
 
-      if (await moderate(message, this.env)) {
+      if (await moderate(message, this.env, deadline)) {
         await this.finish(reservation, 0, {
           message,
           reply: INPUT_BLOCKED_REPLY,
@@ -415,6 +423,7 @@ export class SupportGuard {
             sessionId,
             location,
             this.env,
+            deadline,
           )
           actualTokens = generated.totalTokens > 0 ? generated.totalTokens : reservation.reservedTokens
           reply = generated.reply
@@ -435,10 +444,11 @@ export class SupportGuard {
         sessionId,
         location,
         this.env,
+        deadline,
       )
       actualTokens = generated.totalTokens > 0 ? generated.totalTokens : reservation.reservedTokens
       const outputFlagged =
-        containsDisallowedOutput(generated.text) || (await moderate(generated.text, this.env))
+        containsDisallowedOutput(generated.text) || (await moderate(generated.text, this.env, deadline))
       const reply = outputFlagged ? SAFE_FALLBACK_REPLY : generated.text
       await this.finish(reservation, actualTokens, {
         message,
@@ -450,6 +460,9 @@ export class SupportGuard {
       if (actualTokens > 0) await this.finish(reservation, actualTokens, null)
       else await this.release(reservation)
       console.error('AI support request failed', error instanceof Error ? error.message : 'unknown')
+      if (deadline.aborted || (error instanceof Error && error.name === 'TimeoutError')) {
+        return json({ error: 'assistant_timeout' }, 504)
+      }
       return json({ error: 'assistant_unavailable' }, 503)
     }
   }

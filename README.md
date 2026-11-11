@@ -1,14 +1,16 @@
 # Schultes IT & Netzwerksupport
 
-Die digitale Grundlage für Schultes IT: deutschlandweite Fernwartung und regionale,
-rechtlich selbstständig betriebene Vor-Ort-Standorte unter einer gemeinsamen Marke.
+Website des inhabergeführten Betriebs Schultes IT & Netzwerksupport von Andrej Schultes.
+Der Betrieb hilft persönlich in Ludwigsburg und Umgebung sowie deutschlandweit per Fernwartung.
+Die Website führt direkt zu Leistungen und Kontakt; eine Standort-, Partner- oder
+Franchiseauswahl ist nicht Teil des Angebots.
 
-Ludwigsburg ist der erste inhabergeführte Standort. Weitere echte Standorte können später
-über zentrale Inhaltsdaten ergänzt werden, ohne Routing, Sitemap oder SEO-Code zu kopieren.
-
-## Live
+## Website
 
 [schultes-it.de](https://schultes-it.de/)
+
+Diese README beschreibt den jeweiligen Quellstand. Sie ist kein Nachweis, dass Änderungen
+bereits veröffentlicht oder im Browser abgenommen wurden.
 
 ## Tech Stack
 
@@ -23,7 +25,7 @@ Ludwigsburg ist der erste inhabergeführte Standort. Weitere echte Standorte kö
 
 ## Highlights
 
-- Marken-Startseite mit zwei klaren Einstiegen: Fernwartung und regionale Standorte
+- Startseite für Schultes IT in Ludwigsburg mit Ansprechpartner, Preisen, Einsatzgebiet und Kontakt
 - Klare Ansprache für Privatpersonen und kleine Unternehmen, auch bei digitalen Projekten
 - Helles Premium-Design mit großen Produktmotiven, klarer Typografie und eigenen
   Gestaltungsvarianten für die einzelnen Themen
@@ -33,13 +35,13 @@ Ludwigsburg ist der erste inhabergeführte Standort. Weitere echte Standorte kö
 - Vollständiges React-HTML beim Build; dieselben Komponenten werden im Browser hydriert
 - Seitentypabhängige Metadaten und Schema.org-Daten
 - Automatisch aus der Seiten-Registry erzeugte XML- und Text-Sitemap
-- Datenmodell für aktive Standorte, Betreiber, Einsatzgebiete und Koordinaten
-- Durchsuchbares Standortverzeichnis und Standortfinder mit lokaler Distanzberechnung,
-  der erst nach einem Klick aktiv wird
-- Eigene Ludwigsburg-Seite mit Ansprechpartner, Einstiegspreisen, Einsatzgebiet und Kartenfreigabe
+- Zentrale Daten für einen Betrieb, seinen Ansprechpartner und sein Einsatzgebiet
+- Google-Karte nach ausdrücklicher Freigabe; keine Standortbestimmung des Besuchers
 - Projektübersicht mit ausdrücklich benanntem Konzept- oder Prototypenstatus
 - Durchsuchbare Hilfethemen mit Filtern für Fernwartung und regionale Hilfe
-- Mobile Navigation, direkte Kontaktwege und Copy-Phone-Funktion
+- Vollständige Leistungen und Hilfethemen im Menü, auch auf Mobilgeräten
+- Native aufklappbare Navigation und normale Links, die ohne JavaScript bedienbar bleiben
+- Direkte Kontaktwege und Copy-Phone-Funktion
 - Täglich geprüfter RustDesk-Download mit automatischer Aktualisierung, Versionsanzeige
   und abgeglichener SHA-256-Prüfsumme
 - Spamgeschützter KI-Assistent mit Cloudflare Turnstile, festen Limits und OpenAI-Moderation
@@ -47,27 +49,35 @@ Ludwigsburg ist der erste inhabergeführte Standort. Weitere echte Standorte kö
 ## Seitenstruktur
 
 ```text
+/
+  #leistungen
+  #preise
+  #ludwigsburg
+  #kontakt
 /fernwartung/
   windows-hilfe/
   drucker-hilfe/
   email-outlook/
 /leistungen/
-/standorte/
-  ludwigsburg/
-    pc-laptop/
-    netzwerk-wlan/
-    webseiten/
-    automation/
-    <weitere Hilfethemen>/
-/standortinhaber-werden/
+  pc-laptop/
+  netzwerk-wlan/
+  webseiten/
+  automation/
+  <weitere Hilfethemen>/
 /ratgeber/
 /ueber-schultes-it/
 /impressum/
 /datenschutz/
 ```
 
-`/leistungen/` ist die zentrale Übersicht. Regionale Leistungsdetails liegen unter dem jeweiligen
-Standort; deutschlandweite Fernwartung liegt unter `/fernwartung/`.
+`/` ist die lokale Betriebsseite für Ludwigsburg und Umgebung. `/leistungen/` bündelt das
+Angebot; die lokalen Leistungsdetails liegen direkt unter `/leistungen/<thema>/`.
+Deutschlandweite Fernwartung bleibt unter `/fernwartung/`.
+
+`/standorte/`, `/standorte/ludwigsburg/`, `/ludwigsburg/` und
+`/standortinhaber-werden/` sind nur noch Aliasse auf `/`. Frühere regionale Leistungspfade
+unter `/standorte/ludwigsburg/` führen auf den jeweiligen neuen Leistungspfad; frühere
+regionale Fernwartungspfade führen auf die nationale Fernwartungsseite.
 
 Bestehende flache URLs und ältere Leistungspfade bleiben als Kompatibilitätsrouten erreichbar.
 Sie verwenden `index, follow`, einen Canonical auf die Zielroute und eine Weiterleitung per
@@ -106,22 +116,23 @@ Der vollständige Prüfpfad ist:
 npm run check
 ```
 
-Er umfasst Frontend- und Worker-TypeScript, Tests, Produktions-Build und die datengetriebene
-SEO-Validierung aller kanonischen Routen und Aliasse.
+Er umfasst Frontend- und Worker-TypeScript, Tests, RustDesk-Dateiprüfungen, Produktions-Build
+und die datengetriebene SEO-Validierung aller kanonischen Routen und Aliasse. Desktop-, Mobil-,
+Tastatur- und Ohne-JavaScript-Prüfungen im Browser sind zusätzliche Abnahmeschritte.
 
 ## Architektur
 
 - `src/SiteView.tsx`: gemeinsamer, synchroner Seitenbaum für Build und Browser
 - `src/components/PremiumShell.tsx`: Navigation, Logo und Footer aller Seiten
-- `src/pages/PremiumHomePage.tsx`: Marken-Startseite
+- `src/site/navigation.ts`: gemeinsame Gruppierung aller veröffentlichten Leistungen für Menü und Footer
 - `src/pages/PremiumServicePage.tsx`: Leistungsdetails mit themenspezifischen Varianten
-- `src/pages/PremiumNetworkPages.tsx`: Leistungsübersicht, Standortverzeichnis, lokale Seite,
-  Ratgeber, Betreibermodell, Über-uns-Seite und 404
+- `src/pages/PremiumNetworkPages.tsx`: lokale Betriebs-Startseite, Leistungsübersicht,
+  Ratgeber, Über-uns-Seite und 404; der Dateiname ist historisch
 - `src/pages/LegalContent.tsx`: vollständige Impressums- und Datenschutzinhalte
 - `src/premium.css`, `src/premium-service.css`, `src/premium-network.css`: gemeinsames Design
   und die Gestaltungsvarianten der Seiten
 - `src/site/motion.ts`, `src/motion.css`: progressive Bewegungen ohne zusätzliche Bibliothek
-- `src/site/`: Marken- und Standortdaten, Kontakte, Routing, Distanzlogik,
+- `src/site/`: Betriebsdaten, Kontakte, Routing,
   Schema.org-Erzeugung und statisches Rendern
 - `src/content/`: normalisierte Leistungsdaten; `src/content/legacy/` enthält weiterhin
   die bestehenden redaktionellen Leistungs- und Hilfetexte als Datenbasis
@@ -141,11 +152,18 @@ Die Abnahme der Bewegungen und Zielgruppen-Texte steht in
 [docs/design/motion-and-content-polish.md](docs/design/motion-and-content-polish.md).
 Die Download-Automatik und ihre Prüfungen stehen in
 [docs/rustdesk-updates.md](docs/rustdesk-updates.md).
+Ältere Abnahme- und SEO-Berichte dokumentieren ihren jeweiligen historischen Stand.
+
+Die Umstellung auf einen Betrieb ändert keine Preise: Fernhilfe beginnt weiterhin bei 25 €,
+Vor-Ort-Service bei 49 €; individuelle Projekte werden nach Absprache angeboten. Neue
+Zeitpakete oder Anfahrtskonditionen werden dadurch nicht eingeführt.
 
 ## Business-Assistent
 
 Die Website bleibt statisch auf GitHub Pages. Der Assistent läuft getrennt als Cloudflare Worker
 mit einer Durable-Object-Instanz für atomare Sitzungs-, Rate- und Tageslimits.
+Er bleibt beim Seitenaufruf eingebunden und wird nicht auf einen erstmaligen Klick zum Laden
+umgestellt. Sein separat geladener Code blockiert den statischen Seiteninhalt nicht.
 
 - festes Textmodell `gpt-5.4-mini`, keine Tools und keine Websuche
 - Ein- und Ausgabeprüfung mit `omni-moderation-latest`
@@ -183,14 +201,15 @@ Die Secret Keys gehören weder in GitHub-Variablen noch in `.env.local` und werd
 ## GitHub Pages
 
 Der Workflow unter `.github/workflows/deploy.yml` installiert die gesperrten Abhängigkeiten mit
-`npm ci`, führt bei jedem Push auf `main` den vollständigen Prüfpfad `npm run check` aus und
-veröffentlicht anschließend den Inhalt von `dist` über GitHub Pages. Ein manueller Start über
-`workflow_dispatch` ist ebenfalls möglich. Die Worker-Veröffentlichung erfolgt separat.
+`npm ci` und führt den vollständigen Prüfpfad `npm run check` auch für Pull Requests gegen
+`main` aus. Pull Requests führen keine Veröffentlichung durch. Nur ein erfolgreicher Push auf
+`main` oder ein manueller `workflow_dispatch` auf `main` lädt das Pages-Artefakt hoch und
+veröffentlicht `dist`. Die Worker-Veröffentlichung erfolgt separat.
 
 Im Repository muss unter **Settings → Pages → Build and deployment** als Quelle
 **GitHub Actions** ausgewählt sein.
 
 ## Kontakt
 
-Schultes IT · deutschlandweit per Fernwartung · Standort Ludwigsburg
+Schultes IT · Ludwigsburg und Umgebung · deutschlandweit per Fernwartung
 [+49 179 1707411](tel:+491791707411)

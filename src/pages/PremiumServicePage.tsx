@@ -354,14 +354,15 @@ function RemoteDownload({ service }: { service: ServicePageData }) {
       <div className="ps-download-copy">
         <span className="ps-eyebrow">Fernwartung vorbereiten</span>
         <h2 id="ps-download-heading">
-          Ein Download.
+          Erst kurz sprechen.
           <br />
-          <span>Dann sprechen wir.</span>
+          <span>Dann gemeinsam starten.</span>
         </h2>
         <p>
-          Lade RustDesk auf deinen Windows-PC. Öffne die Datei erst nach
-          telefonischer Abstimmung mit {contact.operatorName}. ID oder Code
-          nennst du ausschließlich deinem vereinbarten Ansprechpartner.
+          Stimme zuerst telefonisch einen Termin mit {contact.operatorName} ab.
+          Lade danach RustDesk auf deinen Windows-PC und öffne die Datei
+          gemeinsam mit ihm während des vereinbarten Gesprächs. ID oder Code
+          nennst du ausschließlich {contact.operatorName}.
         </p>
         <a className="ps-text-link" href={contact.phoneHref}>
           <Phone aria-hidden="true" /> Termin direkt abstimmen
@@ -449,12 +450,7 @@ export default function PremiumServicePage({
       <nav className="ps-breadcrumb ps-wrap" aria-label="Brotkrümelnavigation">
         <a href="/">Start</a>
         <span aria-hidden="true">/</span>
-        {location ? (
-          <>
-            <a href={location.path}>{location.city}</a>
-            <span aria-hidden="true">/</span>
-          </>
-        ) : (
+        {(!isRemote || getServicePath(service) !== '/fernwartung/') && (
           <>
             <a href={isRemote ? '/fernwartung/' : '/leistungen/'}>
               {isRemote ? 'Fernwartung' : 'Leistungen'}
@@ -644,8 +640,8 @@ export default function PremiumServicePage({
             <h2 id="ps-local-heading">{service.locationContext.heading}</h2>
             <p>{service.locationContext.text}</p>
             {location && (
-              <a className="ps-text-link" href={location.path}>
-                Standort {location.city} kennenlernen{' '}
+              <a className="ps-text-link" href="/#kontakt">
+                Direkt mit {contact.operatorName} sprechen{' '}
                 <ArrowUpRight aria-hidden="true" />
               </a>
             )}
@@ -768,9 +764,6 @@ export default function PremiumServicePage({
           <p className="ps-contact-note">
             {contact.displayName} · {contact.remoteSupportNote}
           </p>
-          {contact.ownAccountNotice && (
-            <p className="ps-operator-note">{contact.ownAccountNotice}</p>
-          )}
           <a className="ps-operator-link" href={contact.imprintUrl}>
             Angaben zum Anbieter <ArrowUpRight aria-hidden="true" />
           </a>

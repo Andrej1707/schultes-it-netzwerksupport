@@ -20,7 +20,7 @@ export const siteConfig = {
     email: 'kontakt@schultes-it.de',
     priceFrom: '25 €',
     contactNote:
-      'Die deutschlandweite Fernwartung wird zentral durch Schultes IT und Andrej Schultes betreut.',
+      'Die deutschlandweite Fernwartung wird persönlich von Andrej Schultes betreut.',
   },
 } as const
 

@@ -8,6 +8,7 @@ import {
 } from './routes'
 import { activeLocations } from './locations'
 import { publicServicePages } from './publicServices'
+import historicalRouteInventory from '../../docs/seo/historical-routes.json?raw'
 
 describe('site routing', () => {
   it('normalizes nested paths and trailing slashes', () => {
@@ -30,7 +31,7 @@ describe('site routing', () => {
     expect(resolveSiteRoute('/index.html')?.page.path).toBe('/')
     expect(resolveSiteRoute('/fernwartung/index.html')?.page.path).toBe('/fernwartung/')
     expect(resolveSiteRoute('/pc-system/index.html')?.page.path).toBe(
-      '/standorte/ludwigsburg/pc-laptop/',
+      '/leistungen/pc-laptop/',
     )
     expect(resolveSiteRoute('/unbekannt/index.html')).toBeUndefined()
     expect(resolveSiteRoute('/fernwartung/index.html/')).toBeUndefined()
@@ -41,7 +42,7 @@ describe('site routing', () => {
       '/?utm_source=google#kontakt',
     )
     expect(canonicalRedirect('/pc-system/index.html', '?ref=alt', '#faq')).toBe(
-      '/standorte/ludwigsburg/pc-laptop/?ref=alt#faq',
+      '/leistungen/pc-laptop/?ref=alt#faq',
     )
     expect(canonicalRedirect('/fernwartung')).toBe('/fernwartung/')
     expect(canonicalRedirect('/fernwartung/', '?utm_source=google', '#kontakt')).toBeUndefined()
@@ -51,7 +52,7 @@ describe('site routing', () => {
   it('keeps old service URLs as non-canonical compatibility aliases', () => {
     const route = resolveSiteRoute('/pc-system/')
 
-    expect(route?.page.path).toBe('/standorte/ludwigsburg/pc-laptop/')
+    expect(route?.page.path).toBe('/leistungen/pc-laptop/')
     expect(route?.isAlias).toBe(true)
   })
 
@@ -65,14 +66,40 @@ describe('site routing', () => {
     expect(legacy?.isAlias).toBe(true)
   })
 
-  it('moves local problem pages below the Ludwigsburg location', () => {
-    const canonical = resolveSiteRoute('/standorte/ludwigsburg/pc-langsam/')
+  it('publishes local problem pages below the service overview', () => {
+    const canonical = resolveSiteRoute('/leistungen/pc-langsam/')
     const legacy = resolveSiteRoute('/pc-langsam/')
 
     expect(canonical?.page.locationId).toBe('ludwigsburg')
     expect(canonical?.isAlias).toBe(false)
     expect(legacy?.page.path).toBe(canonical?.page.path)
     expect(legacy?.isAlias).toBe(true)
+  })
+
+  it('uses the local business as the homepage and retires branch-selection pages', () => {
+    expect(resolveSiteRoute('/')?.page).toMatchObject({
+      id: 'home', kind: 'location', locationId: 'ludwigsburg', path: '/',
+    })
+    for (const path of ['/standorte/', '/standorte/ludwigsburg/', '/ludwigsburg/', '/standortinhaber-werden/']) {
+      expect(resolveSiteRoute(path)).toMatchObject({ isAlias: true, page: { path: '/' } })
+      expect(canonicalRedirect(path, '?ref=legacy', '#kontakt')).toBe('/?ref=legacy#kontakt')
+    }
+    expect(sitePages.some((page) => ['locations', 'owner'].includes(page.kind))).toBe(false)
+    expect(sitePages.filter((page) => page.kind === 'location').map((page) => page.path)).toEqual(['/'])
+  })
+
+  it('preserves every audited historical URL and redirects all aliases directly', () => {
+    const inventory = JSON.parse(historicalRouteInventory) as { routeInventory: { path: string }[] }
+    for (const { path } of inventory.routeInventory) {
+      expect(resolveSiteRoute(path), `Historical URL ${path}`).toBeDefined()
+    }
+    for (const page of sitePages) {
+      for (const alias of page.aliases ?? []) {
+        expect(canonicalRedirect(alias), alias).toBe(page.path)
+        expect(resolveSiteRoute(page.path)?.isAlias, alias).toBe(false)
+        expect(canonicalRedirect(page.path), alias).toBeUndefined()
+      }
+    }
   })
 
   it('has unique canonical routes and keeps every indexable page discoverable', () => {
