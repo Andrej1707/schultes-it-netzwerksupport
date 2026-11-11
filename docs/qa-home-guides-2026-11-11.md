@@ -2,12 +2,12 @@
 
 ## Umfang und dokumentierter Stand
 
-Diese Abnahme dokumentiert die Vorbereitung und bestätigte Veröffentlichung von PR #7 sowie die anschließend beauftragte, noch nicht als live bestätigte Bild- und Performance-Ergänzung. Die frühere Live-Abnahme der Ludwigsburg-Umstellung steht in [qa-2026-11-11.md](qa-2026-11-11.md). Deren Ergebnisse sind von den folgenden Prüfungen getrennt.
+Diese Abnahme dokumentiert die Vorbereitung und bestätigte Veröffentlichung von PR #7 sowie die mit PR #8 veröffentlichte Bild- und Performance-Ergänzung. Die frühere Live-Abnahme der Ludwigsburg-Umstellung steht in [qa-2026-11-11.md](qa-2026-11-11.md). Deren Ergebnisse sind von den folgenden Prüfungen getrennt.
 
 - Die bestätigte frühere Startseitengestaltung ist wiederhergestellt: „Einfach gute Technik. Für deinen Alltag. Für dein Unternehmen.“, großes Arbeitsplatzmotiv und direkte Kontaktmöglichkeiten.
 - Schultes IT bleibt ein inhabergeführter Betrieb in Ludwigsburg mit deutschlandweiter Fernwartung. Die Gestaltung führt keine zusätzlichen Standorte oder Betreiber ein.
 - 40 eigenständige Ratgeber liegen unter `/ratgeber/<thema>/`, jeweils acht in Sicherheit, Windows, WLAN, Daten und Alltag. Die Übersicht bietet Kategorien und Suche.
-- Vier neue illustrative Fotomotive ergänzen die vorhandenen Bilder. Herkunft, Exportgrößen und der fiktive Charakter der Motive sind in [guide-image-prompts.md](design/guide-image-prompts.md) dokumentiert.
+- Vier neue illustrative Fotomotive ergänzen in PR #7 die vorhandenen Bilder. Herkunft, Exportgrößen und der fiktive Charakter der Motive sind in [guide-image-prompts.md](design/guide-image-prompts.md) dokumentiert. PR #8 ergänzt weitere 17 Motive; alle 40 Artikel verwenden damit unterschiedliche Bildinhalte.
 - Preise und das sofortige Einbinden des Chat-Assistenten bleiben unverändert. Der Chat wird weiterhin beim Seitenaufruf eingebunden, nicht erst nach dem Öffnen nachgeladen.
 
 ## Unabhängige Inhalts- und Quellenprüfung
@@ -92,16 +92,52 @@ Diese Werte beschreiben genau diesen mobilen Laborlauf auf PR #7. Der Leistungsw
 
 ## Search Console nach der Veröffentlichung
 
-Die XML-Sitemap wurde erneut eingereicht; Search Console bestätigte die Annahme. Die Oberfläche zeigte zu diesem Zeitpunkt weiterhin 28 erkannte Seiten aus dem bisherigen Stand. Die Live-Sitemap enthält nachweislich 68 URLs. Die erneute Verarbeitung aller neuen URLs und deren tatsächliche Indexierung sind damit noch nicht bestätigt.
+Die XML-Sitemap wurde erneut eingereicht; Search Console bestätigte die Annahme. Zunächst zeigte die Oberfläche noch 28 erkannte Seiten aus dem bisherigen Stand. Nach erneutem Laden am 11.11.2026 gegen 20:30 Uhr zeigte `sitemap.xml` den Status „Erfolgreich“ und 68 erkannte Seiten, passend zu den 68 URLs der öffentlichen Sitemap. Erkannte Sitemap-URLs sind kein Nachweis, dass alle Seiten bereits indexiert sind.
 
-## Anschließend beauftragte Ergänzung, noch nicht als live bestätigt
+## Veröffentlichung der Bild- und Performance-Ergänzung mit PR #8
 
-Auf `codex/guide-images-polish` wurden 17 weitere, eigenständige Motive ergänzt. Die 40 Ratgeber verwenden jetzt 40 unterschiedliche Bildbasen und 40 unterschiedliche SHA-256-Bildinhalte. Der Katalog-Prüfschritt verhindert sowohl Wiederverwendung als auch umbenannte Kopien. Ein Artikel darf sein eigenes Motiv in Übersicht und verwandten Empfehlungen erneut zeigen.
+[PR #8](https://github.com/Andrej1707/schultes-it-netzwerksupport/pull/8) wurde am 11.11.2026 um 20:25:28 Uhr als `770601eccd5d6d0c229aeea7244476a7f38e8509` zusammengeführt. [Pages-Run 43087071077](https://github.com/Andrej1707/schultes-it-netzwerksupport/actions/runs/43087071077) ist erfolgreich abgeschlossen.
+
+Die Ergänzung enthält 17 weitere, eigenständige Motive. Die 40 Ratgeber verwenden jetzt 40 unterschiedliche Bildbasen und 40 unterschiedliche SHA-256-Bildinhalte. Der Katalog-Prüfschritt verhindert sowohl Wiederverwendung als auch umbenannte Kopien. Ein Artikel darf sein eigenes Motiv in Übersicht und verwandten Empfehlungen erneut zeigen.
 
 Die vollständigen Prompts und Herkunftsnachweise stehen in den Bilddokumentationen für [Sicherheit](design/guide-images-security.md), [Daten](design/guide-images-data.md), [Netzwerk](design/guide-images-network.md) und [Windows/Alltag](design/guide-images-windows-alltag.md).
 
 Die Startseite erhält ihre unverändert gestaltete gemeinsame CSS-Datei direkt im HTML-Head; andere Seiten behalten die externe, cachebare CSS-Datei. Die Browserprüfung bestätigt 24.440 Inline-CSS-Bytes, unveränderte Darstellung und keine Hydrationsfehler. Die drei Startseitenmotive bieten zusätzlich 800-Pixel-WebPs; das Hero-Bild nutzt eine zur tatsächlichen Bildfläche passende Größenangabe. Der Kontakt-E-Mail-Link ist dauerhaft dezent unterstrichen.
 
-Der vollständige Prüfpfad mit 187 Tests, Katalog-/Bild-Eindeutigkeit, beiden Typechecks, Build, SEO und RustDesk-Integrität ist erneut bestanden. Die Browserprüfung bestätigt 40 Karten mit 40 verschiedenen Bildern, funktionierende Kategorieauswahl und das korrekt ausgewählte 800er-Hero. Veröffentlichung und erneute PageSpeed-Messung dieses Folgestands stehen noch aus; die vorherigen Live-Messwerte beziehen sich ausschließlich auf PR #7.
+Der vollständige Prüfpfad mit 187 Tests, Katalog-/Bild-Eindeutigkeit, beiden Typechecks, Build, SEO und RustDesk-Integrität ist erneut bestanden. Die lokale Browserprüfung bestätigt 40 Karten mit 40 verschiedenen Bildern, funktionierende Kategorieauswahl und das korrekt ausgewählte 800er-Hero.
+
+## Fokussierter Live-Audit nach PR #8
+
+Der HTTP-Audit am 11.11.2026 von 20:30:03 bis 20:31:12 Uhr bestand mit 441 Prüfungen ohne verbleibenden Fehler. Der lokale Git-Tree wurde mit dem Git-Tree des veröffentlichten Merge-Commits abgeglichen und ist identisch.
+
+- Alle 40 Artikelseiten liefern HTTP 200. Hauptbild, Alt-Text, responsive Bildvarianten und das Bild im `Article`-Schema stimmen mit dem veröffentlichten Ratgeberkatalog überein.
+- Die 40 tatsächlich abgerufenen 1280-Pixel-Artikelbilder haben 40 verschiedene SHA-256-Prüfsummen.
+- Alle 54 neuen Bilddateien liefern HTTP 200 mit WebP-Inhalt und stimmen in Dateigröße sowie SHA-256 mit den lokalen Release-Dateien überein: 17 Motive in je drei Größen sowie drei zusätzliche 800-Pixel-Startseitenbilder. Insgesamt wurden 77 unterschiedliche Bilddateien abgerufen und abgeglichen.
+- Die Ratgeberübersicht enthält bereits im Server-HTML 40 Karten mit 40 verschiedenen, korrekt zugeordneten Bildern.
+- Die Startseite enthält 24.440 Bytes gemeinsames CSS direkt im HTML-Head. Alle drei Startseitenmotive besitzen die neue 800er-`srcset`-Variante; die Hero-Größenangabe und der dauerhaft unterstrichene E-Mail-Link sind vorhanden.
+- 120 GET-Anfragen decken 119 verschiedene Ressourcen ab. Es gab keine HTTP-Fehler und keine Transport-Wiederholungen. Eine zusätzliche gezielte Homepage-Prüfung korrigierte die Prüfannahme zum E-Mail-Link: Cloudflare codiert dessen Adresse absichtlich; die öffentlich decodierbare Zieladresse und die Unterstreichung sind korrekt.
+- Die unveränderten 1.342 Redirectfälle wurden für diese reine Bild- und Darstellungsänderung nicht erneut geprüft; deren dokumentierter Live-Nachweis bleibt der Audit von PR #7.
+
+Die Protokolle `schultes-pr8-focused-live-audit.json` und `schultes-pr8-focused-live-audit-summary.json` liegen außerhalb des Repositorys im temporären Arbeitsverzeichnis der ausführenden Sitzung.
+
+Die ergänzende Live-Browserprüfung bestätigt 40 Karten mit 40 verschiedenen Bildern, acht vollständig geladene Bilder im Daten-Filter, das 800er-Hero und die Inline-CSS-Ausgabe. Das Leistungsmenü öffnet per Hover ohne Klick; der Chat ist weiterhin direkt eingebunden. In den geprüften Abläufen traten keine Konsolenfehler auf.
+
+## Abschließende PageSpeed-Insights-Messung nach PR #8
+
+[Mobiler Bericht](https://pagespeed.web.dev/analysis/https-schultes-it-de/6lv47c30vo?form_factor=mobile) und [Desktop-Bericht](https://pagespeed.web.dev/analysis/https-schultes-it-de/6lv47c30vo?form_factor=desktop), 11.11.2026 um 20:26:53 Uhr (Europe/Berlin):
+
+| Kategorie oder Messwert | Mobil | Desktop |
+| --- | --- | --- |
+| Leistung | 100 | 100 |
+| Barrierefreiheit | 100 | 100 |
+| Best Practices | 100 | 100 |
+| SEO | 100 | 100 |
+| First Contentful Paint | 0,780 s | 0,255 s |
+| Largest Contentful Paint | 0,906 s | 0,452 s |
+| Total Blocking Time | 0 ms | 0 ms |
+| Cumulative Layout Shift | 0 | 0 |
+| Speed Index | 0,937 s | 0,421 s |
+
+Diese Werte sind die bestätigte Momentaufnahme dieses Laborlaufs auf dem veröffentlichten PR #8. Sie ersetzen nicht reale Core Web Vitals, einen Test auf physischen Geräten oder eine vollständige Prüfung aller SEO- und Barrierefreiheitskriterien. Ein Score von 100 garantiert weder Indexierung noch Rankings.
 
 Tatsächliche Google-Indexierung, Rankings und reale Nutzerdaten bleiben von diesen Build-, Inhalts- und Laborprüfungen getrennt.
