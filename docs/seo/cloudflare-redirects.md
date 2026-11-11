@@ -4,7 +4,7 @@ Stand: 11.11.2026, nach Veröffentlichung von PR #8 und der Search-Console-Prüf
 
 ## Kanonische Ziele
 
-Die Seiten-Registry enthält 70 kanonische Seiten, darunter 40 eigenständige Ratgeber: 68 sollen indexiert werden, Impressum und Datenschutz bleiben bewusst `noindex, follow`. Dazu kommen 48 historische Alias-Pfade. Die Fehlerseite `404.html` bleibt ebenfalls `noindex, follow` und steht nicht in den Sitemaps.
+Der aktuelle Quellstand enthält 100 kanonische Seiten, darunter 70 eigenständige Ratgeber: 98 sollen indexiert werden, Impressum und Datenschutz bleiben bewusst `noindex, follow`. Dazu kommen 48 historische Alias-Pfade. Die Fehlerseite `404.html` bleibt ebenfalls `noindex, follow` und steht nicht in den Sitemaps. Die Erweiterung um 30 Artikel ist vom oben dokumentierten Veröffentlichungsstand getrennt.
 
 | Bisheriger Pfad | Endgültiges Ziel |
 | --- | --- |
@@ -34,9 +34,9 @@ Die statischen Alias-Dateien können auf GitHub Pages keinen eigenen HTTP-301/30
 
 Die frühere read-only Prüfung vom 26.10.2026 zeigte direkte GitHub-Pages-Antworten und Cloudflare-Nameserver. Dieser historische Zustand gilt nicht als Beschreibung des aktuellen Betriebs: Nach der Veröffentlichung am 11.11.2026 wurden die unten dokumentierten Cloudflare-Proxy- und Redirect-Einstellungen aktiviert. Die statischen Alias-Dateien bleiben als Rückfallweg erhalten. Das bloße Committen oder Importieren einer CSV allein würde keine Edge-Weiterleitung aktivieren.
 
-## Aktivierte CSV
+## Versionierte CSV und vorbereitete Erweiterung
 
-[legacy-redirects.csv](legacy-redirects.csv) enthält 706 eindeutige Regeln ohne Kopfzeile im [Cloudflare-CSV-Format](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/csv-file-format/). Die 240 mit PR #7 hinzugekommenen Regeln für Ratgeber stehen zusätzlich separat in [guide-redirects.csv](guide-redirects.csv):
+Für 100 kanonische Seiten erzeugt [generate-cloudflare-redirects.mjs](../../scripts/generate-cloudflare-redirects.mjs) aus `dist/site-manifest.json` insgesamt 886 eindeutige Regeln ohne Kopfzeile im [Cloudflare-CSV-Format](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/csv-file-format/). Die kombinierte Datei ist [legacy-redirects.csv](legacy-redirects.csv); [guide-redirects.csv](guide-redirects.csv) enthält die 420 Regeln aller 70 Artikel. Der getrennte Ergänzungsimport [guide-expansion-redirects.csv](guide-expansion-redirects.csv) enthält die 180 neuen Regeln gegenüber dem bestätigten Stand mit 706 aktiven Regeln. Die vorbereitete Erweiterung wird erst nach Veröffentlichung der neuen Artikel aktiviert und geprüft.
 
 ```text
 SOURCE_URL,TARGET_URL,STATUS_CODE,PRESERVE_QUERY_STRING,INCLUDE_SUBDOMAINS,SUBPATH_MATCHING,PRESERVE_PATH_SUFFIX
@@ -50,10 +50,19 @@ schultes-it.de/standorte/ludwigsburg/,https://schultes-it.de/,301,TRUE,FALSE,FAL
 Die Regeln decken ab:
 
 - 288 Alias-Regeln: 48 Pfade, jeweils ohne Slash, mit Slash und mit `/index.html`, für Hauptdomain und `www`.
-- 140 Regeln für die `index.html`-Varianten der 70 kanonischen Seiten auf beiden Hosts.
-- 138 Regeln für kanonische Unterseiten ohne abschließenden Slash auf beiden Hosts.
-- 70 Regeln für kanonische Pfade unter `www`.
-- 70 ausschließlich auf HTTP begrenzte Regeln für die kanonischen Pfade der Hauptdomain.
+- 200 Regeln für die `index.html`-Varianten der 100 kanonischen Seiten auf beiden Hosts.
+- 198 Regeln für kanonische Unterseiten ohne abschließenden Slash auf beiden Hosts.
+- 100 Regeln für kanonische Pfade unter `www`.
+- 100 ausschließlich auf HTTP begrenzte Regeln für die kanonischen Pfade der Hauptdomain.
+
+Der Generator wurde vor der Erweiterung gegen den gebauten Stand mit 70 kanonischen Seiten geprüft und reproduziert alle 706 vorhandenen Regelzeilen unverändert. Nach dem erfolgreichen Build der 100 Seiten wurden für diese Erweiterung folgende lokale Schritte ausgeführt:
+
+```bash
+node scripts/generate-cloudflare-redirects.mjs --write --baseline-ref c6189faf8621fb7cd79e46aa01e303635b798013
+node scripts/generate-cloudflare-redirects.mjs --check --baseline-ref c6189faf8621fb7cd79e46aa01e303635b798013
+```
+
+`--check` ist außerdem Teil von `npm run seo:check`. Der Vergleich bestätigt 886 Regeln, davon genau 180 Ergänzungen und keine veränderte oder entfernte Bestandsregel. Die 180 Ergänzungen entsprechen 330 neuen HTTP-/HTTPS-Fällen; die vollständige Liste mit 886 Regeln ergibt 1.672 Fälle. Diese lokalen Prüfungen sind kein Nachweis einer Cloudflare-Aktivierung oder Live-Abnahme.
 
 Alle Ziele sind kanonische HTTPS-Adressen. Keine Zieladresse ist selbst Quelle einer passenden HTTPS-Regel. Query-Parameter bleiben erhalten. Exaktes Matching und deaktiviertes Subpath-/Subdomain-Matching verhindern pauschale Treffer auf unbekannte Unterpfade, Assets oder Downloads. Unbekannte URLs liefern weiterhin 404. Der Support-Worker läuft separat auf `schultes-it-support.schultes-andrej.workers.dev`; eine Custom-Domain `support.schultes-it.de` ist nicht eingerichtet und besitzt keine DNS-Einträge oder Worker-Routen.
 

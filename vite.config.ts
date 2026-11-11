@@ -82,6 +82,11 @@ function renderPageHtml(baseHtml: string, page: SitePage, isAlias = false, style
   baseHtml = baseHtml.replace(/<script id="guide-data" type="application\/json">[\s\S]*?<\/script>/g, '')
   if (guideData) baseHtml = baseHtml.replace('</body>', `<script id="guide-data" type="application/json">${JSON.stringify(guideData).replaceAll('<', '\\u003c')}</script>\n</body>`)
   const canonicalUrl = `${siteConfig.url}${page.path}`
+  const article = guideData?.article
+  const previewImage = article
+    ? `${siteConfig.url}/images/${article.image}-1280.webp`
+    : `${siteConfig.url}/og-cover.png`
+  const previewAlt = article?.imageAlt ?? page.title
   const structuredData = JSON.stringify(structuredDataForPage(page), null, 2)
   const structuredDataInner = `\n${structuredData}\n`
   const hash = createHash('sha256').update(structuredDataInner).digest('base64')
@@ -118,10 +123,17 @@ function renderPageHtml(baseHtml: string, page: SitePage, isAlias = false, style
   html = replaceMeta(html, 'property', 'og:title', page.title)
   html = replaceMeta(html, 'property', 'og:description', page.description)
   html = replaceMeta(html, 'property', 'og:url', canonicalUrl)
-  html = replaceMeta(html, 'property', 'og:image:alt', page.title)
+  html = replaceMeta(html, 'property', 'og:type', article ? 'article' : 'website')
+  html = replaceMeta(html, 'property', 'og:image', previewImage)
+  html = replaceMeta(html, 'property', 'og:image:secure_url', previewImage)
+  html = replaceMeta(html, 'property', 'og:image:type', article ? 'image/webp' : 'image/png')
+  html = replaceMeta(html, 'property', 'og:image:width', article ? '1280' : '1200')
+  html = replaceMeta(html, 'property', 'og:image:height', article ? '853' : '630')
+  html = replaceMeta(html, 'property', 'og:image:alt', previewAlt)
   html = replaceMeta(html, 'name', 'twitter:title', page.title)
   html = replaceMeta(html, 'name', 'twitter:description', page.description)
-  html = replaceMeta(html, 'name', 'twitter:image:alt', page.title)
+  html = replaceMeta(html, 'name', 'twitter:image', previewImage)
+  html = replaceMeta(html, 'name', 'twitter:image:alt', previewAlt)
 
   if (isAlias) {
     html = html
@@ -196,27 +208,31 @@ function staticPagesPlugin(): Plugin {
         if (!asset) this.error(`Could not find the built ${family} stylesheet (${source}).`)
         styleHrefs[family as PageStyleFamily] = `/${asset.fileName}`
       }
-      // The landing page can paint from its first HTML response. Other pages
-      // retain the shared, cacheable stylesheet for subsequent navigation.
-      const homeHtml = renderPageHtml(baseHtml, home, false, styleHrefs)
-      indexAsset.source = homeHtml.replace(
+      // Every canonical page can paint from its first response, including deep
+      // links from search. Only that page's shared + family styles are embedded.
+      const inlinePageStyles = (html: string) => html.replace(
         /<link\b[^>]*rel="stylesheet"[^>]*>/g,
         (link) => {
           const href = link.match(/href="([^"]+)"/)?.[1]
           const asset = href ? bundle[href.replace(/^\//, '')] : undefined
           if (!asset || asset.type !== 'asset' || !asset.fileName.endsWith('.css')) {
-            this.error(`Could not inline the homepage stylesheet: ${href ?? link}`)
+            this.error(`Could not inline the page stylesheet: ${href ?? link}`)
           }
-          return `<style data-home-style>${String(asset.source).replaceAll('</style', '<\\/style')}</style>`
+          const css = String(asset.source)
+          // Relative CSS URLs would resolve against the document after inlining.
+          // Fail loudly if a future stylesheet adds such an external dependency.
+          if (/@import\b|url\(/i.test(css)) this.error(`Inline stylesheet needs URL resolution: ${href}`)
+          return `<style data-inline-style="${escapeAttribute(href!)}">${css.replaceAll('</style', '<\\/style')}</style>`
         },
       )
+      indexAsset.source = inlinePageStyles(renderPageHtml(baseHtml, home, false, styleHrefs))
 
       for (const page of sitePages) {
         if (page.path !== '/') {
           this.emitFile({
             type: 'asset',
             fileName: outputPath(page.path),
-            source: renderPageHtml(baseHtml, page, false, styleHrefs),
+            source: inlinePageStyles(renderPageHtml(baseHtml, page, false, styleHrefs)),
           })
         }
 
@@ -232,7 +248,7 @@ function staticPagesPlugin(): Plugin {
       this.emitFile({
         type: 'asset',
         fileName: '404.html',
-        source: renderPageHtml(baseHtml, notFoundPage, false, styleHrefs),
+        source: inlinePageStyles(renderPageHtml(baseHtml, notFoundPage, false, styleHrefs)),
       })
 
       this.emitFile({

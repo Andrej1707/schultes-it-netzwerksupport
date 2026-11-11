@@ -24,14 +24,22 @@ Geltungsbereich.
 - `src/site/contacts.ts`: Kontaktauflösung für denselben Betrieb auf allen Seiten
 - `src/content/services.ts`: normalisierte Leistungsseiten und ihre Reichweite
 - `src/content/legacy/`: bestehende redaktionelle Leistungs- und Hilfetexte als Datenbasis
+- `src/content/guides/`: 70 vollständige Ratgeber, je 14 pro Kategorie;
+  `articles.ts` verbindet ursprüngliche Inhalte und Erweiterungsmodule nur für den Build,
+  `catalog.ts` liefert die kompakten Zusammenfassungen für Navigation und Übersicht
 - `src/site/publicServices.ts`: veröffentlichte Leistungen für Menü, Ratgeber und Routen
 - `src/site/navigation.ts`: gemeinsame Gruppierung der Leistungen für Menü und Footer
 - `src/site/routes.ts`: kanonische Seiten, Seitentypen, Metadaten und alte Alias-URLs
 - `src/site/schema.ts`: strukturierte Daten passend zum Seitentyp
+- `scripts/generate-cloudflare-redirects.mjs`: aus dem Build-Manifest abgeleitete
+  Weiterleitungs-CSV mit kontrollierter Prüfung und separatem Import neuer Ratgeberregeln
 
 Die Sitemap, statischen HTML-Dateien und das Build-Manifest entstehen aus `routes.ts`. Neue Seiten
 werden nicht zusätzlich in einer separaten Sitemap-Liste gepflegt. Die bisherigen Inhaltsmodule
 bleiben Datenquellen; die aktuelle Oberfläche verwendet die Premium-Komponenten.
+Der aktuelle Quellstand umfasst 100 kanonische Seiten, davon 98 indexierbare, und 48 historische
+Alias-Dokumente. Für Ratgeber und Leistungen einschließlich Fernwartung sind 96 kanonische
+Seiten zu prüfen: Ratgeberübersicht, 70 Artikel, Leistungsübersicht und 24 Leistungsseiten.
 
 Interne Namen wie `location`, `network-service` und `PremiumNetworkPages` stammen aus der
 bisherigen Implementierung. Sie begründen keine weiteren öffentlichen Standorte oder
@@ -49,6 +57,8 @@ sie sind keine vom Besucher erhobene Position.
 Metadaten, Canonical-URL, Robots-Anweisung und Schema.org-Daten. Der Entwicklungsserver verwendet
 dieselbe Renderfunktion für die angeforderte Route. Der fertige Build benötigt keinen laufenden
 Node-Server und wird statisch von GitHub Pages ausgeliefert.
+Artikelseiten verwenden ihr eigenes 1280-Pixel-Motiv mit passendem Alt-Text für Open Graph,
+Twitter und das `Article`-Schema. Andere Seitentypen behalten die gemeinsame PNG-Vorschau.
 
 Bereits ohne JavaScript enthält eine kanonische Seite:
 
@@ -68,6 +78,9 @@ Damit gibt es keine getrennte, verkürzte SEO-Ansicht, die nachträglich gegen e
 ausgetauscht wird. Für neue Komponenten müssen der erste Browser-Render und der Server-Render
 übereinstimmen. Browser-APIs gehören in Effekte oder benutzerausgelöste Ereignisbehandler.
 CSS wird über `main.tsx` eingebunden und nicht über den serverseitig importierten Seitenbaum.
+Im Produktions-HTML stehen das gemeinsame CSS und nur die benötigte Seitenfamilie direkt im
+Head aller kanonischen Seiten und der Fehlerseite. Der Release-Validator gleicht den eingebetteten
+Inhalt mit den tatsächlichen CSS-Dateien ab; Alias-Dokumente behalten externe Stylesheets.
 
 Der Support-Assistent ist davon getrennt: `main.tsx` lädt `src/support/SupportBot.tsx` asynchron
 und rendert ihn in `#support-root`. Das Einbinden beim Seitenaufruf bleibt erhalten; es wird
@@ -85,14 +98,17 @@ Produktmotive. Themen unterscheiden sich durch Bildwahl, Flächenfarben und Anor
   mobile Navigation, Logo und Footer
 - `src/pages/PremiumServicePage.tsx`: Varianten für PC, Netzwerk, Web, Automation, Fernwartung,
   Alltagshilfe, Sicherheit, dringende Probleme und Beratung
-- `src/pages/PremiumNetworkPages.tsx`: Betriebs-Startseite auf `/`, Leistungsübersicht,
-  Ratgeber, Über-uns-Seite und 404
+- `src/pages/PremiumHomePage.tsx`: Betriebs-Startseite mit Direktkontakt und Ratgeberzugang
+- `src/pages/PremiumNetworkPages.tsx`: Leistungsübersicht, Über-uns-Seite und 404;
+  ältere Komponenten für Standortseiten und Ratgeber werden nicht mehr verwendet
+- `src/pages/GuidePages.tsx`: durchsuchbare Ratgeberübersicht und vollständige Artikelseiten
 - `src/pages/LegalContent.tsx`: rechtliche Inhalte innerhalb desselben Seitenrahmens
 - `src/premium.css`: Grundgestaltung und gemeinsame Komponenten
 - `src/premium-service.css`: Leistungsseiten und ihre Themenvarianten
 - `src/premium-network.css`: Betriebs-, Übersichts- und redaktionelle Seiten
+- `src/guides.css`: Ratgeberübersicht, Filter, Artikellayout und Quellen
 
-Die CSS-Klassen verwenden `p-`, `ps-` und `pn-` sowie `sn-` für Navigation und Footer.
+Die CSS-Klassen verwenden `p-`, `ps-`, `pn-` und `g-` sowie `sn-` für Navigation und Footer.
 Responsive Layouts, sichtbarer Tastaturfokus, eine Sprungmarke zum Hauptinhalt und
 `prefers-reduced-motion` gehören zur Gestaltung. Alle veröffentlichten Leistungen und
 Hilfethemen sind im Menü auf Desktop und Mobilgeräten erreichbar. Native `details`/`summary`-

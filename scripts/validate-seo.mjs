@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto'
-import { readFile, stat } from 'node:fs/promises'
+import { readFile, readdir, stat } from 'node:fs/promises'
 import { join, resolve, sep } from 'node:path'
+import { guideCatalog } from '../src/content/guides/catalog.ts'
 
 const siteUrl = 'https://schultes-it.de'
 const cloudflareBeaconToken = '9ae74b8a40a94aa885b1c61231e312c6'
@@ -9,6 +10,22 @@ const distDirectory = resolve(process.cwd(), 'dist')
 const checkedAssets = new Set()
 const photoOwners = new Map()
 const photoContentOwners = new Map()
+const guideByPath = new Map(guideCatalog.map(guide => [`/ratgeber/${guide.slug}/`, guide]))
+
+function previewForPage(page) {
+  if (page.kind === 'guide') {
+    const guide = guideByPath.get(page.path)
+    assert(guide, `No guide catalog entry for ${page.path}.`)
+    return {
+      url: `${siteUrl}/images/${guide.image}-1280.webp`,
+      alt: guide.imageAlt,
+      width: 1280,
+      height: 853,
+      type: 'image/webp',
+    }
+  }
+  return { url: previewImageUrl, alt: page.title, width: 1200, height: 630, type: 'image/png' }
+}
 
 async function read(relativePath) {
   return readFile(join(process.cwd(), 'dist', relativePath), 'utf8')
@@ -127,11 +144,50 @@ async function validateAssets(html, pageUrl, path) {
       }
     }
   }
-  await validateLocalAsset(previewImageUrl, pageUrl, path, true)
+  const previewTag = html.match(/<meta\b[^>]*property="og:image"[^>]*>/i)?.[0] ?? ''
+  await validateLocalAsset(attributeValue(previewTag, 'content'), pageUrl, path, true)
 }
 
 function outputPath(route) {
   return route === '/' ? 'index.html' : `${route.slice(1)}index.html`
+}
+
+async function validateInlinePageStyles(html, page, path) {
+  const head = html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/i)?.[1] ?? ''
+  assert(
+    ![...html.matchAll(/<link\b[^>]*>/gi)].some((match) =>
+      attributeValue(match[0], 'rel').toLowerCase().split(/\s+/).includes('stylesheet'),
+    ),
+    `Canonical page ${path} must render without an external stylesheet request.`,
+  )
+
+  const family = page.path === '/' || ['home', 'legal'].includes(page.kind)
+    ? undefined
+    : page.kind === 'service'
+      ? 'service'
+      : ['guide', 'guides'].includes(page.kind)
+        ? 'guides'
+        : 'network'
+  const expected = [inlineStyleAssets.get('shared')]
+  if (family) expected.push(inlineStyleAssets.get(family))
+  const styles = [...head.matchAll(/<style\b([^>]*)>([\s\S]*?)<\/style>/gi)]
+    .filter((match) => attributeValue(match[1], 'data-inline-style'))
+  const hrefs = styles.map((match) => attributeValue(match[1], 'data-inline-style'))
+  assert(
+    hrefs.length === expected.length &&
+      new Set(hrefs).size === hrefs.length &&
+      expected.every((asset) => hrefs.includes(asset.href)),
+    `Missing, duplicate or incorrect shared/page-family inline CSS in ${path}.`,
+  )
+  for (const style of styles) {
+    const href = attributeValue(style[1], 'data-inline-style')
+    const asset = expected.find((candidate) => candidate.href === href)
+    assert(
+      style[2].replaceAll('<\\/style', '</style') === asset.css,
+      `Inline stylesheet ${href} in ${path} differs from its built CSS asset.`,
+    )
+    await validateLocalAsset(href, `${siteUrl}${page.path}`, path, true)
+  }
 }
 
 function structuredData(html, path) {
@@ -168,6 +224,7 @@ function structuredData(html, path) {
 }
 
 function validateSharedHtml(html, page, path, canonicalUrl, indexable) {
+  const preview = previewForPage(page)
   const robots = indexable
     ? 'index, follow, max-image-preview:large'
     : 'noindex, follow, max-image-preview:large'
@@ -203,18 +260,28 @@ function validateSharedHtml(html, page, path, canonicalUrl, indexable) {
     `Invalid Open Graph URL in ${path}.`,
   )
   assert(
-    html.includes(`<meta property="og:image" content="${previewImageUrl}" />`),
-    `Open Graph image is missing or not PNG in ${path}.`,
+    html.includes(`<meta property="og:image" content="${preview.url}" />`),
+    `Open Graph image does not match the page's preview image in ${path}.`,
   )
   assert(
-    html.includes('<meta property="og:image:width" content="1200" />') &&
-      html.includes('<meta property="og:image:height" content="630" />'),
-    `Open Graph image dimensions are missing in ${path}.`,
+    html.includes(`<meta property="og:image:secure_url" content="${preview.url}" />`) &&
+      html.includes(`<meta property="og:image:type" content="${preview.type}" />`) &&
+      html.includes(`<meta property="og:type" content="${page.kind === 'guide' ? 'article' : 'website'}" />`),
+    `Open Graph image URL, MIME type or page type is incorrect in ${path}.`,
   )
   assert(
-    html.includes(`<meta name="twitter:image" content="${previewImageUrl}" />`),
-    `Twitter preview image is missing or not PNG in ${path}.`,
+    html.includes(`<meta property="og:image:width" content="${preview.width}" />`) &&
+      html.includes(`<meta property="og:image:height" content="${preview.height}" />`),
+    `Open Graph image dimensions are missing or incorrect in ${path}.`,
   )
+  assert(
+    html.includes(`<meta name="twitter:image" content="${preview.url}" />`),
+    `Twitter preview image does not match the page's preview image in ${path}.`,
+  )
+  for (const [attribute, name] of [['property', 'og:image:alt'], ['name', 'twitter:image:alt']]) {
+    const tag = html.match(new RegExp(`<meta\\b[^>]*${attribute}="${name}"[^>]*>`, 'i'))?.[0] ?? ''
+    assert(attributeValue(tag, 'content') === preview.alt, `Incorrect ${name} in ${path}.`)
+  }
   assert(
     html.includes('https://static.cloudflareinsights.com/beacon.min.js'),
     `Cloudflare Web Analytics script is missing in ${path}.`,
@@ -303,6 +370,21 @@ function validateRedirectAlias(html, page, path, canonicalUrl) {
 }
 
 const manifest = JSON.parse(await read('site-manifest.json'))
+const builtAssetNames = await readdir(join(distDirectory, 'assets'))
+const inlineStyleAssets = new Map()
+for (const [family, prefix] of [
+  ['shared', 'index-'],
+  ['service', 'page-service-'],
+  ['network', 'page-network-'],
+  ['guides', 'page-guides-'],
+]) {
+  const matches = builtAssetNames.filter((name) => name.startsWith(prefix) && name.endsWith('.css'))
+  assert(matches.length === 1, `Expected one built ${family} stylesheet; found ${matches.length}.`)
+  const href = `/assets/${matches[0]}`
+  const css = await read(href.slice(1))
+  assert(css.trim().length > 0, `Built ${family} stylesheet ${href} is empty.`)
+  inlineStyleAssets.set(family, { href, css })
+}
 const sitemap = await read('sitemap.xml')
 const textSitemap = await read('sitemap.txt')
 const robots = await read('robots.txt')
@@ -406,6 +488,7 @@ for (const page of manifest.pages) {
     `Unexpected sitemap.txt state for ${canonicalUrl}.`,
   )
   validateSharedHtml(html, page, canonicalOutput, canonicalUrl, page.indexable)
+  await validateInlinePageStyles(html, page, canonicalOutput)
   await validateAssets(html, canonicalUrl, canonicalOutput)
   // Service photography stays unique. Editorial covers are intentionally repeated
   // between the library, their article and related-reading cards.
@@ -432,6 +515,13 @@ for (const page of manifest.pages) {
     Array.isArray(graph),
     `Structured data graph is missing in ${canonicalOutput}.`,
   )
+  if (page.kind === 'guide') {
+    const articles = graph.filter(node => node['@type'] === 'Article')
+    assert(
+      articles.length === 1 && articles[0].image === previewForPage(page).url,
+      `Article schema image must match the guide catalog and social preview in ${canonicalOutput}.`,
+    )
+  }
 
   const organization = graph.find((node) => node['@type'] === 'Organization')
   assert(organization, `Organization schema is missing in ${canonicalOutput}.`)
@@ -620,6 +710,7 @@ for (const page of manifest.pages.filter(
 
 const notFoundHtml = await read('404.html')
 structuredData(notFoundHtml, '404.html')
+await validateInlinePageStyles(notFoundHtml, { path: '/404.html', kind: 'not-found' }, '404.html')
 await validateAssets(notFoundHtml, `${siteUrl}/404.html`, '404.html')
 assert(
   notFoundHtml.includes(

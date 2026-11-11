@@ -7,14 +7,14 @@ import { structuredDataForPage } from '../../site/schema'
 import { withPageStyles } from '../../site/pageStyles'
 
 describe('the guide library', () => {
-  it('publishes forty distinct, useful guides with working related articles and service destinations', () => {
-    expect(guideArticles).toHaveLength(40)
+  it('publishes seventy distinct, useful guides with working related articles and service destinations', () => {
+    expect(guideArticles).toHaveLength(70)
     const slugs = new Set(guideArticles.map(article => article.slug))
-    expect(slugs.size).toBe(40)
-    expect(new Set(guideArticles.map(article => article.title)).size).toBe(40)
-    expect(new Set(guideArticles.map(article => article.image)).size).toBe(40)
+    expect(slugs.size).toBe(70)
+    expect(new Set(guideArticles.map(article => article.title)).size).toBe(70)
+    expect(new Set(guideArticles.map(article => article.image)).size).toBe(70)
     for (const category of ['sicherheit', 'windows', 'wlan', 'daten', 'alltag']) {
-      expect(guideArticles.filter(article => article.category === category)).toHaveLength(8)
+      expect(guideArticles.filter(article => article.category === category)).toHaveLength(14)
     }
     for (const article of guideArticles) {
       expect(article.sections.length, article.slug).toBeGreaterThanOrEqual(3)

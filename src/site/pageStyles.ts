@@ -1,4 +1,4 @@
-/** These styles are linked in the HTML head, never deferred until hydration. */
+/** Page styles enter the HTML head; production embeds them before first paint. */
 export const pageStyleSources = {
   service: '/src/premium-service.css',
   network: '/src/premium-network.css',

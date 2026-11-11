@@ -76,6 +76,7 @@
   }
 }
 .sn-menu-content { width: min(1200px, calc(100% - 64px)); margin-inline: auto; padding: 34px 0 22px; }
+.sn-mobile-destinations { display: none; }
 .sn-menu-intro { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-bottom: 28px; }
 .sn-menu-intro p { margin: 0; font-size: 14px; color: #696970; }
 .sn-menu-intro > a { display: inline-flex; align-items: center; gap: 7px; min-height: 30px; font-size: 14px; color: #0068d6; }
@@ -125,6 +126,14 @@
   .sn-menu[open] .sn-menu-icon-close { display: block; }
   .sn-menu-panel { max-height: calc(100vh - 65px); max-height: calc(100dvh - 65px); }
   .sn-menu-content { width: calc(100% - 48px); padding-top: 25px; }
+  .sn-mobile-destinations { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 27px; }
+  .sn-mobile-destinations > a { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 20px 17px; border: 1px solid #e0e0e6; border-radius: 18px; background: #fff; color: #252529; }
+  .sn-mobile-destinations strong { font-size: clamp(16px, 5vw, 20px); line-height: 1.2; font-weight: 580; letter-spacing: -.03em; }
+  .sn-mobile-destinations span { color: #62626b; font-size: 12px; line-height: 1.5; }
+  .sn-mobile-destinations svg { margin-bottom: 4px; color: #0068d6; }
+  .sn-mobile-destinations > .sn-mobile-guides { background: #edf5ff; border-color: #d7e7fc; }
+  .sn-mobile-destinations > a[aria-current='page'] strong { color: #0068d6; }
+  .sn-menu-utilities .sn-menu-guides-secondary { display: none; }
   .sn-menu-intro { align-items: flex-start; flex-direction: column; gap: 9px; padding-bottom: 25px; }
   .sn-menu-intro p { font-size: 14px; }
   .sn-menu-intro a { font-size: 20px; font-weight: 550; letter-spacing: -0.03em; }

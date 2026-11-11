@@ -13,6 +13,7 @@ import { PremiumImage } from '../components/PremiumShell'
 import { siteConfig } from '../site/config'
 import { activeLocationById } from '../site/locations'
 import { getServicePath, getLocationServicesByGroup } from '../content/services'
+import { guideCatalog } from '../content/guides/catalog'
 import type { SitePage } from '../site/types'
 
 export default function PremiumHomePage({ page }: { page: SitePage }) {
@@ -200,7 +201,7 @@ export default function PremiumHomePage({ page }: { page: SitePage }) {
           ))}
         </div>
         <a className="p-text-link" href="/ratgeber/">
-          40 Ratgeber für deinen Technikalltag <ArrowUpRight size={17} aria-hidden="true" />
+          {guideCatalog.length} Ratgeber für deinen Technikalltag <ArrowUpRight size={17} aria-hidden="true" />
         </a>
       </section>
 

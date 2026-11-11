@@ -60,9 +60,9 @@ const structuralPages: SitePage[] = [
     kind: 'guides',
     schemaKind: 'guides',
     path: '/ratgeber/',
-    title: 'IT-Ratgeber | Verständliche Hilfe von Schultes IT',
+    title: `${guideCatalog.length} IT-Ratgeber | Verständliche Hilfe von Schultes IT`,
     description:
-      'Verständliche Orientierung bei typischen PC-, Windows-, WLAN-, E-Mail- und Sicherheitsproblemen – ohne unnötiges Fachchinesisch.',
+      `${guideCatalog.length} verständliche IT-Ratgeber zu Sicherheit, Windows, WLAN, Daten und digitalem Alltag. Mit klaren Schritten, Quellen und persönlicher Hilfe von Schultes IT.`,
     keywords:
       'IT Ratgeber, PC Problem Hilfe, WLAN Problem, Windows Hilfe, Phishing erkennen, Schultes IT',
     eyebrow: 'RATGEBER / ERSTE ORIENTIERUNG',
