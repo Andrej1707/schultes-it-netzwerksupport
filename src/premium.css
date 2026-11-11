@@ -1159,5 +1159,4 @@ a:hover {
 
 /* Direct contact stays visible in the restored editorial homepage. */
 .p-home-direct { margin: 18px 0 0; font-size: 13px; color: var(--muted); }
-.p-home-direct a { color: var(--accent); overflow-wrap: anywhere; }
-.p-home-direct a:hover { text-decoration: underline; }
+.p-home-direct a { color: var(--accent); overflow-wrap: anywhere; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }

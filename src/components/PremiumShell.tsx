@@ -23,7 +23,7 @@ export function PremiumImage({
     <img
       className={className}
       src={`/images/${name}-1280.webp`}
-      srcSet={`/images/${name}-640.webp 640w, /images/${name}-1280.webp 1280w, /images/${name}-1920.webp 1920w`}
+      srcSet={`/images/${name}-640.webp 640w, /images/${name}-800.webp 800w, /images/${name}-1280.webp 1280w, /images/${name}-1920.webp 1920w`}
       sizes={sizes}
       width={1536}
       height={1024}

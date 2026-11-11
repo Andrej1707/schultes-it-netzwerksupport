@@ -368,8 +368,8 @@ export const everydayGuides: GuideArticle[] = [
     description: 'So kontrollierst du Google Fotos oder iCloud-Fotos, erstellst eine zusätzliche Kopie und vermeidest versehentliches Löschen auf allen Geräten.',
     category: 'alltag',
     readMinutes: 4,
-    image: 'software-service',
-    imageAlt: 'Laptop mit angeschlossenem externem Datenträger für eine lokale Sicherung',
+    image: 'guide-handy-fotos-sichern',
+    imageAlt: 'Smartphone am Laptop neben Landschaftsfotos und einem externen Datenträger',
     updated: '2026-11-11',
     intro: 'Fotos auf dem Display zu sehen bedeutet noch nicht, dass sie außerhalb des Handys gesichert sind. Manche Bilder liegen nur lokal, andere werden aus einer Cloud angezeigt. Bevor du Speicher freigibst oder das Gerät wechselst, solltest du wissen, welches Konto verwendet wird, ob der Upload vollständig ist und wo eine zusätzliche unabhängige Kopie liegt.',
     takeaways: [

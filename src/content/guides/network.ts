@@ -319,8 +319,8 @@ export const networkGuides: GuideArticle[] = [
     slug: 'lan-oder-wlan',
     title: 'LAN oder WLAN: die passende Verbindung für deinen Arbeitsplatz',
     description: 'Wann sich ein Netzwerkkabel lohnt, wo WLAN die bessere Wahl bleibt und wie du einen fairen Vergleich ohne neue Hardware durchführst.',
-    category: 'wlan', readMinutes: 5, image: 'network-service',
-    imageAlt: 'Notebook und Netzwerkgeräte auf einer aufgeräumten Arbeitsfläche',
+    category: 'wlan', readMinutes: 5, image: 'guide-lan-oder-wlan',
+    imageAlt: 'Blaues Netzwerkkabel am USB-C-Ethernet-Adapter eines Laptops, dahinter ein WLAN-Router',
     updated: '2026-11-11',
     intro: 'WLAN ist bequem, ein Netzwerkkabel oft berechenbarer. Für einen festen Arbeitsplatz kann eine Kabelverbindung deshalb viel Ruhe bringen. Trotzdem muss nicht jedes Handy, jeder Fernseher und jeder Drucker verkabelt werden. Die richtige Entscheidung ergibt sich aus deinem Nutzungsort, den Anwendungen und einem Vergleich mit vorhandener Technik.',
     takeaways: [
@@ -372,8 +372,8 @@ export const networkGuides: GuideArticle[] = [
     slug: 'router-wechseln',
     title: 'Router wechseln: mit Sicherung, Zugangsdaten und Funktionscheck',
     description: 'So bereitest du einen Routerwechsel vor, übernimmst nur passende Einstellungen und prüfst Internet, Telefonie, WLAN und verbundene Geräte.',
-    category: 'wlan', readMinutes: 6, image: 'router-service',
-    imageAlt: 'Router und Netzwerkkabel auf einer hellen Arbeitsfläche',
+    category: 'wlan', readMinutes: 6, image: 'guide-router-wechseln',
+    imageAlt: 'Zwei unterschiedliche Router mit Netzwerkkabel, Netzteil und Notizbuch für einen vorbereiteten Gerätewechsel',
     updated: '2026-11-11',
     intro: 'Ein neuer Router soll die Verbindung verbessern und nicht einen ganzen Abend lang Internet, Telefon und Drucker verschwinden lassen. Gute Vorbereitung macht den Wechsel überschaubar. Behalte das alte Gerät zunächst als Rückfallmöglichkeit und prüfe vor dem Abstecken, welche Informationen du für deinen Anschluss wirklich brauchst.',
     takeaways: [

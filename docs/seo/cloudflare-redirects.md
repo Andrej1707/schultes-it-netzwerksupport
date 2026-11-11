@@ -1,10 +1,10 @@
 # URL-Umzug und aktive Cloudflare-Weiterleitungen
 
-Stand: 11.11.2026, nach der genehmigten Veröffentlichung. Die Website und der Support-Worker sind veröffentlicht; die 466 Cloudflare-Weiterleitungen sind aktiviert. Alle 902 HTTP-/HTTPS-Redirectfälle und acht zusätzliche Query-Fälle wurden erfolgreich geprüft. Die versionierte `robots.txt` wird nach einer gezielten Cloudflare-Korrektur wieder unverändert ausgeliefert. Bestätigte Live-Ergebnisse und noch offene Prüfungen werden unten getrennt ausgewiesen. Search Console und tatsächliche Google-Indexierung sind nicht als geprüft ausgewiesen.
+Stand: 11.11.2026, nach Veröffentlichung von PR #7 und dem Live-Audit um 20:15–20:16 Uhr (Europe/Berlin). Die Website und der Support-Worker sind veröffentlicht; insgesamt 706 Cloudflare-Weiterleitungen sind aktiviert. Alle 1.342 HTTP-/HTTPS-Redirectfälle und 18 zusätzliche Query-Fälle wurden erfolgreich geprüft. Die versionierte `robots.txt` wird unverändert ausgeliefert. Die XML-Sitemap wurde in Search Console erneut angenommen; die Oberfläche zeigte noch den bisherigen Stand von 28 erkannten Seiten. Die Verarbeitung der nun 68 Sitemap-URLs und deren tatsächliche Indexierung bleiben unbestätigt. Frühere Auditstände sind unten als solche gekennzeichnet.
 
 ## Kanonische Ziele
 
-Die Seiten-Registry enthält 30 kanonische Seiten: 28 sollen indexiert werden, Impressum und Datenschutz bleiben bewusst `noindex, follow`. Dazu kommen 48 historische Alias-Pfade. Die Fehlerseite `404.html` bleibt ebenfalls `noindex, follow` und steht nicht in den Sitemaps.
+Die Seiten-Registry enthält 70 kanonische Seiten, darunter 40 eigenständige Ratgeber: 68 sollen indexiert werden, Impressum und Datenschutz bleiben bewusst `noindex, follow`. Dazu kommen 48 historische Alias-Pfade. Die Fehlerseite `404.html` bleibt ebenfalls `noindex, follow` und steht nicht in den Sitemaps.
 
 | Bisheriger Pfad | Endgültiges Ziel |
 | --- | --- |
@@ -36,7 +36,7 @@ Die frühere read-only Prüfung vom 26.10.2026 zeigte direkte GitHub-Pages-Antwo
 
 ## Aktivierte CSV
 
-[legacy-redirects.csv](legacy-redirects.csv) enthält 466 eindeutige Regeln ohne Kopfzeile im [Cloudflare-CSV-Format](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/csv-file-format/):
+[legacy-redirects.csv](legacy-redirects.csv) enthält 706 eindeutige Regeln ohne Kopfzeile im [Cloudflare-CSV-Format](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/csv-file-format/). Die 240 mit PR #7 hinzugekommenen Regeln für Ratgeber stehen zusätzlich separat in [guide-redirects.csv](guide-redirects.csv):
 
 ```text
 SOURCE_URL,TARGET_URL,STATUS_CODE,PRESERVE_QUERY_STRING,INCLUDE_SUBDOMAINS,SUBPATH_MATCHING,PRESERVE_PATH_SUFFIX
@@ -50,22 +50,22 @@ schultes-it.de/standorte/ludwigsburg/,https://schultes-it.de/,301,TRUE,FALSE,FAL
 Die Regeln decken ab:
 
 - 288 Alias-Regeln: 48 Pfade, jeweils ohne Slash, mit Slash und mit `/index.html`, für Hauptdomain und `www`.
-- 60 Regeln für die `index.html`-Varianten der 30 kanonischen Seiten auf beiden Hosts.
-- 58 Regeln für kanonische Unterseiten ohne abschließenden Slash auf beiden Hosts.
-- 30 Regeln für kanonische Pfade unter `www`.
-- 30 ausschließlich auf HTTP begrenzte Regeln für die kanonischen Pfade der Hauptdomain.
+- 140 Regeln für die `index.html`-Varianten der 70 kanonischen Seiten auf beiden Hosts.
+- 138 Regeln für kanonische Unterseiten ohne abschließenden Slash auf beiden Hosts.
+- 70 Regeln für kanonische Pfade unter `www`.
+- 70 ausschließlich auf HTTP begrenzte Regeln für die kanonischen Pfade der Hauptdomain.
 
 Alle Ziele sind kanonische HTTPS-Adressen. Keine Zieladresse ist selbst Quelle einer passenden HTTPS-Regel. Query-Parameter bleiben erhalten. Exaktes Matching und deaktiviertes Subpath-/Subdomain-Matching verhindern pauschale Treffer auf unbekannte Unterpfade, Assets oder Downloads. Unbekannte URLs liefern weiterhin 404. Der Support-Worker läuft separat auf `schultes-it-support.schultes-andrej.workers.dev`; eine Custom-Domain `support.schultes-it.de` ist nicht eingerichtet und besitzt keine DNS-Einträge oder Worker-Routen.
 
 Die alte Projektadresse `andrej1707.github.io/schultes-it-netzwerksupport/` gehört nicht zur Cloudflare-Zone und ist deshalb kein CSV-Eintrag. Ein entsprechender erfundener Pfad unter der Hauptdomain wird nicht ergänzt.
 
-## Veröffentlichung und Cloudflare-Aktivierung am 11.11.2026
+## Erste Veröffentlichung und Cloudflare-Aktivierung am 11.11.2026
 
 Alle Uhrzeiten in Europe/Berlin:
 
 - Website: [PR #4](https://github.com/Andrej1707/schultes-it-netzwerksupport/pull/4) wurde als `97ff37d` gemergt; [Pages-Run 43071677269](https://github.com/Andrej1707/schultes-it-netzwerksupport/actions/runs/43071677269) war um 18:49 Uhr erfolgreich.
 - Support-Worker: Version `9a134154-b1f8-49b6-9f70-0cc1905f38e6`, Deployment `7f6b75d2-e986-4946-9609-384da9c9b56b`, seit 18:55 Uhr mit 100 % Traffic. Vorherige Version für ein mögliches Rollback: `671b061b-3eef-463d-a95a-5bb31643c6de`.
-- Bulk-Redirect-Liste: `schultes_it_canonical_20261111`, ID `bb9f350e26c343228f9cc5ef0de143f2`, mit 466 Einträgen.
+- Bulk-Redirect-Liste bei der Erstveröffentlichung: `schultes_it_canonical_20261111`, ID `bb9f350e26c343228f9cc5ef0de143f2`, mit 466 Einträgen.
 - Zugehörige Regel `08ec7a8dc1dd4b5bafe4d07c8aefe32e` ist aktiviert.
 - Die vier A-Records der Hauptdomain auf `185.199.108.153`, `185.199.109.153`, `185.199.110.153` und `185.199.111.153` sowie der `www`-CNAME auf `andrej1707.github.io` sind proxied. Übrige DNS-Einträge, insbesondere Mail, wurden nicht geändert.
 - Nach Prüfung des gültigen Origin-TLS-Zertifikats wurde Cloudflare auf `Full (strict)` gesetzt; vorher galt der automatisch bestimmte Modus `Full`.
@@ -74,11 +74,11 @@ Die Standort-Aliasprobe lieferte eine direkte HTTP-301-Weiterleitung mit erhalte
 `/standorte/ludwigsburg/?utm_source=release-check#kontakt` auf
 `https://schultes-it.de/?utm_source=release-check#kontakt` aufgelöst. Diese Browserprobe ergänzt den nachfolgend dokumentierten vollständigen HTTP-Audit um den Erhalt der Sprungmarke.
 
-Der zusätzliche Desktop-Hover-Wunsch ist eine getrennte Änderung in [PR #5](https://github.com/Andrej1707/schultes-it-netzwerksupport/pull/5), Code-Commit `38ecb33`. Die Prüfungen vor dem Zusammenführen stehen in [der QA-Dokumentation](../qa-2026-11-11.md); die Veröffentlichung erfolgt nach dem Merge über den main-Workflow.
+Der zusätzliche Desktop-Hover-Wunsch wurde mit [PR #5](https://github.com/Andrej1707/schultes-it-netzwerksupport/pull/5), Code-Commit `38ecb33`, zusammengeführt und veröffentlicht. Die Prüfungen vor dem Zusammenführen stehen in [der QA-Dokumentation](../qa-2026-11-11.md).
 
-## Redirect-Audit und offene Prüfungen
+## Historischer Audit der ersten Veröffentlichung
 
-Der vollständige Redirect-Audit hat alle 466 CSV-Regeln in 902 HTTP-/HTTPS-Fällen erfolgreich geprüft. Die Zahl entsteht aus 436 schemafreien Quellen, jeweils über HTTP und HTTPS, plus 30 ausschließlich über HTTP geltenden Quellen.
+Der erste vollständige Redirect-Audit am 11.11.2026 hat die damaligen 466 CSV-Regeln in 902 HTTP-/HTTPS-Fällen erfolgreich geprüft. Die Zahl entstand aus 436 schemafreien Quellen, jeweils über HTTP und HTTPS, plus 30 ausschließlich über HTTP geltenden Quellen. Die folgenden Ergebnisse beschreiben diesen früheren Stand vor den 40 Ratgebern.
 
 - Alle 902 Fälle liefern die erwartete 301-Weiterleitung direkt zum jeweiligen kanonischen CSV-Endziel.
 - Acht zusätzliche Query-Fälle erhalten die Parameter vollständig.
@@ -88,11 +88,25 @@ Der vollständige Redirect-Audit hat alle 466 CSV-Regeln in 902 HTTP-/HTTPS-Fäl
 - `HEAD /downloads/rustdesk.exe` liefert 200 mit `application/octet-stream`, `HEAD /favicon.svg` 200 mit `image/svg+xml`, jeweils ohne Weiterleitung. Die Live-EXE wurde dabei nicht erneut vollständig heruntergeladen oder gehasht; die Dateiprüfsumme wurde lokal und in CI geprüft.
 - Der tatsächliche Worker-Endpunkt `https://schultes-it-support.schultes-andrej.workers.dev/health` liefert 200 mit JSON einschließlich `ok` und Modellangabe. Eine nicht eingerichtete Support-Custom-Domain wird nicht als getestet ausgewiesen.
 
-Offen bleibt die Prüfung in Search Console: XML-Sitemap einreichen bzw. erneut prüfen und
-repräsentative alte/neue URLs per URL-Prüfung kontrollieren. Der erwartete Ausschluss alter
-Weiterleitungs-URLs ist vom unerwarteten Ausschluss neuer kanonischer Angebotsseiten zu
-unterscheiden. Search-Console-Status, tatsächliche Indexierung und Ranking sind weiterhin
-nicht als geprüft ausgewiesen.
+## Erweiterung und Live-Audit von PR #7
+
+[PR #7](https://github.com/Andrej1707/schultes-it-netzwerksupport/pull/7) wurde als `ecafb5c02a5885e58aeec1cacfe65ae928a89949` zusammengeführt und durch [Pages-Run 43085147477](https://github.com/Andrej1707/schultes-it-netzwerksupport/actions/runs/43085147477) veröffentlicht. Mit den 240 aktivierten zusätzlichen Ratgeberregeln sind insgesamt 706 Regeln aktiv.
+
+Der Audit vom 11.11.2026, 20:15:46 bis 20:16:47 Uhr (Europe/Berlin), bestand mit 1.445 Fällen ohne verbleibenden Fehler:
+
+- 1.342 Redirectfälle: 636 schemafreie Quellen jeweils über HTTP und HTTPS sowie 70 ausschließlich auf HTTP begrenzte Quellen. Alle liefern direkt die erwartete 301-Weiterleitung; geprüft mit `HEAD` und ohne automatisches Folgen.
+- 18 zusätzliche Query-Fälle erhalten die Parameter.
+- Alle 70 kanonischen Seiten einschließlich 40 Artikelseiten wurden geprüft; Impressum und Datenschutz bleiben die zwei gewollt nicht indexierbaren kanonischen Seiten.
+- Beide Sitemaps enthalten 68 indexierbare URLs. `robots.txt` und zwölf neue Bilddateien wurden ebenfalls erfolgreich geprüft.
+- Ein anfänglicher Timeout für `http://schultes-it.de/router-entstoerung` wurde gezielt wiederholt; danach lieferte die URL die erwartete 301-Antwort.
+
+Die kombinierte CSV hat den SHA-256-Wert `f77520507accc9015316995fbbd5bbcb61990188ccc1d4ce8e2f77592b9d132b`. Die Protokolle `schultes-pr7-live-audit.json` und `schultes-pr7-live-audit-summary.json` liegen außerhalb des Repositorys im temporären Arbeitsverzeichnis der ausführenden Sitzung. Weitere Browser- und Performance-Ergebnisse stehen in [der Release-QA](../qa-home-guides-2026-11-11.md).
+
+## Search Console und noch offene Indexierungsbeobachtung
+
+Die XML-Sitemap wurde nach PR #7 erneut eingereicht und von Search Console angenommen. Die Oberfläche zeigte zum Prüfzeitpunkt noch 28 erkannte Seiten; der öffentliche Sitemap-Abruf enthält bereits 68 URLs. Die Annahme der Einreichung bestätigt nicht die anschließende Verarbeitung oder Indexierung aller neuen Artikel.
+
+Repräsentative alte und neue URLs bleiben über die URL-Prüfung zu beobachten. Erwartete Ausschlüsse von Weiterleitungs-URLs sind von unerwarteten Ausschlüssen neuer kanonischer Angebots- oder Ratgeberseiten zu unterscheiden. Tatsächliche Indexierung und Rankings werden nicht aus erfolgreichen HTTP- oder Sitemap-Prüfungen abgeleitet.
 
 Aktuelle Voraussetzungen und Auswertungsreihenfolge der Edge-Regeln stehen in der [Cloudflare-Dokumentation](https://developers.cloudflare.com/rules/url-forwarding/).
 

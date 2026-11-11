@@ -105,8 +105,8 @@ export const windowsGuides: GuideArticle[] = [
     slug: 'speicherplatz-freigeben',
     title: 'Speicherplatz freigeben: sicher aufräumen statt blind löschen',
     description: 'So findest du große Dateien, prüfst Windows-Bereinigungsvorschläge und vermeidest Datenverlust beim Aufräumen von C:.',
-    category: 'windows', readMinutes: 5, image: 'pc-service',
-    imageAlt: 'Symbolbild eines Laptops für die Arbeit mit Dateien', updated: '2026-11-11',
+    category: 'windows', readMinutes: 5, image: 'guide-speicherplatz-freigeben',
+    imageAlt: 'Zwei externe Datenträger, USB-Stick und geordnete Ablage neben einem Laptop', updated: '2026-11-11',
     intro: 'Ein volles Laufwerk kann Updates verhindern und die Arbeit am Computer ausbremsen. Trotzdem ist die größte Datei nicht automatisch die unwichtigste. Ein gutes Aufräumen beginnt mit einer Übersicht und einer geprüften Sicherung. Danach entfernst du gezielt Dinge, deren Bedeutung du kennst, statt mit einem Klick alle vorgeschlagenen Kategorien zu löschen.',
     takeaways: ['Vor dem Löschen prüfen, was die Dateien enthalten und wo eine Sicherung liegt.', 'Windows-Bereinigungsvorschläge einzeln durchsehen.', 'Cloud-Dateien und lokale Dateien bewusst unterscheiden.'],
     sections: [
@@ -155,8 +155,8 @@ export const windowsGuides: GuideArticle[] = [
     slug: 'windows-update-probleme',
     title: 'Windows-Update hängt oder scheitert: sinnvoll eingrenzen',
     description: 'Fehlercode sichern, Voraussetzungen prüfen und die Windows-Problembehandlung nutzen, bevor du größere Reparaturen angehst.',
-    category: 'windows', readMinutes: 5, image: 'installation-service',
-    imageAlt: 'Symbolbild einer Einrichtung am Computer', updated: '2026-11-11',
+    category: 'windows', readMinutes: 5, image: 'guide-windows-update-probleme',
+    imageAlt: 'Laptop mit angeschlossenem Ladekabel neben einer Sanduhr', updated: '2026-11-11',
     intro: 'Ein fehlgeschlagenes Update ist ärgerlich, aber noch kein Grund, Windows neu zu installieren. Zuerst ist wichtig, ob gerade noch gearbeitet wird oder tatsächlich ein Fehler vorliegt. Ein angezeigter Fehlercode, die Update-Bezeichnung und der genaue Zeitpunkt helfen deutlich mehr als die pauschale Aussage „Updates gehen nicht“. Sichere diese Angaben, bevor du etwas veränderst.',
     takeaways: ['Fehlercode und Update-Bezeichnung festhalten.', 'Stromversorgung, Internet, Speicherplatz und ausstehenden Neustart prüfen.', 'Neuinstallation und Zurücksetzen erst nach Sicherung und geklärtem Reparaturziel erwägen.'],
     sections: [
@@ -258,8 +258,8 @@ export const windowsGuides: GuideArticle[] = [
     slug: 'bluescreen-einordnen',
     title: 'Bluescreen oder Stoppfehler: die richtigen Hinweise sammeln',
     description: 'Was ein Windows-Stoppfehler aussagt, welche Informationen wichtig sind und wann weitere Startversuche besser warten sollten.',
-    category: 'windows', readMinutes: 5, image: 'windows-service',
-    imageAlt: 'Symbolbild eines Windows-Arbeitsplatzes mit Computer', updated: '2026-11-11',
+    category: 'windows', readMinutes: 5, image: 'guide-bluescreen-einordnen',
+    imageAlt: 'Laptop mit blauem Bildschirm und Smartphone auf einer Tischhalterung', updated: '2026-11-11',
     intro: 'Ein plötzlicher Neustart mit Stoppcode wirkt dramatisch. Er sagt zunächst, dass Windows einen schwerwiegenden Fehler erkannt hat, aber noch nicht, welches Bauteil ausgetauscht werden muss. Je nach Windows-Version und Situation kann der Fehlerbildschirm unterschiedlich aussehen. Für die Eingrenzung zählen der genaue Code, der Ablauf davor und die Frage, ob der Fehler wiederholt auftritt.',
     takeaways: ['Stoppcode und Zeitpunkt dokumentieren statt eine allgemeine Fehlermeldung zu suchen.', 'Zeitliche Zusammenhänge sind Hinweise, keine fertige Diagnose.', 'Nach wiederholten Abstürzen zuerst wichtige Daten sichern.'],
     sections: [

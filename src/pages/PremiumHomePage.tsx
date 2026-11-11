@@ -61,7 +61,7 @@ export default function PremiumHomePage({ page }: { page: SitePage }) {
             name="workspace"
             eager
             alt="Heller Arbeitsplatz mit Computer, Laptop und Router"
-            sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1344px) calc(100vw - 64px), 1280px"
+            sizes="(max-width: 750px) 100vw, 750px"
           />
         </div>
         <div className="p-home-assurance">

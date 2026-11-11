@@ -28,8 +28,8 @@ export const guideCatalog: GuideSummary[] = [
     "description": "Ein sicherer Einstieg in den Passwortmanager: Tresor schützen, wichtige Konten umstellen, Zugangsdaten kontrollieren und Exporte sorgfältig behandeln.",
     "category": "sicherheit",
     "readMinutes": 5,
-    "image": "security-desk",
-    "imageAlt": "Illustrative Fotoaufnahme eines Laptops und eines Sicherheitsschlüssels auf einem aufgeräumten Arbeitsplatz",
+    "image": "guide-passwortmanager",
+    "imageAlt": "Laptop und Smartphone neben einem Schlüssel und einem geschlossenen blauen Notizbuch",
     "updated": "2026-11-11"
   },
   {
@@ -38,8 +38,8 @@ export const guideCatalog: GuideSummary[] = [
     "description": "So ergänzt du die Anmeldung um einen zweiten Schutz: passende Methode wählen, Ersatzwege sichern und einen Handywechsel ohne Aussperren vorbereiten.",
     "category": "sicherheit",
     "readMinutes": 5,
-    "image": "privacy-phone",
-    "imageAlt": "Illustrative Fotoaufnahme einer Hand, die ein Smartphone hält",
+    "image": "guide-zwei-faktor-anmeldung",
+    "imageAlt": "Finger vor einem Smartphone auf einem Ständer, daneben ein Laptop",
     "updated": "2026-11-11"
   },
   {
@@ -68,8 +68,8 @@ export const guideCatalog: GuideSummary[] = [
     "description": "Wie du Erpressung durch verschlüsselte Dateien vorbeugst: getrennte Backups, aktuelle Systeme, begrenzte Zugänge und ein klarer Plan für den Verdachtsfall.",
     "category": "sicherheit",
     "readMinutes": 5,
-    "image": "backup-desk",
-    "imageAlt": "Illustrative Fotoaufnahme eines Laptops mit einer externen SSD auf dem Schreibtisch",
+    "image": "guide-ransomware-vorbeugen",
+    "imageAlt": "Nicht angeschlossene externe SSD in einer Schutzhülle neben einem geschlossenen Laptop",
     "updated": "2026-11-11"
   },
   {
@@ -78,8 +78,8 @@ export const guideCatalog: GuideSummary[] = [
     "description": "Unbekannte Anmeldungen oder veränderte Kontodaten: sichere Sofortmaßnahmen, Wiederherstellungswege und Kontrollen nach einem möglichen Kontodiebstahl.",
     "category": "sicherheit",
     "readMinutes": 5,
-    "image": "privacy-phone",
-    "imageAlt": "Illustrative Fotoaufnahme eines Smartphones in einer Hand an einem Schreibtisch",
+    "image": "guide-konto-gehackt",
+    "imageAlt": "Hand am Laptop neben einem Smartphone und einem verschlossenen weißen Umschlag",
     "updated": "2026-11-11"
   },
   {
@@ -108,8 +108,8 @@ export const guideCatalog: GuideSummary[] = [
     "description": "So findest du große Dateien, prüfst Windows-Bereinigungsvorschläge und vermeidest Datenverlust beim Aufräumen von C:.",
     "category": "windows",
     "readMinutes": 5,
-    "image": "pc-service",
-    "imageAlt": "Symbolbild eines Laptops für die Arbeit mit Dateien",
+    "image": "guide-speicherplatz-freigeben",
+    "imageAlt": "Zwei externe Datenträger, USB-Stick und geordnete Ablage neben einem Laptop",
     "updated": "2026-11-11"
   },
   {
@@ -118,8 +118,8 @@ export const guideCatalog: GuideSummary[] = [
     "description": "Fehlercode sichern, Voraussetzungen prüfen und die Windows-Problembehandlung nutzen, bevor du größere Reparaturen angehst.",
     "category": "windows",
     "readMinutes": 5,
-    "image": "installation-service",
-    "imageAlt": "Symbolbild einer Einrichtung am Computer",
+    "image": "guide-windows-update-probleme",
+    "imageAlt": "Laptop mit angeschlossenem Ladekabel neben einer Sanduhr",
     "updated": "2026-11-11"
   },
   {
@@ -138,8 +138,8 @@ export const guideCatalog: GuideSummary[] = [
     "description": "Was ein Windows-Stoppfehler aussagt, welche Informationen wichtig sind und wann weitere Startversuche besser warten sollten.",
     "category": "windows",
     "readMinutes": 5,
-    "image": "windows-service",
-    "imageAlt": "Symbolbild eines Windows-Arbeitsplatzes mit Computer",
+    "image": "guide-bluescreen-einordnen",
+    "imageAlt": "Laptop mit blauem Bildschirm und Smartphone auf einer Tischhalterung",
     "updated": "2026-11-11"
   },
   {
@@ -228,8 +228,8 @@ export const guideCatalog: GuideSummary[] = [
     "description": "Wann sich ein Netzwerkkabel lohnt, wo WLAN die bessere Wahl bleibt und wie du einen fairen Vergleich ohne neue Hardware durchführst.",
     "category": "wlan",
     "readMinutes": 5,
-    "image": "network-service",
-    "imageAlt": "Notebook und Netzwerkgeräte auf einer aufgeräumten Arbeitsfläche",
+    "image": "guide-lan-oder-wlan",
+    "imageAlt": "Blaues Netzwerkkabel am USB-C-Ethernet-Adapter eines Laptops, dahinter ein WLAN-Router",
     "updated": "2026-11-11"
   },
   {
@@ -238,8 +238,8 @@ export const guideCatalog: GuideSummary[] = [
     "description": "So bereitest du einen Routerwechsel vor, übernimmst nur passende Einstellungen und prüfst Internet, Telefonie, WLAN und verbundene Geräte.",
     "category": "wlan",
     "readMinutes": 6,
-    "image": "router-service",
-    "imageAlt": "Router und Netzwerkkabel auf einer hellen Arbeitsfläche",
+    "image": "guide-router-wechseln",
+    "imageAlt": "Zwei unterschiedliche Router mit Netzwerkkabel, Netzteil und Notizbuch für einen vorbereiteten Gerätewechsel",
     "updated": "2026-11-11"
   },
   {
@@ -258,8 +258,8 @@ export const guideCatalog: GuideSummary[] = [
     "description": "Eine externe Festplatte wird erst mit passender Auswahl, mehreren Dateiständen und einem Wiederherstellungstest zu einer verlässlichen Sicherung.",
     "category": "daten",
     "readMinutes": 5,
-    "image": "backup-desk",
-    "imageAlt": "Externes Speicherlaufwerk neben einem Notebook",
+    "image": "guide-externe-festplatte-sichern",
+    "imageAlt": "Externe SSD mit USB-Kabel neben einem Laptop auf einem hellen Holztisch",
     "updated": "2026-11-11"
   },
   {
@@ -268,8 +268,8 @@ export const guideCatalog: GuideSummary[] = [
     "description": "OneDrive und andere Cloud-Dienste halten Dateien zwischen Geräten aktuell. Erfahre, welche Wiederherstellungsmöglichkeiten du zusätzlich prüfen solltest.",
     "category": "daten",
     "readMinutes": 5,
-    "image": "workspace",
-    "imageAlt": "Heller Arbeitsplatz mit Computer für die Verwaltung digitaler Dateien",
+    "image": "guide-cloud-sync-oder-backup",
+    "imageAlt": "Geschlossener Laptop und Smartphone neben einem separat aufbewahrten externen Laufwerk",
     "updated": "2026-11-11"
   },
   {
@@ -278,8 +278,8 @@ export const guideCatalog: GuideSummary[] = [
     "description": "Eine klare Checkliste für Dokumente, Fotos, Programme und Konten: So prüfst du einen PC-Umzug, bevor du das alte Gerät löschst oder weitergibst.",
     "category": "daten",
     "readMinutes": 5,
-    "image": "installation-service",
-    "imageAlt": "Computer und Zubehör für die Einrichtung eines Arbeitsplatzes",
+    "image": "guide-daten-auf-neuen-pc",
+    "imageAlt": "Älteres und neueres Notebook mit einer externen SSD auf einem hellen Holztisch",
     "updated": "2026-11-11"
   },
   {
@@ -288,8 +288,8 @@ export const guideCatalog: GuideSummary[] = [
     "description": "Erst weitere Schreibzugriffe vermeiden, dann Papierkorb, Cloud und Sicherungen prüfen. So triffst du die nächsten Entscheidungen bei fehlenden Dateien.",
     "category": "daten",
     "readMinutes": 5,
-    "image": "pc-service",
-    "imageAlt": "Notebook auf einem übersichtlichen Tisch zur Prüfung fehlender Dateien",
+    "image": "guide-dateien-geloescht",
+    "imageAlt": "Ruhende Hand neben einem geschlossenen Notebook und einem abgezogenen USB-Stick",
     "updated": "2026-11-11"
   },
   {
@@ -298,8 +298,8 @@ export const guideCatalog: GuideSummary[] = [
     "description": "Verschlüsselung schützt Daten bei Geräteverlust. Erfahre, was BitLocker und Geräteverschlüsselung leisten und wie du den Zugriff im Notfall erhältst.",
     "category": "daten",
     "readMinutes": 5,
-    "image": "security-desk",
-    "imageAlt": "Laptop mit Sicherheitsschlüssel auf einem hellen Schreibtisch",
+    "image": "guide-laufwerk-verschluesseln",
+    "imageAlt": "Geschlossenes Notebook mit einem physischen Sicherheitsschlüssel auf einem hellen Schreibtisch",
     "updated": "2026-11-11"
   },
   {
@@ -308,8 +308,8 @@ export const guideCatalog: GuideSummary[] = [
     "description": "Vor Verkauf oder Weitergabe: Sicherungen prüfen, Konten übertragen, offizielle Rücksetzverfahren nutzen und den Übergabezustand kontrollieren.",
     "category": "daten",
     "readMinutes": 5,
-    "image": "installation-service",
-    "imageAlt": "Aufgeräumter Computerarbeitsplatz mit vorbereitetem Gerät und Zubehör",
+    "image": "guide-alte-geraete-verkaufen",
+    "imageAlt": "Geschlossenes älteres Notebook mit Ladekabel in einem offenen Versandkarton",
     "updated": "2026-11-11"
   },
   {
@@ -318,8 +318,8 @@ export const guideCatalog: GuideSummary[] = [
     "description": "Wie du bekannte USB-Sticks für den Datentransport verwendest, vertrauliche Inhalte schützt und bei unbekannten oder auffälligen Geräten richtig reagierst.",
     "category": "daten",
     "readMinutes": 5,
-    "image": "pc-service",
-    "imageAlt": "Notebook auf einem aufgeräumten Arbeitsplatz für die Datenübertragung",
+    "image": "guide-usb-sticks-sicher-nutzen",
+    "imageAlt": "USB-Stick neben dem passenden Anschluss an einem Notebook",
     "updated": "2026-11-11"
   },
   {
@@ -388,8 +388,8 @@ export const guideCatalog: GuideSummary[] = [
     "description": "So kontrollierst du Google Fotos oder iCloud-Fotos, erstellst eine zusätzliche Kopie und vermeidest versehentliches Löschen auf allen Geräten.",
     "category": "alltag",
     "readMinutes": 4,
-    "image": "software-service",
-    "imageAlt": "Laptop mit angeschlossenem externem Datenträger für eine lokale Sicherung",
+    "image": "guide-handy-fotos-sichern",
+    "imageAlt": "Smartphone am Laptop neben Landschaftsfotos und einem externen Datenträger",
     "updated": "2026-11-11"
   },
   {

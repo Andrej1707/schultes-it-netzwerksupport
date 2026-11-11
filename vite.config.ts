@@ -196,7 +196,20 @@ function staticPagesPlugin(): Plugin {
         if (!asset) this.error(`Could not find the built ${family} stylesheet (${source}).`)
         styleHrefs[family as PageStyleFamily] = `/${asset.fileName}`
       }
-      indexAsset.source = renderPageHtml(baseHtml, home, false, styleHrefs)
+      // The landing page can paint from its first HTML response. Other pages
+      // retain the shared, cacheable stylesheet for subsequent navigation.
+      const homeHtml = renderPageHtml(baseHtml, home, false, styleHrefs)
+      indexAsset.source = homeHtml.replace(
+        /<link\b[^>]*rel="stylesheet"[^>]*>/g,
+        (link) => {
+          const href = link.match(/href="([^"]+)"/)?.[1]
+          const asset = href ? bundle[href.replace(/^\//, '')] : undefined
+          if (!asset || asset.type !== 'asset' || !asset.fileName.endsWith('.css')) {
+            this.error(`Could not inline the homepage stylesheet: ${href ?? link}`)
+          }
+          return `<style data-home-style>${String(asset.source).replaceAll('</style', '<\\/style')}</style>`
+        },
+      )
 
       for (const page of sitePages) {
         if (page.path !== '/') {

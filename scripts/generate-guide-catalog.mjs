@@ -1,4 +1,5 @@
 import { readFile, writeFile } from 'node:fs/promises'
+import { createHash } from 'node:crypto'
 import { securityGuides } from '../src/content/guides/security.ts'
 import { windowsGuides } from '../src/content/guides/windows.ts'
 import { networkGuides } from '../src/content/guides/network.ts'
@@ -8,6 +9,12 @@ import { everydayGuides } from '../src/content/guides/everyday.ts'
 const articles = [...securityGuides, ...windowsGuides, ...networkGuides, ...dataGuides, ...everydayGuides]
 if (articles.length !== 40 || new Set(articles.map(article => article.slug)).size !== 40) {
   throw new Error('Expected exactly 40 unique guides.')
+}
+const imageHashes = await Promise.all(articles.map(async article => createHash('sha256')
+  .update(await readFile(new URL(`../public/images/${article.image}-1280.webp`, import.meta.url)))
+  .digest('hex')))
+if (new Set(articles.map(article => article.image)).size !== 40 || new Set(imageHashes).size !== 40) {
+  throw new Error('Every guide needs its own image; reused images and renamed copies are not allowed.')
 }
 const summaries = articles.map(({ slug, title, description, category, readMinutes, image, imageAlt, updated }) =>
   ({ slug, title, description, category, readMinutes, image, imageAlt, updated }))
