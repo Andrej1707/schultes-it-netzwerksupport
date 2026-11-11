@@ -219,12 +219,25 @@ mit einer Durable-Object-Instanz für atomare Sitzungs-, Rate- und Tageslimits.
 Er bleibt beim Seitenaufruf eingebunden und wird nicht auf einen erstmaligen Klick zum Laden
 umgestellt. Sein separat geladener Code blockiert den statischen Seiteninhalt nicht.
 
-- festes Textmodell `gpt-5.4-mini`, keine Tools und keine Websuche
+- Textmodell `gpt-5.6-terra` mit explizitem `reasoning.effort: none`, keine Tools und keine Websuche
 - Ein- und Ausgabeprüfung mit `omni-moderation-latest`
 - 24-Stunden-Sitzung erst nach Cloudflare Turnstile
 - serverseitiger Gesprächskontext, maximal acht Nachrichten
 - globales Budget von maximal 1.000.000 reservierten/verbrauchten Tokens pro UTC-Tag
 - API-Schlüssel bleiben ausschließlich in verschlüsselten Worker-Secrets
+
+Beide Responses-Aufrufe erhalten `reasoning.effort: none`, damit der bei Terra sonst aktive
+Reasoning-Standard nicht das kurze Ausgabebudget von 450 Tokens beziehungsweise 250 Tokens
+für die strukturierte Basishilfe verbraucht. Der Modellaufruf bleibt auf 30 Sekunden begrenzt.
+Die [offizielle Modellbeschreibung](https://developers.openai.com/api/docs/models/gpt-5.6-terra)
+bestätigt Responses, Structured Outputs und den unterstützten Wert `none`.
+
+Die öffentliche [Programmliste für freiwilliges Datasharing](https://help.openai.com/en/articles/10306912-sharing-feedback-evaluation-and-fine-tuning-data-and-api-inputs-and-outputs-with-openai)
+führt `gpt-5.6-terra` und den bisherigen Snapshot `gpt-5.4-mini-2026-03-17` in derselben
+Gratis-Kontingentgruppe. Das bestätigt keine individuelle Kostenfreiheit: Vor Veröffentlichung
+müssen die Teilnahme, das aktive Projekt und die dort geltenden Grenzen im bestehenden
+OpenAI-Konto geprüft sein. Das eigene Worker-Tagesbudget ist unabhängig von diesem Programm;
+Datasharing-Einstellungen und bestehende Secrets werden durch den Modellwechsel nicht geändert.
 
 Lokale Konfiguration:
 

@@ -93,6 +93,8 @@ type Reservation = {
   sessionKey: string
 }
 
+const DEFAULT_OPENAI_MODEL = 'gpt-5.6-terra'
+
 const JSON_HEADERS = {
   'Content-Type': 'application/json; charset=utf-8',
   'Cache-Control': 'no-store',
@@ -230,7 +232,9 @@ async function createModelResponse(
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: env.OPENAI_MODEL ?? 'gpt-5.4-mini',
+      model: env.OPENAI_MODEL ?? DEFAULT_OPENAI_MODEL,
+      // Preserve the previous non-reasoning behavior within the short reply budget.
+      reasoning: { effort: 'none' },
       instructions: `${BUSINESS_SYSTEM_PROMPT}\n\n${supportContextInstructions(location)}`,
       input,
       tools: [],
@@ -269,7 +273,8 @@ async function createBasicSupportResponse(
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: env.OPENAI_MODEL ?? 'gpt-5.4-mini',
+      model: env.OPENAI_MODEL ?? DEFAULT_OPENAI_MODEL,
+      reasoning: { effort: 'none' },
       instructions: `${BASIC_SUPPORT_ADAPTER_PROMPT}\n\n${supportContextInstructions(location)}`,
       input: [...session.history, { role: 'user', content: message }],
       tools: [],
@@ -662,7 +667,7 @@ export default {
     try {
       let response: Response
       if (request.method === 'GET' && url.pathname === '/health') {
-        response = json({ ok: true, model: env.OPENAI_MODEL ?? 'gpt-5.4-mini' })
+        response = json({ ok: true, model: env.OPENAI_MODEL ?? DEFAULT_OPENAI_MODEL })
       } else if (request.method === 'POST' && url.pathname === '/session') {
         response = await handleSession(request, env)
       } else if (request.method === 'POST' && url.pathname === '/chat') {

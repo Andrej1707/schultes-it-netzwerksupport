@@ -13,7 +13,9 @@ const server = createServer(async (request, response) => {
 
   if (request.url === '/v1/responses') {
     const validRequest =
-      body.model === 'gpt-5.4-mini' &&
+      body.model === 'gpt-5.6-terra' &&
+      body.reasoning?.effort === 'none' &&
+      body.max_output_tokens === (body.text?.format?.name === 'basic_support_plan' ? 250 : 450) &&
       body.store === false &&
       Array.isArray(body.tools) &&
       body.tools.length === 0 &&

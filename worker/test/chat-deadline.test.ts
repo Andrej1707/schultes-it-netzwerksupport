@@ -59,7 +59,7 @@ function setupGuard(reservationDelay = 0) {
   return { guard, records }
 }
 
-function stubProvider(delays: number[]) {
+function stubProvider(delays: number[], modelOutput = 'Fernhilfe kostet ab 25 Euro.') {
   let call = 0
   const fetch = vi.fn((url: string, init: RequestInit) => new Promise<Response>((resolve, reject) => {
     const signal = init.signal
@@ -75,7 +75,7 @@ function stubProvider(delays: number[]) {
       signal?.removeEventListener('abort', onAbort)
       resolve(Response.json(url.endsWith('/moderations')
         ? { results: [{ flagged: false }] }
-        : { output_text: 'Fernhilfe kostet ab 25 Euro.', usage: { total_tokens: 90 } }))
+        : { output_text: modelOutput, usage: { total_tokens: 90 } }))
     }, delays[call++] ?? 0)
     signal?.addEventListener('abort', onAbort, { once: true })
   }))
@@ -83,10 +83,10 @@ function stubProvider(delays: number[]) {
   return fetch
 }
 
-function chatRequest() {
+function chatRequest(message = 'Was kostet Fernhilfe?') {
   return new Request('https://support.internal/chat', {
     method: 'POST',
-    body: JSON.stringify({ sessionId: 'test', contextId: 'ludwigsburg', message: 'Was kostet Fernhilfe?' }),
+    body: JSON.stringify({ sessionId: 'test', contextId: 'ludwigsburg', message }),
   })
 }
 
@@ -127,5 +127,70 @@ describe('chat processing deadline', () => {
     expect(await response.json()).toEqual({ error: 'assistant_timeout' })
     expect(fetch).toHaveBeenCalledOnce()
     expect(records.get('session:test')).toMatchObject({ inFlight: false, history: [], dayTokens: 0 })
+  })
+
+  it('retains the 30-second model deadline after the model upgrade', async () => {
+    const { guard, records } = setupGuard()
+    const fetch = stubProvider([0, 31_000])
+    const result = guard.fetch(chatRequest())
+    await vi.advanceTimersByTimeAsync(30_000)
+    const response = await result
+    expect(response.status).toBe(504)
+    expect(await response.json()).toEqual({ error: 'assistant_timeout' })
+    expect(fetch).toHaveBeenCalledTimes(2)
+    expect(records.get('session:test')).toMatchObject({ inFlight: false, history: [] })
+  })
+})
+
+describe('model request compatibility', () => {
+  it('disables reasoning for the short business-answer budget and still moderates the answer', async () => {
+    const { guard, records } = setupGuard()
+    const fetch = stubProvider([])
+    const result = guard.fetch(chatRequest())
+    await vi.advanceTimersByTimeAsync(10)
+    const response = await result
+    expect(response.status).toBe(200)
+    expect(await response.json()).toMatchObject({ reply: 'Fernhilfe kostet ab 25 Euro.', blocked: false })
+    expect(fetch).toHaveBeenCalledTimes(3)
+    const modelCall = fetch.mock.calls.find(([url]) => url.endsWith('/responses'))!
+    expect(JSON.parse(modelCall[1].body as string)).toMatchObject({
+      model: 'gpt-5.6-terra',
+      reasoning: { effort: 'none' },
+      max_output_tokens: 450,
+      tools: [],
+      store: false,
+    })
+    expect(records.get('session:test')).toMatchObject({ inFlight: false, dayTokens: 90 })
+  })
+
+  it('disables reasoning for the smaller JSON budget and renders the approved support plan', async () => {
+    const { guard, records } = setupGuard()
+    const fetch = stubProvider([], JSON.stringify({
+      category: 'wlan_unstable',
+      decision: 'assist',
+      intro: 'Wir grenzen die instabile Verbindung gemeinsam ein.',
+      step_ids: ['check_other_devices', 'toggle_wifi'],
+      question: 'Ist nur ein Gerät betroffen?',
+      closing: 'Schreib mir kurz, was du bemerkst.',
+    }))
+    const result = guard.fetch(chatRequest('Mein WLAN geht nicht'))
+    await vi.advanceTimersByTimeAsync(10)
+    const response = await result
+    expect(response.status).toBe(200)
+    const payload = await response.json() as { reply: string; blocked: boolean; escalated: boolean }
+    expect(payload).toMatchObject({ blocked: false, escalated: false })
+    expect(payload.reply).toContain('Wir grenzen die instabile Verbindung gemeinsam ein.')
+    expect(payload.reply).toContain('1. Prüfe kurz, ob andere Geräte')
+    expect(fetch).toHaveBeenCalledTimes(2)
+    const modelCall = fetch.mock.calls.find(([url]) => url.endsWith('/responses'))!
+    expect(JSON.parse(modelCall[1].body as string)).toMatchObject({
+      model: 'gpt-5.6-terra',
+      reasoning: { effort: 'none' },
+      max_output_tokens: 250,
+      tools: [],
+      store: false,
+      text: { format: { type: 'json_schema', name: 'basic_support_plan', strict: true } },
+    })
+    expect(records.get('session:test')).toMatchObject({ inFlight: false, basicHelpGiven: true, dayTokens: 90 })
   })
 })

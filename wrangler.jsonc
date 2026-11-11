@@ -10,7 +10,7 @@
   "vars": {
     "ALLOWED_ORIGINS": "https://schultes-it.de",
     "TURNSTILE_HOSTNAMES": "schultes-it.de",
-    "OPENAI_MODEL": "gpt-5.4-mini",
+    "OPENAI_MODEL": "gpt-5.6-terra",
     "DAILY_TOKEN_LIMIT": "1000000",
     "SESSION_DAILY_TOKEN_LIMIT": "40000",
     "SESSION_RPM_LIMIT": "5",
