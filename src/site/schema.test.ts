@@ -13,14 +13,19 @@ function graphFor(path: string) {
 }
 
 describe('structured data', () => {
-  it('omits breadcrumbs on the recovery page while keeping canonical-page breadcrumbs', () => {
+  it('omits breadcrumbs on the homepage and recovery page while keeping valid subpage trails', () => {
     const recoveryGraph = structuredDataForPage(notFoundPage)['@graph'] as SchemaNode[]
     expect(recoveryGraph.some((node) => node['@type'] === 'BreadcrumbList')).toBe(false)
     expect(recoveryGraph.find((node) => node['@type'] === 'WebPage')?.url)
       .toBe('https://schultes-it.de/404.html')
-    for (const page of sitePages) {
-      expect(graphFor(page.path).filter((node) => node['@type'] === 'BreadcrumbList'), page.path)
-        .toHaveLength(1)
+    expect(graphFor('/').some((node) => node['@type'] === 'BreadcrumbList')).toBe(false)
+    for (const page of sitePages.filter((page) => page.path !== '/')) {
+      const trails = graphFor(page.path).filter((node) => node['@type'] === 'BreadcrumbList')
+      expect(trails, page.path).toHaveLength(1)
+      const items = trails[0].itemListElement as { position: number; item: string }[]
+      expect(items.length, page.path).toBeGreaterThanOrEqual(2)
+      expect(items.map((item) => item.position), page.path).toEqual(items.map((_, index) => index + 1))
+      expect(items.at(-1)?.item, page.path).toBe(`https://schultes-it.de${page.path}`)
     }
   })
 
