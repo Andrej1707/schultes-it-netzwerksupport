@@ -38,7 +38,7 @@ bereits veröffentlicht oder im Browser abgenommen wurden.
 - Zentrale Daten für einen Betrieb, seinen Ansprechpartner und sein Einsatzgebiet
 - Google-Karte nach ausdrücklicher Freigabe; keine Standortbestimmung des Besuchers
 - Projektübersicht mit ausdrücklich benanntem Konzept- oder Prototypenstatus
-- Durchsuchbare Hilfethemen mit Filtern für Fernwartung und regionale Hilfe
+- 40 eigenständige Ratgeber mit Suche und Kategorien für Sicherheit, Windows, WLAN, Daten und Alltag
 - Vollständige Leistungen und Hilfethemen im Menü, auch auf Mobilgeräten
 - Native aufklappbare Navigation und normale Links, die ohne JavaScript bedienbar bleiben
 - Direkte Kontaktwege und Copy-Phone-Funktion
@@ -65,6 +65,7 @@ bereits veröffentlicht oder im Browser abgenommen wurden.
   automation/
   <weitere Hilfethemen>/
 /ratgeber/
+  <ratgeber-thema>/
 /ueber-schultes-it/
 /impressum/
 /datenschutz/
@@ -73,6 +74,9 @@ bereits veröffentlicht oder im Browser abgenommen wurden.
 `/` ist die lokale Betriebsseite für Ludwigsburg und Umgebung. `/leistungen/` bündelt das
 Angebot; die lokalen Leistungsdetails liegen direkt unter `/leistungen/<thema>/`.
 Deutschlandweite Fernwartung bleibt unter `/fernwartung/`.
+Unter `/ratgeber/<thema>/` liegen 40 vollständige Artikel mit Quellen und verwandten Themen.
+Der aktuelle Build enthält 70 kanonische Seiten, davon 68 indexierbare Seiten, sowie
+48 historische Alias-Dokumente.
 
 `/standorte/`, `/standorte/ludwigsburg/`, `/ludwigsburg/` und
 `/standortinhaber-werden/` sind nur noch Aliasse auf `/`. Frühere regionale Leistungspfade
@@ -88,10 +92,13 @@ werden zur jeweiligen Verzeichnis-URL aufgelöst, bevor React die Seite übernim
 Aliasse erscheinen nicht in der Sitemap; die rechtlichen Seiten und die Fehlerseite bleiben
 `noindex, follow`.
 
-GitHub Pages liefert die Alias-Dateien mit HTTP 200 aus. Die sofortige Meta-Weiterleitung ist
-für Google ein permanentes Weiterleitungssignal, aber kein HTTP-301-Status. Eigene HTTP-301/308-
-Regeln für diese Pfade müssten am Hosting- oder vorgeschalteten Proxy-Dienst eingerichtet werden.
-Domain- und HTTPS-Weiterleitungen sind davon getrennt zu prüfen.
+GitHub Pages liefert die Alias-Dateien am Origin mit HTTP 200 aus. Sie bleiben als Rückfallweg
+erhalten; die vorgeschalteten Cloudflare-Regeln liefern die eigentlichen HTTP-301-Weiterleitungen.
+Vor der Ratgeber-Veröffentlichung am 11.11.2026 waren bereits 466 Regeln aktiviert und geprüft.
+Für die neuen Ratgeber sind 240 zusätzliche Regeln vorbereitet, insgesamt 706 Regeln nach
+vollständiger Aktivierung. Das Committen der CSV aktiviert diese Regeln nicht. Veröffentlichungs-
+und Prüfstatus stehen in [der Release-QA](docs/qa-home-guides-2026-11-11.md); Domain-, HTTPS- und
+Pfadvarianten werden dort im Live-Audit getrennt erfasst.
 
 ## Lokal starten
 
@@ -116,7 +123,7 @@ Der vollständige Prüfpfad ist:
 npm run check
 ```
 
-Er umfasst Frontend- und Worker-TypeScript, Tests, RustDesk-Dateiprüfungen, Produktions-Build
+Er umfasst Ratgeberkatalog-Abgleich, Frontend- und Worker-TypeScript, Tests, RustDesk-Dateiprüfungen, Produktions-Build
 und die datengetriebene SEO-Validierung aller kanonischen Routen und Aliasse. Desktop-, Mobil-,
 Tastatur- und Ohne-JavaScript-Prüfungen im Browser sind zusätzliche Abnahmeschritte.
 
@@ -125,20 +132,31 @@ Tastatur- und Ohne-JavaScript-Prüfungen im Browser sind zusätzliche Abnahmesch
 - `src/SiteView.tsx`: gemeinsamer, synchroner Seitenbaum für Build und Browser
 - `src/components/PremiumShell.tsx`: Navigation, Logo und Footer aller Seiten
 - `src/site/navigation.ts`: gemeinsame Gruppierung aller veröffentlichten Leistungen für Menü und Footer
+- `src/pages/PremiumHomePage.tsx`: wiederhergestellte Premium-Startseite mit Ludwigsburger Betrieb und Direktkontakt
 - `src/pages/PremiumServicePage.tsx`: Leistungsdetails mit themenspezifischen Varianten
-- `src/pages/PremiumNetworkPages.tsx`: lokale Betriebs-Startseite, Leistungsübersicht,
-  Ratgeber, Über-uns-Seite und 404; der Dateiname ist historisch
+- `src/pages/PremiumNetworkPages.tsx`: Leistungsübersicht, Über-uns-Seite und 404;
+  ältere lokale und Ratgeber-Komponenten bleiben dort historisch enthalten, werden aber nicht
+  für die aktuelle Startseite oder Ratgeberbibliothek verwendet
+- `src/pages/GuidePages.tsx`: durchsuchbare Ratgeberbibliothek und vollständige Artikelseiten
 - `src/pages/LegalContent.tsx`: vollständige Impressums- und Datenschutzinhalte
-- `src/premium.css`, `src/premium-service.css`, `src/premium-network.css`: gemeinsames Design
-  und die Gestaltungsvarianten der Seiten
+- `src/premium.css`: gemeinsames Design; `src/premium-service.css`, `src/premium-network.css`
+  und `src/guides.css` ergänzen nur die jeweilige Seitenfamilie
+- `src/site/pageStyles.ts`: Zuordnung der zusätzlichen Stylesheets zum HTML-Kopf der jeweiligen Seite
 - `src/site/motion.ts`, `src/motion.css`: progressive Bewegungen ohne zusätzliche Bibliothek
 - `src/site/`: Betriebsdaten, Kontakte, Routing,
   Schema.org-Erzeugung und statisches Rendern
 - `src/content/`: normalisierte Leistungsdaten; `src/content/legacy/` enthält weiterhin
   die bestehenden redaktionellen Leistungs- und Hilfetexte als Datenbasis
+- `src/content/guides/`: 40 Artikel in fünf Kategorien; der generierte `catalog.ts` enthält
+  nur Zusammenfassungen. Vollständige Artikeltexte werden beim Build verarbeitet und nur
+  für die jeweilige Artikelseite mitgegeben
+- `scripts/generate-guide-catalog.mjs`: erzeugt den Katalog mit `npm run guides:catalog`
+  und prüft ihn mit `npm run guides:check`
 - `public/images/`: generierte illustrative Motive in lokalen WebP-Größen;
-  Herkunft und Maße stehen in `assets.json`, die Prompts in
-  [docs/design/image-prompts.json](docs/design/image-prompts.json)
+  Herkunft und Maße der bisherigen Motive stehen in `assets.json`, ihre Prompts in
+  [docs/design/image-prompts.json](docs/design/image-prompts.json). Die vier zusätzlichen
+  Ratgebermotive sind mit Herkunft, Maßen und Prompts separat in
+  [guide-image-prompts.md](docs/design/guide-image-prompts.md) dokumentiert
 - `vite.config.ts`: statische HTML-Ausgabe, Alias-Kompatibilität, Sitemap und Seitenmanifest
 - `scripts/validate-seo.mjs`: automatisierte Prüfung gegen das erzeugte Seitenmanifest
 

@@ -407,9 +407,9 @@ for (const page of manifest.pages) {
   )
   validateSharedHtml(html, page, canonicalOutput, canonicalUrl, page.indexable)
   await validateAssets(html, canonicalUrl, canonicalOutput)
-  // Photography is deliberately unique per placement, including service overviews.
-  // Compare both references and file bytes to catch renamed copies as well.
-  for (const match of html.matchAll(/<img\b[^>]*>/gi)) {
+  // Service photography stays unique. Editorial covers are intentionally repeated
+  // between the library, their article and related-reading cards.
+  for (const match of (page.kind === 'guide' || page.kind === 'guides') ? [] : html.matchAll(/<img\b[^>]*>/gi)) {
     const src = attributeValue(match[0], 'src')
     if (!src.startsWith('/images/')) continue
     assert(

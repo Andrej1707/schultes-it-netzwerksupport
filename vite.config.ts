@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { fileURLToPath } from 'node:url'
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import { siteConfig } from './src/site/config'
@@ -11,7 +12,9 @@ import {
 } from './src/site/routes'
 import { structuredDataForPage } from './src/site/schema'
 import { renderStaticPageContent } from './src/site/staticContent'
+import { pageStyleSources, withPageStyles, type PageStyleFamily, type PageStyleHrefs } from './src/site/pageStyles'
 import type { SitePage } from './src/site/types'
+import { guideDataForPage } from './src/content/guides/articles'
 
 function escapeAttribute(value: string) {
   return value.replaceAll('&', '&amp;').replaceAll('"', '&quot;')
@@ -72,7 +75,12 @@ function replaceAliasRootContent(html: string, canonicalUrl: string) {
   return html.replace('<div id="root"></div>', root)
 }
 
-function renderPageHtml(baseHtml: string, page: SitePage, isAlias = false) {
+function renderPageHtml(baseHtml: string, page: SitePage, isAlias = false, styleHrefs: PageStyleHrefs = {}) {
+  // Each page gets only its own article (or the short library catalog), as inert JSON.
+  // Escape '<' so article text cannot terminate the script element.
+  const guideData = isAlias ? undefined : guideDataForPage(page)
+  baseHtml = baseHtml.replace(/<script id="guide-data" type="application\/json">[\s\S]*?<\/script>/g, '')
+  if (guideData) baseHtml = baseHtml.replace('</body>', `<script id="guide-data" type="application/json">${JSON.stringify(guideData).replaceAll('<', '\\u003c')}</script>\n</body>`)
   const canonicalUrl = `${siteConfig.url}${page.path}`
   const structuredData = JSON.stringify(structuredDataForPage(page), null, 2)
   const structuredDataInner = `\n${structuredData}\n`
@@ -127,7 +135,7 @@ function renderPageHtml(baseHtml: string, page: SitePage, isAlias = false) {
       )
   }
 
-  return html
+  return withPageStyles(html, page, styleHrefs, isAlias)
 }
 
 function sitemapXml() {
@@ -162,7 +170,10 @@ function staticPagesPlugin(): Plugin {
       if (context.server) {
         const pathname = new URL(context.originalUrl ?? context.path, siteConfig.url).pathname
         const route = resolveSiteRoute(pathname)
-        return renderPageHtml(html, route?.page ?? notFoundPage, route?.isAlias ?? false)
+        const devStyles = Object.fromEntries(
+          Object.entries(pageStyleSources).map(([family, source]) => [family, `${source}?direct`]),
+        )
+        return renderPageHtml(html, route?.page ?? notFoundPage, route?.isAlias ?? false, devStyles)
       }
       return renderPageHtml(html, home)
     },
@@ -177,14 +188,22 @@ function staticPagesPlugin(): Plugin {
       }
 
       const baseHtml = String(indexAsset.source)
-      indexAsset.source = renderPageHtml(baseHtml, home)
+      const styleHrefs: PageStyleHrefs = {}
+      for (const [family, source] of Object.entries(pageStyleSources)) {
+        const asset = Object.values(bundle).find((entry) => entry.type === 'asset'
+          && entry.fileName.endsWith('.css')
+          && entry.originalFileNames.some((name) => name.replaceAll('\\', '/').endsWith(source.slice(1))))
+        if (!asset) this.error(`Could not find the built ${family} stylesheet (${source}).`)
+        styleHrefs[family as PageStyleFamily] = `/${asset.fileName}`
+      }
+      indexAsset.source = renderPageHtml(baseHtml, home, false, styleHrefs)
 
       for (const page of sitePages) {
         if (page.path !== '/') {
           this.emitFile({
             type: 'asset',
             fileName: outputPath(page.path),
-            source: renderPageHtml(baseHtml, page),
+            source: renderPageHtml(baseHtml, page, false, styleHrefs),
           })
         }
 
@@ -192,7 +211,7 @@ function staticPagesPlugin(): Plugin {
           this.emitFile({
             type: 'asset',
             fileName: outputPath(alias),
-            source: renderPageHtml(baseHtml, page, true),
+            source: renderPageHtml(baseHtml, page, true, styleHrefs),
           })
         }
       }
@@ -200,7 +219,7 @@ function staticPagesPlugin(): Plugin {
       this.emitFile({
         type: 'asset',
         fileName: '404.html',
-        source: renderPageHtml(baseHtml, notFoundPage),
+        source: renderPageHtml(baseHtml, notFoundPage, false, styleHrefs),
       })
 
       this.emitFile({
@@ -283,4 +302,15 @@ function localSupportCspPlugin(): Plugin {
 export default defineConfig({
   plugins: [react(), localSupportCspPlugin(), staticPagesPlugin()],
   base: '/',
+  build: {
+    rolldownOptions: {
+      input: {
+        index: fileURLToPath(new URL('./index.html', import.meta.url)),
+        ...Object.fromEntries(Object.entries(pageStyleSources).map(([family, source]) => [
+          `page-${family}`,
+          fileURLToPath(new URL(`.${source}`, import.meta.url)),
+        ])),
+      },
+    },
+  },
 })

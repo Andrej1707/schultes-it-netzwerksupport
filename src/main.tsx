@@ -3,9 +3,8 @@ import { createRoot, hydrateRoot } from 'react-dom/client'
 import App from './App'
 import { canonicalRedirect, notFoundPage, resolveSiteRoute } from './site/routes'
 import { contactForPage } from './site/contacts'
+import type { GuidePageData } from './content/guides/types'
 import './premium.css'
-import './premium-service.css'
-import './premium-network.css'
 import './motion.css'
 import './navigation.css'
 
@@ -23,9 +22,11 @@ if (redirectTo) {
   const route = resolveSiteRoute(window.location.pathname)
   const page = route?.page ?? notFoundPage
   const root = document.getElementById('root')!
+  const guidePayload = document.getElementById('guide-data')?.textContent
+  const guideData: GuidePageData | undefined = guidePayload ? JSON.parse(guidePayload) : undefined
   const app = (
     <StrictMode>
-      <App initialPage={page} />
+      <App initialPage={page} guideData={guideData} />
     </StrictMode>
   )
   if (root.querySelector('[data-prerendered="true"]') && !route?.isAlias) {

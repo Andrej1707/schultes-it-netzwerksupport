@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { SiteView } from './SiteView'
 import type { SitePage } from './site/types'
+import type { GuidePageData } from './content/guides/types'
 import { installPageMotion } from './site/motion'
 import { legacyFragmentRedirect } from './site/legacyFragments'
 
-export default function App({ initialPage }: { initialPage: SitePage }) {
+export default function App({ initialPage, guideData }: { initialPage: SitePage; guideData?: GuidePageData }) {
   useEffect(() => {
     const content = document.getElementById('main-content')
     if (content) return installPageMotion(content)
@@ -22,5 +23,5 @@ export default function App({ initialPage }: { initialPage: SitePage }) {
     window.addEventListener('hashchange', resolveLegacyHash)
     return () => window.removeEventListener('hashchange', resolveLegacyHash)
   }, [initialPage])
-  return <SiteView page={initialPage} />
+  return <SiteView page={initialPage} guideData={guideData} />
 }

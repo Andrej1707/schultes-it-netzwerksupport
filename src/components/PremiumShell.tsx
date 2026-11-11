@@ -236,6 +236,7 @@ export function PremiumShell({ page, children }: { page: SitePage; children: Rea
               </div>
             </details>
             <a className="sn-header-link" href="/fernwartung/" aria-current={page.path === '/fernwartung/' ? 'page' : undefined}>Fernwartung</a>
+            <a className="sn-header-link" href="/ratgeber/" aria-current={page.path.startsWith('/ratgeber/') ? 'page' : undefined}>Ratgeber</a>
             <a className="sn-header-link" href="/ueber-schultes-it/" aria-current={page.path === '/ueber-schultes-it/' ? 'page' : undefined}>Über uns</a>
             <a className="sn-header-link" href="/#kontakt">Kontakt</a>
           </nav>

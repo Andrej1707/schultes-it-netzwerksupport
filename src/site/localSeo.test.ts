@@ -22,7 +22,8 @@ describe('local discovery in the initial HTML', () => {
   it('keeps prices, contact and useful local service links in the initial homepage HTML', () => {
     const home = sitePages.find((page) => page.path === '/')!
     const html = renderStaticPageContent(home)
-    expect(home.heading).toContain('Computerhilfe')
+    expect(home.heading).toBe('Einfach gute Technik.')
+    expect(html).toContain('Computerhilfe in Ludwigsburg')
     expect(html).toContain('id="preise"')
     expect(html).toContain('id="kontakt"')
     expect(html).toContain('href="/leistungen/pc-laptop/"')
