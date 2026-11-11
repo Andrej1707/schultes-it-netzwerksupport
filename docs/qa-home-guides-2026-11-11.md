@@ -2,7 +2,7 @@
 
 ## Umfang und dokumentierter Stand
 
-Diese Abnahme beschreibt die Vorbereitung der neuen Veröffentlichung. Die frühere Live-Abnahme der Ludwigsburg-Umstellung steht in [qa-2026-11-11.md](qa-2026-11-11.md). Deren Live-Ergebnisse sind kein Nachweis für die nachfolgenden Änderungen.
+Diese Abnahme dokumentiert die Vorbereitung und bestätigte Veröffentlichung von PR #7 sowie die anschließend beauftragte, noch nicht als live bestätigte Bild- und Performance-Ergänzung. Die frühere Live-Abnahme der Ludwigsburg-Umstellung steht in [qa-2026-11-11.md](qa-2026-11-11.md). Deren Ergebnisse sind von den folgenden Prüfungen getrennt.
 
 - Die bestätigte frühere Startseitengestaltung ist wiederhergestellt: „Einfach gute Technik. Für deinen Alltag. Für dein Unternehmen.“, großes Arbeitsplatzmotiv und direkte Kontaktmöglichkeiten.
 - Schultes IT bleibt ein inhabergeführter Betrieb in Ludwigsburg mit deutschlandweiter Fernwartung. Die Gestaltung führt keine zusätzlichen Standorte oder Betreiber ein.
@@ -53,19 +53,55 @@ Zusätzliche Styles für Leistungen, andere Seitentypen und Ratgeber werden nur 
 
 Die kleinere gemeinsame Datei ist ein überprüfbarer Build-Befund. Daraus wird weder ein PageSpeed-Score von 100 noch eine Aussage über reale Core Web Vitals abgeleitet.
 
-## Vorbereitete Cloudflare-Erweiterung
+## Aktivierte Cloudflare-Erweiterung für PR #7
 
 Die kombinierte [Redirect-CSV](seo/legacy-redirects.csv) umfasst 706 Regeln. Die zusätzlichen Ratgeberregeln stehen separat in [guide-redirects.csv](seo/guide-redirects.csv). Die vorhandenen historischen Weiterleitungen werden dadurch ergänzt.
 
-Der geplante vollständige HTTP-Audit umfasst 1.342 Fälle: 636 schemafreie Quellen jeweils über HTTP und HTTPS sowie 70 ausschließlich auf HTTP begrenzte Quellen. Die Regeln zeigen auf direkte kanonische HTTPS-Ziele und erhalten Query-Parameter.
+Der vollständige HTTP-Audit umfasst 1.342 Fälle: 636 schemafreie Quellen jeweils über HTTP und HTTPS sowie 70 ausschließlich auf HTTP begrenzte Quellen. Die Regeln zeigen auf direkte kanonische HTTPS-Ziele und erhalten Query-Parameter.
 
-Zum hier dokumentierten Vorabstand steht die Aktivierung der zusätzlichen Cloudflare-Regeln noch aus. Die vorbereitete CSV und die Zahl der geplanten Abrufe werden ausdrücklich nicht als bereits bestandene Live-Prüfung ausgewiesen.
+Die 240 zusätzlichen Ratgeberregeln sind aktiviert; insgesamt sind damit 706 Regeln aktiv. Alle 1.342 Redirectfälle und 18 zusätzliche Query-Fälle bestanden die nachfolgende Live-Prüfung.
 
-## Noch zu ergänzende Abnahme
+## Veröffentlichung und Live-Audit von PR #7
 
-- Ergänzende lokale Prüfung der Über-uns- und Rechtseiten nach der Stylesheet-Aufteilung.
-- Veröffentlichung des geprüften Stands und anschließende Live-Prüfung der neuen Seiten, Metadaten, Bilder, internen Links und Sitemaps.
-- Cloudflare-Aktivierung und tatsächliche Ergebnisse des vollständigen Redirect-Audits.
-- PageSpeed-Insights-Messungen mit URL, Gerätetyp und Messzeitpunkt. Ein Laborwert ist von echten Nutzerdaten und Tests auf physischen Smartphones zu unterscheiden.
+Alle Uhrzeiten in Europe/Berlin:
 
-Tatsächliche Google-Indexierung, Rankings und reale Nutzerdaten werden durch die bisherigen Build- und Inhaltsprüfungen nicht als bestätigt ausgewiesen.
+- [PR #7](https://github.com/Andrej1707/schultes-it-netzwerksupport/pull/7) wurde als `ecafb5c02a5885e58aeec1cacfe65ae928a89949` zusammengeführt und durch [Pages-Run 43085147477](https://github.com/Andrej1707/schultes-it-netzwerksupport/actions/runs/43085147477) veröffentlicht.
+- Der öffentliche Audit vom 11.11.2026, 20:15:46 bis 20:16:47 Uhr, bestand mit 1.445 Fällen ohne verbleibenden Fehler: 70 kanonische Seiten, zwölf neue Bilddateien, beide Sitemaps, `robots.txt` sowie 1.342 Redirectfälle und 18 zusätzliche Query-Fälle.
+- Alle 40 Artikelseiten wurden mitgeprüft. Beide Sitemaps enthalten 68 indexierbare URLs. Impressum und Datenschutz sind die beiden absichtlich mit `noindex` versehenen kanonischen Seiten.
+- Die Weiterleitungen wurden mit `HEAD` und ohne automatisches Folgen geprüft. Ein anfänglicher Timeout für `http://schultes-it.de/router-entstoerung` wurde gezielt wiederholt; die Wiederholung lieferte die erwartete 301-Antwort.
+- Geprüfte CSV-Prüfsumme: `f77520507accc9015316995fbbd5bbcb61990188ccc1d4ce8e2f77592b9d132b` (SHA-256).
+- Auditprotokolle außerhalb des Repositorys: `schultes-pr7-live-audit.json` und `schultes-pr7-live-audit-summary.json` im temporären Arbeitsverzeichnis der ausführenden Sitzung.
+
+## Erste PageSpeed-Insights-Messung auf der Live-Seite
+
+[Mobiler Bericht für die Startseite](https://pagespeed.web.dev/analysis/https-schultes-it-de/wh3lgl10m2?form_factor=mobile), 11.11.2026 um 20:14:25 Uhr:
+
+| Kategorie oder Messwert | Ergebnis |
+| --- | --- |
+| Leistung | 96 |
+| Barrierefreiheit | 96 |
+| Best Practices | 100 |
+| SEO | 100 |
+| First Contentful Paint | 0,927 s |
+| Largest Contentful Paint | 2,021 s |
+| Total Blocking Time | 0 ms |
+| Cumulative Layout Shift | 0 |
+| Speed Index | 5,004 s |
+
+Diese Werte beschreiben genau diesen mobilen Laborlauf auf PR #7. Der Leistungswert ist 96, nicht 100. Die Messung bestätigt weder reale Core Web Vitals noch Rankings und ist kein Test auf einem physischen Smartphone.
+
+## Search Console nach der Veröffentlichung
+
+Die XML-Sitemap wurde erneut eingereicht; Search Console bestätigte die Annahme. Die Oberfläche zeigte zu diesem Zeitpunkt weiterhin 28 erkannte Seiten aus dem bisherigen Stand. Die Live-Sitemap enthält nachweislich 68 URLs. Die erneute Verarbeitung aller neuen URLs und deren tatsächliche Indexierung sind damit noch nicht bestätigt.
+
+## Anschließend beauftragte Ergänzung, noch nicht als live bestätigt
+
+Auf `codex/guide-images-polish` wurden 17 weitere, eigenständige Motive ergänzt. Die 40 Ratgeber verwenden jetzt 40 unterschiedliche Bildbasen und 40 unterschiedliche SHA-256-Bildinhalte. Der Katalog-Prüfschritt verhindert sowohl Wiederverwendung als auch umbenannte Kopien. Ein Artikel darf sein eigenes Motiv in Übersicht und verwandten Empfehlungen erneut zeigen.
+
+Die vollständigen Prompts und Herkunftsnachweise stehen in den Bilddokumentationen für [Sicherheit](design/guide-images-security.md), [Daten](design/guide-images-data.md), [Netzwerk](design/guide-images-network.md) und [Windows/Alltag](design/guide-images-windows-alltag.md).
+
+Die Startseite erhält ihre unverändert gestaltete gemeinsame CSS-Datei direkt im HTML-Head; andere Seiten behalten die externe, cachebare CSS-Datei. Die Browserprüfung bestätigt 24.440 Inline-CSS-Bytes, unveränderte Darstellung und keine Hydrationsfehler. Die drei Startseitenmotive bieten zusätzlich 800-Pixel-WebPs; das Hero-Bild nutzt eine zur tatsächlichen Bildfläche passende Größenangabe. Der Kontakt-E-Mail-Link ist dauerhaft dezent unterstrichen.
+
+Der vollständige Prüfpfad mit 187 Tests, Katalog-/Bild-Eindeutigkeit, beiden Typechecks, Build, SEO und RustDesk-Integrität ist erneut bestanden. Die Browserprüfung bestätigt 40 Karten mit 40 verschiedenen Bildern, funktionierende Kategorieauswahl und das korrekt ausgewählte 800er-Hero. Veröffentlichung und erneute PageSpeed-Messung dieses Folgestands stehen noch aus; die vorherigen Live-Messwerte beziehen sich ausschließlich auf PR #7.
+
+Tatsächliche Google-Indexierung, Rankings und reale Nutzerdaten bleiben von diesen Build-, Inhalts- und Laborprüfungen getrennt.

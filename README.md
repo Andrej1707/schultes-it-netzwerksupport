@@ -94,11 +94,12 @@ Aliasse erscheinen nicht in der Sitemap; die rechtlichen Seiten und die Fehlerse
 
 GitHub Pages liefert die Alias-Dateien am Origin mit HTTP 200 aus. Sie bleiben als Rückfallweg
 erhalten; die vorgeschalteten Cloudflare-Regeln liefern die eigentlichen HTTP-301-Weiterleitungen.
-Vor der Ratgeber-Veröffentlichung am 11.11.2026 waren bereits 466 Regeln aktiviert und geprüft.
-Für die neuen Ratgeber sind 240 zusätzliche Regeln vorbereitet, insgesamt 706 Regeln nach
-vollständiger Aktivierung. Das Committen der CSV aktiviert diese Regeln nicht. Veröffentlichungs-
-und Prüfstatus stehen in [der Release-QA](docs/qa-home-guides-2026-11-11.md); Domain-, HTTPS- und
-Pfadvarianten werden dort im Live-Audit getrennt erfasst.
+Mit der Ratgeber-Veröffentlichung aus PR #7 am 11.11.2026 wurden die bisherigen 466 Regeln
+um 240 zusätzliche Regeln ergänzt. Alle 706 Regeln sind aktiviert; der anschließende Live-Audit
+bestand mit 1.342 HTTP-/HTTPS-Redirectfällen und 18 zusätzlichen Query-Fällen. Das Committen
+der CSV allein aktiviert keine Regeln. Veröffentlichungs- und Prüfstatus stehen in
+[der Release-QA](docs/qa-home-guides-2026-11-11.md); Domain-, HTTPS- und Pfadvarianten werden dort
+im Live-Audit getrennt erfasst.
 
 ## Lokal starten
 

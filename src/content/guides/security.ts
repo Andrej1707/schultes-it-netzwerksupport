@@ -124,8 +124,8 @@ export const securityGuides: GuideArticle[] = [
     description: 'Ein sicherer Einstieg in den Passwortmanager: Tresor schützen, wichtige Konten umstellen, Zugangsdaten kontrollieren und Exporte sorgfältig behandeln.',
     category: 'sicherheit',
     readMinutes: 5,
-    image: 'security-desk',
-    imageAlt: 'Illustrative Fotoaufnahme eines Laptops und eines Sicherheitsschlüssels auf einem aufgeräumten Arbeitsplatz',
+    image: 'guide-passwortmanager',
+    imageAlt: 'Laptop und Smartphone neben einem Schlüssel und einem geschlossenen blauen Notizbuch',
     updated: '2026-11-11',
     intro: 'Ein Passwortmanager nimmt dir die Aufgabe ab, viele unterschiedliche Kennwörter auswendig zu kennen. Er speichert die Zugänge geschützt und kann neue, zufällige Passwörter erzeugen. Damit das im Alltag wirklich hilft, müssen die Anmeldung am Manager, der Zugriff auf anderen Geräten und die Wiederherstellung zusammenpassen.',
     takeaways: [
@@ -183,8 +183,8 @@ export const securityGuides: GuideArticle[] = [
     description: 'So ergänzt du die Anmeldung um einen zweiten Schutz: passende Methode wählen, Ersatzwege sichern und einen Handywechsel ohne Aussperren vorbereiten.',
     category: 'sicherheit',
     readMinutes: 5,
-    image: 'privacy-phone',
-    imageAlt: 'Illustrative Fotoaufnahme einer Hand, die ein Smartphone hält',
+    image: 'guide-zwei-faktor-anmeldung',
+    imageAlt: 'Finger vor einem Smartphone auf einem Ständer, daneben ein Laptop',
     updated: '2026-11-11',
     intro: 'Ein gestohlenes Passwort soll nicht sofort den Zugang zu deinem Konto öffnen. Eine Zwei-Faktor-Anmeldung ergänzt es deshalb um eine weitere Bestätigung, etwa eine App oder einen Sicherheitsschlüssel. Die beste Einrichtung schützt dich nicht nur vor Fremdzugriff, sondern funktioniert auch dann noch, wenn dein Handy kaputtgeht.',
     takeaways: [
@@ -359,8 +359,8 @@ export const securityGuides: GuideArticle[] = [
     description: 'Wie du Erpressung durch verschlüsselte Dateien vorbeugst: getrennte Backups, aktuelle Systeme, begrenzte Zugänge und ein klarer Plan für den Verdachtsfall.',
     category: 'sicherheit',
     readMinutes: 5,
-    image: 'backup-desk',
-    imageAlt: 'Illustrative Fotoaufnahme eines Laptops mit einer externen SSD auf dem Schreibtisch',
+    image: 'guide-ransomware-vorbeugen',
+    imageAlt: 'Nicht angeschlossene externe SSD in einer Schutzhülle neben einem geschlossenen Laptop',
     updated: '2026-11-11',
     intro: 'Ransomware kann Dateien unbrauchbar machen und den Zugriff auf Computer oder gemeinsam genutzte Speicher blockieren. Bei manchen Angriffen werden zusätzlich Daten gestohlen. Eine einzelne Schutz-App löst dieses Risiko nicht vollständig. Entscheidend sind mehrere Maßnahmen, die zusammenpassen: Angriffe erschweren, Sicherungen trennen und eine Wiederherstellung vorbereiten.',
     takeaways: [
@@ -417,8 +417,8 @@ export const securityGuides: GuideArticle[] = [
     description: 'Unbekannte Anmeldungen oder veränderte Kontodaten: sichere Sofortmaßnahmen, Wiederherstellungswege und Kontrollen nach einem möglichen Kontodiebstahl.',
     category: 'sicherheit',
     readMinutes: 5,
-    image: 'privacy-phone',
-    imageAlt: 'Illustrative Fotoaufnahme eines Smartphones in einer Hand an einem Schreibtisch',
+    image: 'guide-konto-gehackt',
+    imageAlt: 'Hand am Laptop neben einem Smartphone und einem verschlossenen weißen Umschlag',
     updated: '2026-11-11',
     intro: 'Eine fremde Anmeldung, Nachrichten aus deinem Postfach oder plötzlich geänderte Wiederherstellungsdaten sind ernst zu nehmen. Eine unerwartete Sicherheitsmail allein kann aber ebenfalls gefälscht sein. Prüfe deshalb über die echte Kontoverwaltung, was tatsächlich passiert ist. Sichere zuerst den Zugang, über den sich weitere Konten zurücksetzen lassen: meistens dein Hauptpostfach.',
     takeaways: [

@@ -12,6 +12,7 @@ describe('the guide library', () => {
     const slugs = new Set(guideArticles.map(article => article.slug))
     expect(slugs.size).toBe(40)
     expect(new Set(guideArticles.map(article => article.title)).size).toBe(40)
+    expect(new Set(guideArticles.map(article => article.image)).size).toBe(40)
     for (const category of ['sicherheit', 'windows', 'wlan', 'daten', 'alltag']) {
       expect(guideArticles.filter(article => article.category === category)).toHaveLength(8)
     }
