@@ -5,29 +5,29 @@ import { activeLocationById } from './locations'
 import { siteConfig } from './config'
 
 describe('local discovery in the initial HTML', () => {
-  it('connects the brand homepage to the real local location and national remote support', () => {
-    const home = sitePages.find((page) => page.kind === 'home')!
+  it('shows the real business, direct contact and national remote support on the homepage', () => {
+    const home = sitePages.find((page) => page.path === '/')!
     const location = activeLocationById[siteConfig.featuredLocationId]
     const html = renderStaticPageContent(home)
+    expect(home.kind).toBe('location')
     expect(home.title).toContain(`IT-Hilfe ${location.city}`)
-    expect(html).toContain(`href="${location.path}"`)
     expect(html).toContain('href="/fernwartung/"')
     expect(html).toContain(location.streetAddress)
-    expect(html).toContain(`Vor Ort in ${location.city}`)
-    expect(html).toContain('PC, Laptop und WLAN.')
+    expect(html).toContain(location.operator.name)
+    expect(html).toContain(`href="${location.phoneHref}"`)
+    expect(html).not.toContain('href="/standorte/"')
+    expect(html).not.toContain('href="/standortinhaber-werden/"')
   })
 
-  it('gives the local landing page its own service intent and self canonical path', () => {
-    const home = sitePages.find((page) => page.kind === 'home')!
-    for (const page of sitePages.filter((page) => page.kind === 'location')) {
-      const html = renderStaticPageContent(page)
-      expect(page.title).not.toBe(home.title)
-      expect(page.title).toContain('IT-Service')
-      expect(page.heading).toContain('Computerhilfe')
-      expect(html).toContain('id="preise"')
-      expect(html).toContain('id="kontakt"')
-      expect(html).toContain(`href="${page.path}pc-laptop/"`)
-      expect(html).toContain(`href="${page.path}netzwerk-wlan/"`)
-    }
+  it('keeps prices, contact and useful local service links in the initial homepage HTML', () => {
+    const home = sitePages.find((page) => page.path === '/')!
+    const html = renderStaticPageContent(home)
+    expect(home.heading).toContain('Computerhilfe')
+    expect(html).toContain('id="preise"')
+    expect(html).toContain('id="kontakt"')
+    expect(html).toContain('href="/leistungen/pc-laptop/"')
+    expect(html).toContain('href="/leistungen/netzwerk-wlan/"')
+    expect(html).toContain('49 €')
+    expect(html).toContain('25 €')
   })
 })

@@ -77,7 +77,9 @@ function renderPageHtml(baseHtml: string, page: SitePage, isAlias = false) {
   const structuredData = JSON.stringify(structuredDataForPage(page), null, 2)
   const structuredDataInner = `\n${structuredData}\n`
   const hash = createHash('sha256').update(structuredDataInner).digest('base64')
-  const robots = !page.indexable
+  // A redirect communicates a move, not removal. Keep alias documents crawlable
+  // even if a future destination is intentionally excluded from search results.
+  const robots = !isAlias && !page.indexable
     ? 'noindex, follow, max-image-preview:large'
     : 'index, follow, max-image-preview:large'
 
@@ -217,6 +219,7 @@ function staticPagesPlugin(): Plugin {
         source: JSON.stringify(
           {
             generatedFrom: 'src/site/routes.ts',
+            purpose: 'Build verification only; not a Google indexing directive.',
             pages: sitePages.map((page) => ({
               id: page.id,
               kind: page.kind,
@@ -224,6 +227,11 @@ function staticPagesPlugin(): Plugin {
               path: page.path,
               aliases: page.aliases ?? [],
               indexable: page.indexable,
+              indexingReason: page.indexable
+                ? 'Canonical public content intended for search results.'
+                : page.kind === 'legal'
+                  ? 'Legal information remains accessible but is intentionally excluded from search results.'
+                  : 'Intentionally excluded from search results.',
               lastModified: page.lastModified,
               legalPage: page.legalPage,
               heading: page.heading,
@@ -231,6 +239,20 @@ function staticPagesPlugin(): Plugin {
               title: page.title,
               description: page.description,
             })),
+            redirects: sitePages.flatMap((page) =>
+              (page.aliases ?? []).map((alias) => ({
+                path: alias,
+                target: page.path,
+                mechanism: 'zero-second-meta-refresh',
+                robots: 'index, follow, max-image-preview:large',
+                reason: 'Historical URL retained as a permanent move directly to its canonical destination.',
+              })),
+            ),
+            notFound: {
+              path: '/404.html',
+              indexable: false,
+              reason: 'Recovery page for unknown URLs, not searchable content.',
+            },
           },
           null,
           2,

@@ -51,7 +51,7 @@ describe('service page generation', () => {
     expect(
       centralServicePages.every((service) =>
         activeLocations.every((location) =>
-          service.legacyPaths?.some((path) => path.startsWith(`${location.path}fernwartung/`)),
+          service.legacyPaths?.some((path) => path.startsWith(`/standorte/${location.slug}/fernwartung/`)),
         ),
       ),
     ).toBe(true)
@@ -69,7 +69,7 @@ describe('service page generation', () => {
         (service) =>
           service.scope === 'location' &&
           service.locationId &&
-          service.path?.startsWith(`/standorte/`),
+          service.path?.startsWith('/leistungen/'),
       ),
     ).toBe(true)
   })

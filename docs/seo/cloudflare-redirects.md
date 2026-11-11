@@ -1,153 +1,86 @@
-# Legacy-URLs und vorbereitete Cloudflare-Weiterleitungen
+# URL-Umzug und vorbereitete Cloudflare-Weiterleitungen
 
-Stand: 26.10.2026. Referenz: `239d80e` auf `main`. **Nur geprüft und vorbereitet; keine Cloudflare-, DNS-, Hosting- oder Search-Console-Einstellung geändert.**
+Stand: 11.11.2026. Diese Datei beschreibt die lokale Umstellung auf den inhabergeführten Betrieb von Andrej Schultes in Ludwigsburg. Cloudflare-, DNS-, Hosting- und Search-Console-Einstellungen wurden dabei nicht geändert. Die CSV ist vorbereitet, nicht aktiviert.
 
-## Ergebnis und Grenzen
+## Kanonische Ziele
 
-Die früheren URLs sind vollständig erreichbar. Die Auswertung umfasst 51 erreichbare Git-Stände bis 31.07.2026: 50 Vorfahren von `main` und den separaten Redesign-Stand `09cd410`. Aus den jeweils vorhandenen `public/sitemap.xml`, `src/serviceCatalog.ts` und `src/site/routes.ts` wurden die tatsächlichen Seiten-Registry-Exporte einschließlich dynamischer Standortpfade ausgewertet. Alle **61 jemals kanonischen Pfade** finden sich heute als kanonische Seite oder Alias wieder. Das belegt die Codehistorie, nicht, welche Zwischenstände tatsächlich veröffentlicht oder von Google indexiert wurden.
+Die Seiten-Registry enthält 30 kanonische Seiten: 28 sollen indexiert werden, Impressum und Datenschutz bleiben bewusst `noindex, follow`. Dazu kommen 48 historische Alias-Pfade. Die Fehlerseite `404.html` bleibt ebenfalls `noindex, follow` und steht nicht in den Sitemaps.
 
-Aktuell bestehen **33 kanonische Seiten und 29 Alias-Pfade**; 28 Aliasse waren früher kanonische Seiten, `/ludwigsburg/` wurde als zusätzlicher Kompatibilitätsalias eingeführt. Die Ziele behalten jeweils das ursprüngliche Thema. Lokale Leistungen gehen auf die entsprechende Ludwigsburg-Leistung; frühere regionale Fernwartungsseiten gehen auf das entsprechende nationale Fernwartungsangebot. Es gibt keine pauschale Weiterleitung alter Leistungsseiten auf die Startseite.
-
-Das maschinenlesbare [historische Routeninventar](historical-routes.json) enthält alle 62 belegten Pfade mit heutigem Ziel sowie sieben vollständige Seitenstände mit den damaligen Titeln und Beschreibungen (190 Seiteneinträge insgesamt).
-
-Am 26.10.2026 wurden 126 HTTP-GETs geprüft:
-
-| Prüfmenge | Beobachtung |
+| Bisheriger Pfad | Endgültiges Ziel |
 | --- | --- |
-| 33 kanonische Seiten | Alle HTTP 200 mit passender kanonischer URL |
-| 29 alte Pfade mit abschließendem `/` | Alle HTTP 200, passender Canonical und sofortiger Meta-Refresh direkt zum endgültigen Ziel |
-| 29 alte Pfade mit `/index.html` | Alle HTTP 200, gleicher korrekter Canonical und Meta-Refresh |
-| 29 alte Pfade ohne `/` | Alle HTTP 301 auf die jeweilige Variante mit `/`; danach HTML-Weiterleitung |
-| HTTP Hauptdomain, HTTP www, HTTPS www | Jeweils HTTP 301 direkt nach `https://schultes-it.de/` |
-| Alte GitHub-Projektadresse | HTTP 301 direkt nach `https://schultes-it.de/` |
-| `/pc-system?utm_source=google` | HTTP 301 nach `/pc-system/?utm_source=google`; Parameter bleibt erhalten |
-| Bewusst unbekannter Pfad | HTTP 404; keine Weiterleitung zur Startseite |
+| `/standorte/`, `/standorte/ludwigsburg/`, `/ludwigsburg/`, `/standortinhaber-werden/` | `/` mit Andrejs Betrieb, Leistungen, Preisen und Kontakt |
+| `/pc-system/`, `/standorte/ludwigsburg/pc-laptop/` | `/leistungen/pc-laptop/` |
+| `/tools-automation/`, `/standorte/ludwigsburg/automation/` | `/leistungen/automation/` |
+| Weitere flache lokale Leistungspfade und `/standorte/ludwigsburg/<leistung>/` | Die entsprechende Seite `/leistungen/<leistung>/` |
+| `/standorte/ludwigsburg/fernwartung/` und ihre bisherigen Unterseiten | `/fernwartung/` und die entsprechenden nationalen Unterseiten |
 
-Der HTTP-Test führt kein Browser-JavaScript aus und bestätigt weder den Google-Index noch eine Search-Console-Fehlermeldung. Die vorhandenen 0-Sekunden-Meta-Weiterleitungen sind nach [Googles Redirect-Dokumentation](https://developers.google.com/search/docs/crawling-indexing/301-redirects) ein permanentes Signal. Ein HTTP-301/308 vom Server ist bevorzugt. GitHub Pages kann projektspezifische HTTP-Regeln nicht allein aus den erzeugten HTML-Dateien ausführen. Das hier vorbereitete Regelwerk würde die zusätzlichen HTML-/Slash-Umwege für bekannte URLs am Cloudflare-Edge ersetzen.
+Bestehende `/leistungen/pc-laptop/`, `/leistungen/netzwerk-wlan/`, `/leistungen/webseiten/` und `/leistungen/automation/` sind nun wieder kanonisch. Keine Leistungsseite wird pauschal zur Startseite umgeleitet. Jeder Alias zeigt direkt auf sein endgültiges Thema, nicht auf einen weiteren Alias.
 
-## Historische Zuordnung
+Alle 62 Pfade aus dem [historischen Inventar vom 26.10.2026](historical-routes.json) wurden gegen die neue Registry auf Auflösbarkeit geprüft. Das Inventar bewahrt historische Metadaten und die damaligen Zuordnungen; aktuelle Zielpfade ergeben sich aus `src/site/routes.ts`, `src/content/services.ts` und der neu erzeugten [CSV](legacy-redirects.csv). Codehistorie belegt keine Google-Indexierung oder damalige Veröffentlichung.
 
-Wichtige Änderungen: `871de00` (19.06., erste Leistungsseiten), `5644968` (28.06., weitere Hilfethemen), `5eb3336` (01.07., weitere lokale Probleme), `762df12` (28.07., nationale/regionale Struktur), `55b65e8` (28.07., lokale Leistungsinhaberschaft), `ae8609d` (28.07., Fernwartung wieder zentral). Die Tabelle nennt den ersten belegten Quellpfad auf `main`, nicht den Umzugszeitpunkt.
+## Indexierung bewusst steuern
 
-| Historischer Quellpfad | Endgültiges Ziel | Erster Nachweis |
-| --- | --- | --- |
-| `/benutzerkonten/` | `/standorte/ludwigsburg/benutzerkonten/` | `5644968` (2026-06-28) |
-| `/betrugsverdacht-phishing-hilfe/` | `/standorte/ludwigsburg/betrugsverdacht-phishing-hilfe/` | `5eb3336` (2026-07-01) |
-| `/drucker/` | `/standorte/ludwigsburg/drucker/` | `5644968` (2026-06-28) |
-| `/email/` | `/standorte/ludwigsburg/email/` | `5644968` (2026-06-28) |
-| `/fritzbox-hilfe/` | `/standorte/ludwigsburg/fritzbox-hilfe/` | `5eb3336` (2026-07-01) |
-| `/installation/` | `/standorte/ludwigsburg/installation/` | `5644968` (2026-06-28) |
-| `/it-consulting/` | `/standorte/ludwigsburg/it-consulting/` | `5644968` (2026-06-28) |
-| `/it-notdienst/` | `/standorte/ludwigsburg/it-notdienst/` | `5644968` (2026-06-28) |
-| `/leistungen/automation/` | `/standorte/ludwigsburg/automation/` | `762df12` (2026-07-28) |
-| `/leistungen/netzwerk-wlan/` | `/standorte/ludwigsburg/netzwerk-wlan/` | `762df12` (2026-07-28) |
-| `/leistungen/pc-laptop/` | `/standorte/ludwigsburg/pc-laptop/` | `762df12` (2026-07-28) |
-| `/leistungen/webseiten/` | `/standorte/ludwigsburg/webseiten/` | `762df12` (2026-07-28) |
-| `/ludwigsburg/` | `/standorte/ludwigsburg/` | `762df12` (2026-07-28) |
-| `/mesh-wlan-einrichten/` | `/standorte/ludwigsburg/mesh-wlan-einrichten/` | `5eb3336` (2026-07-01) |
-| `/netzwerk-wlan/` | `/standorte/ludwigsburg/netzwerk-wlan/` | `871de00` (2026-06-19) |
-| `/office-installation/` | `/standorte/ludwigsburg/office-installation/` | `5644968` (2026-06-28) |
-| `/pc-langsam/` | `/standorte/ludwigsburg/pc-langsam/` | `5eb3336` (2026-07-01) |
-| `/pc-startet-nicht/` | `/standorte/ludwigsburg/pc-startet-nicht/` | `5eb3336` (2026-07-01) |
-| `/pc-system/` | `/standorte/ludwigsburg/pc-laptop/` | `871de00` (2026-06-19) |
-| `/programme/` | `/standorte/ludwigsburg/programme/` | `5644968` (2026-06-28) |
-| `/router-entstoerung/` | `/standorte/ludwigsburg/router-entstoerung/` | `5644968` (2026-06-28) |
-| `/senioren-handy-hilfe/` | `/standorte/ludwigsburg/senioren-handy-hilfe/` | `5eb3336` (2026-07-01) |
-| `/standorte/ludwigsburg/fernwartung/` | `/fernwartung/` | `55b65e8` (2026-07-28) |
-| `/standorte/ludwigsburg/fernwartung/drucker-hilfe/` | `/fernwartung/drucker-hilfe/` | `55b65e8` (2026-07-28) |
-| `/standorte/ludwigsburg/fernwartung/email-outlook/` | `/fernwartung/email-outlook/` | `55b65e8` (2026-07-28) |
-| `/standorte/ludwigsburg/fernwartung/windows-hilfe/` | `/fernwartung/windows-hilfe/` | `55b65e8` (2026-07-28) |
-| `/tools-automation/` | `/standorte/ludwigsburg/automation/` | `871de00` (2026-06-19) |
-| `/webseiten/` | `/standorte/ludwigsburg/webseiten/` | `871de00` (2026-06-19) |
-| `/windows-einrichten/` | `/standorte/ludwigsburg/windows-einrichten/` | `5644968` (2026-06-28) |
+- Kanonische Angebots-, Ratgeber- und Unternehmensseiten erhalten einen selbstreferenzierenden Canonical, `index, follow` und stehen in `sitemap.xml` und `sitemap.txt`.
+- Impressum, Datenschutz und Fehlerseite bleiben erreichbar und crawlbar. Ihr `noindex` steht im HTML. Google muss die Seite abrufen können, um diese Regel zu lesen; deshalb gibt es dafür keine `Disallow`-Regel in `robots.txt`. Siehe [Google zu noindex](https://developers.google.com/search/docs/crawling-indexing/block-indexing).
+- Alias-Dokumente bleiben crawlbar, erhalten `index, follow`, einen Canonical auf das Endziel und einen Meta-Refresh mit null Sekunden. Sie stehen nicht in den Sitemaps und werden nicht zusätzlich mit `noindex` versehen. Google behandelt sofortige Meta-Weiterleitungen als permanentes Signal; HTTP 301/308 sind nach Möglichkeit vorzuziehen. Siehe [Google zu Weiterleitungen](https://developers.google.com/search/docs/crawling-indexing/301-redirects).
+- Beide Sitemaps werden aus derselben Liste indexierbarer kanonischer Seiten erzeugt. `sitemap.txt` ist eine unterstützte Text-Sitemap mit einer absoluten URL pro Zeile. Eine zusätzliche `index.txt` mit erfundenen Indexierungsbefehlen wird nicht angelegt. Siehe [Google zum Erstellen von Sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap).
+- `site-manifest.json` enthält die Gründe für beabsichtigte Indexierung, Ausschlüsse und Alias-Ziele zur Build-Prüfung. Diese eigenen Erklärfelder sind keine Google-Direktiven und garantieren keine Indexierung.
 
-Die ursprüngliche Adresse `https://andrej1707.github.io/schultes-it-netzwerksupport/` stammt aus der Sitemap ab `2488be3` (14.06.). `9d0eb1e` (16.06.) stellt die Sitemap auf die Hauptdomain um. GitHub selbst leitet diese alte Projektadresse bereits weiter. Der Host `andrej1707.github.io` gehört nicht zur Cloudflare-Zone und ist deshalb **kein CSV-Eintrag**. Ein zusätzliches `/schultes-it-netzwerksupport/` unter der heutigen Hauptdomain ist historisch nicht als eigene kanonische Seite belegt und wird nicht erfunden.
+`robots.txt` verweist auf die XML-Sitemap und lässt Googlebot die Website abrufen. Bestehende Ausschlüsse anderer benannter Crawler wurden nicht erweitert.
 
-## Beobachteter Cloudflare-/Hosting-Zustand
+## GitHub Pages und echte HTTP-Redirects
 
-Read-only DNS-Abfragen und HTTP-Header am 26.10.2026:
+Die statischen Alias-Dateien können auf GitHub Pages keinen eigenen HTTP-301/308-Status setzen. Ihre sofortige HTML-Weiterleitung funktioniert als Rückfallweg; ein kleines Skript davor erhält vorhandene Query-Parameter und Sprungmarken. Ein normaler Link zum Endziel bleibt enthalten. Die volle React-Anwendung wird auf Alias-Dokumenten nicht geladen.
 
-- Nameserver: `margaret.ns.cloudflare.com`, `wells.ns.cloudflare.com`.
-- Apex A: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`; kein Apex-AAAA- oder CNAME-Antwortdatensatz.
-- `www` CNAME: `andrej1707.github.io`, mit GitHub-Pages-A/AAAA-Adressen.
-- HTTPS-Antworten enthalten `x-github-request-id`, `x-fastly-request-id` und `via: 1.1 varnish`; keine `cf-ray`-/`cf-cache-status`-Header.
+Die frühere read-only Prüfung vom 26.10.2026 zeigte direkte GitHub-Pages-Antworten und Cloudflare-Nameserver. Das wurde bei diesem lokalen Umbau nicht erneut als aktueller DNS-/Proxyzustand abgenommen. Vor Aktivierung von Edge-Regeln müssen der tatsächliche Proxyzustand, Origin-TLS und bestehende Regeln im Account geprüft werden. Das bloße Committen oder Importieren einer CSV aktiviert keine Edge-Weiterleitung.
 
-Diese Beobachtungen sprechen für **Cloudflare DNS mit direktem GitHub-Pages-Verkehr (DNS-only)**. Sie sind keine authentifizierte Einsicht in den Cloudflare-Account. Der in dieser Prüfungsumgebung sichtbare Header `server: envoy` stammt aus einem zwischengeschalteten Proxy und wird nicht als Website-Hostingnachweis verwendet. Reproduzierbare öffentliche Abfragen: [Apex A](https://dns.google/resolve?name=schultes-it.de&type=A), [www CNAME](https://dns.google/resolve?name=www.schultes-it.de&type=CNAME).
+## Vorbereitete CSV
 
-Cloudflare Redirect Rules wirken nur für durch Cloudflare **proxied** laufende Hostnamen. Ein CSV-Import allein würde bei DNS-only keine Weiterleitungen ausführen. Das Aktivieren des Proxys wäre eine eigene Hosting-/DNS-Änderung und wurde im Rahmen dieser Prüfung ausdrücklich nicht vorgenommen. Vor einer solchen Entscheidung müssen bestehende GitHub-Pages-Domainprüfung, HTTPS-Zertifikat/Erneuerung, Origin-TLS und vorhandene Cloudflare-Regeln berücksichtigt werden.
-
-## Fertige CSV
-
-[legacy-redirects.csv](legacy-redirects.csv) enthält **370 eindeutige Regeln ohne Kopfzeile**, entsprechend dem [Cloudflare-CSV-Format](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/csv-file-format/). Die Spaltenreihenfolge lautet:
+[legacy-redirects.csv](legacy-redirects.csv) enthält 466 eindeutige Regeln ohne Kopfzeile im [Cloudflare-CSV-Format](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/csv-file-format/):
 
 ```text
 SOURCE_URL,TARGET_URL,STATUS_CODE,PRESERVE_QUERY_STRING,INCLUDE_SUBDOMAINS,SUBPATH_MATCHING,PRESERVE_PATH_SUFFIX
 ```
 
-Beispiel:
-
 ```csv
-schultes-it.de/pc-system/,https://schultes-it.de/standorte/ludwigsburg/pc-laptop/,301,TRUE,FALSE,FALSE,FALSE
+schultes-it.de/pc-system/,https://schultes-it.de/leistungen/pc-laptop/,301,TRUE,FALSE,FALSE,FALSE
+schultes-it.de/standorte/ludwigsburg/,https://schultes-it.de/,301,TRUE,FALSE,FALSE,FALSE
 ```
 
-Die 370 Zeilen setzen sich zusammen aus:
+Die Regeln decken ab:
 
-- 174 Regeln für 29 alte Pfade × drei exakte Varianten (`/alt`, `/alt/`, `/alt/index.html`) × Hauptdomain und `www`.
-- 66 Regeln für `/index.html`-Varianten der 33 kanonischen Seiten × beide Hosts.
-- 64 Regeln für die 32 kanonischen Unterseiten ohne abschließenden Slash × beide Hosts.
-- 33 Regeln für bereits kanonische Pfade unter `www`.
-- 33 ausschließlich auf HTTP begrenzte Regeln für kanonische Pfade der Hauptdomain.
+- 288 Alias-Regeln: 48 Pfade, jeweils ohne Slash, mit Slash und mit `/index.html`, für Hauptdomain und `www`.
+- 60 Regeln für die `index.html`-Varianten der 30 kanonischen Seiten auf beiden Hosts.
+- 58 Regeln für kanonische Unterseiten ohne abschließenden Slash auf beiden Hosts.
+- 30 Regeln für kanonische Pfade unter `www`.
+- 30 ausschließlich auf HTTP begrenzte Regeln für die kanonischen Pfade der Hauptdomain.
 
-Schemafreie Quell-URLs gelten für HTTP und HTTPS. Die letzten 33 Regeln haben deshalb ausdrücklich `http://`, damit keine HTTPS-Seite auf sich selbst weiterleitet. Alle Ziele sind vollständig qualifizierte kanonische HTTPS-Adressen; kein Ziel ist wiederum ein Alias.
+Alle Ziele sind kanonische HTTPS-Adressen. Keine Zieladresse ist selbst Quelle einer passenden HTTPS-Regel. Query-Parameter bleiben erhalten. Exaktes Matching und deaktiviertes Subpath-/Subdomain-Matching schützen unbekannte Unterpfade, Assets, Downloads und `support.schultes-it.de` vor diesen Regeln. Unbekannte URLs sollen weiterhin 404 liefern.
 
-Alle Regeln verwenden 301 und `PRESERVE_QUERY_STRING=TRUE`. `INCLUDE_SUBDOMAINS`, `SUBPATH_MATCHING` und `PRESERVE_PATH_SUFFIX` bleiben `FALSE`: `support.schultes-it.de`, Downloads, Bilder, Skripte und unbekannte Unterpfade werden nicht erfasst. Ein nicht bekannter Pfad soll weiterhin 404 bleiben. Groß-/Kleinschreibungsvarianten und neue Fantasie-URLs werden nicht pauschal korrigiert.
+Die alte Projektadresse `andrej1707.github.io/schultes-it-netzwerksupport/` gehört nicht zur Cloudflare-Zone und ist deshalb kein CSV-Eintrag. Ein entsprechender erfundener Pfad unter der Hauptdomain wird nicht ergänzt.
 
-## Spätere Einrichtung im Cloudflare-Account
+## Einrichtung und Abnahme nach Veröffentlichung
 
-Diese Schritte sind eine umsetzbare Anleitung, kein Bericht über bereits aktivierte Regeln:
+1. Erst die neue Website mit den neuen kanonischen Zielen veröffentlichen und deren Abrufbarkeit prüfen. Danach können vorbereitete Edge-Regeln aktiviert werden; keine Redirects auf noch nicht veröffentlichte Ziele schalten.
+2. Im Cloudflare-Account Zone, Proxyzustand und bestehende Redirect-Regeln prüfen. Falls Edge-Weiterleitungen genutzt werden, die 466 Einträge als eigene Liste importieren und die passende Regel einrichten. Bestehende fremde Listen nicht ersetzen. Aktuelle Voraussetzungen und Auswertungsreihenfolge stehen in der [Cloudflare-Dokumentation](https://developers.cloudflare.com/rules/url-forwarding/).
+3. Jede schemafreie Quelle über HTTP und HTTPS testen; ausdrücklich mit `http://` beginnende Quellen nur über HTTP testen. Der erste `Location`-Header soll direkt dem CSV-Endziel entsprechen. Mit `?utm_source=redirect-audit&ref=a%2Fb` wiederholen und den Parametererhalt prüfen.
+4. Ziele müssen 200, einen selbstreferenzierenden Canonical und keinen Meta-Refresh liefern. Ein unbekannter Pfad muss 404 bleiben. Normale Downloads und die Support-Subdomain dürfen nicht von diesen Regeln getroffen werden.
+5. Die XML-Sitemap in Search Console einreichen bzw. erneut prüfen und repräsentative alte/neue URLs per URL-Prüfung kontrollieren. Der erwartete Ausschluss alter Weiterleitungs-URLs ist vom unerwarteten Ausschluss neuer kanonischer Angebotsseiten zu unterscheiden. Search-Console-Status und Ranking sind hier nicht als geprüft ausgewiesen.
 
-1. Im richtigen Cloudflare-Account die Zone `schultes-it.de`, den tatsächlichen Proxyzustand und bestehende Single/Bulk Redirects, Page Rules sowie HTTPS-Regeln prüfen. DNS-/Proxy-Änderungen getrennt beurteilen; solange der Host DNS-only ist, nichts als wirksam abnehmen.
-2. Unter **Bulk Redirects** eine Redirect-Liste, zum Beispiel `schultes_legacy_20261026`, erstellen und die CSV ohne Kopfzeile importieren. Importvorschau kontrollieren: 370 eindeutige Einträge, ausschließlich die zwei Website-Hosts, 301 und die oben genannten Optionen. Bestehende Listen nicht ersetzen.
-3. Eine Bulk-Redirect-Regel für diese Liste vorbereiten. Den vom Dashboard erzeugten Listenfilter und Lookup-Ausdruck verwenden (`http.request.full_uri in $schultes_legacy_20261026`, Lookup `http.request.full_uri`). Die Liste enthält bereits exakte Host-/Pfadgrenzen. Nicht zusätzlich ein pauschales Subpath-Matching einschalten.
-4. Die Reihenfolge prüfen: **Single Redirects laufen vor Bulk Redirects**; die erste passende Redirect-Aktion beendet die Auswertung. Eine breite www-/HTTPS-Single-Regel kann einen zusätzlichen Hop vor der Legacy-Regel erzeugen. Solche Regeln müssen für die Listenquellen ausgenommen oder passend konsolidiert werden, bevor ein direkter Einzel-Hop behauptet wird. Bulk Redirects laufen vor Page Rules. Die konkrete Wirkung des globalen „Always Use HTTPS“-Schalters mit Cloudflare Trace und HTTP-Proben prüfen; keine unbelegte Reihenfolge voraussetzen und keine bestehende Einstellung blind deaktivieren.
-5. Erst nach freigegebener Einrichtung aktivieren und die untenstehenden Akzeptanzchecks ausführen. Die HTML-Aliasse im Repository behalten: sie bilden weiter einen Rückfallweg, wenn der Proxy oder die Regel später entfernt wird.
-
-Nach der aktuell dokumentierten [Cloudflare-Verfügbarkeit](https://developers.cloudflare.com/rules/url-forwarding/) umfasst Free bis zu 10.000 Redirect-Einträge, fünf Listen und 15 Bulk-Regeln. Die Limits gelten accountweit und können sich ändern; die vorhandene Accountbelegung wurde nicht eingesehen.
-
-## Akzeptanz nach einer späteren Aktivierung
-
-Für jede CSV-Quelle ohne Schema HTTP **und** HTTPS testen. Die 33 expliziten HTTP-Quellen nur als HTTP testen. Die erste Antwort soll 301 und direkt das eingetragene Endziel im `Location`-Header enthalten. Mit `?utm_source=redirect-audit&ref=a%2Fb` wiederholen; beide Parameter müssen unverändert erhalten bleiben. Beispiel:
-
-```bash
-curl -sS -o /dev/null -D - 'http://www.schultes-it.de/pc-system?utm_source=redirect-audit&ref=a%2Fb'
-curl -sS -o /dev/null -D - 'https://schultes-it.de/standorte/ludwigsburg/pc-laptop/'
-curl -sS -o /dev/null -D - 'https://schultes-it.de/__redirect_audit_missing__/'
-```
-
-Das Endziel muss 200 liefern, auf sich selbst kanonisieren und darf keinen Meta-Refresh enthalten. Die unbekannte URL muss 404 bleiben. `https://schultes-it.de/`, normale Downloads und die Support-Subdomain dürfen nicht durch die Liste umgeleitet werden. Falls eine Kette entsteht, `Location` schrittweise verfolgen und die vorgeschaltete Regel identifizieren. Danach Sitemap und einzelne Alt-/Ziel-URL-Paare in der Search Console prüfen; der Bericht „Seite mit Weiterleitung“ ist bei einer alten Alias-URL an sich erwartbar und kein Beleg für eine Schleife.
-
-Beim Zurückrollen nur die neu hinzugefügte Bulk-Regel deaktivieren; keine fremden Listen löschen. Eine gesonderte Proxy-/DNS-Änderung benötigt einen eigenen Rückweg. Alte Redirects mindestens ein Jahr nach dem Umzug, möglichst dauerhaft, erhalten; siehe [Google zu URL-Umzügen](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes).
+Nach einem URL-Umzug sollen Weiterleitungen mindestens ein Jahr, möglichst dauerhaft bestehen bleiben. Google benötigt Zeit zum erneuten Crawlen und Verarbeiten; eine sofortige oder garantierte Platzierung folgt aus der Umstellung nicht. Siehe [Google zu URL-Umzügen](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes).
 
 ## Historische Sprungmarken
 
-Fragmente nach `#` werden nicht an HTTP-Server gesendet und sind daher absichtlich nicht in der CSV enthalten. Die Anwendung bildet belegte alte Links zentral in `src/site/legacyFragments.ts` ab; vorhandene Query-Parameter bleiben erhalten:
+Fragmente nach `#` werden nicht an den HTTP-Server gesendet. Daher sind sie nicht Teil der CSV. `src/site/legacyFragments.ts` behandelt die vorhandenen historischen Anker:
 
-| Alte Sprungmarke | Ziel |
+| Alte Sprungmarke | Verhalten |
 | --- | --- |
-| `/#leistungen` | `/leistungen/` |
-| `/#preise`, `/#projekte`, `/#kompetenzen`, `/#andrej`, `/#ludwigsburg`, `/#arbeitsweise`, `/#alltagshilfe`, `/#kontakt` | Derselbe Abschnitt auf `/standorte/ludwigsburg/`, dem konfigurierten Inhaber der alten lokalen URLs |
+| `/#leistungen` | Bleibt bei der Leistungssektion auf `/#leistungen`; keine Weiterleitung. |
+| `/#preise`, `/#projekte`, `/#kompetenzen`, `/#andrej`, `/#ludwigsburg`, `/#arbeitsweise`, `/#alltagshilfe`, `/#kontakt` | Bleiben auf den vorhandenen Abschnitten der neuen lokalen Startseite |
 | `/#main` | `/#main-content` |
-| `#/impressum`, `#/datenschutz` | Die jeweilige heutige Rechtseite |
+| `#/impressum`, `#/datenschutz` | Die jeweilige kanonische Rechtsseite |
 | Leistungsseite `#was-ich-loese` | Dieselbe kanonische Leistungsseite mit `#service-solutions` |
 | Leistungsseite `#service-main` | Dieselbe kanonische Leistungsseite mit `#main-content` |
-| Rechtseite `#legal-main` | Dieselbe Rechtseite mit `#main-content` |
+| Rechtsseite `#legal-main` | Dieselbe Rechtsseite mit `#main-content` |
 
-`#service-contact`, `#rustdesk-download` und `#top` existieren weiterhin und werden nicht umgebogen. Unbekannte Fragmente bleiben unverändert. Die Tests prüfen die historischen Links gegen tatsächlich gerenderte Ziel-IDs und kanonische Routen. Diese Reparatur braucht JavaScript; das unveränderte HTTP-Dokument der betreffenden Seite bleibt auch ohne JavaScript lesbar.
-
-## Quellen für Cloudflare-Verhalten
-
-- [Bulk Redirect CSV-Format](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/csv-file-format/)
-- [Parameter und schemafreie Quell-URLs](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/parameters/)
-- [Matchingregeln](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/how-it-works/)
-- [Unterstützte URL-Komponenten](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/url-components/)
-- [Proxyvoraussetzung, Limits und Reihenfolge](https://developers.cloudflare.com/rules/url-forwarding/)
+Query-Parameter bleiben erhalten. Bereits gültige und unbekannte Anker werden nicht umgebogen; insbesondere erzeugt `/#kontakt` keine Selbstweiterleitung.

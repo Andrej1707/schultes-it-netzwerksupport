@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { activeLocationById, activeLocations } from './locations'
-import { sitePages } from './routes'
+import { activeLocationById } from './locations'
+import { notFoundPage, sitePages } from './routes'
 import { structuredDataForPage } from './schema'
 
 type SchemaNode = Record<string, unknown>
@@ -13,9 +13,20 @@ function graphFor(path: string) {
 }
 
 describe('structured data', () => {
+  it('omits breadcrumbs on the recovery page while keeping canonical-page breadcrumbs', () => {
+    const recoveryGraph = structuredDataForPage(notFoundPage)['@graph'] as SchemaNode[]
+    expect(recoveryGraph.some((node) => node['@type'] === 'BreadcrumbList')).toBe(false)
+    expect(recoveryGraph.find((node) => node['@type'] === 'WebPage')?.url)
+      .toBe('https://schultes-it.de/404.html')
+    for (const page of sitePages) {
+      expect(graphFor(page.path).filter((node) => node['@type'] === 'BreadcrumbList'), page.path)
+        .toHaveLength(1)
+    }
+  })
+
   it('connects the visible homepage location without making remote support local-only', () => {
     const business = graphFor('/').find((node) => node['@type'] === 'ProfessionalService')
-    expect(business?.['@id']).toBe('https://schultes-it.de/standorte/ludwigsburg/#location')
+    expect(business?.['@id']).toBe('https://schultes-it.de/#location')
     expect(business?.address).toMatchObject({ addressLocality: 'Ludwigsburg' })
     expect(business?.aggregateRating).toBeUndefined()
     const remote = graphFor('/fernwartung/').find((node) => node['@type'] === 'Service')
@@ -62,7 +73,7 @@ describe('structured data', () => {
 
   it('uses the configured local operator and regional service area', () => {
     const location = activeLocationById.ludwigsburg
-    const graph = graphFor('/standorte/ludwigsburg/pc-langsam/')
+    const graph = graphFor('/leistungen/pc-langsam/')
     const localBusiness = graph.find((node) => node['@type'] === 'ProfessionalService')
     const service = graph.find((node) => node['@type'] === 'Service')
 
@@ -77,18 +88,18 @@ describe('structured data', () => {
     )
   })
 
-  it('lists only active locations on the public location overview', () => {
-    const itemList = graphFor('/standorte/').find(
-      (node) => node['@type'] === 'ItemList',
-    )
-    const items = itemList?.itemListElement as SchemaNode[]
-
-    expect(items).toHaveLength(activeLocations.length)
-    expect(items.every((item) => {
-      const linkedLocation = item.item as { '@id': string }
-      return activeLocations.some((location) =>
-        linkedLocation['@id'].includes(location.path),
-      )
-    })).toBe(true)
+  it('uses the homepage as the single business and service breadcrumbs use canonical paths', () => {
+    expect(sitePages.some((page) => page.path === '/standorte/')).toBe(false)
+    const homepage = graphFor('/')
+    expect(homepage.filter((node) => node['@type'] === 'ProfessionalService')).toHaveLength(1)
+    const webPage = homepage.find((node) => node['@type'] === 'WebPage')
+    expect(webPage?.mainEntity).toEqual({ '@id': 'https://schultes-it.de/#location' })
+    const crumbs = graphFor('/leistungen/pc-langsam/').find((node) => node['@type'] === 'BreadcrumbList')
+    const items = crumbs?.itemListElement as { item: string }[]
+    expect(items.map((item) => item.item)).toEqual([
+      'https://schultes-it.de/',
+      'https://schultes-it.de/leistungen/',
+      'https://schultes-it.de/leistungen/pc-langsam/',
+    ])
   })
 })

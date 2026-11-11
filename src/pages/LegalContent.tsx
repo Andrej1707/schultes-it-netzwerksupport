@@ -186,26 +186,7 @@ export function PrivacyContent() {
       </section>
 
       <section>
-        <span>06 / STANDORTSUCHE</span>
-        <h2>Optionale Standortbestimmung im Browser</h2>
-        <p>
-          Auf der Standortübersicht kannst du freiwillig die Funktion „Meinen
-          Standort prüfen“ verwenden. Erst nach deiner Freigabe stellt dein
-          Browser die ungefähren Koordinaten für die Berechnung bereit. Die
-          Entfernung zu aktiven Schultes-IT-Standorten wird ausschließlich lokal
-          in deinem Browser berechnet.
-        </p>
-        <p>
-          Die Koordinaten werden dabei nicht an Schultes IT, Cloudflare, GitHub
-          oder einen anderen Dienst übertragen und nicht gespeichert. Auch bei
-          bereits erteilter Browser-Berechtigung startet die Berechnung erst
-          nach deinem Klick auf die Schaltfläche. Die Berechtigung kannst du
-          jederzeit in den Einstellungen deines Browsers oder Geräts entziehen.
-        </p>
-      </section>
-
-      <section>
-        <span>07 / TRACKING</span>
+        <span>06 / TRACKING</span>
         <h2>Cloudflare Web Analytics</h2>
         <p>
           Diese Website verwendet Cloudflare Web Analytics, einen Dienst der
@@ -242,7 +223,7 @@ export function PrivacyContent() {
       </section>
 
       <section>
-        <span>08 / BOT-SCHUTZ</span>
+        <span>07 / BOT-SCHUTZ</span>
         <h2>Cloudflare Turnstile und Support-Backend</h2>
         <p>
           Der digitale Assistent wird erst freigeschaltet, nachdem du die
@@ -278,7 +259,7 @@ export function PrivacyContent() {
       </section>
 
       <section>
-        <span>09 / KI-ASSISTENT</span>
+        <span>08 / KI-ASSISTENT</span>
         <h2>Textverarbeitung durch OpenAI</h2>
         <p>
           Wenn du den digitalen Assistenten freiwillig nutzt, werden deine
@@ -314,7 +295,7 @@ export function PrivacyContent() {
       </section>
 
       <section>
-        <span>10 / DEINE RECHTE</span>
+        <span>09 / DEINE RECHTE</span>
         <h2>Betroffenenrechte</h2>
         <p>
           Du hast im Rahmen der gesetzlichen Voraussetzungen das Recht auf
@@ -331,9 +312,9 @@ export function PrivacyContent() {
       </section>
 
       <section>
-        <span>11 / STAND</span>
+        <span>10 / STAND</span>
         <h2>Stand dieser Erklärung</h2>
-        <p>5. September 2026</p>
+        <p>11. November 2026</p>
       </section>
     </div>
   )

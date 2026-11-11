@@ -1,5 +1,4 @@
 import { PremiumShell } from './components/PremiumShell'
-import PremiumHomePage from './pages/PremiumHomePage'
 import PremiumServicePage from './pages/PremiumServicePage'
 import PremiumNetworkPages from './pages/PremiumNetworkPages'
 import { ImprintContent, PrivacyContent } from './pages/LegalContent'
@@ -12,9 +11,7 @@ export function SiteView({ page }: { page: SitePage }) {
     : undefined
   return (
     <PremiumShell page={page}>
-      {page.kind === 'home' ? (
-        <PremiumHomePage page={page} />
-      ) : page.kind === 'service' && service ? (
+      {page.kind === 'service' && service ? (
         <PremiumServicePage service={service} />
       ) : page.kind === 'legal' ? (
         <article className="p-legal">

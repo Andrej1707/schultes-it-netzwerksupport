@@ -1,11 +1,11 @@
-import { activeLocations, activeLocationById } from './locations'
+import { activeLocationById } from './locations'
 import { siteConfig } from './config'
 import { publicServicePages } from './publicServices'
 import { rustdeskRelease } from './rustdesk'
 import type { SitePage, ResolvedSiteRoute, SchemaKind } from './types'
 
-const lastModified = '2026-09-05'
-const localSeoUpdated = '2026-10-26'
+const lastModified = '2026-11-11'
+const localSeoUpdated = '2026-11-11'
 const homeLocation = activeLocationById[siteConfig.featuredLocationId]
 const remoteLastModified = [lastModified, rustdeskRelease.publishedAt.slice(0, 10)]
   .sort()
@@ -14,21 +14,21 @@ const remoteLastModified = [lastModified, rustdeskRelease.publishedAt.slice(0, 1
 const structuralPages: SitePage[] = [
   {
     id: 'home',
-    kind: 'home',
-    schemaKind: 'brand',
+    kind: 'location',
+    schemaKind: 'location',
     path: '/',
-    title: homeLocation
-      ? `IT-Hilfe ${homeLocation.city} & Fernwartung | Schultes IT`
-      : 'Schultes IT | Fernwartung deutschlandweit & Hilfe vor Ort',
+    aliases: homeLocation.aliases,
+    locationId: homeLocation.id,
+    title: 'IT-Hilfe Ludwigsburg | PC, WLAN & Fernwartung | Schultes IT',
     description:
-      `Persönliche IT-Hilfe${homeLocation ? ` in ${homeLocation.city}` : ' vor Ort'} für Privatpersonen und kleine Unternehmen. PC, Laptop und WLAN vor Ort; sichere Fernwartung deutschlandweit.`,
+      'Andrej Schultes hilft bei PC-, Laptop- und WLAN-Problemen in Ludwigsburg und Umgebung. Persönlich vor Ort oder deutschlandweit per Fernwartung.',
     keywords:
-      'Schultes IT, Fernwartung, IT Hilfe, PC Hilfe, regionale IT Standorte, Computerhilfe',
-    eyebrow: 'SCHULTES IT / DEUTSCHLAND',
-    heading: 'Persönliche IT-Hilfe.',
-    accent: 'Für Privatpersonen. Für kleine Unternehmen.',
+      'IT Hilfe Ludwigsburg, PC Hilfe Ludwigsburg, Computerhilfe, WLAN Hilfe, Andrej Schultes, Fernwartung',
+    eyebrow: 'SCHULTES IT / LUDWIGSBURG',
+    heading: 'Computerhilfe in Ludwigsburg.',
+    accent: 'Direkt bei dir vor Ort.',
     intro:
-      'Schultes IT verbindet sichere Fernwartung mit persönlicher Hilfe durch klar verantwortliche regionale Ansprechpartner.',
+      'Andrej Schultes unterstützt Privatpersonen und kleine Unternehmen in Ludwigsburg und Umgebung. Fernwartung ist deutschlandweit möglich.',
     indexable: true,
     lastModified: localSeoUpdated,
     changeFrequency: 'weekly',
@@ -41,58 +41,18 @@ const structuralPages: SitePage[] = [
     path: '/leistungen/',
     title: 'IT-Leistungen | Schultes IT',
     description:
-      'PC- und Laptop-Hilfe, Netzwerk und WLAN, Webseiten sowie Automation: zentrale Leistungen von Schultes IT im Überblick.',
+      'PC- und Laptop-Hilfe, Netzwerk und WLAN, Webseiten sowie Automation von Andrej Schultes in Ludwigsburg und Umgebung.',
     keywords:
       'IT Leistungen, PC Hilfe, WLAN Hilfe, Webseiten, Automation, Schultes IT',
     eyebrow: 'LEISTUNGEN / ÜBERBLICK',
     heading: 'Technikbereiche klar geordnet.',
     accent: 'Der passende Einstieg ohne Umwege.',
     intro:
-      'Ob zu Hause, im eigenen Betrieb oder für eine private Idee: Aktive Standorte helfen vor Ort, per Fernwartung oder im gemeinsam abgestimmten Projekt.',
+      'Ob zu Hause, im eigenen Betrieb oder für eine private Idee: Andrej hilft vor Ort, per Fernwartung oder im gemeinsam abgestimmten Projekt.',
     indexable: true,
     lastModified,
     changeFrequency: 'monthly',
     priority: 0.85,
-  },
-  {
-    id: 'locations',
-    kind: 'locations',
-    schemaKind: 'locations',
-    path: '/standorte/',
-    title: 'Schultes-IT-Standorte | Persönliche Hilfe in deiner Region',
-    description:
-      'Finde einen regionalen Schultes-IT-Standort für persönliche PC-, WLAN- und Technik-Hilfe bei dir vor Ort.',
-    keywords:
-      'Schultes IT Standorte, IT Hilfe vor Ort, PC Hilfe regional, Computerhilfe in der Nähe',
-    eyebrow: 'STANDORTE / REGIONALE HILFE',
-    heading: 'Persönliche IT-Hilfe.',
-    accent: 'So nah wie sinnvoll.',
-    intro:
-      'Aktive Standorte betreuen ihr klar definiertes Einsatzgebiet persönlich und nach gemeinsamen Qualitätsstandards.',
-    indexable: true,
-    lastModified,
-    changeFrequency: 'weekly',
-    priority: 0.9,
-  },
-  {
-    id: 'owner',
-    kind: 'owner',
-    schemaKind: 'owner',
-    path: '/standortinhaber-werden/',
-    title: 'Schultes-IT-Standort aufbauen | Standortinhaber werden',
-    description:
-      'Perspektive für selbstständige IT-Dienstleister: einen regionalen Schultes-IT-Standort eigenverantwortlich aufbauen und Teil des Netzwerks werden.',
-    keywords:
-      'IT Standort selbstständig, IT Service Marke, Standortinhaber werden, Schultes IT Netzwerk',
-    eyebrow: 'NETZWERK / PERSPEKTIVE',
-    heading: 'Selbstständig vor Ort.',
-    accent: 'Gemeinsam unter einer starken Marke.',
-    intro:
-      'Schultes IT bereitet ein Modell für rechtlich selbstständige regionale Betreiber mit klaren Gebieten, Systemen und Qualitätsstandards vor.',
-    indexable: true,
-    lastModified,
-    changeFrequency: 'monthly',
-    priority: 0.7,
   },
   {
     id: 'guides',
@@ -119,16 +79,16 @@ const structuralPages: SitePage[] = [
     kind: 'about',
     schemaKind: 'about',
     path: '/ueber-schultes-it/',
-    title: 'Über Schultes IT | Marke, Anspruch & Netzwerk',
+    title: 'Über Andrej Schultes | Persönliche IT-Hilfe in Ludwigsburg',
     description:
-      'Was Schultes IT ausmacht: verständliche Technik-Hilfe, sichere Fernwartung und ein wachsendes Netzwerk regionaler, selbstständiger Standorte.',
+      'Lerne Andrej Schultes kennen: persönliche Computer- und WLAN-Hilfe in Ludwigsburg und Umgebung, verständlich erklärt und direkt abgestimmt.',
     keywords:
-      'Über Schultes IT, Andrej Schultes, IT Service Netzwerk, Fernwartung Deutschland',
-    eyebrow: 'MARKE / ÜBER SCHULTES IT',
-    heading: 'Eine Marke für verständliche IT-Hilfe.',
-    accent: 'Zentral gedacht, regional persönlich.',
+      'Über Schultes IT, Andrej Schultes, IT Hilfe Ludwigsburg, Fernwartung Deutschland',
+    eyebrow: 'ANDREJ / ÜBER SCHULTES IT',
+    heading: 'Ein Mensch für deine Technik.',
+    accent: 'Persönlich. Verständlich. Direkt.',
     intro:
-      'Aus dem inhabergeführten Standort Ludwigsburg entsteht eine deutschlandweite Service-Struktur mit klarer Verantwortung.',
+      'Andrej Schultes hilft Privatpersonen und kleinen Unternehmen bei Technikproblemen in Ludwigsburg und Umgebung – und per Fernwartung deutschlandweit.',
     indexable: true,
     lastModified,
     changeFrequency: 'monthly',
@@ -160,7 +120,7 @@ const structuralPages: SitePage[] = [
     path: '/datenschutz/',
     title: 'Datenschutz | Schultes IT & Netzwerksupport',
     description:
-      'Datenschutzerklärung von Schultes IT für Website, Standortsuche, Analytics und Support-Assistent.',
+      'Datenschutzerklärung von Schultes IT für Website, Kontakt, Analytics und Support-Assistent.',
     keywords: 'Schultes IT Datenschutz, Datenschutzerklärung',
     eyebrow: 'RECHTLICH / DATENSCHUTZ',
     heading: 'Datenschutz',
@@ -173,32 +133,6 @@ const structuralPages: SitePage[] = [
     legalPage: 'datenschutz',
   },
 ]
-
-const locationSitePages: SitePage[] = activeLocations.map((location) => ({
-    id: `location-${location.id}`,
-    kind: 'location',
-    schemaKind: 'location',
-    path: location.path,
-    aliases: location.aliases,
-    title: `IT-Service ${location.city} | PC- & WLAN-Hilfe | Schultes IT`,
-    description:
-      `Schultes IT ${location.city}: persönliche PC-, Laptop-, WLAN-, Router- und ` +
-      'Technik-Hilfe bei dir vor Ort, ergänzt durch sichere Fernwartung.',
-    keywords:
-      `IT Hilfe ${location.city}, PC Hilfe ${location.city}, WLAN Hilfe ${location.city}, ` +
-      `Computerhilfe ${location.city}, Schultes IT ${location.city}`,
-    eyebrow: `STANDORT / ${location.city.toUpperCase()}`,
-    heading: `Computerhilfe in ${location.city}.`,
-    accent: 'Direkt bei dir vor Ort.',
-    intro:
-      `${location.operator.name} betreibt den Standort ${location.city} als ` +
-      `${location.operator.role}.`,
-    indexable: true,
-    lastModified: localSeoUpdated,
-    changeFrequency: 'weekly',
-    priority: 0.95,
-    locationId: location.id,
-  }))
 
 function schemaKindForService(scope: string | undefined): SchemaKind {
   if (scope === 'location') return 'location-service'
@@ -233,7 +167,6 @@ const serviceSitePages: SitePage[] = publicServicePages.map((service) => ({
 
 export const sitePages: SitePage[] = [
   ...structuralPages,
-  ...locationSitePages,
   ...serviceSitePages,
 ]
 export const indexableSitePages = sitePages.filter((page) => page.indexable)

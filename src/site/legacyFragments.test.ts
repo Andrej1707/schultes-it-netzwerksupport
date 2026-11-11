@@ -10,15 +10,15 @@ function redirect(path: string, hash: string, search = '') {
 }
 
 describe('historical fragment links', () => {
-  it('takes old homepage links to the actual service overview or original local operator', () => {
-    expect(redirect('/', '#leistungen', '?utm_source=google')).toBe('/leistungen/?utm_source=google')
-    expect(redirect('/', '#kontakt', '?ref=a%2Fb')).toBe('/standorte/ludwigsburg/?ref=a%2Fb#kontakt')
+  it('keeps existing homepage sections in place and repairs old legal routes', () => {
+    expect(redirect('/', '#leistungen', '?utm_source=google')).toBeUndefined()
+    expect(redirect('/', '#kontakt', '?ref=a%2Fb')).toBeUndefined()
     expect(redirect('/', '#/impressum', '?ref=alt')).toBe('/impressum/?ref=alt')
   })
 
   it('repairs renamed service and skip targets after a legacy path has resolved', () => {
     expect(redirect('/pc-system/', '#was-ich-loese', '?ref=alt')).toBe(
-      '/standorte/ludwigsburg/pc-laptop/?ref=alt#service-solutions',
+      '/leistungen/pc-laptop/?ref=alt#service-solutions',
     )
     expect(redirect('/fernwartung/', '#service-main')).toBe('/fernwartung/#main-content')
     expect(redirect('/impressum/', '#legal-main')).toBe('/impressum/#main-content')
@@ -43,9 +43,8 @@ describe('historical fragment links', () => {
       ['/impressum/', '#legal-main'],
     ]
     for (const [path, hash] of oldLinks) {
-      const destination = redirect(path, hash)
-      expect(destination, `${path}${hash}`).toBeDefined()
-      const url = new URL(destination!, 'https://schultes-it.de')
+      const destination = redirect(path, hash) ?? `${path}${hash}`
+      const url = new URL(destination, 'https://schultes-it.de')
       const route = resolveSiteRoute(url.pathname)
       expect(route?.isAlias, destination).toBe(false)
       if (url.hash) {

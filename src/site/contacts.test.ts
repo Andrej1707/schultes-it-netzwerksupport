@@ -2,9 +2,12 @@ import { describe, expect, it } from 'vitest'
 import { getLocationService, servicePageBySlug } from '../content/services'
 import {
   contactForLocation,
+  contactForPage,
+  contactForLocationId,
   contactForService,
 } from './contacts'
 import { activeLocationById, type ServiceLocation } from './locations'
+import { sitePages } from './routes'
 
 describe('contact resolution', () => {
   it('uses the central contact for nationwide remote support', () => {
@@ -29,7 +32,19 @@ describe('contact resolution', () => {
     expect(contact.displayName).toBe('Schultes IT & Netzwerksupport')
     expect(contact.operatorName).toBe('Andrej Schultes')
     expect(contact.email).toBe('kontakt@schultes-it.de')
-    expect(contact.remoteSupportNote).toContain('Standort')
+    expect(contact.remoteSupportNote).toContain('Andrej Schultes')
+  })
+
+  it('provides Andrej directly on every canonical page without branch selection', () => {
+    for (const page of sitePages) {
+      const contact = contactForPage(page)
+      expect(contact.operatorName, page.path).toBe('Andrej Schultes')
+      expect(contact.phoneHref, page.path).toBe('tel:+491791707411')
+      expect(contact.email, page.path).toBe('kontakt@schultes-it.de')
+      expect(contact.actionHref, page.path).toBe('tel:+491791707411')
+      expect(contact.supportContextId, page.path).not.toBe('central')
+    }
+    expect(contactForLocationId('unknown').actionHref).toBe('tel:+491791707411')
   })
 
   it('prefers independent operator business details when configured', () => {
