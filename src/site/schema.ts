@@ -264,7 +264,8 @@ export function structuredDataForPage(page: SitePage) {
   })
 
   graph.push(...serviceSchema(page))
-  if (page.kind !== 'not-found') graph.push(breadcrumbSchema(page))
+  // Google requires at least two breadcrumb items; the homepage has no parent trail.
+  if (page.kind !== 'not-found' && page.path !== '/') graph.push(breadcrumbSchema(page))
 
   return {
     '@context': 'https://schema.org',

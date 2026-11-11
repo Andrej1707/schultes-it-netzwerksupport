@@ -38,7 +38,7 @@ erreicht, wenn die folgenden Signale organisch aufgebaut wurden:
 - davon mindestens 5 redaktionell gesetzte Links von glaubwürdigen lokalen, geschäftlichen oder
   IT-nahen Websites;
 - ein vollständig gepflegtes Google-Unternehmensprofil, dessen Website-Link direkt auf
-  `/standorte/ludwigsburg/` führt;
+  `https://schultes-it.de/` als Hauptseite des Ludwigsburger Betriebs führt;
 - mindestens 15 echte Kundenbewertungen mit laufenden, individuellen Antworten;
 - konsistente Unternehmensdaten in seriösen Branchen- und Regionalverzeichnissen;
 - mindestens 6 eigenständige hilfreiche Ratgeber und 3 freigegebene Praxisfälle;
@@ -52,7 +52,7 @@ vorformuliert oder nur von zufriedenen Kunden erbeten.
 
 ### Phase 1: Vertrauen vor Ort
 
-1. Google-Unternehmensprofil auf die Ludwigsburg-Seite verlinken.
+1. Google-Unternehmensprofil auf die Hauptseite `https://schultes-it.de/` verlinken.
 2. Unternehmensdaten in bestehenden Profilen vereinheitlichen.
 3. Nach abgeschlossenen Aufträgen neutral um eine ehrliche Bewertung bitten.
 4. Jede Bewertung persönlich beantworten.
@@ -66,12 +66,13 @@ vorformuliert oder nur von zufriedenen Kunden erbeten.
    Technikformaten unterstützen.
 4. Seriöse lokale Medien und Partner nur bei echtem Nachrichtenwert ansprechen.
 
-### Phase 3: Deutschlandweite Marke
+### Phase 3: Persönliche Fernwartung deutschlandweit
 
 1. Fernwartungs-Ratgeber auf Windows, Drucker und E-Mail ausbauen.
-2. Neue Standortseiten erst veröffentlichen, wenn ein realer aktiver Betreiber existiert.
+2. Andrej Schultes als direkten Ansprechpartner auch bei deutschlandweiter Fernwartung zeigen.
 3. Keine austauschbaren Stadtseiten und keine Doorway Pages erzeugen.
-4. Neue Standorte mit Betreiber, Gebiet, Kontakt und eigenständigem lokalem Inhalt auszeichnen.
+4. Den einzigen Betrieb in Ludwigsburg mit seinem tatsächlichen Einsatzgebiet und direkten
+   Kontaktdaten konsistent darstellen; weitere Standorte sind nicht geplant.
 
 ## Monatliche Messung
 
