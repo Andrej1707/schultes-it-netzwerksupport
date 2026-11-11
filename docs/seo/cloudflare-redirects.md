@@ -1,6 +1,6 @@
 # URL-Umzug und aktive Cloudflare-Weiterleitungen
 
-Stand: 11.11.2026, nach Veröffentlichung von PR #7 und dem Live-Audit um 20:15–20:16 Uhr (Europe/Berlin). Die Website und der Support-Worker sind veröffentlicht; insgesamt 706 Cloudflare-Weiterleitungen sind aktiviert. Alle 1.342 HTTP-/HTTPS-Redirectfälle und 18 zusätzliche Query-Fälle wurden erfolgreich geprüft. Die versionierte `robots.txt` wird unverändert ausgeliefert. Die XML-Sitemap wurde in Search Console erneut angenommen; die Oberfläche zeigte noch den bisherigen Stand von 28 erkannten Seiten. Die Verarbeitung der nun 68 Sitemap-URLs und deren tatsächliche Indexierung bleiben unbestätigt. Frühere Auditstände sind unten als solche gekennzeichnet.
+Stand: 11.11.2026, nach Veröffentlichung von PR #8 und der Search-Console-Prüfung gegen 20:30 Uhr (Europe/Berlin). Die Website und der Support-Worker sind veröffentlicht; insgesamt 706 Cloudflare-Weiterleitungen sind aktiviert. Alle 1.342 HTTP-/HTTPS-Redirectfälle und 18 zusätzliche Query-Fälle wurden nach PR #7 um 20:15–20:16 Uhr erfolgreich geprüft und durch PR #8 nicht geändert. Die versionierte `robots.txt` wird unverändert ausgeliefert. Search Console zeigt für die erneut eingereichte XML-Sitemap „Erfolgreich“ und 68 erkannte Seiten. Damit ist nicht die tatsächliche Indexierung aller 68 Seiten bestätigt. Frühere Auditstände sind unten als solche gekennzeichnet.
 
 ## Kanonische Ziele
 
@@ -104,7 +104,7 @@ Die kombinierte CSV hat den SHA-256-Wert `f77520507accc9015316995fbbd5bbcb619901
 
 ## Search Console und noch offene Indexierungsbeobachtung
 
-Die XML-Sitemap wurde nach PR #7 erneut eingereicht und von Search Console angenommen. Die Oberfläche zeigte zum Prüfzeitpunkt noch 28 erkannte Seiten; der öffentliche Sitemap-Abruf enthält bereits 68 URLs. Die Annahme der Einreichung bestätigt nicht die anschließende Verarbeitung oder Indexierung aller neuen Artikel.
+Die XML-Sitemap wurde nach PR #7 erneut eingereicht und von Search Console angenommen. Die Oberfläche zeigte zunächst noch 28 erkannte Seiten. Nach erneutem Laden am 11.11.2026 gegen 20:30 Uhr zeigte `sitemap.xml` den Status „Erfolgreich“ und 68 erkannte Seiten, passend zum öffentlichen Sitemap-Inhalt. Das bestätigt die Erkennung der eingereichten URLs, nicht deren vollständige Indexierung.
 
 Repräsentative alte und neue URLs bleiben über die URL-Prüfung zu beobachten. Erwartete Ausschlüsse von Weiterleitungs-URLs sind von unerwarteten Ausschlüssen neuer kanonischer Angebots- oder Ratgeberseiten zu unterscheiden. Tatsächliche Indexierung und Rankings werden nicht aus erfolgreichen HTTP- oder Sitemap-Prüfungen abgeleitet.
 

@@ -38,7 +38,8 @@ bereits veröffentlicht oder im Browser abgenommen wurden.
 - Zentrale Daten für einen Betrieb, seinen Ansprechpartner und sein Einsatzgebiet
 - Google-Karte nach ausdrücklicher Freigabe; keine Standortbestimmung des Besuchers
 - Projektübersicht mit ausdrücklich benanntem Konzept- oder Prototypenstatus
-- 40 eigenständige Ratgeber mit Suche und Kategorien für Sicherheit, Windows, WLAN, Daten und Alltag
+- 40 eigenständige Ratgeber mit 40 unterschiedlichen Bildmotiven sowie Suche und Kategorien
+  für Sicherheit, Windows, WLAN, Daten und Alltag
 - Vollständige Leistungen und Hilfethemen im Menü, auch auf Mobilgeräten
 - Native aufklappbare Navigation und normale Links, die ohne JavaScript bedienbar bleiben
 - Direkte Kontaktwege und Copy-Phone-Funktion
@@ -152,12 +153,19 @@ Tastatur- und Ohne-JavaScript-Prüfungen im Browser sind zusätzliche Abnahmesch
   nur Zusammenfassungen. Vollständige Artikeltexte werden beim Build verarbeitet und nur
   für die jeweilige Artikelseite mitgegeben
 - `scripts/generate-guide-catalog.mjs`: erzeugt den Katalog mit `npm run guides:catalog`
-  und prüft ihn mit `npm run guides:check`
+  und prüft ihn mit `npm run guides:check`; Bildbasen und Bild-Prüfsummen müssen für alle
+  40 Ratgeber unterschiedlich sein
 - `public/images/`: generierte illustrative Motive in lokalen WebP-Größen;
   Herkunft und Maße der bisherigen Motive stehen in `assets.json`, ihre Prompts in
   [docs/design/image-prompts.json](docs/design/image-prompts.json). Die vier zusätzlichen
   Ratgebermotive sind mit Herkunft, Maßen und Prompts separat in
-  [guide-image-prompts.md](docs/design/guide-image-prompts.md) dokumentiert
+  [guide-image-prompts.md](docs/design/guide-image-prompts.md) dokumentiert. Die 17 weiteren
+  Motive aus PR #8 stehen in den Nachweisen für [Sicherheit](docs/design/guide-images-security.md),
+  [Daten](docs/design/guide-images-data.md), [Netzwerk](docs/design/guide-images-network.md)
+  und [Windows/Alltag](docs/design/guide-images-windows-alltag.md). Alle 40 Artikelmotive
+  wurden nach Veröffentlichung als unterschiedliche Bildinhalte geprüft; Ergebnisse
+  einschließlich der drei neuen 800-Pixel-Startseitenvarianten stehen in
+  [der Release-QA](docs/qa-home-guides-2026-11-11.md)
 - `vite.config.ts`: statische HTML-Ausgabe, Alias-Kompatibilität, Sitemap und Seitenmanifest
 - `scripts/validate-seo.mjs`: automatisierte Prüfung gegen das erzeugte Seitenmanifest
 
