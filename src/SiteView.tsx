@@ -1,17 +1,24 @@
 import { PremiumShell } from './components/PremiumShell'
 import PremiumServicePage from './pages/PremiumServicePage'
 import PremiumNetworkPages from './pages/PremiumNetworkPages'
+import PremiumHomePage from './pages/PremiumHomePage'
+import GuidePages from './pages/GuidePages'
+import type { GuidePageData } from './content/guides/types'
 import { ImprintContent, PrivacyContent } from './pages/LegalContent'
 import { servicePageBySlug } from './content/services'
 import type { SitePage } from './site/types'
 
-export function SiteView({ page }: { page: SitePage }) {
+export function SiteView({ page, guideData }: { page: SitePage; guideData?: GuidePageData }) {
   const service = page.serviceSlug
     ? servicePageBySlug[page.serviceSlug]
     : undefined
   return (
     <PremiumShell page={page}>
-      {page.kind === 'service' && service ? (
+      {page.path === '/' ? (
+        <PremiumHomePage page={page} />
+      ) : (page.kind === 'guides' || page.kind === 'guide') && guideData ? (
+        <GuidePages page={page} data={guideData} />
+      ) : page.kind === 'service' && service ? (
         <PremiumServicePage service={service} />
       ) : page.kind === 'legal' ? (
         <article className="p-legal">

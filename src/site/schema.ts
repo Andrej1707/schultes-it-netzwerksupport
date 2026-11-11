@@ -2,6 +2,7 @@ import { servicePageBySlug } from '../content/services'
 import { activeLocationById, activeLocations } from './locations'
 import { logoImageUrl, previewImageUrl, siteConfig } from './config'
 import { sitePages } from './routes'
+import { guideCatalog } from '../content/guides/catalog'
 import type { SitePage } from './types'
 
 type SchemaNode = Record<string, unknown>
@@ -264,6 +265,20 @@ export function structuredDataForPage(page: SitePage) {
   })
 
   graph.push(...serviceSchema(page))
+  if (page.kind === 'guide') {
+    const guide = guideCatalog.find(entry => entry.slug === page.guideSlug)
+    if (guide) graph.push({
+      '@type': 'Article', '@id': `${pageUrl}#article`,
+      headline: guide.title, description: guide.description,
+      image: `${siteConfig.url}/images/${guide.image}-1280.webp`,
+      datePublished: guide.updated,
+      dateModified: guide.updated,
+      author: { '@type': 'Organization', name: siteConfig.name, url: siteConfig.url },
+      publisher: { '@id': organizationId },
+      mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
+      inLanguage: siteConfig.language,
+    })
+  }
   // Google requires at least two breadcrumb items; the homepage has no parent trail.
   if (page.kind !== 'not-found' && page.path !== '/') graph.push(breadcrumbSchema(page))
 

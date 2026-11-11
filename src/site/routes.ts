@@ -2,6 +2,7 @@ import { activeLocationById } from './locations'
 import { siteConfig } from './config'
 import { publicServicePages } from './publicServices'
 import { rustdeskRelease } from './rustdesk'
+import { guideCatalog } from '../content/guides/catalog'
 import type { SitePage, ResolvedSiteRoute, SchemaKind } from './types'
 
 const lastModified = '2026-11-11'
@@ -25,8 +26,8 @@ const structuralPages: SitePage[] = [
     keywords:
       'IT Hilfe Ludwigsburg, PC Hilfe Ludwigsburg, Computerhilfe, WLAN Hilfe, Andrej Schultes, Fernwartung',
     eyebrow: 'SCHULTES IT / LUDWIGSBURG',
-    heading: 'Computerhilfe in Ludwigsburg.',
-    accent: 'Direkt bei dir vor Ort.',
+    heading: 'Einfach gute Technik.',
+    accent: 'Für deinen Alltag. Für dein Unternehmen.',
     intro:
       'Andrej Schultes unterstützt Privatpersonen und kleine Unternehmen in Ludwigsburg und Umgebung. Fernwartung ist deutschlandweit möglich.',
     indexable: true,
@@ -168,6 +169,15 @@ const serviceSitePages: SitePage[] = publicServicePages.map((service) => ({
 export const sitePages: SitePage[] = [
   ...structuralPages,
   ...serviceSitePages,
+  ...guideCatalog.map((guide): SitePage => ({
+    id: `guide-${guide.slug}`, kind: 'guide', schemaKind: 'guide',
+    path: `/ratgeber/${guide.slug}/`, guideSlug: guide.slug,
+    title: `${guide.title} | Schultes IT Ratgeber`,
+    description: guide.description, keywords: '',
+    eyebrow: 'SCHULTES IT / RATGEBER', heading: guide.title, accent: '',
+    intro: guide.description, indexable: true, lastModified: guide.updated,
+    changeFrequency: 'monthly', priority: 0.65,
+  })),
 ]
 export const indexableSitePages = sitePages.filter((page) => page.indexable)
 

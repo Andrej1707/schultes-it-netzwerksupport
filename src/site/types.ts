@@ -6,6 +6,7 @@ export type SitePageKind =
   | 'location'
   | 'owner'
   | 'guides'
+  | 'guide'
   | 'about'
   | 'legal'
   | 'not-found'
@@ -20,6 +21,7 @@ export type SchemaKind =
   | 'location'
   | 'owner'
   | 'guides'
+  | 'guide'
   | 'about'
   | 'legal'
 
@@ -43,6 +45,7 @@ export type SitePage = {
   changeFrequency: ChangeFrequency
   priority: number
   serviceSlug?: string
+  guideSlug?: string
   locationId?: string
   legalPage?: 'impressum' | 'datenschutz'
 }
