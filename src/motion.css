@@ -86,7 +86,8 @@
     translate: 2px -1px;
   }
   :is(.p-product-card, .pn-product-visual, .ps-photo-stage, .pn-about-visual)
-    > img {
+    > img,
+  .ps-photo-stage > .ps-photo-picture > img {
     transition: scale 650ms cubic-bezier(0.22, 1, 0.36, 1);
   }
   :is(
@@ -95,7 +96,8 @@
       .ps-photo-stage,
       .pn-about-visual
     ):hover
-    > img {
+    > img,
+  .ps-photo-stage:hover > .ps-photo-picture > img {
     scale: 1.015;
   }
 }

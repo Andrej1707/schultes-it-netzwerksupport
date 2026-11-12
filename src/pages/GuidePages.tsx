@@ -1,4 +1,5 @@
 import { useEffect, useId, useState } from 'react'
+import { preload } from 'react-dom'
 import { ArrowRight, ArrowUpRight, Check, ChevronRight, Search, X } from 'lucide-react'
 import type { GuideArticle, GuideCategory, GuidePageData, GuideSummary } from '../content/guides/types'
 import type { SitePage } from '../site/types'
@@ -34,19 +35,37 @@ function GuideImage({ image, alt, eager = false, sizes, className = '' }: {
   const widths = image === 'about-workshop'
     ? [480, 640, 800, 960, 1280, 1920]
     : [480, 640, 800, 1280, 1920]
+  const avifSrcSet = [480, 640, 720, 800, 960, 1280, 1920]
+    .map((width) => `/images/${image}-${width}.avif ${width}w`).join(', ')
+
+  // React does not automatically preload img fallbacks inside picture.
+  // Keep this identical to the AVIF source so the early request is reused.
+  if (eager) {
+    preload(`/images/${image}-1280.avif`, {
+      as: 'image',
+      type: 'image/avif',
+      imageSrcSet: avifSrcSet,
+      imageSizes: sizes,
+      fetchPriority: 'high',
+    })
+  }
+
   return (
-    <img
-      className={className}
-      src={`/images/${image}-1280.webp`}
-      srcSet={widths.map((width) => `/images/${image}-${width}.webp ${width}w`).join(', ')}
-      sizes={sizes}
-      width={1536}
-      height={1024}
-      alt={alt}
-      loading={eager ? 'eager' : 'lazy'}
-      fetchPriority={eager ? 'high' : undefined}
-      decoding="async"
-    />
+    <picture className="g-picture">
+      <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />
+      <img
+        className={className}
+        src={`/images/${image}-1280.webp`}
+        srcSet={widths.map((width) => `/images/${image}-${width}.webp ${width}w`).join(', ')}
+        sizes={sizes}
+        width={1536}
+        height={1024}
+        alt={alt}
+        loading={eager ? 'eager' : 'lazy'}
+        fetchPriority={eager ? 'high' : undefined}
+        decoding="async"
+      />
+    </picture>
   )
 }
 

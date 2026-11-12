@@ -1,5 +1,7 @@
 # 70 Ratgeber und Unterseiten: Release-Prüfung am 11.11.2026
 
+Dieser Bericht hält die lokale Vorbereitung vom 11.11.2026 fest. Den anschließend bestätigten Release, die öffentlichen HTTP- und Cloudflare-Prüfungen sowie den aktuellen Stand der weiteren Performance-Arbeiten dokumentiert die [Live-Prüfung vom 12.11.2026](qa-release-2026-11-12.md).
+
 ## Umfang und bestätigter lokaler Stand
 
 Die Bibliothek wurde von 40 auf 70 eigenständige Artikel erweitert: 14 Themen in jeder der fünf Kategorien Sicherheit, Windows, WLAN, Daten und Alltag. Die frühere [Abnahme der ersten 40 Artikel](qa-home-guides-2026-11-11.md) bleibt ein historischer Bericht und wird nicht auf die neue Artikelzahl umgeschrieben.
