@@ -31,11 +31,14 @@ function GuideImage({ image, alt, eager = false, sizes, className = '' }: {
   sizes: string
   className?: string
 }) {
+  const widths = image === 'about-workshop'
+    ? [480, 640, 800, 960, 1280, 1920]
+    : [480, 640, 800, 1280, 1920]
   return (
     <img
       className={className}
       src={`/images/${image}-1280.webp`}
-      srcSet={`/images/${image}-640.webp 640w, /images/${image}-1280.webp 1280w, /images/${image}-1920.webp 1920w`}
+      srcSet={widths.map((width) => `/images/${image}-${width}.webp ${width}w`).join(', ')}
       sizes={sizes}
       width={1536}
       height={1024}
@@ -55,7 +58,7 @@ function GuideCard({ entry }: { entry: GuideSummary }) {
           <GuideImage
             image={entry.image}
             alt={entry.imageAlt}
-            sizes="(max-width: 680px) calc(100vw - 40px), (max-width: 1000px) calc((100vw - 72px) / 2), (max-width: 1280px) calc((100vw - 112px) / 3), 384px"
+            sizes="(max-width: 680px) calc(100vw - 40px), (max-width: 1000px) calc((100vw - 88px) / 2), (max-width: 1264px) calc((100vw - 112px) / 3), 384px"
           />
         </div>
         <div className="g-card-copy">
@@ -102,11 +105,12 @@ function GuideLibrary({ page, entries }: { page: SitePage; entries: GuideSummary
           <p className="g-hero-note">{entries.length} Themen. Fünf Bereiche. In deinem Tempo.</p>
         </div>
         <div className="g-library-visual">
+          {/* The 3:2 photo covers a portrait frame on desktop and a 1.36 frame on mobile. */}
           <GuideImage
             image="about-workshop"
             alt="Heller Arbeitsplatz mit Computer und sorgfältig geordnetem Technikzubehör"
             eager
-            sizes="(max-width: 800px) calc(100vw - 40px), (max-width: 1280px) 44vw, 540px"
+            sizes="(max-width: 680px) calc((100vw - 40px) * 1.5 / 1.36), (max-width: 800px) calc(100vw - 64px), (max-width: 1050px) calc((100vw - 100px) / 2.08 * 1.62), (max-width: 1264px) calc((100vw - 128px) / 2.08 * 1.62), 885px"
           />
           <div className="g-visual-caption"><span>Ein guter nächster Schritt.</span><strong>Beginnt mit Verstehen.</strong></div>
         </div>
@@ -207,7 +211,7 @@ function GuideArticlePage({ article, entries }: { article: GuideArticle; entries
           <div className="g-byline"><span>Schultes IT · Ratgeber</span><span>{article.readMinutes} Min. Lesezeit</span><span>Stand: <time dateTime={article.updated}>{displayDate(article.updated)}</time></span></div>
         </div>
         <figure className="g-article-figure">
-          <GuideImage image={article.image} alt={article.imageAlt} eager sizes="(max-width: 680px) calc(100vw - 40px), (max-width: 1280px) calc(100vw - 64px), 1200px" />
+          <GuideImage image={article.image} alt={article.imageAlt} eager sizes="(max-width: 680px) calc(100vw - 40px), (max-width: 1264px) calc(100vw - 64px), 1200px" />
         </figure>
       </header>
 

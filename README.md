@@ -38,7 +38,7 @@ bereits veröffentlicht oder im Browser abgenommen wurden.
 - Zentrale Daten für einen Betrieb, seinen Ansprechpartner und sein Einsatzgebiet
 - Google-Karte nach ausdrücklicher Freigabe; keine Standortbestimmung des Besuchers
 - Projektübersicht mit ausdrücklich benanntem Konzept- oder Prototypenstatus
-- 40 eigenständige Ratgeber mit 40 unterschiedlichen Bildmotiven sowie Suche und Kategorien
+- 70 eigenständige Ratgeber mit 70 unterschiedlichen Bildmotiven sowie Suche und Kategorien
   für Sicherheit, Windows, WLAN, Daten und Alltag
 - Vollständige Leistungen und Hilfethemen im Menü, auch auf Mobilgeräten
 - Native aufklappbare Navigation und normale Links, die ohne JavaScript bedienbar bleiben
@@ -75,8 +75,8 @@ bereits veröffentlicht oder im Browser abgenommen wurden.
 `/` ist die lokale Betriebsseite für Ludwigsburg und Umgebung. `/leistungen/` bündelt das
 Angebot; die lokalen Leistungsdetails liegen direkt unter `/leistungen/<thema>/`.
 Deutschlandweite Fernwartung bleibt unter `/fernwartung/`.
-Unter `/ratgeber/<thema>/` liegen 40 vollständige Artikel mit Quellen und verwandten Themen.
-Der aktuelle Build enthält 70 kanonische Seiten, davon 68 indexierbare Seiten, sowie
+Unter `/ratgeber/<thema>/` liegen 70 vollständige Artikel mit Quellen und verwandten Themen,
+jeweils 14 pro Kategorie. Die Seiten-Registry enthält 100 kanonische Seiten, davon 98 indexierbare, sowie
 48 historische Alias-Dokumente.
 
 `/standorte/`, `/standorte/ludwigsburg/`, `/ludwigsburg/` und
@@ -102,6 +102,12 @@ der CSV allein aktiviert keine Regeln. Veröffentlichungs- und Prüfstatus stehe
 [der Release-QA](docs/qa-home-guides-2026-11-11.md); Domain-, HTTPS- und Pfadvarianten werden dort
 im Live-Audit getrennt erfasst.
 
+Die Erweiterung auf 70 Ratgeber benötigt 180 zusätzliche Regeln und damit 886 insgesamt.
+Der Generator bereitet die kombinierte CSV und den separaten Ergänzungsimport vor; deren
+Veröffentlichung und Live-Prüfung sind vom oben bestätigten Stand mit 706 Regeln getrennt.
+Der neue lokale Prüfstand mit 70 Artikeln steht in
+[der aktuellen Release-QA](docs/qa-subpages-70-guides-2026-11-11.md).
+
 ## Lokal starten
 
 ```bash
@@ -126,8 +132,21 @@ npm run check
 ```
 
 Er umfasst Ratgeberkatalog-Abgleich, Frontend- und Worker-TypeScript, Tests, RustDesk-Dateiprüfungen, Produktions-Build
-und die datengetriebene SEO-Validierung aller kanonischen Routen und Aliasse. Desktop-, Mobil-,
+und die datengetriebene SEO-Validierung aller kanonischen Routen und Aliasse einschließlich
+Inline-CSS, individueller Artikel-Vorschaubilder und des Redirect-CSV-Abgleichs. Desktop-, Mobil-,
 Tastatur- und Ohne-JavaScript-Prüfungen im Browser sind zusätzliche Abnahmeschritte.
+
+Nach dem Hinzufügen kanonischer URLs werden die CSV-Dateien aus dem neuen Build aktualisiert:
+
+```bash
+npm run build
+node scripts/generate-cloudflare-redirects.mjs --write
+node scripts/generate-cloudflare-redirects.mjs --check
+```
+
+Mit `--baseline-ref` kann ein bestimmter veröffentlichter Commit als Vergleich dienen.
+Der Generator verweigert Änderungen oder das Entfernen vorhandener Regeln; neue Ratgeberregeln
+stehen zusätzlich in `docs/seo/guide-expansion-redirects.csv`. Er schreibt nicht zu Cloudflare.
 
 ## Architektur
 
@@ -149,12 +168,13 @@ Tastatur- und Ohne-JavaScript-Prüfungen im Browser sind zusätzliche Abnahmesch
   Schema.org-Erzeugung und statisches Rendern
 - `src/content/`: normalisierte Leistungsdaten; `src/content/legacy/` enthält weiterhin
   die bestehenden redaktionellen Leistungs- und Hilfetexte als Datenbasis
-- `src/content/guides/`: 40 Artikel in fünf Kategorien; der generierte `catalog.ts` enthält
+- `src/content/guides/`: 70 Artikel in fünf Kategorien mit je 14 Themen; `articles.ts` verbindet
+  die ursprünglichen Inhalte und die fünf Erweiterungsmodule. Der generierte `catalog.ts` enthält
   nur Zusammenfassungen. Vollständige Artikeltexte werden beim Build verarbeitet und nur
   für die jeweilige Artikelseite mitgegeben
 - `scripts/generate-guide-catalog.mjs`: erzeugt den Katalog mit `npm run guides:catalog`
   und prüft ihn mit `npm run guides:check`; Bildbasen und Bild-Prüfsummen müssen für alle
-  40 Ratgeber unterschiedlich sein
+  70 Ratgeber unterschiedlich sein
 - `public/images/`: generierte illustrative Motive in lokalen WebP-Größen;
   Herkunft und Maße der bisherigen Motive stehen in `assets.json`, ihre Prompts in
   [docs/design/image-prompts.json](docs/design/image-prompts.json). Die vier zusätzlichen
@@ -162,12 +182,19 @@ Tastatur- und Ohne-JavaScript-Prüfungen im Browser sind zusätzliche Abnahmesch
   [guide-image-prompts.md](docs/design/guide-image-prompts.md) dokumentiert. Die 17 weiteren
   Motive aus PR #8 stehen in den Nachweisen für [Sicherheit](docs/design/guide-images-security.md),
   [Daten](docs/design/guide-images-data.md), [Netzwerk](docs/design/guide-images-network.md)
-  und [Windows/Alltag](docs/design/guide-images-windows-alltag.md). Alle 40 Artikelmotive
+  und [Windows/Alltag](docs/design/guide-images-windows-alltag.md). Die ersten 40 Artikelmotive
   wurden nach Veröffentlichung als unterschiedliche Bildinhalte geprüft; Ergebnisse
   einschließlich der drei neuen 800-Pixel-Startseitenvarianten stehen in
-  [der Release-QA](docs/qa-home-guides-2026-11-11.md)
+  [der damaligen Release-QA](docs/qa-home-guides-2026-11-11.md). Die 30 zusätzlichen Motive
+  sind getrennt für [Sicherheit](docs/design/guide-expansion-security.md),
+  [Windows](docs/design/guide-expansion-windows.md), [WLAN](docs/design/guide-expansion-network.md),
+  [Daten](docs/design/guide-expansion-data.md) und [Alltag](docs/design/guide-expansion-everyday.md)
+  dokumentiert. Alle 70 aktuellen 1280er-Bilder wurden lokal auf 1280 × 853 Pixel und
+  unterschiedliche Bild-Prüfsummen geprüft
 - `vite.config.ts`: statische HTML-Ausgabe, Alias-Kompatibilität, Sitemap und Seitenmanifest
 - `scripts/validate-seo.mjs`: automatisierte Prüfung gegen das erzeugte Seitenmanifest
+- `scripts/generate-cloudflare-redirects.mjs`: deterministische CSV-Erzeugung und Prüfung
+  aus dem gebauten Seitenmanifest; schützt vorhandene Regeln und erzeugt den Ergänzungsimport
 
 Die Bildmotive zeigen allgemeine Technik-Szenen. Sie dokumentieren keine Kundenprojekte,
 keine Geschäftsräume und keine identifizierten Personen.
@@ -192,12 +219,25 @@ mit einer Durable-Object-Instanz für atomare Sitzungs-, Rate- und Tageslimits.
 Er bleibt beim Seitenaufruf eingebunden und wird nicht auf einen erstmaligen Klick zum Laden
 umgestellt. Sein separat geladener Code blockiert den statischen Seiteninhalt nicht.
 
-- festes Textmodell `gpt-5.4-mini`, keine Tools und keine Websuche
+- Textmodell `gpt-5.6-terra` mit explizitem `reasoning.effort: none`, keine Tools und keine Websuche
 - Ein- und Ausgabeprüfung mit `omni-moderation-latest`
 - 24-Stunden-Sitzung erst nach Cloudflare Turnstile
 - serverseitiger Gesprächskontext, maximal acht Nachrichten
 - globales Budget von maximal 1.000.000 reservierten/verbrauchten Tokens pro UTC-Tag
 - API-Schlüssel bleiben ausschließlich in verschlüsselten Worker-Secrets
+
+Beide Responses-Aufrufe erhalten `reasoning.effort: none`, damit der bei Terra sonst aktive
+Reasoning-Standard nicht das kurze Ausgabebudget von 450 Tokens beziehungsweise 250 Tokens
+für die strukturierte Basishilfe verbraucht. Der Modellaufruf bleibt auf 30 Sekunden begrenzt.
+Die [offizielle Modellbeschreibung](https://developers.openai.com/api/docs/models/gpt-5.6-terra)
+bestätigt Responses, Structured Outputs und den unterstützten Wert `none`.
+
+Die öffentliche [Programmliste für freiwilliges Datasharing](https://help.openai.com/en/articles/10306912-sharing-feedback-evaluation-and-fine-tuning-data-and-api-inputs-and-outputs-with-openai)
+führt `gpt-5.6-terra` und den bisherigen Snapshot `gpt-5.4-mini-2026-03-17` in derselben
+Gratis-Kontingentgruppe. Das bestätigt keine individuelle Kostenfreiheit: Vor Veröffentlichung
+müssen die Teilnahme, das aktive Projekt und die dort geltenden Grenzen im bestehenden
+OpenAI-Konto geprüft sein. Das eigene Worker-Tagesbudget ist unabhängig von diesem Programm;
+Datasharing-Einstellungen und bestehende Secrets werden durch den Modellwechsel nicht geändert.
 
 Lokale Konfiguration:
 

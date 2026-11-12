@@ -1,5 +1,5 @@
 import { useEffect, useRef, type ReactNode } from 'react'
-import { ArrowRight, ArrowUpRight, ChevronDown, Menu, Phone, X } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, BookOpen, ChevronDown, Headphones, Menu, Phone, X } from 'lucide-react'
 import { contactForPage } from '../site/contacts'
 import { siteConfig } from '../site/config'
 import { serviceNavigationGroups } from '../site/navigation'
@@ -220,6 +220,18 @@ export function PremiumShell({ page, children }: { page: SitePage; children: Rea
               </summary>
               <div className="sn-menu-panel" id="sn-menu-panel">
                 <div className="sn-menu-content">
+                  <div className="sn-mobile-destinations">
+                    <a href="/fernwartung/" aria-current={page.path === '/fernwartung/' ? 'page' : undefined}>
+                      <Headphones size={22} aria-hidden="true" />
+                      <strong>Fernwartung</strong>
+                      <span>Persönliche Hilfe</span>
+                    </a>
+                    <a className="sn-mobile-guides" href="/ratgeber/" aria-current={page.path === '/ratgeber/' ? 'page' : undefined}>
+                      <BookOpen size={22} aria-hidden="true" />
+                      <strong>Ratgeber</strong>
+                      <span>Wissen & Tipps</span>
+                    </a>
+                  </div>
                   <div className="sn-menu-intro">
                     <p>Gute Hilfe beginnt mit deinem Anliegen.</p>
                     <a href="/leistungen/" aria-current={page.path === '/leistungen/' ? 'page' : undefined}>
@@ -228,7 +240,7 @@ export function PremiumShell({ page, children }: { page: SitePage; children: Rea
                   </div>
                   <ServiceNavigation page={page} context="menu" />
                   <div className="sn-menu-utilities">
-                    <a href="/ratgeber/">Hilfethemen durchsuchen</a>
+                    <a className="sn-menu-guides-secondary" href="/ratgeber/">Ratgeber entdecken</a>
                     <a href="/ueber-schultes-it/">Über Schultes IT</a>
                     <a href="/#kontakt">Kontakt & Termine <ArrowUpRight size={14} aria-hidden="true" /></a>
                   </div>

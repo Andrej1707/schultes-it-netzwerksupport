@@ -209,7 +209,7 @@
   background: #f5f5f7;
 }
 .pn-topic-nav a > span {
-  color: #85858e;
+  color: var(--pn-muted);
   font-size: 10px;
 }
 .pn-topic-nav svg {

@@ -8,7 +8,7 @@
     "guides:check": "node scripts/generate-guide-catalog.mjs --check",
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "seo:check": "node scripts/validate-seo.mjs && node scripts/update-rustdesk.mjs --check-dist",
+    "seo:check": "node scripts/validate-seo.mjs && node scripts/generate-cloudflare-redirects.mjs --check && node scripts/update-rustdesk.mjs --check-dist",
     "rustdesk:update": "node scripts/update-rustdesk.mjs",
     "rustdesk:check": "node scripts/update-rustdesk.mjs --check",
     "test": "vitest run",

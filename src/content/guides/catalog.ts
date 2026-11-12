@@ -83,6 +83,66 @@ export const guideCatalog: GuideSummary[] = [
     "updated": "2026-11-11"
   },
   {
+    "slug": "fake-shops-erkennen",
+    "title": "Fake-Shops erkennen, bevor du bestellst",
+    "description": "Unbekannte Online-Shops vor dem Kauf prüfen: Adresse, Anbieter, Bewertungen und Zahlung gemeinsam einordnen und bei einem Betrugsverdacht richtig reagieren.",
+    "category": "sicherheit",
+    "readMinutes": 5,
+    "image": "guide-fake-shops-erkennen",
+    "imageAlt": "Illustrative Aufnahme kleiner Versandkartons neben einem Laptop und einer Einkaufstasche auf einem hellen Tisch.",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "qr-codes-sicher-scannen",
+    "title": "QR-Codes sicher scannen: Das Ziel vor der Freigabe prüfen",
+    "description": "QR-Codes an Automaten, auf Briefen und Speisekarten richtig einordnen: Zieladresse ansehen, überklebte Codes erkennen und Zahlungen unabhängig prüfen.",
+    "category": "sicherheit",
+    "readMinutes": 5,
+    "image": "guide-qr-codes-sicher-scannen",
+    "imageAlt": "Illustrative Aufnahme eines Smartphones über einer Karte mit einem abstrakten QR-ähnlichen Muster.",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "app-berechtigungen-pruefen",
+    "title": "App-Berechtigungen prüfen: Kamera, Standort und Kontakte im Griff",
+    "description": "Welche Apps dürfen auf Kamera, Mikrofon, Fotos oder Standort zugreifen? So prüfst du Freigaben auf Android und iPhone und testest Änderungen ohne Blindflug.",
+    "category": "sicherheit",
+    "readMinutes": 5,
+    "image": "guide-app-berechtigungen-pruefen",
+    "imageAlt": "Illustrative Aufnahme eines Smartphones neben einer kleinen Kamera und einem Ansteckmikrofon.",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "oeffentliches-wlan-sicher-nutzen",
+    "title": "Öffentliches WLAN sicher nutzen: Ein kurzer Check vor dem Verbinden",
+    "description": "Im Café, Hotel oder Zug bewusst online gehen: das richtige WLAN wählen, Freigaben begrenzen, HTTPS und VPN einordnen und gespeicherte Netze aufräumen.",
+    "category": "sicherheit",
+    "readMinutes": 5,
+    "image": "guide-oeffentliches-wlan-sicher-nutzen",
+    "imageAlt": "Illustrative Aufnahme eines Laptops mit Kaffeetasse an einem hellen Caféfenster.",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "smartphone-verloren",
+    "title": "Smartphone verloren: Gerät, SIM und Konten absichern",
+    "description": "Wenn das Handy fehlt: offizielle Ortung nutzen, Verlustmodus aktivieren, SIM sperren und wichtige Konten schützen, ohne vorschnell Wiederherstellungswege zu verlieren.",
+    "category": "sicherheit",
+    "readMinutes": 5,
+    "image": "guide-smartphone-verloren",
+    "imageAlt": "Illustrative Aufnahme einer leeren Handyablage neben einer offenen Reisetasche und einem Ladekabel.",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "kindergeraete-sicher-einrichten",
+    "title": "Kindergeräte einrichten: Schutz, Freiraum und klare Absprachen",
+    "description": "Tablet oder Smartphone für ein Kind vorbereiten: eigenes Konto, passende Freigaben, Kaufbestätigung und alltagstaugliche Regeln gemeinsam einrichten und testen.",
+    "category": "sicherheit",
+    "readMinutes": 5,
+    "image": "guide-kindergeraete-sicher-einrichten",
+    "imageAlt": "Illustrative Aufnahme eines Tablets mit buntem Kopfhörer und Holzspielzeug auf einem niedrigen Tisch.",
+    "updated": "2026-11-11"
+  },
+  {
     "slug": "pc-langsam",
     "title": "PC langsam? Erst die Ursache finden, dann aufräumen",
     "description": "Grenze einen langsamen Windows-PC Schritt für Schritt ein: Programme, Arbeitsspeicher, Datenträger und Internet getrennt prüfen.",
@@ -160,6 +220,66 @@ export const guideCatalog: GuideSummary[] = [
     "readMinutes": 5,
     "image": "installation-service",
     "imageAlt": "Symbolbild eines frisch eingerichteten Computer-Arbeitsplatzes",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "zweiten-monitor-einrichten",
+    "title": "Zweiten Monitor einrichten: mehr Platz, passend angeordnet",
+    "description": "Zwei Bildschirme unter Windows sinnvoll verbinden, erweitern und skalieren – mit einfachen Vergleichstests, wenn ein Monitor dunkel bleibt.",
+    "category": "windows",
+    "readMinutes": 5,
+    "image": "guide-zweiten-monitor-einrichten",
+    "imageAlt": "Zwei nebeneinander aufgestellte Monitore mit Tastatur und Maus auf einem hellen Schreibtisch",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "bluetooth-verbindet-nicht",
+    "title": "Bluetooth verbindet nicht: Kopplung und Ton getrennt prüfen",
+    "description": "So grenzt du Bluetooth-Probleme mit Kopfhörern, Maus oder Tastatur ein und erkennst, wann nur das falsche Audiogerät ausgewählt ist.",
+    "category": "windows",
+    "readMinutes": 5,
+    "image": "guide-bluetooth-verbindet-nicht",
+    "imageAlt": "Kabellose hellgraue Kopfhörer neben einem geschlossenen Laptop auf einer hellen Schreibtischmatte",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "mikrofon-kamera-videokonferenz",
+    "title": "Mikrofon und Kamera prüfen, bevor die Videokonferenz beginnt",
+    "description": "Geräteauswahl, Freigaben und kurze Tests helfen bei schwarzem Kamerabild, fehlendem Ton und dem falschen Mikrofon im Onlinegespräch.",
+    "category": "windows",
+    "readMinutes": 5,
+    "image": "guide-mikrofon-kamera-videokonferenz",
+    "imageAlt": "Externe Webcam auf einem Monitor und ein kompaktes Tischmikrofon an einem hellen Arbeitsplatz",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "laptop-akku-pflegen",
+    "title": "Laptop-Akku pflegen: sinnvoll laden und Veränderungen erkennen",
+    "description": "Wärme vermeiden, vorhandene Ladebegrenzungen verstehen und Laufzeitprobleme einordnen – ohne den Akku unnötig vollständig zu entladen.",
+    "category": "windows",
+    "readMinutes": 5,
+    "image": "guide-laptop-akku-pflegen",
+    "imageAlt": "Geschlossener Laptop mit angeschlossenem Ladekabel und frei liegendem Netzteil auf einem Holztisch",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "usb-c-dockingstation",
+    "title": "USB-C-Dockingstation: Anschlüsse und Leistung passend abstimmen",
+    "description": "Warum nicht jedes USB-C-Dock an jedem Laptop alles kann und wie du Bildausgabe, Laden und Zubehör systematisch prüfst.",
+    "category": "windows",
+    "readMinutes": 5,
+    "image": "guide-usb-c-dockingstation",
+    "imageAlt": "USB-C-Dockingstation am Laptop mit angeschlossenem Bildschirmkabel und Netzwerkkabel",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "barrierefreiheit-windows",
+    "title": "Windows leichter bedienen: Schrift, Maus und Tastatur passend einstellen",
+    "description": "Praktische Windows-Bedienhilfen für besser lesbare Texte, einen sichtbaren Mauszeiger und angenehmere Eingaben – schrittweise statt pauschal.",
+    "category": "windows",
+    "readMinutes": 5,
+    "image": "guide-barrierefreiheit-windows",
+    "imageAlt": "Tastatur mit großen Tasten neben einer Hand auf einem Trackball an einem hellen Arbeitsplatz",
     "updated": "2026-11-11"
   },
   {
@@ -243,6 +363,66 @@ export const guideCatalog: GuideSummary[] = [
     "updated": "2026-11-11"
   },
   {
+    "slug": "internet-geschwindigkeit-messen",
+    "title": "Internet-Geschwindigkeit messen: Ergebnisse richtig einordnen",
+    "description": "Miss deinen Internetanschluss vergleichbar und trenne Leitung, WLAN und Gerätebremsen. Mit passenden Messbedingungen und einer verständlichen Auswertung.",
+    "category": "wlan",
+    "readMinutes": 5,
+    "image": "guide-internet-geschwindigkeit-messen",
+    "imageAlt": "Laptop und Router mit blauem Netzwerkkabel sowie einer Stoppuhr auf einem hellen Schreibtisch",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "videokonferenz-ruckelt",
+    "title": "Videokonferenz ruckelt: Ton und Verbindung gezielt stabilisieren",
+    "description": "Wenn Teams und andere Videogespräche stocken: So unterscheidest du Upload, schwankende Verbindung und PC-Auslastung und findest einen brauchbaren Vergleich.",
+    "category": "wlan",
+    "readMinutes": 5,
+    "image": "guide-videokonferenz-ruckelt",
+    "imageAlt": "Heller Arbeitsplatz mit Laptop, externer Webcam und kabelgebundenem Headset",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "powerline-sinnvoll-nutzen",
+    "title": "Powerline sinnvoll nutzen: erst am Einsatzort testen",
+    "description": "Netzwerk über die Steckdose kann helfen, hängt aber stark vom Stromnetz ab. So testest du Powerline nachvollziehbar und erkennst seine Grenzen.",
+    "category": "wlan",
+    "readMinutes": 5,
+    "image": "guide-powerline-sinnvoll-nutzen",
+    "imageAlt": "Geschlossener weißer Powerline-Adapter in einer Wandsteckdose mit angeschlossenem Netzwerkkabel",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "smart-home-netzwerk",
+    "title": "Smart-Home-Netzwerk planen: Geräte sicher und erreichbar halten",
+    "description": "Plane Sensoren, Lampen und Hubs mit passenden Verbindungen, sinnvollen Netzgrenzen und Updates. Damit Komfort und lokale Bedienung zusammen funktionieren.",
+    "category": "wlan",
+    "readMinutes": 5,
+    "image": "guide-smart-home-netzwerk",
+    "imageAlt": "Kleiner Kontaktsensor, runder Smart-Home-Hub und warme Tischleuchte auf einem hellen Sideboard",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "netzwerkdrucker-feste-adresse",
+    "title": "Netzwerkdrucker: eine feste Adresse sinnvoll einrichten",
+    "description": "Eine DHCP-Reservierung kann die Erreichbarkeit eines Druckers vereinfachen. So identifizierst du das richtige Gerät und vermeidest doppelte IP-Adressen.",
+    "category": "wlan",
+    "readMinutes": 5,
+    "image": "guide-netzwerkdrucker-feste-adresse",
+    "imageAlt": "Weißer Netzwerkdrucker und kompakter Router, verbunden mit einem blauen Netzwerkkabel",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "ipv4-ipv6-verstehen",
+    "title": "IPv4 und IPv6 verstehen: ohne unnötige Netzwerkexperimente",
+    "description": "Was die beiden Internetprotokolle im Heimnetz bedeuten, warum DS-Lite beim Fernzugriff relevant ist und weshalb IPv6 nicht pauschal abgeschaltet werden sollte.",
+    "category": "wlan",
+    "readMinutes": 5,
+    "image": "guide-ipv4-ipv6-verstehen",
+    "imageAlt": "Kompakter Netzwerkswitch mit blauen, türkisen und grauen Netzwerkkabeln auf einem hellen Tisch",
+    "updated": "2026-11-11"
+  },
+  {
     "slug": "backup-3-2-1",
     "title": "Die 3-2-1-Regel: ein Backup, auf das du dich verlassen kannst",
     "description": "So planst du mehrere unabhängige Sicherungen, schützt eine Kopie außer Haus und prüfst, ob sich deine Dateien wirklich wiederherstellen lassen.",
@@ -323,6 +503,66 @@ export const guideCatalog: GuideSummary[] = [
     "updated": "2026-11-11"
   },
   {
+    "slug": "onedrive-synchronisiert-nicht",
+    "title": "OneDrive synchronisiert nicht: den Stillstand gezielt eingrenzen",
+    "description": "Konten, Statussymbole, Speicherplatz und einzelne Dateien prüfen: So findest du einen OneDrive-Syncfehler, ohne lokale Änderungen zu verlieren.",
+    "category": "daten",
+    "readMinutes": 5,
+    "image": "guide-onedrive-synchronisiert-nicht",
+    "imageAlt": "Silberner Laptop an einem hellen Fenster mit Blick auf einen bewölkten Himmel",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "dateien-sicher-teilen",
+    "title": "Dateien sicher teilen: Empfänger und Rechte bewusst festlegen",
+    "description": "Dateilinks kontrolliert weitergeben: passende Empfänger, Leserechte, begrenzte Ordnerfreigaben und eine saubere Prüfung nach dem Teilen.",
+    "category": "daten",
+    "readMinutes": 5,
+    "image": "guide-dateien-sicher-teilen",
+    "imageAlt": "Zwei getrennte Laptop-Arbeitsplätze mit einer geschlossenen Dokumentenmappe auf einem gemeinsamen Tisch",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "nas-zu-hause",
+    "title": "NAS zu Hause: gemeinsame Dateien mit klaren Zugängen",
+    "description": "Ein Netzwerkspeicher für Fotos und Dokumente: Bedarf, Benutzerrechte, Updates und eine unabhängige Sicherung vor der Einrichtung sinnvoll planen.",
+    "category": "daten",
+    "readMinutes": 5,
+    "image": "guide-nas-zu-hause",
+    "imageAlt": "Kompakter Netzwerkspeicher mit zwei Laufwerksschächten neben einer Festplatte auf einer Schutzunterlage",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "backup-wiederherstellung-testen",
+    "title": "Backup testen: eine Wiederherstellung wirklich durchspielen",
+    "description": "Mit einer kleinen Rücksicherungsprobe prüfst du Dateien, ältere Versionen, Schlüssel und Dauer – ohne aktuelle Daten zu überschreiben.",
+    "category": "daten",
+    "readMinutes": 5,
+    "image": "guide-backup-wiederherstellung-testen",
+    "imageAlt": "Hände an einem Laptop mit angeschlossenem USB-Laufwerk und drei Landschaftsfotos auf dem Tisch",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "dateien-ordnen-wiederfinden",
+    "title": "Dateien ordnen und wiederfinden: eine Ablage, die im Alltag hilft",
+    "description": "Wenige klare Ordner, verständliche Dateinamen und gezielte Windows-Suche: So bringst du Ordnung hinein, ohne riskante Massenlöschungen.",
+    "category": "daten",
+    "readMinutes": 5,
+    "image": "guide-dateien-ordnen-wiederfinden",
+    "imageAlt": "Vier geordnete Dokumentenmappen mit einer Lupe und einer Laptop-Ecke auf einem hellen Tisch",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "pdf-dateien-verkleinern",
+    "title": "PDF-Dateien verkleinern, ohne wichtige Details zu verlieren",
+    "description": "Zu große PDFs für E-Mail oder Upload sinnvoll verkleinern: Original behalten, geeigneten Export wählen und Lesbarkeit sowie Funktionen prüfen.",
+    "category": "daten",
+    "readMinutes": 5,
+    "image": "guide-pdf-dateien-verkleinern",
+    "imageAlt": "Dicker Papierstapel und ein schmales geheftetes Papierbündel neben einem geschlossenen Laptop",
+    "updated": "2026-11-11"
+  },
+  {
     "slug": "drucker-offline",
     "title": "Drucker offline: Verbindung und Warteschlange richtig prüfen",
     "description": "Der Drucker ist eingeschaltet, Windows meldet trotzdem offline? So grenzt du Netzwerk, Warteschlange und Treiber verständlich ein.",
@@ -400,6 +640,66 @@ export const guideCatalog: GuideSummary[] = [
     "readMinutes": 4,
     "image": "software-service",
     "imageAlt": "Laptop mit geöffneten Programmfenstern und angeschlossenem Datenträger",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "kalender-gemeinsam-nutzen",
+    "title": "Kalender gemeinsam nutzen: Termine teilen, Privates schützen",
+    "description": "Ein gemeinsamer Familien- oder Projektkalender ohne Passworttausch: passenden Dienst wählen, Rechte einstellen und die Synchronisierung prüfen.",
+    "category": "alltag",
+    "readMinutes": 5,
+    "image": "guide-kalender-gemeinsam-nutzen",
+    "imageAlt": "Tablet mit unscharfer Kalenderansicht neben Papierplaner und zwei Buntstiften",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "kontakte-auf-neues-handy",
+    "title": "Kontakte aufs neue Handy: vollständig umziehen statt doppelt importieren",
+    "description": "Prüfe Speicherorte, sichere lokale Kontakte und kontrolliere den Umzug auf ein neues Smartphone, bevor du das alte Gerät zurücksetzt.",
+    "category": "alltag",
+    "readMinutes": 5,
+    "image": "guide-kontakte-auf-neues-handy",
+    "imageAlt": "Älteres und neueres Smartphone mit unscharfen Kontaktlisten neben einem USB-Kabel",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "browser-benachrichtigungen-stoppen",
+    "title": "Browser-Benachrichtigungen stoppen: Ruhe ohne wichtige Warnungen zu verlieren",
+    "description": "Unerwünschte Website-Mitteilungen gezielt blockieren, echte Sicherheitsmeldungen unterscheiden und die Ursache bei wiederkehrenden Einblendungen prüfen.",
+    "category": "alltag",
+    "readMinutes": 5,
+    "image": "guide-browser-benachrichtigungen-stoppen",
+    "imageAlt": "Laptop mit ruhiger unscharfer Browseransicht neben Maus und Lesebrille",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "smart-tv-streaming-probleme",
+    "title": "Streaming am Smart-TV stockt: App, Fernseher und WLAN unterscheiden",
+    "description": "Mit Vergleichstests findest du heraus, warum Videos hängen oder Apps nicht starten – ohne sofort den Fernseher auf Werkseinstellungen zurückzusetzen.",
+    "category": "alltag",
+    "readMinutes": 5,
+    "image": "guide-smart-tv-streaming-probleme",
+    "imageAlt": "Fernbedienung auf einer Sofalehne vor Fernseher und Router im hellen Wohnzimmer",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "ki-tools-datenschutz",
+    "title": "KI-Tools und Datenschutz: vor dem Einfügen kurz prüfen",
+    "description": "Vertrauliche Inhalte schützen, Kontotyp und Datenschutzeinstellungen unterscheiden und KI-Werkzeuge mit möglichst wenigen persönlichen Daten nutzen.",
+    "category": "alltag",
+    "readMinutes": 5,
+    "image": "guide-ki-tools-datenschutz",
+    "imageAlt": "Laptop mit dunklem Display neben geschlossener Dokumentenmappe und umgedrehtem Smartphone",
+    "updated": "2026-11-11"
+  },
+  {
+    "slug": "digitale-abos-ueberblick",
+    "title": "Digitale Abos ordnen: Anbieter, Konten und Verlängerungen im Blick",
+    "description": "Eine praktische Übersicht für App-, Streaming- und Cloud-Abos: richtigen Abrechnungsweg finden, Erinnerungen setzen und Änderungen nachvollziehbar dokumentieren.",
+    "category": "alltag",
+    "readMinutes": 5,
+    "image": "guide-digitale-abos-ueberblick",
+    "imageAlt": "Geordnete Belege neben leerem Papierkalender, Karteikarten und umgedrehtem Smartphone",
     "updated": "2026-11-11"
   }
 ]

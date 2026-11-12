@@ -135,21 +135,49 @@ const editorialCopy: Record<
   },
 }
 
+type ServicePhotoLayout = 'portrait' | 'network' | 'remote'
+
+// Cover crops need the width of the scaled 3:2 photograph, not only its box.
+// Keep a conservative allowance where adjacent copy controls the image height.
+const servicePhotoSizes: Record<ServicePhotoLayout, string> = {
+  portrait: [
+    '(max-width: 480px) max(450px, calc((100vw - 36px) * 1.5 / 1.06))',
+    '(max-width: 760px) max(510px, calc((100vw - 40px) * 1.5 / 1.18))',
+    '900px',
+  ].join(', '),
+  network: [
+    '(max-width: 480px) max(345px, calc(100vw - 36px))',
+    '(max-width: 760px) max(405px, calc(100vw - 40px))',
+    '(max-width: 1100px) calc(100vw - 64px)',
+    '(max-width: 1336px) calc(100vw - 96px)',
+    '1240px',
+  ].join(', '),
+  remote: [
+    '(max-width: 480px) max(337.5px, calc(100vw - 36px))',
+    '(max-width: 760px) 100vw',
+    '(max-width: 1100px) calc((100vw - 98px) / 2.12)',
+    '(max-width: 1336px) calc((100vw - 152px) / 2.12)',
+    '559px',
+  ].join(', '),
+}
+
 function ServicePhoto({
   subject,
   alt,
   eager = false,
+  layout = 'portrait',
 }: {
   subject: string
   alt: string
   eager?: boolean
+  layout?: ServicePhotoLayout
 }) {
   return (
     <img
       className="ps-photo"
       src={`/images/${subject}-1280.webp`}
-      srcSet={`/images/${subject}-640.webp 640w, /images/${subject}-1280.webp 1280w, /images/${subject}-1920.webp 1920w`}
-      sizes="(max-width: 760px) 100vw, (max-width: 1200px) 60vw, 900px"
+      srcSet={`/images/${subject}-640.webp 640w, /images/${subject}-800.webp 800w, /images/${subject}-960.webp 960w, /images/${subject}-1280.webp 1280w, /images/${subject}-1920.webp 1920w`}
+      sizes={servicePhotoSizes[layout]}
       width={1536}
       height={1024}
       alt={alt}
@@ -269,7 +297,7 @@ function HeroVisual({
   if (family === 'network') {
     return (
       <div className="ps-network-stage">
-        <ServicePhoto subject={photo.name} alt={photo.alt} eager />
+        <ServicePhoto subject={photo.name} alt={photo.alt} eager layout="network" />
         <NetworkMap />
       </div>
     )
@@ -280,7 +308,7 @@ function HeroVisual({
         className="ps-remote-stage"
         aria-label="Fernwartung auf deinem Windows-PC"
       >
-        <ServicePhoto subject={photo.name} alt={photo.alt} eager />
+        <ServicePhoto subject={photo.name} alt={photo.alt} eager layout="remote" />
         <div className="ps-remote-stage-copy">
           <span className="ps-stage-icon">
             <Headphones aria-hidden="true" />
@@ -334,7 +362,7 @@ function HeroVisual({
   }
   return (
     <div className="ps-photo-stage">
-      <ServicePhoto subject={photo.name} alt={photo.alt} eager />
+      <ServicePhoto subject={photo.name} alt={photo.alt} eager layout="portrait" />
       <div className="ps-photo-caption">
         <Icon aria-hidden="true" />
         <span>{service.tags.join(' · ')}</span>
