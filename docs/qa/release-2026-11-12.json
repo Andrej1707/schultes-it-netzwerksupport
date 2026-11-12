@@ -1,0 +1,349 @@
+{
+  "schema_version": 1,
+  "updated_utc": "2026-11-12T03:53:36.630428+00:00",
+  "release": {
+    "frontend_commit": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "pull_request": "https://github.com/Andrej1707/schultes-it-netzwerksupport/pull/11",
+    "successful_pr_workflow": "https://github.com/Andrej1707/schultes-it-netzwerksupport/actions/runs/43149210773",
+    "successful_main_workflow": "https://github.com/Andrej1707/schultes-it-netzwerksupport/actions/runs/43149328326",
+    "tests_passed": 190,
+    "canonical_pages": 100,
+    "indexable_urls": 98,
+    "guides": 70,
+    "categories": 5,
+    "guides_per_category": 14
+  },
+  "http_audit_pr10": {
+    "result": {
+      "started_utc": "2026-11-12T03:12:20.746387+00:00",
+      "completed_utc": "2026-11-12T03:15:37.574389+00:00",
+      "release_commit": "101922229c42e09b02458f3982ea2a8947ca0451",
+      "workflow": "https://github.com/Andrej1707/schultes-it-netzwerksupport/actions/runs/43146465310",
+      "base_commit": "c6189faf8621fb7cd79e46aa01e303635b798013",
+      "local_tree_matches_release": true,
+      "canonical_pages": 96,
+      "guide_pages": 71,
+      "service_family_pages": 25,
+      "distinct_article_image_sha256": 70,
+      "new_responsive_assets": 251,
+      "all_image_assets_fetched": 396,
+      "support_assets": [
+        "/assets/SupportBot-1muO8NKp.css",
+        "/assets/SupportBot-BYjT7ui0.js"
+      ],
+      "http_resources": 495,
+      "http_requests_including_retries": 496,
+      "checks": 5088,
+      "passed": 5088,
+      "failure_count": 0,
+      "retried_paths": [],
+      "failures": [],
+      "scope_note": "HTTP/source audit; no browser interaction or PageSpeed measurement; unchanged redirects are excluded.",
+      "initial_completed_utc": "2026-11-12T03:12:36.218459+00:00",
+      "audit_method_corrections": [
+        {
+          "initial_assumption": "All img assets must be under /images/.",
+          "correction": "The shared header/footer SVG at /favicon.svg is also an intended local image asset. The SVG delivered from Linux matches the release Git blob exactly; its Windows working-tree copy differs only by CRLF.",
+          "affected_checks": 192,
+          "additional_targeted_http_requests": 2
+        }
+      ]
+    },
+    "source_evidence": {
+      "file": "schultes-subpages-live-audit-summary.json",
+      "bytes": 1617,
+      "sha256": "36e9a2d7b9ebd2789ab90fcd3b5b0fdbc2a3559f7bf5a4a9e78e8bf8363b95fd"
+    }
+  },
+  "avif_audit_pr11": {
+    "result": {
+      "started_utc": "2026-11-12T03:37:28.033414+00:00",
+      "completed_utc": "2026-11-12T03:38:04.134706+00:00",
+      "release_commit": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+      "workflow": "https://github.com/Andrej1707/schultes-it-netzwerksupport/actions/runs/43149328326",
+      "base_commit": "101922229c42e09b02458f3982ea2a8947ca0451",
+      "local_tree_matches_release": true,
+      "canonical_pages": 96,
+      "guide_pages": 71,
+      "service_family_pages": 25,
+      "distinct_article_image_sha256": 70,
+      "distinct_avif_article_image_sha256": 70,
+      "new_responsive_assets": 518,
+      "new_avif_motifs": 74,
+      "avif_pictures": 368,
+      "critical_image_preloads": 90,
+      "existing_webp_files_unchanged": true,
+      "all_image_assets_fetched": 914,
+      "support_assets": [
+        "/assets/SupportBot-1muO8NKp.css",
+        "/assets/SupportBot-BdGd_UY7.js"
+      ],
+      "http_resources": 1013,
+      "http_requests_including_retries": 1013,
+      "checks": 12440,
+      "passed": 12440,
+      "failure_count": 0,
+      "retried_paths": [],
+      "failures": [],
+      "scope_note": "Public canonical pages and release assets only. HTTP/source/decode audit; no browser interaction or PageSpeed measurement, no private/API endpoints. Unchanged redirects are excluded."
+    },
+    "source_evidence": {
+      "file": "schultes-avif-live-audit-summary.json",
+      "bytes": 1315,
+      "sha256": "cf0c30f9f532b4d03cbb4d76c5319842edee626fcbc39c478e17714d46c93589"
+    }
+  },
+  "cloudflare": {
+    "active_rules_confirmed_in_dashboard": 886,
+    "existing_rule_lines_preserved": 706,
+    "new_rules": 180,
+    "associated_rule_enabled": true,
+    "delta_http_audit": {
+      "result": {
+        "started_utc": "2026-11-12T03:16:28.526868+00:00",
+        "completed_utc": "2026-11-12T03:16:36.621942+00:00",
+        "release_commit": "101922229c42e09b02458f3982ea2a8947ca0451",
+        "workflow": "https://github.com/Andrej1707/schultes-it-netzwerksupport/actions/runs/43146465310",
+        "method": "HEAD",
+        "follows_redirects": false,
+        "delta_csv_sha256": "1892ba5adf37da854d92bedf4f1c2b6b727c2a87be9b3b52c85d5158e6d151de",
+        "rules": 180,
+        "targets": 30,
+        "redirect_cases": 330,
+        "query_cases": 18,
+        "total_cases": 348,
+        "passed": 348,
+        "failure_count": 0,
+        "retried_cases": 0,
+        "failure_examples": [],
+        "scope_note": "Only the 180 new rules are exercised; the existing 706-rule audit is not repeated."
+      },
+      "source_evidence": {
+        "file": "schultes-guide-expansion-redirect-audit-summary.json",
+        "bytes": 825,
+        "sha256": "56b1123d60848b6e388051729ce3faa395fae1f11258556d735777ef045c3c7f"
+      }
+    },
+    "unchanged_rules_retested_for_pr11": false
+  },
+  "worker": {
+    "deployed_version": "89ac0435-569c-4c21-9ea5-6ed67c1fd097",
+    "traffic_percent": 100,
+    "model": "gpt-5.6-terra",
+    "reasoning_effort": "none",
+    "public_health_verified": true,
+    "actual_browser_responses_verified": [
+      "business",
+      "general",
+      "structured_support"
+    ],
+    "immediate_chat_mount_preserved": true
+  },
+  "sitemap": {
+    "result": {
+      "sitemap": "https://schultes-it.de/sitemap.xml",
+      "submitted": "2026-11-12",
+      "accepted": true,
+      "publishedUrlCount": 98,
+      "currentlyDisplayedDiscovered": 68,
+      "lastRead": "2026-11-11",
+      "note": "Search Console accepted resubmission; discovered count is the prior cached read, not current indexing."
+    },
+    "source_evidence": {
+      "file": "sitemap-submission.json",
+      "bytes": 311,
+      "sha256": "634a0b74e6ea231eb640a917d0752949534b807dde5fb20694e82aff5f86be06"
+    },
+    "interpretation": "Submission accepted. The displayed count is the previous read; no claim that all 98 current URLs have been processed or indexed."
+  },
+  "pagespeed": {
+    "status": "complete",
+    "release_commit": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "urls": 97,
+    "measurements": 194,
+    "form_factors": [
+      "mobile",
+      "desktop"
+    ],
+    "exact_manifest_coverage_verified": true,
+    "duplicate_url_device_records": 0,
+    "measurement_start_berlin": "12.11.2026, 04:37:42",
+    "measurement_end_berlin": "12.11.2026, 04:50:45",
+    "performance_distribution": {
+      "mobile": {
+        "98": 4,
+        "99": 27,
+        "100": 66
+      },
+      "desktop": {
+        "100": 97
+      }
+    },
+    "all_seo_accessibility_best_practices_100": true,
+    "universal_mobile_performance_100_achieved": false,
+    "mobile_98_urls": [
+      "https://schultes-it.de/ratgeber/smart-home-netzwerk/",
+      "https://schultes-it.de/ratgeber/ipv4-ipv6-verstehen/",
+      "https://schultes-it.de/ratgeber/smart-tv-streaming-probleme/",
+      "https://schultes-it.de/"
+    ],
+    "metric_ranges": {
+      "mobile": {
+        "FCP": {
+          "min": 916.0,
+          "max": 1070.0
+        },
+        "LCP": {
+          "min": 919.0,
+          "max": 2423.0
+        },
+        "TBT": {
+          "min": 0.0,
+          "max": 5.0
+        },
+        "CLS": {
+          "min": 0.0,
+          "max": 0.0
+        },
+        "SI": {
+          "min": 916.0,
+          "max": 1728.0
+        }
+      },
+      "desktop": {
+        "FCP": {
+          "min": 254.0,
+          "max": 309.0
+        },
+        "LCP": {
+          "min": 260.0,
+          "max": 659.0
+        },
+        "TBT": {
+          "min": 0.0,
+          "max": 0.0
+        },
+        "CLS": {
+          "min": 0.0,
+          "max": 0.03
+        },
+        "SI": {
+          "min": 260.0,
+          "max": 661.0
+        }
+      }
+    },
+    "source_evidence": {
+      "file": "pagespeed-2026-11-12.json",
+      "bytes": 115418,
+      "sha256": "9b0df7e557b67cfbc4e2fcac0ae9d662b3b1134f3bb87957e8152f7511430cec"
+    },
+    "baseline_evidence": {
+      "file": "pagespeed-baseline-1019222.json",
+      "bytes": 9320,
+      "sha256": "6d4bb2d7b432e2e8518cec8b9929b29e91e046178656363a7409f5a5977eaed5"
+    },
+    "selection_note": "Exactly one Google PageSpeed run per URL on this release; the original mobile/desktop results are retained without selecting improved reruns.",
+    "baseline_mobile_comparison": [
+      {
+        "page": "https://schultes-it.de/ratgeber/handy-fotos-sichern/",
+        "baseline_performance": 100,
+        "final_performance": 100,
+        "baseline_lcp_ms": 1351.0,
+        "final_lcp_ms": 1203.0
+      },
+      {
+        "page": "https://schultes-it.de/fernwartung/",
+        "baseline_performance": 99,
+        "final_performance": 99,
+        "baseline_lcp_ms": 2126.0,
+        "final_lcp_ms": 2133.0
+      },
+      {
+        "page": "https://schultes-it.de/leistungen/",
+        "baseline_performance": 100,
+        "final_performance": 100,
+        "baseline_lcp_ms": 924.0,
+        "final_lcp_ms": 925.0
+      },
+      {
+        "page": "https://schultes-it.de/ratgeber/internet-geschwindigkeit-messen/",
+        "baseline_performance": 98,
+        "final_performance": 99,
+        "baseline_lcp_ms": 2402.0,
+        "final_lcp_ms": 2252.0
+      },
+      {
+        "page": "https://schultes-it.de/ratgeber/",
+        "baseline_performance": 99,
+        "final_performance": 99,
+        "baseline_lcp_ms": 2274.0,
+        "final_lcp_ms": 2252.0
+      },
+      {
+        "page": "https://schultes-it.de/fernwartung/windows-hilfe/",
+        "baseline_performance": 97,
+        "final_performance": 100,
+        "baseline_lcp_ms": 2497.0,
+        "final_lcp_ms": 937.0
+      },
+      {
+        "page": "https://schultes-it.de/fernwartung/drucker-hilfe/",
+        "baseline_performance": 100,
+        "final_performance": 99,
+        "baseline_lcp_ms": 1051.0,
+        "final_lcp_ms": 2145.0
+      },
+      {
+        "page": "https://schultes-it.de/fernwartung/email-outlook/",
+        "baseline_performance": 100,
+        "final_performance": 99,
+        "baseline_lcp_ms": 1051.0,
+        "final_lcp_ms": 1995.0
+      }
+    ]
+  },
+  "full_local_report_evidence": [
+    {
+      "file": "schultes-subpages-live-audit.json",
+      "bytes": 1230938,
+      "sha256": "d70adfa0dcc8e445fa5a2ee733c53e094755c3ea765ac84e9d1abe463526a40c"
+    },
+    {
+      "file": "schultes-guide-expansion-redirect-audit.json",
+      "bytes": 186410,
+      "sha256": "ecf8f897479350bd91ab36a9873b5c0fc4562733c485ac61d876dd3342ff59eb"
+    },
+    {
+      "file": "schultes-avif-live-audit.json",
+      "bytes": 2702467,
+      "sha256": "09343759aa120186b8820e97110ed2dbbbd9398da2ae94a304a82723fd0d7e94"
+    },
+    {
+      "file": "schultes-avif-live-audit.py",
+      "bytes": 22547,
+      "sha256": "63ba5c9dad523914ba7cff5440d65e3f8543f1c274fcc86f1a00773cd55110fb"
+    }
+  ],
+  "limitations": [
+    "HTTP audits do not establish interaction behavior or real-user performance.",
+    "Lighthouse scores do not guarantee rankings, indexing, or complete accessibility.",
+    "No private account identifiers, account quotas, or cost guarantees are included."
+  ],
+  "remaining_performance_observations": {
+    "inspected_report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-internet-geschwindigkeit-messen/505z9f9tvu?form_factor=mobile",
+    "cloudflare_email_decode": {
+      "observed_render_blocking": true,
+      "transfer_kib": 1.2,
+      "duration_ms": 150,
+      "lighthouse_estimated_savings_ms": 130,
+      "public_html_defer_attribute_present": false,
+      "public_html_data_cfasync": "false",
+      "official_expected_defer_source": "https://developers.cloudflare.com/changelog/post/2026-04-14-email-obfuscation-defer/",
+      "protection_or_cloudflare_settings_changed_for_score": false
+    },
+    "fade_bottleneck_not_supported_by_inspected_lcp_breakdown": true,
+    "ipv4_lcp_element_render_delay_ms": 20,
+    "note": "Specific observed diagnostics, not proof that this is the sole cause of all remaining 98/99 scores; no rewrite or protection changes solely for one score point."
+  }
+}
