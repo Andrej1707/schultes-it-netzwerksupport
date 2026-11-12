@@ -1,0 +1,2718 @@
+[
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/fernwartung/windows-hilfe/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-fernwartung-windows-hilfe/e8ek7bmm9q?form_factor=mobile",
+    "date": "12.11.2026, 04:37:42",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=937&LCP=937&TBT=0&CLS=0&SI=1072&TTI=937&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/fernwartung/windows-hilfe/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-fernwartung-windows-hilfe/e8ek7bmm9q?form_factor=desktop",
+    "date": "12.11.2026, 04:37:42",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=263&LCP=263&TBT=0&CLS=0&SI=280&TTI=263&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/internet-geschwindigkeit-messen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-internet-geschwindigkeit-messen/505z9f9tvu?form_factor=mobile",
+    "date": "12.11.2026, 04:37:43",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=929&LCP=2252&TBT=0&CLS=0&SI=929&TTI=2252&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/internet-geschwindigkeit-messen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-internet-geschwindigkeit-messen/505z9f9tvu?form_factor=desktop",
+    "date": "12.11.2026, 04:37:43",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=267&LCP=561&TBT=0&CLS=0&SI=367&TTI=561&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber/ox47e8fccp?form_factor=mobile",
+    "date": "12.11.2026, 04:37:44",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=934&LCP=2252&TBT=0&CLS=0&SI=934&TTI=2252&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber/ox47e8fccp?form_factor=desktop",
+    "date": "12.11.2026, 04:37:44",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=281&LCP=543&TBT=0&CLS=0&SI=317&TTI=543&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/fernwartung/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-fernwartung/s07xg6ywc3?form_factor=mobile",
+    "date": "12.11.2026, 04:37:45",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=923&LCP=2133&TBT=0&CLS=0&SI=923&TTI=2133&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/fernwartung/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-fernwartung/s07xg6ywc3?form_factor=desktop",
+    "date": "12.11.2026, 04:37:45",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=271&LCP=506&TBT=0&CLS=0&SI=295&TTI=506&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen/cepci7gx9a?form_factor=mobile",
+    "date": "12.11.2026, 04:40:41",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=925&LCP=925&TBT=0&CLS=0&SI=925&TTI=925&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen/cepci7gx9a?form_factor=desktop",
+    "date": "12.11.2026, 04:40:41",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=264&LCP=503&TBT=0&CLS=0&SI=264&TTI=503&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/fernwartung/drucker-hilfe/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-fernwartung-drucker-hilfe/2xnkqeivkb?form_factor=mobile",
+    "date": "12.11.2026, 04:40:47",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=931&LCP=2145&TBT=0&CLS=0&SI=1059&TTI=2145&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/fernwartung/drucker-hilfe/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-fernwartung-drucker-hilfe/2xnkqeivkb?form_factor=desktop",
+    "date": "12.11.2026, 04:40:47",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=273&LCP=491&TBT=0&CLS=0&SI=273&TTI=491&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/fernwartung/email-outlook/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-fernwartung-email-outlook/v6u0d4goyx?form_factor=mobile",
+    "date": "12.11.2026, 04:40:50",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=938&LCP=1995&TBT=0&CLS=0&SI=938&TTI=1995&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/fernwartung/email-outlook/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-fernwartung-email-outlook/v6u0d4goyx?form_factor=desktop",
+    "date": "12.11.2026, 04:40:50",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=264&LCP=546&TBT=0&CLS=0&SI=280&TTI=546&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/pc-laptop/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-pc-laptop/m4g4xd3p2a?form_factor=mobile",
+    "date": "12.11.2026, 04:40:55",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=926&LCP=926&TBT=0&CLS=0&SI=1021&TTI=926&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/pc-laptop/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-pc-laptop/m4g4xd3p2a?form_factor=desktop",
+    "date": "12.11.2026, 04:40:55",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=268&LCP=388&TBT=0&CLS=0&SI=268&TTI=388&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/netzwerk-wlan/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-netzwerk-wlan/sjeiog401f?form_factor=mobile",
+    "date": "12.11.2026, 04:41:26",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=929&LCP=929&TBT=0&CLS=0&SI=1039&TTI=929&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/netzwerk-wlan/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-netzwerk-wlan/sjeiog401f?form_factor=desktop",
+    "date": "12.11.2026, 04:41:26",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=306&LCP=549&TBT=0&CLS=0&SI=439&TTI=549&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/webseiten/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-webseiten/hxst7huxw7?form_factor=mobile",
+    "date": "12.11.2026, 04:41:29",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=919&LCP=919&TBT=0&CLS=0&SI=919&TTI=919&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/webseiten/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-webseiten/hxst7huxw7?form_factor=desktop",
+    "date": "12.11.2026, 04:41:29",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=273&LCP=273&TBT=0&CLS=0&SI=273&TTI=273&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/automation/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-automation/hbn0o38m34?form_factor=mobile",
+    "date": "12.11.2026, 04:41:34",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=929&LCP=929&TBT=0&CLS=0&SI=929&TTI=929&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/automation/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-automation/hbn0o38m34?form_factor=desktop",
+    "date": "12.11.2026, 04:41:34",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=265&LCP=265&TBT=0&CLS=0&SI=265&TTI=265&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/installation/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-installation/klqy1mq4sf?form_factor=mobile",
+    "date": "12.11.2026, 04:41:37",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=927&LCP=927&TBT=0&CLS=0&SI=935&TTI=927&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/installation/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-installation/klqy1mq4sf?form_factor=desktop",
+    "date": "12.11.2026, 04:41:37",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=270&LCP=584&TBT=0&CLS=0&SI=351&TTI=584&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/it-consulting/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-it-consulting/ziycp4u1jw?form_factor=mobile",
+    "date": "12.11.2026, 04:42:10",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=925&LCP=925&TBT=0&CLS=0&SI=1028&TTI=925&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/it-consulting/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-it-consulting/ziycp4u1jw?form_factor=desktop",
+    "date": "12.11.2026, 04:42:10",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=274&LCP=385&TBT=0&CLS=0&SI=274&TTI=385&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/windows-einrichten/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-windows-einrichten/fjhfmztt37?form_factor=mobile",
+    "date": "12.11.2026, 04:42:16",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=967&LCP=967&TBT=1&CLS=0&SI=1019&TTI=2368&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/windows-einrichten/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-windows-einrichten/fjhfmztt37?form_factor=desktop",
+    "date": "12.11.2026, 04:42:16",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=269&LCP=548&TBT=0&CLS=0&SI=342&TTI=548&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/benutzerkonten/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-benutzerkonten/2grukgx0u5?form_factor=mobile",
+    "date": "12.11.2026, 04:42:22",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=941&LCP=941&TBT=0&CLS=0&SI=941&TTI=941&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/benutzerkonten/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-benutzerkonten/2grukgx0u5?form_factor=desktop",
+    "date": "12.11.2026, 04:42:22",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=260&LCP=260&TBT=0&CLS=0&SI=260&TTI=260&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/email/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-email/p9lfg5kqga?form_factor=mobile",
+    "date": "12.11.2026, 04:42:24",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=925&LCP=925&TBT=0&CLS=0&SI=925&TTI=925&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/email/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-email/p9lfg5kqga?form_factor=desktop",
+    "date": "12.11.2026, 04:42:24",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=260&LCP=602&TBT=0&CLS=0&SI=295&TTI=602&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/drucker/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-drucker/fhfbjspw6y?form_factor=mobile",
+    "date": "12.11.2026, 04:42:47",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=926&LCP=926&TBT=0&CLS=0&SI=975&TTI=926&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/drucker/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-drucker/fhfbjspw6y?form_factor=desktop",
+    "date": "12.11.2026, 04:42:47",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=273&LCP=578&TBT=0&CLS=0&SI=334&TTI=578&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/programme/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-programme/ckmijhfuoo?form_factor=mobile",
+    "date": "12.11.2026, 04:42:50",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=926&LCP=926&TBT=0&CLS=0&SI=1032&TTI=926&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/programme/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-programme/ckmijhfuoo?form_factor=desktop",
+    "date": "12.11.2026, 04:42:50",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=262&LCP=578&TBT=0&CLS=0&SI=325&TTI=578&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/office-installation/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-office-installation/luh5fkqwpa?form_factor=mobile",
+    "date": "12.11.2026, 04:42:56",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=925&LCP=925&TBT=0&CLS=0&SI=1035&TTI=925&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/office-installation/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-office-installation/luh5fkqwpa?form_factor=desktop",
+    "date": "12.11.2026, 04:42:56",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=266&LCP=583&TBT=0&CLS=0&SI=367&TTI=583&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/router-entstoerung/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-router-entstoerung/g0bbsv1bt6?form_factor=mobile",
+    "date": "12.11.2026, 04:42:58",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=931&LCP=931&TBT=0&CLS=0&SI=931&TTI=931&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/router-entstoerung/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-router-entstoerung/g0bbsv1bt6?form_factor=desktop",
+    "date": "12.11.2026, 04:42:58",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=270&LCP=509&TBT=0&CLS=0.03&SI=382&TTI=509&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/it-notdienst/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-it-notdienst/d4tcxbvh7b?form_factor=mobile",
+    "date": "12.11.2026, 04:43:28",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=929&LCP=929&TBT=0&CLS=0&SI=1728&TTI=929&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/it-notdienst/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-it-notdienst/d4tcxbvh7b?form_factor=desktop",
+    "date": "12.11.2026, 04:43:28",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=297&LCP=297&TBT=0&CLS=0&SI=496&TTI=297&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/pc-langsam/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-pc-langsam/b5zi6ogo2n?form_factor=mobile",
+    "date": "12.11.2026, 04:43:31",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=1070&LCP=1070&TBT=4&CLS=0&SI=1171&TTI=2362&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/pc-langsam/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-pc-langsam/b5zi6ogo2n?form_factor=desktop",
+    "date": "12.11.2026, 04:43:31",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=276&LCP=580&TBT=0&CLS=0&SI=361&TTI=580&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/pc-startet-nicht/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-pc-startet-nicht/dotvkjfifk?form_factor=mobile",
+    "date": "12.11.2026, 04:43:36",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=938&LCP=938&TBT=0&CLS=0&SI=971&TTI=938&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/pc-startet-nicht/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-pc-startet-nicht/dotvkjfifk?form_factor=desktop",
+    "date": "12.11.2026, 04:43:36",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=263&LCP=508&TBT=0&CLS=0.03&SI=312&TTI=508&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/fritzbox-hilfe/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-fritzbox-hilfe/bxh8n3c2vz?form_factor=mobile",
+    "date": "12.11.2026, 04:43:39",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=938&LCP=938&TBT=0&CLS=0&SI=938&TTI=938&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/fritzbox-hilfe/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-fritzbox-hilfe/bxh8n3c2vz?form_factor=desktop",
+    "date": "12.11.2026, 04:43:39",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=255&LCP=502&TBT=0&CLS=0.03&SI=307&TTI=502&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/mesh-wlan-einrichten/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-mesh-wlan-einrichten/vv7eyfcz05?form_factor=mobile",
+    "date": "12.11.2026, 04:44:08",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=934&LCP=934&TBT=0&CLS=0&SI=935&TTI=934&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/mesh-wlan-einrichten/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-mesh-wlan-einrichten/vv7eyfcz05?form_factor=desktop",
+    "date": "12.11.2026, 04:44:08",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=275&LCP=506&TBT=0&CLS=0&SI=360&TTI=506&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/senioren-handy-hilfe/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-senioren-handy-hilfe/0lfypzqzgk?form_factor=mobile",
+    "date": "12.11.2026, 04:44:11",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=919&LCP=919&TBT=0&CLS=0&SI=956&TTI=919&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/senioren-handy-hilfe/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-senioren-handy-hilfe/0lfypzqzgk?form_factor=desktop",
+    "date": "12.11.2026, 04:44:11",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=270&LCP=381&TBT=0&CLS=0&SI=270&TTI=381&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/betrugsverdacht-phishing-hilfe/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-betrugsverdacht-phishing-hilfe/ao2r0mrwdn?form_factor=mobile",
+    "date": "12.11.2026, 04:44:16",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=956&LCP=982&TBT=0&CLS=0&SI=956&TTI=984&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/leistungen/betrugsverdacht-phishing-hilfe/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-leistungen-betrugsverdacht-phishing-hilfe/ao2r0mrwdn?form_factor=desktop",
+    "date": "12.11.2026, 04:44:16",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=303&LCP=303&TBT=0&CLS=0&SI=314&TTI=303&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/phishing-erkennen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-phishing-erkennen/r3ee9d0dve?form_factor=mobile",
+    "date": "12.11.2026, 04:44:22",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=919&LCP=1052&TBT=5&CLS=0&SI=960&TTI=2264&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/phishing-erkennen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-phishing-erkennen/r3ee9d0dve?form_factor=desktop",
+    "date": "12.11.2026, 04:44:22",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=269&LCP=586&TBT=0&CLS=0&SI=334&TTI=586&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/passwoerter-passkeys/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-passwoerter-passkeys/0z3o4luz6b?form_factor=mobile",
+    "date": "12.11.2026, 04:45:08",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=926&LCP=926&TBT=0&CLS=0&SI=926&TTI=926&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/passwoerter-passkeys/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-passwoerter-passkeys/0z3o4luz6b?form_factor=desktop",
+    "date": "12.11.2026, 04:45:08",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=264&LCP=282&TBT=0&CLS=0&SI=335&TTI=282&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/passwortmanager/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-passwortmanager/193r7f24hk?form_factor=mobile",
+    "date": "12.11.2026, 04:45:11",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=930&LCP=937&TBT=0&CLS=0&SI=930&TTI=938&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/passwortmanager/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-passwortmanager/193r7f24hk?form_factor=desktop",
+    "date": "12.11.2026, 04:45:11",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=258&LCP=578&TBT=0&CLS=0&SI=380&TTI=578&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/zwei-faktor-anmeldung/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-zwei-faktor-anmeldung/0mrwjc1orc?form_factor=mobile",
+    "date": "12.11.2026, 04:45:19",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=942&LCP=1997&TBT=0&CLS=0&SI=942&TTI=1997&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/zwei-faktor-anmeldung/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-zwei-faktor-anmeldung/0mrwjc1orc?form_factor=desktop",
+    "date": "12.11.2026, 04:45:19",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=261&LCP=504&TBT=0&CLS=0&SI=328&TTI=504&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/falscher-support-anruf/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-falscher-support-anruf/gdm3oufc59?form_factor=mobile",
+    "date": "12.11.2026, 04:45:21",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=923&LCP=1990&TBT=0&CLS=0&SI=976&TTI=1990&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/falscher-support-anruf/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-falscher-support-anruf/gdm3oufc59?form_factor=desktop",
+    "date": "12.11.2026, 04:45:21",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=269&LCP=587&TBT=0&CLS=0&SI=411&TTI=587&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/sicherheitsupdates/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-sicherheitsupdates/z0eslwb1p8?form_factor=mobile",
+    "date": "12.11.2026, 04:45:41",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=926&LCP=926&TBT=0&CLS=0&SI=926&TTI=926&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/sicherheitsupdates/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-sicherheitsupdates/z0eslwb1p8?form_factor=desktop",
+    "date": "12.11.2026, 04:45:41",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=267&LCP=522&TBT=0&CLS=0&SI=351&TTI=522&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/ransomware-vorbeugen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-ransomware-vorbeugen/9ave2euvxx?form_factor=mobile",
+    "date": "12.11.2026, 04:45:43",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=938&LCP=1052&TBT=0&CLS=0&SI=938&TTI=1052&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/ransomware-vorbeugen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-ransomware-vorbeugen/9ave2euvxx?form_factor=desktop",
+    "date": "12.11.2026, 04:45:43",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=269&LCP=549&TBT=0&CLS=0&SI=311&TTI=549&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/konto-gehackt/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-konto-gehackt/2fbkwsdk2u?form_factor=mobile",
+    "date": "12.11.2026, 04:45:45",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=922&LCP=1051&TBT=0&CLS=0&SI=922&TTI=1051&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/konto-gehackt/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-konto-gehackt/2fbkwsdk2u?form_factor=desktop",
+    "date": "12.11.2026, 04:45:45",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=284&LCP=542&TBT=0&CLS=0&SI=314&TTI=542&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/fake-shops-erkennen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-fake-shops-erkennen/g9pydtfpjf?form_factor=mobile",
+    "date": "12.11.2026, 04:45:47",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=926&LCP=1051&TBT=0&CLS=0&SI=926&TTI=1051&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/fake-shops-erkennen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-fake-shops-erkennen/g9pydtfpjf?form_factor=desktop",
+    "date": "12.11.2026, 04:45:47",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=263&LCP=601&TBT=0&CLS=0&SI=325&TTI=601&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/qr-codes-sicher-scannen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-qr-codes-sicher-scannen/prt08611yz?form_factor=mobile",
+    "date": "12.11.2026, 04:46:08",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=927&LCP=1053&TBT=0&CLS=0&SI=927&TTI=1053&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/qr-codes-sicher-scannen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-qr-codes-sicher-scannen/prt08611yz?form_factor=desktop",
+    "date": "12.11.2026, 04:46:08",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=265&LCP=321&TBT=0&CLS=0&SI=299&TTI=321&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/app-berechtigungen-pruefen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-app-berechtigungen-pruefen/8bk7mzdnte?form_factor=mobile",
+    "date": "12.11.2026, 04:46:17",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=933&LCP=1051&TBT=0&CLS=0&SI=933&TTI=1051&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/app-berechtigungen-pruefen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-app-berechtigungen-pruefen/8bk7mzdnte?form_factor=desktop",
+    "date": "12.11.2026, 04:46:17",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=258&LCP=615&TBT=0&CLS=0&SI=342&TTI=615&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/oeffentliches-wlan-sicher-nutzen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-oeffentliches-wlan-sicher-nutzen/jjb06e7rg7?form_factor=mobile",
+    "date": "12.11.2026, 04:46:20",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=926&LCP=1052&TBT=0&CLS=0&SI=926&TTI=1052&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/oeffentliches-wlan-sicher-nutzen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-oeffentliches-wlan-sicher-nutzen/jjb06e7rg7?form_factor=desktop",
+    "date": "12.11.2026, 04:46:20",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=263&LCP=601&TBT=0&CLS=0&SI=303&TTI=601&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/smartphone-verloren/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-smartphone-verloren/rcv91v9oc2?form_factor=mobile",
+    "date": "12.11.2026, 04:46:25",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=932&LCP=1051&TBT=0&CLS=0&SI=932&TTI=1051&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/smartphone-verloren/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-smartphone-verloren/rcv91v9oc2?form_factor=desktop",
+    "date": "12.11.2026, 04:46:25",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=261&LCP=615&TBT=0&CLS=0&SI=330&TTI=615&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/kindergeraete-sicher-einrichten/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-kindergeraete-sicher-einrichten/zkdlskjp2s?form_factor=mobile",
+    "date": "12.11.2026, 04:46:28",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=928&LCP=1052&TBT=0&CLS=0&SI=928&TTI=1052&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/kindergeraete-sicher-einrichten/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-kindergeraete-sicher-einrichten/zkdlskjp2s?form_factor=desktop",
+    "date": "12.11.2026, 04:46:28",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=272&LCP=601&TBT=0&CLS=0&SI=352&TTI=601&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/pc-langsam/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-pc-langsam/yiv2n62obg?form_factor=mobile",
+    "date": "12.11.2026, 04:46:31",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=944&LCP=1052&TBT=0&CLS=0&SI=944&TTI=1052&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/pc-langsam/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-pc-langsam/yiv2n62obg?form_factor=desktop",
+    "date": "12.11.2026, 04:46:31",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=263&LCP=620&TBT=0&CLS=0&SI=392&TTI=620&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/autostart-aufraeumen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-autostart-aufraeumen/mzp11xxdue?form_factor=mobile",
+    "date": "12.11.2026, 04:46:33",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=925&LCP=925&TBT=0&CLS=0&SI=925&TTI=925&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/autostart-aufraeumen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-autostart-aufraeumen/mzp11xxdue?form_factor=desktop",
+    "date": "12.11.2026, 04:46:33",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=309&LCP=410&TBT=0&CLS=0&SI=361&TTI=410&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/speicherplatz-freigeben/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-speicherplatz-freigeben/z5s1zzutjc?form_factor=mobile",
+    "date": "12.11.2026, 04:46:36",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=922&LCP=1051&TBT=0&CLS=0&SI=922&TTI=1051&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/speicherplatz-freigeben/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-speicherplatz-freigeben/z5s1zzutjc?form_factor=desktop",
+    "date": "12.11.2026, 04:46:36",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=255&LCP=613&TBT=0&CLS=0&SI=484&TTI=613&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/windows-update-probleme/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-windows-update-probleme/8bqnwhqkmf?form_factor=mobile",
+    "date": "12.11.2026, 04:46:45",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=926&LCP=1681&TBT=0&CLS=0&SI=926&TTI=1681&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/windows-update-probleme/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-windows-update-probleme/8bqnwhqkmf?form_factor=desktop",
+    "date": "12.11.2026, 04:46:45",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=298&LCP=541&TBT=0&CLS=0.03&SI=487&TTI=541&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/pc-startet-nicht/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-pc-startet-nicht/cscu3pfr09?form_factor=mobile",
+    "date": "12.11.2026, 04:46:47",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=926&LCP=926&TBT=0&CLS=0&SI=926&TTI=926&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/pc-startet-nicht/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-pc-startet-nicht/cscu3pfr09?form_factor=desktop",
+    "date": "12.11.2026, 04:46:47",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=271&LCP=506&TBT=0&CLS=0&SI=292&TTI=506&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/bluescreen-einordnen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-bluescreen-einordnen/mp46dued3n?form_factor=mobile",
+    "date": "12.11.2026, 04:46:53",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=940&LCP=1051&TBT=0&CLS=0&SI=940&TTI=1051&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/bluescreen-einordnen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-bluescreen-einordnen/mp46dued3n?form_factor=desktop",
+    "date": "12.11.2026, 04:46:53",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=261&LCP=579&TBT=0&CLS=0&SI=386&TTI=579&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/laptop-wird-heiss/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-laptop-wird-heiss/fn4dloaj4k?form_factor=mobile",
+    "date": "12.11.2026, 04:46:55",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=957&LCP=966&TBT=0&CLS=0&SI=957&TTI=966&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/laptop-wird-heiss/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-laptop-wird-heiss/fn4dloaj4k?form_factor=desktop",
+    "date": "12.11.2026, 04:46:55",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=257&LCP=541&TBT=0&CLS=0&SI=325&TTI=541&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/neuen-pc-einrichten/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-neuen-pc-einrichten/2t1n4cwsej?form_factor=mobile",
+    "date": "12.11.2026, 04:46:58",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=925&LCP=925&TBT=0&CLS=0&SI=925&TTI=925&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/neuen-pc-einrichten/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-neuen-pc-einrichten/2t1n4cwsej?form_factor=desktop",
+    "date": "12.11.2026, 04:46:58",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=260&LCP=583&TBT=0&CLS=0&SI=367&TTI=583&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/zweiten-monitor-einrichten/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-zweiten-monitor-einrichten/4xebpk1t4i?form_factor=mobile",
+    "date": "12.11.2026, 04:47:01",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=916&LCP=2135&TBT=0&CLS=0&SI=949&TTI=2135&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/zweiten-monitor-einrichten/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-zweiten-monitor-einrichten/4xebpk1t4i?form_factor=desktop",
+    "date": "12.11.2026, 04:47:01",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=259&LCP=534&TBT=0&CLS=0&SI=332&TTI=534&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/bluetooth-verbindet-nicht/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-bluetooth-verbindet-nicht/mb6e73wkr1?form_factor=mobile",
+    "date": "12.11.2026, 04:47:03",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=930&LCP=1051&TBT=0&CLS=0&SI=930&TTI=1051&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/bluetooth-verbindet-nicht/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-bluetooth-verbindet-nicht/mb6e73wkr1?form_factor=desktop",
+    "date": "12.11.2026, 04:47:03",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=258&LCP=577&TBT=0&CLS=0&SI=326&TTI=577&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/mikrofon-kamera-videokonferenz/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-mikrofon-kamera-videokonferenz/6wferctaqv?form_factor=mobile",
+    "date": "12.11.2026, 04:47:06",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=929&LCP=929&TBT=0&CLS=0&SI=929&TTI=929&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/mikrofon-kamera-videokonferenz/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-mikrofon-kamera-videokonferenz/6wferctaqv?form_factor=desktop",
+    "date": "12.11.2026, 04:47:06",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=262&LCP=580&TBT=0&CLS=0&SI=546&TTI=580&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/laptop-akku-pflegen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-laptop-akku-pflegen/r82jrne9cd?form_factor=mobile",
+    "date": "12.11.2026, 04:47:23",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=925&LCP=925&TBT=0&CLS=0&SI=925&TTI=925&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/laptop-akku-pflegen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-laptop-akku-pflegen/r82jrne9cd?form_factor=desktop",
+    "date": "12.11.2026, 04:47:23",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=261&LCP=282&TBT=0&CLS=0&SI=261&TTI=282&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/usb-c-dockingstation/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-usb-c-dockingstation/8krzymy940?form_factor=mobile",
+    "date": "12.11.2026, 04:47:26",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=921&LCP=1052&TBT=0&CLS=0&SI=921&TTI=1052&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/usb-c-dockingstation/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-usb-c-dockingstation/8krzymy940?form_factor=desktop",
+    "date": "12.11.2026, 04:47:26",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=265&LCP=604&TBT=0&CLS=0&SI=279&TTI=604&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/barrierefreiheit-windows/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-barrierefreiheit-windows/up5x9eiku0?form_factor=mobile",
+    "date": "12.11.2026, 04:47:32",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=928&LCP=1051&TBT=0&CLS=0&SI=928&TTI=1051&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/barrierefreiheit-windows/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-barrierefreiheit-windows/up5x9eiku0?form_factor=desktop",
+    "date": "12.11.2026, 04:47:32",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=259&LCP=538&TBT=0&CLS=0&SI=332&TTI=538&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/wlan-reichweite/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-wlan-reichweite/xvnlz98306?form_factor=mobile",
+    "date": "12.11.2026, 04:47:34",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=925&LCP=1679&TBT=0&CLS=0&SI=925&TTI=1679&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/wlan-reichweite/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-wlan-reichweite/xvnlz98306?form_factor=desktop",
+    "date": "12.11.2026, 04:47:34",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=264&LCP=584&TBT=0&CLS=0&SI=347&TTI=584&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/mesh-wlan-planen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-mesh-wlan-planen/i7em1yzoyl?form_factor=mobile",
+    "date": "12.11.2026, 04:47:37",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=928&LCP=928&TBT=0&CLS=0&SI=928&TTI=928&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/mesh-wlan-planen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-mesh-wlan-planen/i7em1yzoyl?form_factor=desktop",
+    "date": "12.11.2026, 04:47:37",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=260&LCP=260&TBT=0&CLS=0&SI=268&TTI=260&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/fritzbox-absichern/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-fritzbox-absichern/0vv9dwzyqn?form_factor=mobile",
+    "date": "12.11.2026, 04:47:40",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=925&LCP=925&TBT=0&CLS=0&SI=925&TTI=925&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/fritzbox-absichern/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-fritzbox-absichern/0vv9dwzyqn?form_factor=desktop",
+    "date": "12.11.2026, 04:47:40",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=260&LCP=377&TBT=0&CLS=0&SI=275&TTI=377&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/internet-ausgefallen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-internet-ausgefallen/ebzhn63pbc?form_factor=mobile",
+    "date": "12.11.2026, 04:47:42",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=943&LCP=943&TBT=0&CLS=0&SI=1238&TTI=943&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/internet-ausgefallen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-internet-ausgefallen/ebzhn63pbc?form_factor=desktop",
+    "date": "12.11.2026, 04:47:42",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=276&LCP=397&TBT=0&CLS=0&SI=288&TTI=397&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/gast-wlan/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-gast-wlan/5v70mmq6d6?form_factor=mobile",
+    "date": "12.11.2026, 04:47:45",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=921&LCP=1669&TBT=0&CLS=0&SI=921&TTI=1669&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/gast-wlan/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-gast-wlan/5v70mmq6d6?form_factor=desktop",
+    "date": "12.11.2026, 04:47:45",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=262&LCP=281&TBT=0&CLS=0&SI=373&TTI=281&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/wlan-frequenzbaender/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-wlan-frequenzbaender/de165wa0k8?form_factor=mobile",
+    "date": "12.11.2026, 04:47:53",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=920&LCP=1058&TBT=0&CLS=0&SI=920&TTI=1058&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/wlan-frequenzbaender/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-wlan-frequenzbaender/de165wa0k8?form_factor=desktop",
+    "date": "12.11.2026, 04:47:53",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=262&LCP=401&TBT=0&CLS=0&SI=285&TTI=401&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/lan-oder-wlan/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-lan-oder-wlan/xm2ph61e4w?form_factor=mobile",
+    "date": "12.11.2026, 04:47:59",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=925&LCP=925&TBT=0&CLS=0&SI=925&TTI=925&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/lan-oder-wlan/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-lan-oder-wlan/xm2ph61e4w?form_factor=desktop",
+    "date": "12.11.2026, 04:47:59",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=258&LCP=501&TBT=0&CLS=0&SI=371&TTI=501&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/router-wechseln/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-router-wechseln/r7urpxjh6s?form_factor=mobile",
+    "date": "12.11.2026, 04:48:02",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=926&LCP=2253&TBT=0&CLS=0&SI=926&TTI=2253&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/router-wechseln/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-router-wechseln/r7urpxjh6s?form_factor=desktop",
+    "date": "12.11.2026, 04:48:02",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=273&LCP=633&TBT=0&CLS=0&SI=586&TTI=633&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/videokonferenz-ruckelt/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-videokonferenz-ruckelt/yqo21zju0w?form_factor=mobile",
+    "date": "12.11.2026, 04:48:07",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=925&LCP=2251&TBT=0&CLS=0&SI=925&TTI=2251&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/videokonferenz-ruckelt/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-videokonferenz-ruckelt/yqo21zju0w?form_factor=desktop",
+    "date": "12.11.2026, 04:48:07",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=260&LCP=602&TBT=0&CLS=0&SI=335&TTI=602&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/powerline-sinnvoll-nutzen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-powerline-sinnvoll-nutzen/m1upwdrd6u?form_factor=mobile",
+    "date": "12.11.2026, 04:48:10",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=953&LCP=1051&TBT=0&CLS=0&SI=1130&TTI=1051&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/powerline-sinnvoll-nutzen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-powerline-sinnvoll-nutzen/m1upwdrd6u?form_factor=desktop",
+    "date": "12.11.2026, 04:48:10",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=262&LCP=601&TBT=0&CLS=0&SI=394&TTI=601&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/smart-home-netzwerk/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-smart-home-netzwerk/n270ipwgy8?form_factor=mobile",
+    "date": "12.11.2026, 04:48:13",
+    "scores": {
+      "Leistung": 98,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=923&LCP=2419&TBT=0&CLS=0&SI=960&TTI=2419&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/smart-home-netzwerk/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-smart-home-netzwerk/n270ipwgy8?form_factor=desktop",
+    "date": "12.11.2026, 04:48:13",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=263&LCP=616&TBT=0&CLS=0&SI=312&TTI=616&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/netzwerkdrucker-feste-adresse/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-netzwerkdrucker-feste-adresse/ubsfaa6shp?form_factor=mobile",
+    "date": "12.11.2026, 04:48:15",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=925&LCP=2122&TBT=0&CLS=0&SI=1226&TTI=2122&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/netzwerkdrucker-feste-adresse/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-netzwerkdrucker-feste-adresse/ubsfaa6shp?form_factor=desktop",
+    "date": "12.11.2026, 04:48:15",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=264&LCP=579&TBT=0&CLS=0&SI=357&TTI=579&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/ipv4-ipv6-verstehen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-ipv4-ipv6-verstehen/defh3f53db?form_factor=mobile",
+    "date": "12.11.2026, 04:48:18",
+    "scores": {
+      "Leistung": 98,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=923&LCP=2423&TBT=0&CLS=0&SI=923&TTI=2423&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/ipv4-ipv6-verstehen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-ipv4-ipv6-verstehen/defh3f53db?form_factor=desktop",
+    "date": "12.11.2026, 04:48:18",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=261&LCP=601&TBT=0&CLS=0&SI=368&TTI=601&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/backup-3-2-1/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-backup-3-2-1/2ljdb4vi6o?form_factor=mobile",
+    "date": "12.11.2026, 04:48:28",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=927&LCP=2121&TBT=0&CLS=0&SI=927&TTI=2121&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/backup-3-2-1/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-backup-3-2-1/2ljdb4vi6o?form_factor=desktop",
+    "date": "12.11.2026, 04:48:28",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=265&LCP=540&TBT=0&CLS=0&SI=348&TTI=540&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/externe-festplatte-sichern/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-externe-festplatte-sichern/4pbetf3lni?form_factor=mobile",
+    "date": "12.11.2026, 04:48:34",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=931&LCP=1052&TBT=0&CLS=0&SI=931&TTI=1052&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/externe-festplatte-sichern/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-externe-festplatte-sichern/4pbetf3lni?form_factor=desktop",
+    "date": "12.11.2026, 04:48:34",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=263&LCP=561&TBT=0&CLS=0&SI=337&TTI=561&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/cloud-sync-oder-backup/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-cloud-sync-oder-backup/g9go9aj75i?form_factor=mobile",
+    "date": "12.11.2026, 04:48:36",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=922&LCP=1051&TBT=0&CLS=0&SI=922&TTI=1051&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/cloud-sync-oder-backup/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-cloud-sync-oder-backup/g9go9aj75i?form_factor=desktop",
+    "date": "12.11.2026, 04:48:36",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=262&LCP=658&TBT=0&CLS=0&SI=386&TTI=658&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/daten-auf-neuen-pc/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-daten-auf-neuen-pc/qeja9v0oyp?form_factor=mobile",
+    "date": "12.11.2026, 04:48:42",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=947&LCP=1689&TBT=0&CLS=0&SI=947&TTI=1689&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/daten-auf-neuen-pc/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-daten-auf-neuen-pc/qeja9v0oyp?form_factor=desktop",
+    "date": "12.11.2026, 04:48:42",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=261&LCP=601&TBT=0&CLS=0&SI=499&TTI=601&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/dateien-geloescht/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-dateien-geloescht/dmdolat046?form_factor=mobile",
+    "date": "12.11.2026, 04:48:45",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=931&LCP=1051&TBT=0&CLS=0&SI=931&TTI=1051&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/dateien-geloescht/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-dateien-geloescht/dmdolat046?form_factor=desktop",
+    "date": "12.11.2026, 04:48:45",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=260&LCP=537&TBT=0&CLS=0&SI=331&TTI=537&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/laufwerk-verschluesseln/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-laufwerk-verschluesseln/l0vbcijgql?form_factor=mobile",
+    "date": "12.11.2026, 04:48:47",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=924&LCP=1978&TBT=0&CLS=0&SI=924&TTI=1978&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/laufwerk-verschluesseln/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-laufwerk-verschluesseln/l0vbcijgql?form_factor=desktop",
+    "date": "12.11.2026, 04:48:47",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=261&LCP=578&TBT=0&CLS=0&SI=371&TTI=578&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/alte-geraete-verkaufen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-alte-geraete-verkaufen/5psaplies7?form_factor=mobile",
+    "date": "12.11.2026, 04:48:50",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=927&LCP=2251&TBT=0&CLS=0&SI=927&TTI=2251&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/alte-geraete-verkaufen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-alte-geraete-verkaufen/5psaplies7?form_factor=desktop",
+    "date": "12.11.2026, 04:48:50",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=256&LCP=616&TBT=0&CLS=0&SI=373&TTI=616&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/usb-sticks-sicher-nutzen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-usb-sticks-sicher-nutzen/x7izo5svt2?form_factor=mobile",
+    "date": "12.11.2026, 04:48:53",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=926&LCP=2125&TBT=0&CLS=0&SI=929&TTI=2125&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/usb-sticks-sicher-nutzen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-usb-sticks-sicher-nutzen/x7izo5svt2?form_factor=desktop",
+    "date": "12.11.2026, 04:48:53",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=265&LCP=587&TBT=0&CLS=0&SI=281&TTI=587&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/onedrive-synchronisiert-nicht/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-onedrive-synchronisiert-nicht/sxh83ervrs?form_factor=mobile",
+    "date": "12.11.2026, 04:49:13",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=923&LCP=2108&TBT=0&CLS=0&SI=923&TTI=2108&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/onedrive-synchronisiert-nicht/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-onedrive-synchronisiert-nicht/sxh83ervrs?form_factor=desktop",
+    "date": "12.11.2026, 04:49:13",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=269&LCP=523&TBT=0&CLS=0&SI=284&TTI=523&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/dateien-sicher-teilen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-dateien-sicher-teilen/rj47fnouzv?form_factor=mobile",
+    "date": "12.11.2026, 04:49:15",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=927&LCP=2255&TBT=0&CLS=0&SI=927&TTI=2255&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/dateien-sicher-teilen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-dateien-sicher-teilen/rj47fnouzv?form_factor=desktop",
+    "date": "12.11.2026, 04:49:15",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=272&LCP=566&TBT=0&CLS=0&SI=387&TTI=566&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/nas-zu-hause/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-nas-zu-hause/fdb7jn43jz?form_factor=mobile",
+    "date": "12.11.2026, 04:49:21",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=916&LCP=2251&TBT=0&CLS=0&SI=916&TTI=2251&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/nas-zu-hause/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-nas-zu-hause/fdb7jn43jz?form_factor=desktop",
+    "date": "12.11.2026, 04:49:21",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=259&LCP=601&TBT=0&CLS=0&SI=387&TTI=601&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/backup-wiederherstellung-testen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-backup-wiederherstellung-testen/0ixglsfg1b?form_factor=mobile",
+    "date": "12.11.2026, 04:49:24",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=918&LCP=2251&TBT=0&CLS=0&SI=918&TTI=2251&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/backup-wiederherstellung-testen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-backup-wiederherstellung-testen/0ixglsfg1b?form_factor=desktop",
+    "date": "12.11.2026, 04:49:24",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=278&LCP=580&TBT=0&CLS=0&SI=323&TTI=580&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/dateien-ordnen-wiederfinden/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-dateien-ordnen-wiederfinden/jxqimic6a9?form_factor=mobile",
+    "date": "12.11.2026, 04:49:26",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=928&LCP=928&TBT=0&CLS=0&SI=928&TTI=928&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/dateien-ordnen-wiederfinden/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-dateien-ordnen-wiederfinden/jxqimic6a9?form_factor=desktop",
+    "date": "12.11.2026, 04:49:26",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=271&LCP=585&TBT=0&CLS=0&SI=271&TTI=585&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/pdf-dateien-verkleinern/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-pdf-dateien-verkleinern/3o1g3l2ce1?form_factor=mobile",
+    "date": "12.11.2026, 04:49:29",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=932&LCP=2122&TBT=0&CLS=0&SI=932&TTI=2122&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/pdf-dateien-verkleinern/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-pdf-dateien-verkleinern/3o1g3l2ce1?form_factor=desktop",
+    "date": "12.11.2026, 04:49:29",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=254&LCP=574&TBT=0&CLS=0&SI=353&TTI=574&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/drucker-offline/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-drucker-offline/9y5nc72ytu?form_factor=mobile",
+    "date": "12.11.2026, 04:49:32",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=920&LCP=2126&TBT=0&CLS=0&SI=920&TTI=2126&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/drucker-offline/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-drucker-offline/9y5nc72ytu?form_factor=desktop",
+    "date": "12.11.2026, 04:49:32",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=262&LCP=579&TBT=0&CLS=0&SI=661&TTI=579&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/dokumente-scannen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-dokumente-scannen/jdfeopnatt?form_factor=mobile",
+    "date": "12.11.2026, 04:49:35",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=952&LCP=964&TBT=0&CLS=0&SI=952&TTI=965&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/dokumente-scannen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-dokumente-scannen/jdfeopnatt?form_factor=desktop",
+    "date": "12.11.2026, 04:49:35",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=260&LCP=499&TBT=0&CLS=0&SI=264&TTI=499&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/outlook-sendet-nicht/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-outlook-sendet-nicht/u9x78bvl3r?form_factor=mobile",
+    "date": "12.11.2026, 04:49:56",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=932&LCP=2251&TBT=0&CLS=0&SI=932&TTI=2251&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/outlook-sendet-nicht/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-outlook-sendet-nicht/u9x78bvl3r?form_factor=desktop",
+    "date": "12.11.2026, 04:49:56",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=268&LCP=623&TBT=0&CLS=0&SI=424&TTI=623&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/postfach-voll/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-postfach-voll/9dw5v37pnd?form_factor=mobile",
+    "date": "12.11.2026, 04:49:59",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=933&LCP=933&TBT=0&CLS=0&SI=933&TTI=933&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/postfach-voll/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-postfach-voll/9dw5v37pnd?form_factor=desktop",
+    "date": "12.11.2026, 04:49:59",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=286&LCP=525&TBT=0&CLS=0&SI=388&TTI=525&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/office-installieren/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-office-installieren/m3bo9ijzua?form_factor=mobile",
+    "date": "12.11.2026, 04:50:04",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=944&LCP=944&TBT=0&CLS=0&SI=944&TTI=944&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/office-installieren/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-office-installieren/m3bo9ijzua?form_factor=desktop",
+    "date": "12.11.2026, 04:50:04",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=258&LCP=578&TBT=0&CLS=0&SI=392&TTI=578&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/smartphone-fuer-senioren/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-smartphone-fuer-senioren/8pfz6gp9ey?form_factor=mobile",
+    "date": "12.11.2026, 04:50:07",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=920&LCP=2121&TBT=0&CLS=0&SI=920&TTI=2121&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/smartphone-fuer-senioren/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-smartphone-fuer-senioren/8pfz6gp9ey?form_factor=desktop",
+    "date": "12.11.2026, 04:50:07",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=267&LCP=544&TBT=0&CLS=0&SI=286&TTI=544&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/handy-fotos-sichern/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-handy-fotos-sichern/h8848neaxb?form_factor=mobile",
+    "date": "12.11.2026, 04:50:09",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=928&LCP=1203&TBT=0&CLS=0&SI=928&TTI=1203&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/handy-fotos-sichern/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-handy-fotos-sichern/h8848neaxb?form_factor=desktop",
+    "date": "12.11.2026, 04:50:09",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=259&LCP=659&TBT=0&CLS=0&SI=392&TTI=659&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/browser-erweiterungen-pruefen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-browser-erweiterungen-pruefen/mejuzasd1a?form_factor=mobile",
+    "date": "12.11.2026, 04:50:12",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=923&LCP=1673&TBT=0&CLS=0&SI=923&TTI=1673&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/browser-erweiterungen-pruefen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-browser-erweiterungen-pruefen/mejuzasd1a?form_factor=desktop",
+    "date": "12.11.2026, 04:50:12",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=263&LCP=582&TBT=0&CLS=0&SI=322&TTI=582&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/kalender-gemeinsam-nutzen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-kalender-gemeinsam-nutzen/cv1zkfe788?form_factor=mobile",
+    "date": "12.11.2026, 04:50:15",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=934&LCP=2252&TBT=0&CLS=0&SI=934&TTI=2252&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/kalender-gemeinsam-nutzen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-kalender-gemeinsam-nutzen/cv1zkfe788?form_factor=desktop",
+    "date": "12.11.2026, 04:50:15",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=257&LCP=617&TBT=0&CLS=0&SI=337&TTI=617&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/kontakte-auf-neues-handy/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-kontakte-auf-neues-handy/m5dpijqw9f?form_factor=mobile",
+    "date": "12.11.2026, 04:50:18",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=926&LCP=2251&TBT=0&CLS=0&SI=945&TTI=2251&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/kontakte-auf-neues-handy/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-kontakte-auf-neues-handy/m5dpijqw9f?form_factor=desktop",
+    "date": "12.11.2026, 04:50:18",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=271&LCP=601&TBT=0&CLS=0&SI=282&TTI=601&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/browser-benachrichtigungen-stoppen/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-browser-benachrichtigungen-stoppen/wz3lkntxl7?form_factor=mobile",
+    "date": "12.11.2026, 04:50:27",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=933&LCP=2117&TBT=0&CLS=0&SI=1040&TTI=2117&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/browser-benachrichtigungen-stoppen/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-browser-benachrichtigungen-stoppen/wz3lkntxl7?form_factor=desktop",
+    "date": "12.11.2026, 04:50:27",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=274&LCP=517&TBT=0&CLS=0.02&SI=481&TTI=517&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/smart-tv-streaming-probleme/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-smart-tv-streaming-probleme/krd85oyfgm?form_factor=mobile",
+    "date": "12.11.2026, 04:50:32",
+    "scores": {
+      "Leistung": 98,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=926&LCP=2275&TBT=0&CLS=0&SI=926&TTI=2275&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/smart-tv-streaming-probleme/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-smart-tv-streaming-probleme/krd85oyfgm?form_factor=desktop",
+    "date": "12.11.2026, 04:50:32",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=262&LCP=561&TBT=0&CLS=0&SI=327&TTI=561&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/ki-tools-datenschutz/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-ki-tools-datenschutz/s6w0bvjrwl?form_factor=mobile",
+    "date": "12.11.2026, 04:50:37",
+    "scores": {
+      "Leistung": 99,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=924&LCP=2145&TBT=0&CLS=0&SI=924&TTI=2145&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/ki-tools-datenschutz/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-ki-tools-datenschutz/s6w0bvjrwl?form_factor=desktop",
+    "date": "12.11.2026, 04:50:37",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=267&LCP=595&TBT=0&CLS=0&SI=430&TTI=595&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/digitale-abos-ueberblick/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-digitale-abos-ueberblick/2f8jynh1jq?form_factor=mobile",
+    "date": "12.11.2026, 04:50:43",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=927&LCP=1051&TBT=0&CLS=0&SI=927&TTI=1051&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/ratgeber/digitale-abos-ueberblick/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de-ratgeber-digitale-abos-ueberblick/2f8jynh1jq?form_factor=desktop",
+    "date": "12.11.2026, 04:50:43",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=262&LCP=621&TBT=0&CLS=0&SI=337&TTI=621&device=desktop&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/",
+    "device": "mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de/6ofjfy447v?form_factor=mobile",
+    "date": "12.11.2026, 04:50:45",
+    "scores": {
+      "Leistung": 98,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=925&LCP=2357&TBT=0&CLS=0&SI=1071&TTI=2364&device=mobile&version=13.6.0"
+  },
+  {
+    "release": "0e8b4f0402d0d12c89794e832889ea3b36afbc6c",
+    "page": "https://schultes-it.de/",
+    "device": "desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-schultes-it-de/6ofjfy447v?form_factor=desktop",
+    "date": "12.11.2026, 04:50:45",
+    "scores": {
+      "Leistung": 100,
+      "Barrierefreiheit": 100,
+      "Best Practices": 100,
+      "SEO": 100
+    },
+    "metrics": "https://googlechrome.github.io/lighthouse/scorecalc/#FCP=267&LCP=387&TBT=0&CLS=0&SI=267&TTI=387&device=desktop&version=13.6.0"
+  }
+]
