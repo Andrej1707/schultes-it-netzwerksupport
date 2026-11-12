@@ -29,6 +29,36 @@ function escapeXml(value: string) {
     .replaceAll("'", '&apos;')
 }
 
+function htmlAttribute(tag: string, name: string) {
+  const match = tag.match(new RegExp(`(?:^|\\s)${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`, 'i'))
+  return match?.[1] ?? match?.[2] ?? match?.[3] ?? ''
+}
+
+function isImagePreload(tag: string) {
+  return htmlAttribute(tag, 'rel').toLowerCase().split(/\s+/).includes('preload')
+    && htmlAttribute(tag, 'as').toLowerCase() === 'image'
+}
+
+function hoistCriticalImagePreloads(html: string) {
+  const criticalPreloads: string[] = []
+  const cleanHtml = html.replace(/<link\b[^>]*>/gi, (tag) => {
+    if (!isImagePreload(tag)) return tag
+    // These are React's generated resource hints, outside the component tree.
+    // Keep the original responsive attributes so client preload() reuses them.
+    if (htmlAttribute(tag, 'fetchpriority').toLowerCase() === 'high') criticalPreloads.push(tag)
+    return ''
+  })
+  if (!criticalPreloads.length) return cleanHtml
+
+  const head = cleanHtml.match(/<head\b[^>]*>[\s\S]*?<\/head>/i)
+  const csp = head && [...head[0].matchAll(/<meta\b[^>]*>/gi)].find((match) =>
+    htmlAttribute(match[0], 'http-equiv').toLowerCase() === 'content-security-policy',
+  )
+  if (!head || !csp) throw new Error('Critical image preloads require a Content-Security-Policy in the head.')
+  const insertAt = head.index! + csp.index! + csp[0].length
+  return `${cleanHtml.slice(0, insertAt)}\n    ${criticalPreloads.join('\n    ')}${cleanHtml.slice(insertAt)}`
+}
+
 function replaceMeta(
   html: string,
   attribute: 'name' | 'property',
@@ -76,6 +106,9 @@ function replaceAliasRootContent(html: string, canonicalUrl: string) {
 }
 
 function renderPageHtml(baseHtml: string, page: SitePage, isAlias = false, styleHrefs: PageStyleHrefs = {}) {
+  // The built homepage is reused as the template for every route. Discard its
+  // hints before SSR generates this page's own resources (none for redirects).
+  baseHtml = baseHtml.replace(/<link\b[^>]*>/gi, (tag) => isImagePreload(tag) ? '' : tag)
   // Each page gets only its own article (or the short library catalog), as inert JSON.
   // Escape '<' so article text cannot terminate the script element.
   const guideData = isAlias ? undefined : guideDataForPage(page)
@@ -147,7 +180,7 @@ function renderPageHtml(baseHtml: string, page: SitePage, isAlias = false, style
       )
   }
 
-  return withPageStyles(html, page, styleHrefs, isAlias)
+  return hoistCriticalImagePreloads(withPageStyles(html, page, styleHrefs, isAlias))
 }
 
 function sitemapXml() {

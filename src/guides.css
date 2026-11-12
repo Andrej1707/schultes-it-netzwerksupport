@@ -1,4 +1,6 @@
 .g-container { width: min(1200px, calc(100% - 64px)); margin-inline: auto; }
+.g-picture { display: contents; }
+.g-picture > source { display: none; }
 .g-eyebrow { margin: 0 0 18px; color: #66666e; font-size: 11px; font-weight: 650; letter-spacing: .12em; line-height: 1.5; text-transform: uppercase; }
 .g-text-link { display: inline-flex; align-items: center; gap: 8px; color: #0068d6; font-size: 15px; font-weight: 500; min-height: 44px; }
 .g-text-link:hover { color: #004c9e; }
@@ -13,7 +15,7 @@
 .g-lead { max-width: 520px; margin-bottom: 18px; font-size: 17px; line-height: 1.7; color: #5c5c65; }
 .g-hero-note { margin: 22px 0 0; color: #6c6c74; font-size: 12px; line-height: 1.6; }
 .g-library-visual { position: relative; min-width: 0; overflow: hidden; border-radius: 28px; background: #efefef; }
-.g-library-visual > img { width: 100%; height: auto; aspect-ratio: 1 / 1.08; object-fit: cover; }
+.g-library-visual > .g-picture > img { width: 100%; height: auto; aspect-ratio: 1 / 1.08; object-fit: cover; }
 .g-library-visual::after { content: ''; position: absolute; inset: 50% 0 0; background: linear-gradient(transparent, #101518b8); pointer-events: none; }
 .g-visual-caption { position: absolute; bottom: 30px; inset-inline: 30px; z-index: 1; color: #fff; }
 .g-visual-caption span { display: block; margin-bottom: 5px; font-size: 13px; line-height: 1.5; }
@@ -151,7 +153,7 @@
   .g-library-intro h1 { max-width: 680px; font-size: clamp(40px, 6.6vw, 55px); }
   .g-lead { max-width: 620px; font-size: 16px; }
   .g-hero-note { margin-top: 13px; }
-  .g-library-visual > img { aspect-ratio: 1.8; }
+  .g-library-visual > .g-picture > img { aspect-ratio: 1.8; }
   .g-visual-caption { bottom: 24px; inset-inline: 25px; }
   .g-article-header { padding-top: 24px; }
   .g-breadcrumbs { margin-bottom: 35px; }
@@ -168,7 +170,7 @@
   .g-eyebrow { font-size: 10px; margin-bottom: 15px; }
   .g-library-intro h1 { font-size: clamp(36px, 8.4vw, 49px); margin-bottom: 23px; }
   .g-library-visual { border-radius: 20px; }
-  .g-library-visual > img { aspect-ratio: 1.36; }
+  .g-library-visual > .g-picture > img { aspect-ratio: 1.36; }
   .g-visual-caption { inset-inline: 23px; bottom: 23px; }
   .g-visual-caption strong { font-size: 25px; }
   .g-library-section { padding: 47px 0 54px; }

@@ -58,8 +58,74 @@ function plainText(value) {
 }
 
 function attributeValue(tag, name) {
-  return decodeHtml(
-    tag.match(new RegExp(`(?:^|\\s)${name}="([^"]*)"`, 'i'))?.[1] ?? '',
+  const match = tag.match(new RegExp(`(?:^|\\s)${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`, 'i'))
+  return decodeHtml(match?.[1] ?? match?.[2] ?? match?.[3] ?? '')
+}
+
+function isImagePreload(tag) {
+  return attributeValue(tag, 'rel').toLowerCase().split(/\s+/).includes('preload')
+    && attributeValue(tag, 'as').toLowerCase() === 'image'
+}
+
+function validateCriticalImagePreloads(html, path, isAlias = false) {
+  const preloads = [...html.matchAll(/<link\b[^>]*>/gi)].filter((match) => isImagePreload(match[0]))
+  const heroes = [...html.matchAll(/<img\b[^>]*>/gi)].filter((match) =>
+    attributeValue(match[0], 'fetchpriority').toLowerCase() === 'high',
+  )
+  assert(
+    heroes.length <= 1 && preloads.length === (isAlias ? 0 : heroes.length),
+    `Expected exactly one preload per critical hero and none for other images or redirects in ${path}.`,
+  )
+  if (!preloads.length) return
+
+  const preload = preloads[0]
+  const hero = heroes[0]
+  const head = html.match(/<head\b[^>]*>[\s\S]*?<\/head>/i)
+  assert(head, `Missing head for the critical image preload in ${path}.`)
+  const csp = [...head[0].matchAll(/<meta\b[^>]*>/gi)].find((match) =>
+    attributeValue(match[0], 'http-equiv').toLowerCase() === 'content-security-policy',
+  )
+  const firstStyle = [...head[0].matchAll(/<(?:style|link)\b[^>]*>/gi)].find((match) =>
+    /^<style\b/i.test(match[0])
+      || attributeValue(match[0], 'rel').toLowerCase().split(/\s+/).includes('stylesheet'),
+  )
+  assert(
+    csp && firstStyle && preload.index >= head.index + csp.index + csp[0].length
+      && preload.index + preload[0].length <= head.index + firstStyle.index,
+    `Critical image preload in ${path} must be inside the head, after CSP and before styles.`,
+  )
+  assert(
+    attributeValue(preload[0], 'fetchpriority').toLowerCase() === 'high'
+      && attributeValue(hero[0], 'loading').toLowerCase() === 'eager',
+    `Critical image and preload must retain eager/high priority in ${path}.`,
+  )
+
+  // Match the preferred picture source when present, otherwise the img itself.
+  // Compare rendered values, not image names/extensions or guessed sizes.
+  const picture = [...html.matchAll(/<picture\b[^>]*>[\s\S]*?<\/picture>/gi)].find((match) =>
+    hero.index > match.index && hero.index < match.index + match[0].length,
+  )
+  const source = picture?.[0].match(/<source\b[^>]*>/i)?.[0]
+  const target = source ?? hero[0]
+  const srcset = attributeValue(target, 'srcset')
+  assert(
+    attributeValue(preload[0], 'imagesrcset') === srcset
+      && attributeValue(preload[0], 'imagesizes') === attributeValue(target, 'sizes'),
+    `Critical image preload srcset/sizes do not match the hero in ${path}.`,
+  )
+  if (source) {
+    assert(
+      srcset && attributeValue(preload[0], 'type') === attributeValue(source, 'type')
+        && attributeValue(preload[0], 'media') === attributeValue(source, 'media'),
+      `Critical image preload must match the preferred picture source type/media in ${path}.`,
+    )
+  }
+  const href = attributeValue(preload[0], 'href')
+  assert(
+    srcset
+      ? !href || srcset.split(',').some((candidate) => candidate.trim().split(/\s+/)[0] === href)
+      : href === attributeValue(hero[0], 'src'),
+    `Critical image preload points at a different image from the hero in ${path}.`,
   )
 }
 
@@ -110,7 +176,7 @@ async function validateAssets(html, pageUrl, path) {
     const tag = match[0]
     const kind = match[1].toLowerCase()
     if (kind === 'link') {
-      const rel = attributeValue(tag, 'rel')
+      const rel = attributeValue(tag, 'rel').toLowerCase()
       if (
         /^(stylesheet|icon|apple-touch-icon|preload|modulepreload|alternate)$/.test(
           rel,
@@ -123,6 +189,9 @@ async function validateAssets(html, pageUrl, path) {
           true,
         )
       }
+      if (isImagePreload(tag)) {
+        await validateSrcset(attributeValue(tag, 'imagesrcset'), pageUrl, path)
+      }
       continue
     }
     await validateLocalAsset(
@@ -132,20 +201,17 @@ async function validateAssets(html, pageUrl, path) {
       kind !== 'script',
     )
     await validateLocalAsset(attributeValue(tag, 'poster'), pageUrl, path, true)
-    const srcset = attributeValue(tag, 'srcset')
-    if (srcset && !srcset.startsWith('data:')) {
-      for (const candidate of srcset.split(',')) {
-        await validateLocalAsset(
-          candidate.trim().split(/\s+/)[0],
-          pageUrl,
-          path,
-          true,
-        )
-      }
-    }
+    await validateSrcset(attributeValue(tag, 'srcset'), pageUrl, path)
   }
   const previewTag = html.match(/<meta\b[^>]*property="og:image"[^>]*>/i)?.[0] ?? ''
   await validateLocalAsset(attributeValue(previewTag, 'content'), pageUrl, path, true)
+}
+
+async function validateSrcset(srcset, pageUrl, path) {
+  if (!srcset || srcset.startsWith('data:')) return
+  for (const candidate of srcset.split(',')) {
+    await validateLocalAsset(candidate.trim().split(/\s+/)[0], pageUrl, path, true)
+  }
 }
 
 function outputPath(route) {
@@ -488,6 +554,7 @@ for (const page of manifest.pages) {
     `Unexpected sitemap.txt state for ${canonicalUrl}.`,
   )
   validateSharedHtml(html, page, canonicalOutput, canonicalUrl, page.indexable)
+  validateCriticalImagePreloads(html, canonicalOutput)
   await validateInlinePageStyles(html, page, canonicalOutput)
   await validateAssets(html, canonicalUrl, canonicalOutput)
   // Service photography stays unique. Editorial covers are intentionally repeated
@@ -690,6 +757,7 @@ for (const page of manifest.pages) {
     const aliasOutput = outputPath(alias)
     const aliasHtml = await read(aliasOutput)
     validateRedirectAlias(aliasHtml, page, aliasOutput, canonicalUrl)
+    validateCriticalImagePreloads(aliasHtml, aliasOutput, true)
     structuredData(aliasHtml, aliasOutput)
     await validateAssets(aliasHtml, `${siteUrl}${alias}`, aliasOutput)
     assert(
@@ -710,6 +778,7 @@ for (const page of manifest.pages.filter(
 
 const notFoundHtml = await read('404.html')
 structuredData(notFoundHtml, '404.html')
+validateCriticalImagePreloads(notFoundHtml, '404.html')
 await validateInlinePageStyles(notFoundHtml, { path: '/404.html', kind: 'not-found' }, '404.html')
 await validateAssets(notFoundHtml, `${siteUrl}/404.html`, '404.html')
 assert(

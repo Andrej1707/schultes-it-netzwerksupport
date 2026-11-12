@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { preload } from 'react-dom'
 import {
   ArrowDown,
   ArrowDownToLine,
@@ -172,19 +173,35 @@ function ServicePhoto({
   eager?: boolean
   layout?: ServicePhotoLayout
 }) {
+  const sizes = servicePhotoSizes[layout]
+  const avifSrcSet = [480, 640, 720, 800, 960, 1280, 1920]
+    .map((width) => `/images/${subject}-${width}.avif ${width}w`)
+    .join(', ')
+  if (eager) {
+    preload(`/images/${subject}-1280.avif`, {
+      as: 'image',
+      type: 'image/avif',
+      imageSrcSet: avifSrcSet,
+      imageSizes: sizes,
+      fetchPriority: 'high',
+    })
+  }
   return (
-    <img
-      className="ps-photo"
-      src={`/images/${subject}-1280.webp`}
-      srcSet={`/images/${subject}-640.webp 640w, /images/${subject}-800.webp 800w, /images/${subject}-960.webp 960w, /images/${subject}-1280.webp 1280w, /images/${subject}-1920.webp 1920w`}
-      sizes={servicePhotoSizes[layout]}
-      width={1536}
-      height={1024}
-      alt={alt}
-      loading={eager ? 'eager' : 'lazy'}
-      fetchPriority={eager ? 'high' : undefined}
-      decoding="async"
-    />
+    <picture className="ps-photo-picture">
+      <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />
+      <img
+        className="ps-photo"
+        src={`/images/${subject}-1280.webp`}
+        srcSet={`/images/${subject}-640.webp 640w, /images/${subject}-800.webp 800w, /images/${subject}-960.webp 960w, /images/${subject}-1280.webp 1280w, /images/${subject}-1920.webp 1920w`}
+        sizes={sizes}
+        width={1536}
+        height={1024}
+        alt={alt}
+        loading={eager ? 'eager' : 'lazy'}
+        fetchPriority={eager ? 'high' : undefined}
+        decoding="async"
+      />
+    </picture>
   )
 }
 
